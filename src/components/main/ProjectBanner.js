@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 export default function ProjectBanner({ image, title, details }) {
   return (
     <div className="relative bg-gray-200 rounded-sm overflow-hidden h-48">
       {/* Image de fond */}
-      <img
+      <Image
         src={image}
         alt={title}
         className="w-full h-full object-cover"
