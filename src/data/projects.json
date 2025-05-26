@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "title": "E-commerce Platform for Retail",
+    "description": "A fully responsive e-commerce solution with secure payments and SEO optimization.",
+    "image": "/images/project4.webp",
+    "details": "Built with React & Django",
+    "tags": ["webdev", "ecommerce", "react", "django"],
+    "date": "May 2025"
+  },
+  {
+    "id": "2",
+    "title": "Mobile App for Reservations",
+    "description": "A user-friendly app for booking restaurant reservations.",
+    "image": "/images/project5.webp",
+    "details": "Built with Flutter & Firebase",
+    "tags": ["mobile", "flutter", "firebase"],
+    "date": "April 2025"
+  },
+  {
+    "id": "3",
+    "title": "Corporate Website Redesign",
+    "description": "A modern website redesign for a corporate client.",
+    "image": "/images/project3.webp",
+    "details": "Built with Next.js & Tailwind",
+    "tags": ["webdev", "nextjs", "tailwind"],
+    "date": "March 2025"
+  }
+]
