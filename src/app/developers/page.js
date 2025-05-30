@@ -1,6 +1,7 @@
 import MainContent from "@/components/main/MainContent";
 import Link from "next/link";
 import developersData from "@/data/developers.json";
+import Image from "next/image"; // Ajout de l'import
 
 export default function Developers() {
   return (
@@ -18,9 +19,11 @@ export default function Developers() {
               key={index}
               className="bg-gray-50 p-4 rounded-sm shadow-sm flex items-start gap-4"
             >
-              <img
+              <Image
                 src={developer.image}
                 alt={developer.name}
+                width={96} // 24px * 4 (taille de base en pixels)
+                height={96} // 24px * 4
                 className="w-24 h-24 rounded-full object-cover"
               />
               <div>

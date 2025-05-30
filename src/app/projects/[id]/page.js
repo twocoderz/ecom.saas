@@ -19,7 +19,7 @@ export default function ProjectDetail({ params }) {
             Projet non trouvé
           </h1>
           <p className="text-gray-600">
-            Désolé, ce projet n'existe pas.{" "}
+            Désolé, ce projet n&apos;existe pas.{" "}
             <Link href="/about" className="text-blue-600 hover:underline">
               Retour à la page À propos
             </Link>
