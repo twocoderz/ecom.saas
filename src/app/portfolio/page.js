@@ -50,6 +50,3 @@ export default function Portfolio() {
     </Suspense>
   );
 }
-
-// Désactiver le prerendering pour cette page
-export const dynamic = "force-dynamic";
