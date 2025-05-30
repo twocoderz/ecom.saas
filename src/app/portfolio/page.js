@@ -1,8 +1,21 @@
+"use client";
+
 import MainContent from "@/components/main/MainContent";
 import FeaturedProject from "@/components/main/FeaturedProject";
 import projectsData from "@/data/projects.json";
+import { useSearchParams } from "next/navigation";
 
 export default function Portfolio() {
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+
+  const filteredProjects = projectsData.filter(
+    (project) =>
+      project.title.toLowerCase().includes(searchQuery) ||
+      project.description.toLowerCase().includes(searchQuery) ||
+      project.technologies.some((tag) => tag.toLowerCase().includes(searchQuery))
+  );
+
   return (
     <MainContent>
       <section className="bg-white p-6 rounded-sm shadow-sm">
@@ -10,12 +23,20 @@ export default function Portfolio() {
           Notre Portfolio
         </h1>
         <p className="text-gray-600 mb-6">
-          Découvrez notre collection complète de projets web et mobiles, conçus pour répondre aux besoins variés de nos clients.
+          {searchQuery
+            ? `Résultats de la recherche pour "${searchQuery}"`
+            : "Découvrez notre collection complète de projets web et mobiles, conçus pour répondre aux besoins variés de nos clients."}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projectsData.map((project) => (
-            <FeaturedProject key={project.id} project={project} />
-          ))}
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project) => (
+              <FeaturedProject key={project.id} project={project} />
+            ))
+          ) : (
+            <p className="text-gray-600">
+              Aucun projet ne correspond à votre recherche.
+            </p>
+          )}
         </div>
       </section>
     </MainContent>

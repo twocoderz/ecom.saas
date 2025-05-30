@@ -12,7 +12,7 @@ export default function FeaturedProject({ project }) {
 
       {/* Bannière */}
       <ProjectBanner
-        image={project.image}
+        image={project.images[0].url}
         title={project.title}
         details={project.details}
       />
@@ -22,7 +22,7 @@ export default function FeaturedProject({ project }) {
 
       {/* Tags */}
       <div className="flex space-x-2">
-        {project.tags.map((tag, index) => (
+        {project.technologies.map((tag, index) => (
           <Tag key={index} label={tag} />
         ))}
       </div>

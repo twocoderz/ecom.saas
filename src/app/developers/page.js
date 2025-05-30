@@ -1,28 +1,8 @@
 import MainContent from "@/components/main/MainContent";
 import Link from "next/link";
+import developersData from "@/data/developers.json";
 
 export default function Developers() {
-  const developers = [
-    {
-      name: "Jean Dupont",
-      role: "Développeur Full Stack",
-      description: "Expert en React, Next.js et Node.js avec 8 ans d'expérience.",
-      image: "/images/developer1.jpg",
-    },
-    {
-      name: "Marie Lefèvre",
-      role: "Développeuse Mobile",
-      description: "Spécialiste en Flutter et développement d'applications iOS/Android.",
-      image: "/images/developer2.jpg",
-    },
-    {
-      name: "Pierre Martin",
-      role: "Architecte Logiciel",
-      description: "Conçoit des solutions évolutives pour des projets complexes.",
-      image: "/images/developer3.jpg",
-    },
-  ];
-
   return (
     <MainContent>
       <section className="bg-white p-6 rounded-sm shadow-sm">
@@ -33,7 +13,7 @@ export default function Developers() {
           Rencontrez notre équipe talentueuse de développeurs, passionnés par la création de solutions numériques innovantes.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {developers.map((developer, index) => (
+          {developersData.map((developer, index) => (
             <div
               key={index}
               className="bg-gray-50 p-4 rounded-sm shadow-sm flex items-start gap-4"

@@ -11,7 +11,7 @@ export default function CallToAction() {
         href="/contact"
         className="text-sm md:text-base font-medium mt-4 inline-block bg-[#4F46E5] text-white px-4 md:px-8 py-1 rounded-sm hover:bg-blue-600"
       >
-        Contact Us
+        Nous contacter
       </Link>
     </div>
   );

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Crépin AZIAMADJI",
+    "role": "Développeur Full Stack",
+    "description": "Expert en React, Next.js, Django, Flutter et les services cloud.",
+    "image": "/images/programmeur.png"
+  },
+  {
+    "name": "Rahim ALI",
+    "role": "Développeur Full Stack",
+    "description": "Spécialiste en Flutter, Nextjs, Django et développement d'applications Android avec Kotlin.",
+    "image": "/images/programmeur.png"
+  }
+]

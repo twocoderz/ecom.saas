@@ -3,12 +3,23 @@
 import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Header({ logo = "AZRATECH" }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/portfolio?search=${encodeURIComponent(searchQuery)}`);
+      setIsMenuOpen(false);
+    }
   };
 
   return (
@@ -20,30 +31,33 @@ export default function Header({ logo = "AZRATECH" }) {
             <Link href="/">{logo}</Link>
           </div>
 
-          {/* Barre de recherche */}
+          {/* Barre de recherche (Desktop) */}
           <div className="hidden md:block w-1/3 relative">
-            <input
-              type="text"
-              placeholder="Search projects..."
-              className="w-full pl-10 pr-3 py-1 rounded-sm border-2 border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent transition-all duration-200 text-gray-800 placeholder-gray-500"
-            />
-            <FaSearch className="absolute left-3 top-2 text-gray-500" />
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                placeholder="Rechercher des projets..."
+                className="w-full pl-10 pr-4 py-2 rounded-md border-2 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
+              >
+                <FaSearch />
+              </button>
+            </form>
           </div>
 
-          {/* Bouton Hamburger et icone de fermeture pour (mobile) */}
+          {/* Bouton Hamburger */}
           <button
-            className="md:hidden text-gray-500 focus:outline-none cursor-pointer"
+            className="md:hidden text-[#4F46E5] focus:outline-none cursor-pointer"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
-              // Icône de fermeture (croix)
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -52,13 +66,7 @@ export default function Header({ logo = "AZRATECH" }) {
                 />
               </svg>
             ) : (
-              // Icône menu hamburger
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -69,17 +77,17 @@ export default function Header({ logo = "AZRATECH" }) {
             )}
           </button>
 
-          {/* Menu Desktop (a l'interieur du header fixe) */}
+          {/* Menu Desktop */}
           <nav className="hidden md:flex md:items-center space-x-6">
             <Link
               href="/portfolio"
-              className="text-sm lg:text-base text-[#4F46E5] font-medium hover:text-blue-400 hover:underline  font-poppins transition-all ease-in"
+              className="text-sm lg:text-base text-[#4F46E5] font-medium hover:text-blue-400 hover:underline font-poppins transition-all ease-in"
             >
               Portfolio
             </Link>
             <Link
               href="/about"
-              className="text-sm lg:text-base text-[#4F46E5] font-medium hover:text-blue-400 hover:underline  font-poppins transition-all ease-in"
+              className="text-sm lg:text-base text-[#4F46E5] font-medium hover:text-blue-400 hover:underline font-poppins transition-all ease-in"
             >
               À propos
             </Link>
@@ -92,32 +100,55 @@ export default function Header({ logo = "AZRATECH" }) {
           </nav>
         </div>
       </header>
-      {/* Menu Mobile (en dehors du header fixe) */}
+
+      {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="fixed top-16 left-0 w-full bg-[#5A5DE4] z-30 shadow-md md:hidden">
-          <nav className="p-4 flex flex-col space-y-3">
-            <Link
-              href="/portfolio"
-              onClick={toggleMenu}
-              className="text-[#E1E3E7] hover:text-white transition-all duration-300 ease-out"
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="/about"
-              onClick={toggleMenu}
-              className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
-            >
-              À propos
-            </Link>
-            <Link
-              href="/contact"
-              onClick={toggleMenu}
-              className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
-            >
-              Nous contacter
-            </Link>
-          </nav>
+          <div className="p-4">
+            {/* Barre de recherche (Mobile) */}
+            <form onSubmit={handleSearch} className="mb-4">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Rechercher des projets..."
+                  className="w-full pl-10 pr-4 py-2 rounded-md border-2 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button
+                  type="submit"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
+                >
+                  <FaSearch />
+                </button>
+              </div>
+            </form>
+
+            {/* Liens de navigation */}
+            <nav className="flex flex-col space-y-3">
+              <Link
+                href="/portfolio"
+                onClick={toggleMenu}
+                className="text-[#E1E3E7] hover:text-white transition-all duration-300 ease-out"
+              >
+                Portfolio
+              </Link>
+              <Link
+                href="/about"
+                onClick={toggleMenu}
+                className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
+              >
+                À propos
+              </Link>
+              <Link
+                href="/contact"
+                onClick={toggleMenu}
+                className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
+              >
+                Nous contacter
+              </Link>
+            </nav>
+          </div>
         </div>
       )}
     </>

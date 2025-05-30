@@ -1,30 +1,8 @@
 import MainContent from "@/components/main/MainContent";
 import Link from "next/link";
+import servicesData from "@/data/services.json";
 
 export default function Services() {
-  const services = [
-    {
-      title: "Développement Web",
-      description: "Création de sites web modernes, responsives et optimisés pour le SEO, allant des vitrines aux plateformes e-commerce complexes.",
-      icon: "🌐",
-    },
-    {
-      title: "Développement Mobile",
-      description: "Conception d'applications mobiles natives et hybrides pour iOS et Android, avec une attention particulière à l'expérience utilisateur.",
-      icon: "📱",
-    },
-    {
-      title: "Consulting Technique",
-      description: "Accompagnement dans la stratégie numérique, l'architecture logicielle et l'optimisation des performances.",
-      icon: "🛠️",
-    },
-    {
-      title: "Maintenance et Support",
-      description: "Services de maintenance pour assurer la sécurité, la mise à jour et la performance continue de vos projets.",
-      icon: "🔧",
-    },
-  ];
-
   return (
     <MainContent>
       <section className="bg-white p-6 rounded-sm shadow-sm">
@@ -35,7 +13,7 @@ export default function Services() {
           Chez AZRATECH, nous offrons une gamme complète de services pour transformer vos idées en solutions numériques performantes.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map((service, index) => (
+          {servicesData.map((service, index) => (
             <div
               key={index}
               className="bg-gray-50 p-4 rounded-sm shadow-sm flex items-start gap-4"

@@ -4,13 +4,14 @@ import projectsData from "../../data/projects.json";
 
 export default function SidebarLeft() {
   const projectCount = projectsData.length;
+  const formattedProjectCount = projectCount.toString().padStart(2, "0");
 
   return (
     <aside className="bg-white mt-6 md:mt-0 p-6 rounded-sm shadow-sm">
       {/* Texte de bienvenue */}
       <div className="mb-6 flex flex-col gap-4 items-start">
         <p className="text-gray-800 text-lg md:text-xl lg:text-3xl xl:text-4xl font-bold font-poppins">
-          AZRATECH : Vitrine de {projectCount} projets web et mobiles incroyables
+          AZRATECH : Vitrine de {formattedProjectCount} projets web et mobiles incroyables
         </p>
         <Link
           href="/contact"

@@ -1,32 +1,62 @@
 [
   {
     "id": "1",
-    "title": "Boutique Chic - Plateforme E-commerce",
-    "description": "Une plateforme e-commerce moderne pour Boutique Chic, permettant une gestion simplifiée des produits et des paiements en ligne. Ce projet a permis de doubler les ventes en 6 mois.",
-    "details": "Plateforme e-commerce avec gestion des produits",
-    "image": "/images/project2.webp",
-    "tags": ["React", "Next.js", "Tailwind CSS", "Stripe"],
-    "type": "web",
-    "date": "2025-05-01"
+    "title": "Baristo",
+    "description": "Une application mobile pour la gestion des bars.",
+    "details": "Application de gestion de bars",
+    "images": [
+      {
+        "url": "/images/baristo_accueil.png",
+        "alt": "Écran principal de Baristo"
+      },
+      {
+        "url": "/images/baristo_commande.png",
+        "alt": "Écran commande de Baristo"
+      },
+      {
+        "url": "/images/baristo_detail_boisson.png",
+        "alt": "Écran de détail des boissons de Baristo"
+      },
+      {
+        "url": "/images/baristo_detail_refrigerateur.png",
+        "alt": "Écran de détail des réfrigérateurs de Baristo"
+      }
+    ],
+    "technologies": ["Flutter"],
+    "type": "mobile",
+    "date": "2025-05-28",
+    "liveUrl": ""
   },
   {
     "id": "2",
-    "title": "App de Réservation - TravelEasy",
-    "description": "Une application mobile pour réserver des voyages, avec une interface intuitive et des notifications en temps réel pour les utilisateurs.",
-    "details": "Application mobile de réservation",
-    "image": "/images/project4.webp",
-    "tags": ["Flutter", "Firebase", "Google Maps API"],
+    "title": "Togossiwo",
+    "description": "Une application mobile pour localiser les marchés au Togo et mettre en contact avec les vendeurs de ces marchés.",
+    "details": "Application mobile de localisation",
+    "images": [
+      {
+        "url": "/images/togossiwo_marches.png",
+        "alt": "Écran marchés de Togossiwo"
+      }
+    ],
+    "technologies": ["Flutter", "Appwrite", "OpenStreet Map"],
     "type": "mobile",
-    "date": "2025-04-15"
+    "date": "2025-05-30",
+    "liveUrl": ""
   },
   {
     "id": "3",
-    "title": "Site Vitrine - École Nova",
-    "description": "Un site vitrine pour l'école Nova, mettant en avant leurs programmes éducatifs avec un design moderne et responsive.",
-    "details": "Site vitrine éducatif",
-    "image": "/images/project2.webp",
-    "tags": ["Next.js", "Django", "PostgreSQL"],
+    "title": "BiblioEPL",
+    "description": "Un site permettant de découvrir les cours dispensés à l'EPL.",
+    "details": "Site éducatif",
+    "images": [
+      {
+        "url": "/images/biblioepl_1.PNG",
+        "alt": "Page de visualisation des cours BiblioEPL"
+      }
+    ],
+    "technologies": ["React", "Appwrite"],
     "type": "web",
-    "date": "2025-03-10"
+    "date": "2025-05-10",
+    "liveUrl": "https://biblio-epl.vercel.app"
   }
 ]
