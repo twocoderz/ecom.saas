@@ -3,23 +3,12 @@
 import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Header({ logo = "AZRATECH" }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/portfolio?search=${encodeURIComponent(searchQuery)}`);
-      setIsMenuOpen(false);
-    }
   };
 
   return (
@@ -33,16 +22,14 @@ export default function Header({ logo = "AZRATECH" }) {
 
           {/* Barre de recherche (Desktop) */}
           <div className="hidden md:block w-1/3 relative">
-            <form onSubmit={handleSearch}>
+            <form>
               <input
                 type="text"
                 placeholder="Rechercher des projets..."
                 className="w-full pl-10 pr-4 py-2 rounded-md border-2 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <button
-                type="submit"
+                type="button" // Changé en button pour désactiver la soumission
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
               >
                 <FaSearch />
@@ -106,17 +93,15 @@ export default function Header({ logo = "AZRATECH" }) {
         <div className="fixed top-16 left-0 w-full bg-[#5A5DE4] z-30 shadow-md md:hidden">
           <div className="p-4">
             {/* Barre de recherche (Mobile) */}
-            <form onSubmit={handleSearch} className="mb-4">
+            <form>
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Rechercher des projets..."
                   className="w-full pl-10 pr-4 py-2 rounded-md border-2 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
                 <button
-                  type="submit"
+                  type="button" // Changé en button pour désactiver la soumission
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
                 >
                   <FaSearch />
