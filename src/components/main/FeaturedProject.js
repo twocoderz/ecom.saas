@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import ProjectBanner from './ProjectBanner';
-import Tag from './Tag';
+// import ProjectBanner from './ProjectBanner';
+// import Tag from './Tag';
 
 export default function FeaturedProject({ project }) {
   return (
@@ -11,21 +11,21 @@ export default function FeaturedProject({ project }) {
       </h2>
 
       {/* Bannière */}
-      <ProjectBanner
+      {/* <ProjectBanner
         image={project.images[0].url}
         title={project.title}
         details={project.details}
-      />
+      /> */}
 
       {/* Description */}
       <p className="text-gray-600 tex-base">{project.description}</p>
 
       {/* Tags */}
-      <div className="flex space-x-2">
+      {/* <div className="flex space-x-2">
         {project.technologies.map((tag, index) => (
           <Tag key={index} label={tag} />
         ))}
-      </div>
+      </div> */}
 
       {/* Bouton */}
       <Link
