@@ -3,9 +3,9 @@
 import MainContent from "@/components/main/MainContent";
 import FeaturedProject from "@/components/main/FeaturedProject";
 import projectsData from "@/data/projects.json";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, Suspense } from "next/navigation";
 
-export default function Portfolio() {
+function PortfolioContent() {
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
@@ -40,5 +40,13 @@ export default function Portfolio() {
         </div>
       </section>
     </MainContent>
+  );
+}
+
+export default function Portfolio() {
+  return (
+    <Suspense fallback={<div className="text-center text-gray-600">Chargement des projets...</div>}>
+      <PortfolioContent />
+    </Suspense>
   );
 }
