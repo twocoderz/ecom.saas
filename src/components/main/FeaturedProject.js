@@ -1,12 +1,8 @@
-import Link from "next/link";
-import ProjectBanner from "./ProjectBanner";
-import Tag from "./Tag";
+import Link from 'next/link';
+import ProjectBanner from './ProjectBanner';
+import Tag from './Tag';
 
 export default function FeaturedProject({ project }) {
-  // Vérification pour éviter les erreurs si images est vide
-  const bannerImage = project.images?.[0]?.url || "/images/programmeur.png";
-  const bannerAlt = project.images?.[0]?.alt || "Image du projet";
-
   return (
     <div className="bg-white border-2 border-gray-400 p-4 rounded-sm space-y-4">
       {/* Titre */}
@@ -16,10 +12,9 @@ export default function FeaturedProject({ project }) {
 
       {/* Bannière */}
       <ProjectBanner
-        image={bannerImage}
+        image={project.images[0].url}
         title={project.title}
         details={project.details}
-        alt={bannerAlt}
       />
 
       {/* Description */}
