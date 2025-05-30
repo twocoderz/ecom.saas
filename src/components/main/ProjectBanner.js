@@ -7,7 +7,8 @@ export default function ProjectBanner({ image, title, details }) {
       <Image
         src={image}
         alt={title}
-        className="w-full h-full object-cover"
+        fill
+        className="object-cover"
       />
 
       {/* Texte superposé */}

@@ -32,7 +32,7 @@ export default function FeaturedProject({ project }) {
         href={`/projects/${project.id}`}
         className="inline-block bg-[#4F46E5] text-white px-4 py-1 rounded-sm hover:bg-blue-600"
       >
-        View Project Details
+        Voir les détails
       </Link>
     </div>
   );

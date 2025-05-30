@@ -87,7 +87,7 @@ export default function Header({ logo = "AZRATECH" }) {
               href="/contact"
               className="text-sm lg:text-base font-medium inline-block border-2 border-[#4F46E5] text-[#4F46E5] px-4 py-1 rounded-sm hover:text-[#E1E3E7] hover:bg-blue-500 hover:border-blue-600 transition-colors duration-500 ease-out font-poppins"
             >
-              Contact Us
+              Nous contacter
             </Link>
           </nav>
         </div>
@@ -115,7 +115,7 @@ export default function Header({ logo = "AZRATECH" }) {
               onClick={toggleMenu}
               className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
             >
-              Contact
+              Nous contacter
             </Link>
           </nav>
         </div>

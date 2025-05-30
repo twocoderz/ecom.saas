@@ -40,7 +40,7 @@ export default function Footer() {
           href="/contact"
           className="text-sm font-medium inline-block bg-[#4F46E5] text-white px-4 py-1 rounded-sm hover:bg-blue-600"
         >
-          Contact Us
+          Nous contacter
         </Link>
       </div>
     </footer>

@@ -11,7 +11,7 @@ export default function DynamicLayout({ children }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
       {showSidebars && (
-        <div className="md:col-span-1">
+        <div className="md:col-span-1 sticky top-20 max-h-screen overflow-y-auto">
           <SidebarLeft />
         </div>
       )}
@@ -19,7 +19,7 @@ export default function DynamicLayout({ children }) {
         {children}
       </main>
       {showSidebars && (
-        <div className="md:col-span-1">
+        <div className="md:col-span-1 sticky top-20 max-h-screen overflow-y-auto">
           <SidebarRight />
         </div>
       )}

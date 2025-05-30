@@ -12,7 +12,7 @@ export default function SidebarRight() {
     <aside className="bg-white p-6 rounded-sm shadow-sm">
       {/* Titre */}
       <h2 className="text-lg md:text-xl xl:text-2xl font-bold font-poppins text-[#4F46E5] flex items-center mb-4">
-        Recent Projects
+        Projets Récents
       </h2>
 
       {/* Liste des projets récents */}
@@ -26,12 +26,12 @@ export default function SidebarRight() {
         ))}
       </div>
 
-      {/* Bouton "View All Projects" */}
+      {/* Bouton "Voir tous les projets" */}
       <Link
         href="/portfolio"
         className="text-sm block mt-6 text-[#4F46E5] hover:text-blue-800 hover:underline text-center"
       >
-        View all projects
+        Voir tous les projets
       </Link>
     </aside>
   );
