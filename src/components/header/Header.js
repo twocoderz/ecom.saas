@@ -26,7 +26,7 @@ export default function Header({ logo = "AZRATECH" }) {
               <input
                 type="text"
                 placeholder="Rechercher des projets..."
-                className="w-full pl-10 pr-4 py-2 rounded-md border-2 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-1 rounded-sm border-1 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
               />
               <button
                 type="button" // Changé en button pour désactiver la soumission

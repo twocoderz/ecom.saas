@@ -5,7 +5,7 @@ export default function MainContent({ children }) {
   const projectCount = projectsData.length;
 
   return (
-    <section className="flex flex-col gap-6 bg-white p-6 rounded-sm shadow-sm">
+    <section className="flex flex-col gap-6 bg-white p-6 rounded-sm">
       {children}
     </section>
   );

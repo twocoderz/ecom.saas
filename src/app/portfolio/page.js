@@ -5,7 +5,7 @@ import projectsData from "@/data/projects.json";
 export default function Portfolio() {
   return (
     <MainContent>
-      <section className="bg-white p-6 rounded-sm shadow-sm">
+      <section className="bg-white p-6 rounded-sm">
         <h1 className="text-3xl font-bold text-gray-800 mb-6 font-poppins">
           Notre Portfolio
         </h1>

@@ -5,7 +5,7 @@ import servicesData from "@/data/services.json";
 export default function Services() {
   return (
     <MainContent>
-      <section className="bg-white p-6 rounded-sm shadow-sm">
+      <section className="bg-white p-6 rounded-sm">
         <h1 className="text-3xl font-bold text-gray-800 mb-6 font-poppins">
           Nos Services
         </h1>
