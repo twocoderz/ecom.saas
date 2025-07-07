@@ -3,20 +3,26 @@
 import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Header({ logo = "AZRATECH" }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const isActive = (path) => {
+    return pathname === path;
+  };
+
   return (
     <>
-      <header className="bg-[#E1E3E7] p-4 fixed top-0 left-0 w-full z-10 shadow-sm">
+      <header className="bg-white p-4 fixed top-0 left-0 w-full z-10 shadow-sm">
         <div className="flex justify-between items-center container mx-auto">
           {/* Logo */}
-          <div className="text-md xl:text-lg bg-[#010100] text-[#E1E3E7] px-4 py-1 rounded-sm font-bold inter-font">
+          <div className="text-md xl:text-xl bg-white text-[#4F46E5] px-4 py-1 rounded-sm font-bold inter-font">
             <Link href="/">{logo}</Link>
           </div>
 
@@ -26,13 +32,13 @@ export default function Header({ logo = "AZRATECH" }) {
               <input
                 type="text"
                 placeholder="Rechercher des projets..."
-                className="w-full pl-10 pr-4 py-1 rounded-sm border-1 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
               />
-              <button
+              <button 
                 type="button" // Changé en button pour désactiver la soumission
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
               >
-                <FaSearch />
+                <FaSearch className="text-sm" />
               </button>
             </form>
           </div>
@@ -68,19 +74,31 @@ export default function Header({ logo = "AZRATECH" }) {
           <nav className="hidden md:flex md:items-center space-x-6">
             <Link
               href="/portfolio"
-              className="text-sm lg:text-base text-[#4F46E5] font-medium hover:text-blue-400 hover:underline font-poppins transition-all ease-in"
+              className={`text-sm lg:text-md font-medium font-poppins transition-all ease-in ${
+                isActive('/portfolio') 
+                  ? 'text-blue-400 underline' 
+                  : 'text-[#4F46E5] hover:text-blue-400 hover:underline'
+              }`}
             >
               Portfolio
             </Link>
             <Link
               href="/about"
-              className="text-sm lg:text-base text-[#4F46E5] font-medium hover:text-blue-400 hover:underline font-poppins transition-all ease-in"
+              className={`text-sm lg:text-md font-medium font-poppins transition-all ease-in ${
+                isActive('/about') 
+                  ? 'text-blue-400 underline' 
+                  : 'text-[#4F46E5] hover:text-blue-400 hover:underline'
+              }`}
             >
               À propos
             </Link>
             <Link
               href="/contact"
-              className="text-sm lg:text-base font-medium inline-block border-2 border-[#4F46E5] text-[#4F46E5] px-4 py-1 rounded-sm hover:text-[#E1E3E7] hover:bg-blue-500 hover:border-blue-600 transition-colors duration-500 ease-out font-poppins"
+              className={`text-sm lg:text-md font-medium inline-block border-2 px-4 py-1 rounded-sm transition-colors duration-500 ease-out font-poppins ${
+                isActive('/contact')
+                  ? 'text-[#E1E3E7] bg-blue-500 border-blue-600'
+                  : 'border-[#4F46E5] text-[#4F46E5] hover:text-[#E1E3E7] hover:bg-blue-500 hover:border-blue-600'
+              }`}
             >
               Nous contacter
             </Link>
@@ -91,20 +109,20 @@ export default function Header({ logo = "AZRATECH" }) {
       {/* Menu Mobile */}
       {isMenuOpen && (
         <div className="fixed top-16 left-0 w-full bg-[#5A5DE4] z-30 shadow-md md:hidden">
-          <div className="p-4">
+          <div className="p-4 flex flex-col gap-4">
             {/* Barre de recherche (Mobile) */}
             <form>
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Rechercher des projets..."
-                  className="w-full pl-10 pr-4 py-2 rounded-md border-2 border-[#4F46E5] bg-white focus:outline-none focus:ring-2 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
                 />
                 <button
                   type="button" // Changé en button pour désactiver la soumission
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
                 >
-                  <FaSearch />
+                  <FaSearch className="text-sm" />
                 </button>
               </div>
             </form>
@@ -114,21 +132,33 @@ export default function Header({ logo = "AZRATECH" }) {
               <Link
                 href="/portfolio"
                 onClick={toggleMenu}
-                className="text-[#E1E3E7] hover:text-white transition-all duration-300 ease-out"
+                className={`transition-all duration-300 ease-out text-sm ${
+                  isActive('/portfolio') 
+                    ? 'text-white' 
+                    : 'text-[#E1E3E7] hover:text-white'
+                }`}
               >
                 Portfolio
               </Link>
               <Link
                 href="/about"
                 onClick={toggleMenu}
-                className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
+                className={`transition-all duration-300 ease-out text-sm ${
+                  isActive('/about') 
+                    ? 'text-white' 
+                    : 'text-[#E1E3E7] hover:text-white'
+                }`}
               >
                 À propos
               </Link>
               <Link
                 href="/contact"
                 onClick={toggleMenu}
-                className="text-[#E1E3E7] hover:text-white transition-all duration-800 ease-in"
+                className={`transition-all duration-300 ease-out text-sm ${
+                  isActive('/contact') 
+                    ? 'text-white' 
+                    : 'text-[#E1E3E7] hover:text-white'
+                }`}
               >
                 Nous contacter
               </Link>

@@ -6,18 +6,18 @@ import Image from "next/image"; // Ajout de l'import
 export default function Developers() {
   return (
     <MainContent>
-      <section className="bg-white p-6 rounded-sm shadow-sm">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 font-poppins">
+      <section className="p-6 w-full text-center">
+        <h1 className="lg:text-3xl text-2xl font-bold text-gray-800 mb-6 font-poppins">
           Nos Développeurs
         </h1>
         <p className="text-gray-600 mb-6">
           Rencontrez notre équipe talentueuse de développeurs, passionnés par la création de solutions numériques innovantes.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {developersData.map((developer, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-4 rounded-sm shadow-sm flex items-start gap-4"
+              className="bg-gray-50 p-10 rounded-sm shadow-sm flex flex-col md:flex-row items-start gap-4"
             >
               <Image
                 src={developer.image}
@@ -36,10 +36,10 @@ export default function Developers() {
             </div>
           ))}
         </div>
-        <div className="mt-6 text-center">
+        <div className="mt-10 text-center">
           <Link
             href="/contact"
-            className="inline-block bg-[#4F46E5] text-white px-4 py-2 rounded-sm hover:bg-blue-600"
+            className="text-sm font-medium inline-block text-[#4F46E5] hover:text-blue-600 hover:underline" 
           >
             Rejoignez notre équipe
           </Link>

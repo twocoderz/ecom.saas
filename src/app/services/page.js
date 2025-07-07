@@ -5,8 +5,8 @@ import servicesData from "@/data/services.json";
 export default function Services() {
   return (
     <MainContent>
-      <section className="bg-white p-6 rounded-sm">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 font-poppins">
+      <section className="p-6 w-full text-center">
+        <h1 className="lg:text-3xl text-2xl font-bold text-gray-800 mb-6 font-poppins">
           Nos Services
         </h1>
         <p className="text-gray-600 mb-6">
@@ -16,9 +16,9 @@ export default function Services() {
           {servicesData.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-4 rounded-sm shadow-sm flex items-start gap-4"
+              className="bg-gray-50 p-4 rounded-sm shadow-sm flex flex-col md:flex-row items-center md:items-start gap-4"
             >
-              <span className="text-3xl">{service.icon}</span>
+              <span className="text-3xl bg-[#EEF1F5] p-3 rounded-full">{service.icon}</span>
               <div>
                 <h2 className="text-xl font-semibold text-gray-800 mb-2">
                   {service.title}
@@ -28,10 +28,10 @@ export default function Services() {
             </div>
           ))}
         </div>
-        <div className="mt-6 text-center">
+        <div className="mt-10 text-center">
           <Link
             href="/contact"
-            className="inline-block bg-[#4F46E5] text-white px-4 py-2 rounded-sm hover:bg-blue-600"
+            className="text-sm font-medium inline-block text-[#4F46E5] hover:text-blue-600 hover:underline"
           >
             Contactez-nous pour en savoir plus
           </Link>
