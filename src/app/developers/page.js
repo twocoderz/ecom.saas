@@ -11,7 +11,7 @@ export default function Developers() {
           Nos Développeurs
         </h1>
         <p className="text-gray-600 mb-6">
-          Rencontrez notre équipe talentueuse de développeurs, passionnés par la création de solutions numériques innovantes.
+          Rencontrez notre équipe talentueuse de développeurs, passionnés par la création de solutions numériques innovantes et evolutives.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {developersData.map((developer, index) => (
