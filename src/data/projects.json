@@ -50,7 +50,7 @@
     "details": "Site éducatif",
     "images": [
       {
-        "url": "/images/biblioepl_1.PNG",
+        "url": "/images/biblio_capture.PNG",
         "alt": "Page de visualisation des cours BiblioEPL"
       }
     ],
@@ -58,5 +58,21 @@
     "type": "web",
     "date": "2025-05-10",
     "liveUrl": "https://biblio-epl.vercel.app"
+  },
+  {
+    "id": "4",
+    "title": "Prompt Converter",
+    "description": "Une application permettant de convertir les prompts en documents.",
+    "details": "Application de conversion de prompts",
+    "images": [
+      {
+        "url": "/images/prompt_converter.PNG",
+        "alt": "Aperçu de l'interface de Prompt Converter"
+      }
+    ],
+    "technologies": ["React"],
+    "type": "web",
+    "date": "2025-03-02",
+    "liveUrl": "https://prompt-convert.vercel.app"
   }
 ]
