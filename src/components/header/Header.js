@@ -3,11 +3,13 @@
 import Link from "next/link";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Header({ logo = "AZRATECH" }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
+  const [search, setSearch] = useState("");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,6 +17,15 @@ export default function Header({ logo = "AZRATECH" }) {
 
   const isActive = (path) => {
     return pathname === path;
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      router.push(`/portfolio?search=${encodeURIComponent(search.trim())}`);
+      setSearch("");
+      setIsMenuOpen(false); // ferme le menu mobile si ouvert
+    }
   };
 
   return (
@@ -28,14 +39,16 @@ export default function Header({ logo = "AZRATECH" }) {
 
           {/* Barre de recherche (Desktop) */}
           <div className="hidden md:block w-1/3 relative">
-            <form>
+            <form onSubmit={handleSearch}>
               <input
                 type="text"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
                 placeholder="Rechercher des projets..."
                 className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
               />
               <button 
-                type="button" // Changé en button pour désactiver la soumission
+                type="submit"
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
               >
                 <FaSearch className="text-sm" />
@@ -111,15 +124,17 @@ export default function Header({ logo = "AZRATECH" }) {
         <div className="fixed top-16 left-0 w-full bg-[#5A5DE4] z-30 shadow-md md:hidden">
           <div className="p-4 flex flex-col gap-4">
             {/* Barre de recherche (Mobile) */}
-            <form>
+            <form onSubmit={handleSearch}>
               <div className="relative">
                 <input
                   type="text"
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
                   placeholder="Rechercher des projets..."
                   className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
                 />
                 <button
-                  type="button" // Changé en button pour désactiver la soumission
+                  type="submit"
                   className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
                 >
                   <FaSearch className="text-sm" />
