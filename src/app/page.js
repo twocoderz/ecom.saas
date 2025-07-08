@@ -3,7 +3,7 @@ import FeaturedProject from '../components/main/FeaturedProject';
 import projectsData from '../data/projects.json';
 
 export default function Home() {
-  const featuredProjects = projectsData.slice(0, 3);
+  const featuredProjects = projectsData.slice(0, 4);
 
   return (
     <MainContent>
