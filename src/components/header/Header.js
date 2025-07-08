@@ -21,7 +21,7 @@ export default function Header({ logo = "AZRATECH" }) {
     <>
       <header className="bg-white p-4 fixed top-0 left-0 w-full z-10 shadow-sm">
         <div className="flex justify-between items-center container mx-auto">
-          {/* Logo */}
+          {/* le logo */}
           <div className="text-md xl:text-xl bg-white text-[#4F46E5] px-4 py-1 rounded-sm font-bold inter-font">
             <Link href="/">{logo}</Link>
           </div>
