@@ -45,19 +45,19 @@
   },
   {
     "id": "3",
-    "title": "BiblioEPL",
-    "description": "Un site permettant de découvrir les cours dispensés à l'EPL.",
+    "title": "DocStore",
+    "description": "Un site permettant de découvrir les cours dispensés à l'Université de Lomé.",
     "details": "Site éducatif",
     "images": [
       {
         "url": "/images/biblio_capture.PNG",
-        "alt": "Page de visualisation des cours BiblioEPL"
+        "alt": "Page de visualisation des cours DocStore"
       }
     ],
     "technologies": ["React", "Appwrite"],
     "type": "web",
     "date": "2025-05-10",
-    "liveUrl": "https://biblio-epl.vercel.app"
+    "liveUrl": "https://docstore-univ.vercel.app"
   },
   {
     "id": "4",
