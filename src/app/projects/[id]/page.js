@@ -36,7 +36,7 @@ export default function ProjectDetail({ params }) {
       <section className="w-full max-w-3xl mx-auto bg-white/90 p-3 sm:p-6 md:p-8 rounded-2xl shadow-xl mt-4 mb-8 flex flex-col gap-4 sm:gap-6">
         <Link
           href="/"
-          className="flex items-center text-[#E1E3E7] bg-[#4F46E5] p-2 sm:p-2.5 rounded-full mb-2 w-fit hover:bg-[#3730a3] transition-colors"
+          className="flex items-center text-[#E1E3E7] bg-[#1e3a8a] p-2 sm:p-2.5 rounded-full mb-2 w-fit hover:bg-[#3730a3] transition-colors"
         >
           <FiArrowLeft size={22} />
         </Link>

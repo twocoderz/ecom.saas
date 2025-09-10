@@ -4,7 +4,7 @@ import teamData from "@/data/team.json";
 export default function Team() {
   return (
     <div className="flex flex-col gap-4 items-center">
-      <h2 className="text-lg md:text-xl xl:text-3xl font-bold font-poppins text-[#4F46E5] text-center">
+      <h2 className="text-lg md:text-xl xl:text-3xl font-bold font-poppins text-[#1e3a8a] text-center">
         Notre équipe
       </h2>
       <p className="text-base font-medium text-gray-600 text-center max-w-2xl">

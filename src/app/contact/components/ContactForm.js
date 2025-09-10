@@ -115,7 +115,7 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        className="w-full font-medium bg-[#4F46E5] text-white px-4 py-2 rounded-sm text-sm hover:bg-blue-600 cursor-pointer"
+        className="w-full font-medium bg-[#1e3a8a] text-white px-4 py-2 rounded-sm text-sm hover:bg-blue-600 cursor-pointer"
       >
         Envoyer
       </button>

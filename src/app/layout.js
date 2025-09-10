@@ -18,14 +18,14 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "PortfolioPro - Web & Mobile Solutions",
-  description: "Showcase of our best web and mobile projects.",
+  title: "AZRATECH - Développement Web & Mobile",
+  description: "Experts en développement web et mobile. Transformons vos idées en solutions innovantes et performantes.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="fr" className={`${montserrat.variable} ${poppins.variable}`}>
-      <body className="bg-gray-100 text-gray-900">
+      <body className="bg-gray-50 text-gray-800">
         <Header />
         <div className="px-4 py-8 pt-16 md:pt-20">
           <DynamicLayout>{children}</DynamicLayout>

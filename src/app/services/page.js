@@ -12,18 +12,18 @@ export default function Services() {
         <p className="text-gray-600 mb-6">
           Chez AZRATECH, nous offrons une gamme complète de services pour transformer vos idées en solutions numériques performantes.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-4 rounded-sm shadow-sm flex flex-col md:flex-row items-center md:items-start gap-4"
+              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center text-center"
             >
-              <span className="text-3xl bg-[#EEF1F5] p-3 rounded-full">{service.icon}</span>
+              <span className="text-4xl bg-[#1e3a8a] text-white p-4 rounded-full mb-4">{service.icon}</span>
               <div>
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                <h2 className="text-xl font-bold text-gray-800 mb-3 font-poppins">
                   {service.title}
                 </h2>
-                <p className="text-gray-600">{service.description}</p>
+                <p className="text-gray-600 leading-relaxed">{service.description}</p>
               </div>
             </div>
           ))}
@@ -31,7 +31,7 @@ export default function Services() {
         <div className="mt-10 text-center">
           <Link
             href="/contact"
-            className="text-sm font-medium inline-block text-[#4F46E5] hover:text-blue-600 hover:underline"
+            className="text-sm font-medium inline-block text-[#1e3a8a] hover:text-blue-600 hover:underline"
           >
             Contactez-nous pour en savoir plus
           </Link>

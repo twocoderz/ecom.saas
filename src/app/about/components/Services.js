@@ -7,7 +7,7 @@ export default function Services() {
   return (
     <div className="flex flex-col gap-4 items-center">
       <Link href="/services" className="group">
-        <h2 className="text-lg md:text-xl xl:text-3xl font-bold font-poppins text-[#4F46E5] text-center hover:text-blue-600 transition-colors duration-200">
+        <h2 className="text-lg md:text-xl xl:text-3xl font-bold font-poppins text-[#1e3a8a] text-center hover:text-blue-600 transition-colors duration-200">
           Nos services
         </h2>
         <span className="sr-only">En savoir plus sur nos services</span>

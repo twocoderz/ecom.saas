@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function TeamMemberCard({ name, title, imageUrl }) {
   return (
-    <div className="bg-[#4F46E5] rounded-lg shadow-sm p-4 flex flex-col items-center justify-center hover:cursor-pointer">
+    <div className="bg-[#1e3a8a] rounded-lg shadow-sm p-4 flex flex-col items-center justify-center hover:cursor-pointer">
       <div className="relative w-24 h-24 mb-4">
         <Image
           src={imageUrl}

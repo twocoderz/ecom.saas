@@ -5,8 +5,10 @@ export default function MainContent({ children }) {
   const projectCount = projectsData.length;
 
   return (
-    <section className="flex flex-col gap-6 p-6 w-full">
-      {children}
+    <section className="py-16 px-4 max-w-7xl mx-auto">
+      <div className="flex flex-col gap-8">
+        {children}
+      </div>
     </section>
   );
 }

@@ -33,7 +33,7 @@ export default function Header({ logo = "AZRATECH" }) {
       <header className="bg-white p-4 fixed top-0 left-0 w-full z-10 shadow-sm">
         <div className="flex justify-between items-center container mx-auto">
           {/* le logo */}
-          <div className="text-md xl:text-xl bg-white text-[#4F46E5] px-4 py-1 rounded-sm font-bold inter-font">
+          <div className="text-md xl:text-xl bg-white text-[#1e3a8a] px-4 py-1 rounded-sm font-bold inter-font">
             <Link href="/">{logo}</Link>
           </div>
 
@@ -45,11 +45,11 @@ export default function Header({ logo = "AZRATECH" }) {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Rechercher des projets..."
-                className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#1e3a8a] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
               />
               <button 
                 type="submit"
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1e3a8a] hover:text-blue-600 transition-colors duration-300"
               >
                 <FaSearch className="text-sm" />
               </button>
@@ -58,7 +58,7 @@ export default function Header({ logo = "AZRATECH" }) {
 
           {/* Bouton Hamburger */}
           <button
-            className="md:hidden text-[#4F46E5] focus:outline-none cursor-pointer"
+            className="md:hidden text-[#1e3a8a] focus:outline-none cursor-pointer"
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
           >
@@ -90,7 +90,7 @@ export default function Header({ logo = "AZRATECH" }) {
               className={`text-sm lg:text-md font-medium font-poppins transition-all ease-in ${
                 isActive('/portfolio') 
                   ? 'text-blue-400 underline' 
-                  : 'text-[#4F46E5] hover:text-blue-400 hover:underline'
+                  : 'text-[#1e3a8a] hover:text-blue-400 hover:underline'
               }`}
             >
               Portfolio
@@ -100,7 +100,7 @@ export default function Header({ logo = "AZRATECH" }) {
               className={`text-sm lg:text-md font-medium font-poppins transition-all ease-in ${
                 isActive('/about') 
                   ? 'text-blue-400 underline' 
-                  : 'text-[#4F46E5] hover:text-blue-400 hover:underline'
+                  : 'text-[#1e3a8a] hover:text-blue-400 hover:underline'
               }`}
             >
               À propos
@@ -110,7 +110,7 @@ export default function Header({ logo = "AZRATECH" }) {
               className={`text-sm lg:text-md font-medium inline-block border-2 px-4 py-1 rounded-sm transition-colors duration-500 ease-out font-poppins ${
                 isActive('/contact')
                   ? 'text-[#E1E3E7] bg-blue-500 border-blue-600'
-                  : 'border-[#4F46E5] text-[#4F46E5] hover:text-[#E1E3E7] hover:bg-blue-500 hover:border-blue-600'
+                  : 'border-[#1e3a8a] text-[#1e3a8a] hover:text-[#E1E3E7] hover:bg-blue-500 hover:border-blue-600'
               }`}
             >
               Nous contacter
@@ -131,11 +131,11 @@ export default function Header({ logo = "AZRATECH" }) {
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                   placeholder="Rechercher des projets..."
-                  className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#4F46E5] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
+                  className="w-full pl-10 pr-4 py-1 rounded-md border-none bg-[#EEF1F5] focus:outline-none focus:ring-1 focus:ring-[#1e3a8a] focus:border-transparent transition-all duration-300 text-gray-800 placeholder-gray-400"
                 />
                 <button
                   type="submit"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4F46E5] hover:text-blue-600 transition-colors duration-300"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1e3a8a] hover:text-blue-600 transition-colors duration-300"
                 >
                   <FaSearch className="text-sm" />
                 </button>

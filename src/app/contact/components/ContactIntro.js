@@ -10,30 +10,30 @@ export default function ContactIntro() {
       <div className="flex space-x-4">
         <Link
           href="https://twitter.com/azratech"
-          className="inline-block bg-gray-100 hover:bg-[#4F46E5] rounded-full border-2 border-gray-300 transition-all duration-300"
+          className="inline-block bg-gray-100 hover:bg-[#1e3a8a] rounded-full border-2 border-gray-300 transition-all duration-300"
           aria-label="Suivez-nous sur Twitter"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaTwitter className="w-8 h-8 p-2 text-[#4F46E5] hover:text-[#E1E3E7]" />
+          <FaTwitter className="w-8 h-8 p-2 text-[#1e3a8a] hover:text-[#E1E3E7]" />
         </Link>
         <Link
           href="https://linkedin.com/company/azratech"
-          className="inline-block bg-gray-100 hover:bg-[#4F46E5] rounded-full border-2 border-gray-300 transition-all duration-300"
+          className="inline-block bg-gray-100 hover:bg-[#1e3a8a] rounded-full border-2 border-gray-300 transition-all duration-300"
           aria-label="Visitez notre page LinkedIn"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaLinkedin className="w-8 h-8 p-2 text-[#4F46E5] hover:text-[#E1E3E7]" />
+          <FaLinkedin className="w-8 h-8 p-2 text-[#1e3a8a] hover:text-[#E1E3E7]" />
         </Link>
         <Link
           href="https://github.com/azratech"
-          className="inline-block bg-gray-100 hover:bg-[#4F46E5] rounded-full border-2 border-gray-300 transition-all duration-300"
+          className="inline-block bg-gray-100 hover:bg-[#1e3a8a] rounded-full border-2 border-gray-300 transition-all duration-300"
           aria-label="Consultez notre GitHub"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaGithub className="w-8 h-8 p-2 text-[#4F46E5] hover:text-[#E1E3E7]" />
+          <FaGithub className="w-8 h-8 p-2 text-[#1e3a8a] hover:text-[#E1E3E7]" />
         </Link>
       </div>
     </div>

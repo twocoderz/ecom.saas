@@ -15,7 +15,7 @@ export default function SidebarLeft() {
         </p>
         <Link
           href="/contact"
-          className="text-sm font-medium mt-4 inline-block bg-[#4F46E5] text-white px-4 py-1 rounded-sm hover:bg-blue-600"
+          className="text-sm font-medium mt-4 inline-block bg-[#1e3a8a] text-white px-4 py-1 rounded-sm hover:bg-blue-600"
         >
           Nous contacter
         </Link>

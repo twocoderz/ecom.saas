@@ -11,7 +11,7 @@ export default function SidebarRight() {
   return (
     <aside className="bg-white p-6 rounded-sm shadow-sm">
       {/* Titre */}
-      <h2 className="text-lg md:text-xl xl:text-2xl font-bold font-poppins text-[#4F46E5] flex items-center mb-4">
+      <h2 className="text-lg md:text-xl xl:text-2xl font-bold font-poppins text-[#1e3a8a] flex items-center mb-4">
         Projets Récents
       </h2>
 
@@ -29,7 +29,7 @@ export default function SidebarRight() {
       {/* Bouton "Voir tous les projets" */}
       <Link
         href="/portfolio"
-        className="text-sm block mt-6 text-[#4F46E5] hover:text-blue-800 hover:underline text-center"
+        className="text-sm block mt-6 text-[#1e3a8a] hover:text-blue-800 hover:underline text-center"
       >
         Voir tous les projets
       </Link>

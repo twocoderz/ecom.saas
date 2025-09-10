@@ -39,7 +39,7 @@ export default function Developers() {
         <div className="mt-10 text-center">
           <Link
             href="/contact"
-            className="text-sm font-medium inline-block text-[#4F46E5] hover:text-blue-600 hover:underline" 
+            className="text-sm font-medium inline-block text-[#1e3a8a] hover:text-blue-600 hover:underline" 
           >
             Rejoignez notre équipe
           </Link>
