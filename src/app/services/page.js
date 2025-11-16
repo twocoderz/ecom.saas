@@ -53,7 +53,7 @@ export default function Services() {
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed animate-fadeInUp" style={{animationDelay: '100ms'}}>
+          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed animate-fadeInUp" style={{ animationDelay: '100ms' }}>
             Chez <span className="text-indigo-600 font-semibold">AZRATECH</span>, nous offrons une gamme complète de services pour transformer vos idées en{' '}
             <span className="relative inline-block">
               <span className="relative z-10">solutions numériques performantes</span>
@@ -71,7 +71,7 @@ export default function Services() {
               <div
                 key={index}
                 className={`group relative bg-gradient-to-br ${colors.bg} border ${colors.border} p-8 rounded-2xl card-hover overflow-hidden animate-fadeInUp`}
-                style={{animationDelay: `${200 + index * 100}ms`}}
+                style={{ animationDelay: `${200 + index * 100}ms` }}
               >
                 {/* Background decoration */}
                 <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${colors.gradient} opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500`}></div>
@@ -99,14 +99,14 @@ export default function Services() {
         </div>
 
         {/* CTA Section */}
-        <div className="relative max-w-2xl mx-auto mt-16 p-10 rounded-3xl bg-gradient-to-br from-slate-50 to-indigo-50 border border-indigo-100 shadow-xl animate-fadeInUp" style={{animationDelay: '600ms'}}>
+        <div className="relative max-w-2xl mx-auto mt-16 p-10 rounded-3xl bg-gradient-to-br from-slate-50 to-indigo-50 border border-indigo-100 shadow-xl animate-fadeInUp" style={{ animationDelay: '600ms' }}>
           {/* Decorative elements */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-200/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-32 h-32 bg-cyan-200/30 rounded-full blur-3xl"></div>
 
           <div className="relative z-10">
             <h3 className="text-2xl font-bold text-slate-800 mb-4">
-              Besoin d'un service personnalisé ?
+              Besoin d&apos;un service personnalisé ?
             </h3>
             <p className="text-slate-600 mb-6">
               Contactez-nous pour discuter de vos besoins spécifiques et découvrir comment nous pouvons vous aider.

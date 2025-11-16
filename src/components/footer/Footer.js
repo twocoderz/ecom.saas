@@ -148,14 +148,14 @@ export default function Footer() {
           <div className="flex gap-6 text-sm text-slate-400">
             <Link href="#" className="hover:text-white transition-colors">Politique de confidentialité</Link>
             <span className="text-slate-600">•</span>
-            <Link href="#" className="hover:text-white transition-colors">Conditions d'utilisation</Link>
+            <Link href="#" className="hover:text-white transition-colors">Conditions d&apos;utilisation</Link>
           </div>
         </div>
 
         {/* Bottom Accent */}
         <div className="mt-8 text-center">
           <p className="text-xs text-slate-500">
-            Créé avec <span className="text-red-400">❤️</span> par l'équipe AZRATECH
+            Créé avec <span className="text-red-400">❤️</span> par l&apos;équipe AZRATECH
           </p>
         </div>
       </div>
