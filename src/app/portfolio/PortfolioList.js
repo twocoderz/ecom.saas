@@ -34,7 +34,7 @@ export default function PortfolioList() {
               </svg>
             </div>
             <p className="text-gray-400 text-lg">Aucun projet ne correspond à votre recherche.</p>
-            <p className="text-gray-500 text-sm mt-2">Essayez avec d'autres termes.</p>
+            <p className="text-gray-500 text-sm mt-2">Essayez avec d&apos;autres termes.</p>
           </div>
         )}
       </div>

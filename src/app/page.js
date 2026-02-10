@@ -56,7 +56,7 @@ export default function Home() {
                     <FaUsers className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold mb-1">Équipe d'experts</h4>
+                    <h4 className="text-white font-bold mb-1">Équipe d&apos;experts</h4>
                     <p className="text-gray-400 text-sm">Des développeurs expérimentés passionnés par les technologies de pointe.</p>
                   </div>
                 </div>
@@ -161,7 +161,7 @@ export default function Home() {
               <span className="text-gradient"> votre projet ?</span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto">
-              Discutons de vos idées et voyons comment nous pouvons vous aider à créer quelque chose d'extraordinaire.
+              Discutons de vos idées et voyons comment nous pouvons vous aider à créer quelque chose d&apos;extraordinaire.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link href="/contact" className="btn-primary flex items-center gap-2">

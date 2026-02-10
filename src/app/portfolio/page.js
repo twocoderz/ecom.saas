@@ -20,7 +20,7 @@ export default function PortfolioPage() {
           </h1>
           <p className="text-gray-400 text-lg max-w-3xl mx-auto">
             Découvrez une sélection de nos projets les plus récents.
-            Chaque réalisation reflète notre engagement envers l'excellence.
+            Chaque réalisation reflète notre engagement envers l&apos;excellence.
           </p>
         </div>
 

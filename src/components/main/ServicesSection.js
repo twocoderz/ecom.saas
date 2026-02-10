@@ -122,7 +122,7 @@ export default function ServicesSection() {
         {/* Bottom CTA */}
         <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <p className="text-gray-400 mb-6">
-            Besoin d'une solution personnalisée ?
+            Besoin d&apos;une solution personnalisée ?
           </p>
           <a href="/contact" className="btn-primary inline-flex items-center gap-2">
             Discuter de votre projet
