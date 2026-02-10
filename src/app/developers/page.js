@@ -50,15 +50,36 @@ export default function Developers() {
                 
                 {/* Social Links */}
                 <div className="flex items-center gap-2">
-                  <a href="#" className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all">
-                    <FaGithub className="w-4 h-4" />
-                  </a>
-                  <a href="#" className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all">
-                    <FaLinkedin className="w-4 h-4" />
-                  </a>
-                  <a href="#" className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all">
-                    <FaTwitter className="w-4 h-4" />
-                  </a>
+                  {developer.social?.github && (
+                    <a 
+                      href={developer.social.github} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
+                    >
+                      <FaGithub className="w-4 h-4" />
+                    </a>
+                  )}
+                  {developer.social?.linkedin && (
+                    <a 
+                      href={developer.social.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
+                    >
+                      <FaLinkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                  {developer.social?.twitter && (
+                    <a 
+                      href={developer.social.twitter} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-gray-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all"
+                    >
+                      <FaTwitter className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
