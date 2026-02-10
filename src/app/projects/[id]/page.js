@@ -1,95 +1,131 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FiArrowLeft, FiSmartphone, FiMonitor } from "react-icons/fi";
-import MainContent from "@/components/main/MainContent";
+import { FiArrowLeft, FiSmartphone, FiMonitor, FiExternalLink } from "react-icons/fi";
 import ProjectImageGallery from "../components/ProjectImageGalery";
 import projectsData from "@/data/projects.json";
 import { use } from "react";
+import { FaCalendar, FaTag } from "react-icons/fa";
 
 export default function ProjectDetail({ params }) {
   const { id } = use(params);
-  // Trouver le projet correspondant à l'ID
   const project = projectsData.find((p) => p.id === id);
 
-  // Si le projet n'existe pas, afficher une erreur ou rediriger
   if (!project) {
     return (
-      <MainContent>
-        <section className="bg-white p-4 sm:p-6 rounded-lg shadow-md text-center mx-2 my-6">
-          <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
-            Projet non trouvé
-          </h1>
-          <p className="text-gray-600">
-            Désolé, ce projet n&apos;existe pas.{' '}
-            <Link href="/about" className="text-blue-600 hover:underline">
-              Retour à la page À propos
-            </Link>
+      <div className="min-h-screen bg-[#0a0f1c] pt-32 pb-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-2xl font-bold text-white mb-4">Projet non trouvé</h1>
+          <p className="text-gray-400 mb-6">
+            Désolé, ce projet n'existe pas.
           </p>
-        </section>
-      </MainContent>
+          <Link href="/portfolio" className="btn-primary">
+            Retour au portfolio
+          </Link>
+        </div>
+      </div>
     );
   }
 
   return (
-    <MainContent>
-      <section className="w-full max-w-3xl mx-auto bg-white/90 p-3 sm:p-6 md:p-8 rounded-2xl shadow-xl mt-4 mb-8 flex flex-col gap-4 sm:gap-6">
-        <Link
-          href="/"
-          className="flex items-center text-[#E1E3E7] bg-[#1e3a8a] p-2 sm:p-2.5 rounded-full mb-2 w-fit hover:bg-[#3730a3] transition-colors"
-        >
-          <FiArrowLeft size={22} />
-        </Link>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight break-words">
-            {project.title}
-          </h1>
-          <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${project.type === 'mobile' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
-            {project.type === 'mobile' ? <FiSmartphone /> : <FiMonitor />} {project.type}
-          </span>
-        </div>
-        <div className="mb-2 sm:mb-4">
-          <ProjectImageGallery images={project.images} type={project.type} />
-        </div>
-        <div className="mb-2 sm:mb-4">
-          <p className="text-gray-700 text-base sm:text-lg mb-1 break-words">{project.description}</p>
-          <p className="text-gray-500 italic text-sm sm:text-base break-words">{project.details}</p>
-        </div>
-        <div className="mb-2 sm:mb-4">
-          <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-1">
-            Technologies utilisées
-          </h2>
-          <ul className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, index) => (
-              <li
-                key={index}
-                className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs sm:text-sm"
-              >
-                {tech}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 mb-1 sm:mb-2 text-xs sm:text-sm text-gray-600">
-          <span>Date : <span className="font-medium text-gray-800">{project.date}</span></span>
-          <span>Type : <span className="font-medium text-gray-800">{project.type}</span></span>
-        </div>
-        {project.liveUrl && (
-          <div className="mt-2 sm:mt-4">
-            <h2 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">
-              Voir le projet
-            </h2>
-            <Link
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 shadow w-full sm:w-auto text-center text-sm sm:text-base"
-            >
-              Visiter le site
-            </Link>
+    <div className="min-h-screen bg-[#0a0f1c] pt-32 pb-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Back Button */}
+          <Link
+            href="/portfolio"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-emerald-400 transition-colors mb-8"
+          >
+            <FiArrowLeft className="w-5 h-5" />
+            Retour au portfolio
+          </Link>
+
+          {/* Main Card */}
+          <div className="card-premium overflow-hidden">
+            {/* Header */}
+            <div className="p-8 border-b border-white/10">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                <h1 className="text-3xl sm:text-4xl font-bold font-display text-white">
+                  {project.title}
+                </h1>
+                <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
+                  project.type === 'mobile' 
+                    ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' 
+                    : 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                }`}>
+                  {project.type === 'mobile' ? <FiSmartphone className="w-4 h-4" /> : <FiMonitor className="w-4 h-4" />}
+                  {project.type === 'mobile' ? 'Application Mobile' : 'Application Web'}
+                </span>
+              </div>
+              <p className="text-gray-400 text-lg">{project.description}</p>
+            </div>
+
+            {/* Gallery */}
+            <div className="p-8 border-b border-white/10">
+              <ProjectImageGallery images={project.images} type={project.type} />
+            </div>
+
+            {/* Details */}
+            <div className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left Column */}
+                <div>
+                  <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <span className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-cyan-500 rounded-full" />
+                    À propos du projet
+                  </h2>
+                  <p className="text-gray-400 leading-relaxed">{project.details}</p>
+
+                  {/* Technologies */}
+                  <div className="mt-6">
+                    <h3 className="text-lg font-bold text-white mb-3">Technologies</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1.5 rounded-lg bg-white/5 text-emerald-400 text-sm border border-white/10"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Column - Info */}
+                <div className="space-y-6">
+                  <div className="card-premium p-6">
+                    <h3 className="text-lg font-bold text-white mb-4">Informations</h3>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3 text-gray-400">
+                        <FaCalendar className="w-4 h-4 text-emerald-400" />
+                        <span>Date : <span className="text-white">{project.date}</span></span>
+                      </div>
+                      <div className="flex items-center gap-3 text-gray-400">
+                        <FaTag className="w-4 h-4 text-emerald-400" />
+                        <span>Type : <span className="text-white capitalize">{project.type}</span></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Live URL */}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-primary w-full flex items-center justify-center gap-2"
+                    >
+                      <FiExternalLink className="w-4 h-4" />
+                      Voir le projet en ligne
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-        )}
-      </section>
-    </MainContent>
+        </div>
+      </div>
+    </div>
   );
 }
