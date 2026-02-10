@@ -1,33 +1,26 @@
-import MainContent from "@/components/main/MainContent";
 import { Suspense } from "react";
 import PortfolioList from "./PortfolioList";
 
+export const metadata = {
+  title: "Portfolio - twocoderz",
+  description: "Découvrez nos réalisations web et mobile. Des projets innovants et performants.",
+};
+
 export default function PortfolioPage() {
   return (
-    <MainContent>
-      <section className="p-6 w-full">
+    <div className="min-h-screen bg-[#0a0f1c] pt-32 pb-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          {/* Badge */}
-          <div className="inline-block mb-6 animate-fadeInDown">
-            <span className="glass-light backdrop-blur-md px-5 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-50 to-cyan-50 text-indigo-700 border border-indigo-200 shadow-md">
-              💼 Nos Réalisations
-            </span>
-          </div>
-
-          {/* Title */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold font-poppins mb-6 animate-fadeInUp">
-            Notre <span className="text-gradient">Portfolio</span>
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-2 rounded-full bg-cyan-500/10 text-cyan-400 text-sm font-medium mb-6 border border-cyan-500/20">
+            Portfolio
+          </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display text-white mb-6">
+            Nos <span className="text-gradient">réalisations</span>
           </h1>
-
-          {/* Description */}
-          <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed animate-fadeInUp" style={{animationDelay: '100ms'}}>
-            Découvrez notre collection complète de projets{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10">web et mobiles</span>
-              <span className="absolute bottom-1 left-0 w-full h-2 bg-indigo-200/50 -skew-y-1"></span>
-            </span>
-            , conçus pour répondre aux besoins variés de nos clients.
+          <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            Découvrez une sélection de nos projets les plus récents.
+            Chaque réalisation reflète notre engagement envers l'excellence.
           </p>
         </div>
 
@@ -36,16 +29,16 @@ export default function PortfolioPage() {
           fallback={
             <div className="flex flex-col items-center justify-center py-20">
               <div className="relative w-16 h-16 mb-4">
-                <div className="absolute inset-0 border-4 border-indigo-200 rounded-full"></div>
-                <div className="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
+                <div className="absolute inset-0 border-4 border-emerald-500/20 rounded-full"></div>
+                <div className="absolute inset-0 border-4 border-emerald-500 rounded-full border-t-transparent animate-spin"></div>
               </div>
-              <p className="text-slate-600 font-medium">Chargement des projets...</p>
+              <p className="text-gray-400 font-medium">Chargement des projets...</p>
             </div>
           }
         >
           <PortfolioList />
         </Suspense>
-      </section>
-    </MainContent>
+      </div>
+    </div>
   );
 }

@@ -1,35 +1,46 @@
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import DynamicLayout from "../components/DynamicLayout"; // Nouveau composant
+import DynamicLayout from "../components/DynamicLayout";
 import "./globals.css";
-import { Montserrat, Poppins } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
-const montserrat = Montserrat({
-  weight: ["400", "500", "600"],
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-inter",
   display: "swap",
 });
-const poppins = Poppins({
-  weight: ["400", "500", "600"],
+
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
+  variable: "--font-space",
   display: "swap",
-  variable: "--font-poppins",
 });
 
 export const metadata = {
-  title: "AZRATECH - Développement Web & Mobile",
-  description: "Experts en développement web et mobile. Transformons vos idées en solutions innovantes et performantes.",
+  title: "twocoderz - Développement Web & Mobile Premium",
+  description: "Agence de développement web et mobile. Nous transformons vos idées en solutions digitales innovantes, élégantes et performantes.",
+  keywords: ["développement web", "développement mobile", "applications", "web design", "twocoderz"],
+  authors: [{ name: "twocoderz" }],
+  icons: {
+    icon: "/logo.jpeg",
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg",
+  },
+  openGraph: {
+    title: "twocoderz - Développement Web & Mobile Premium",
+    description: "Agence de développement web et mobile. Nous transformons vos idées en solutions digitales innovantes.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fr" className={`${montserrat.variable} ${poppins.variable}`}>
-      <body className="bg-gray-50 text-gray-800">
+    <html lang="fr" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="bg-[#0a0f1c] text-white antialiased">
         <Header />
-        <div className="px-4 py-8 pt-16 md:pt-20">
-          <DynamicLayout>{children}</DynamicLayout>
-        </div>
+        <main className="min-h-screen">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

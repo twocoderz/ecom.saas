@@ -1,191 +1,202 @@
 "use client";
 
 import Link from "next/link";
-import { FaSearch } from "react-icons/fa";
-import { useState } from "react";
+import Image from "next/image";
+import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 
-export default function Header({ logo = "AZRATECH" }) {
+export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [search, setSearch] = useState("");
   const pathname = usePathname();
   const router = useRouter();
-  const [search, setSearch] = useState("");
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const isActive = (path) => {
-    return pathname === path;
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const isActive = (path) => pathname === path;
 
   const handleSearch = (e) => {
     e.preventDefault();
     if (search.trim()) {
       router.push(`/portfolio?search=${encodeURIComponent(search.trim())}`);
       setSearch("");
-      setIsMenuOpen(false); // ferme le menu mobile si ouvert
+      setIsMenuOpen(false);
     }
   };
 
+  const navLinks = [
+    { href: "/services", label: "Services" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/about", label: "À propos" },
+  ];
+
   return (
     <>
-      <header className="glass-light backdrop-blur-md py-4 px-4 fixed top-0 left-0 w-full z-50 border-b border-slate-200/50 shadow-sm animate-fadeInDown">
-        <div className="flex justify-between items-center container mx-auto max-w-7xl">
-          {/* Logo avec gradient */}
-          <div className="text-lg xl:text-2xl font-bold tracking-tight">
-            <Link
-              href="/"
-              className="text-gradient hover:opacity-80 transition-opacity duration-300"
-            >
-              {logo}
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+          isScrolled
+            ? "bg-[#0a0f1c]/90 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative w-10 h-10 flex items-center justify-center">
+                <Image
+                  src="/logo.jpeg"
+                  alt="twocoderz logo"
+                  width={40}
+                  height={40}
+                  className="rounded-xl object-cover"
+                  priority
+                />
+              </div>
+              <span className="text-xl font-bold font-display text-gradient">
+                twocoderz
+              </span>
             </Link>
-          </div>
 
-          {/* Barre de recherche (Desktop) */}
-          <div className="hidden md:block w-2/5 lg:w-1/3 relative">
-            <form onSubmit={handleSearch}>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
+                    isActive(link.href)
+                      ? "text-emerald-400 bg-emerald-500/10"
+                      : "text-gray-300 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Right Side - Search & CTA */}
+            <div className="hidden md:flex items-center gap-4">
+              {/* Search */}
+              <form onSubmit={handleSearch} className="relative">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Rechercher..."
+                  className="w-48 lg:w-64 pl-10 pr-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 focus:bg-white/10 transition-all duration-300"
+                />
+                <button
+                  type="submit"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-emerald-400 transition-colors"
+                >
+                  <FaSearch className="w-4 h-4" />
+                </button>
+              </form>
+
+              {/* CTA Button */}
+              <Link
+                href="/contact"
+                className="btn-primary text-sm px-6 py-2.5"
+              >
+                Nous contacter
+              </Link>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMenu}
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <FaTimes className="w-5 h-5" />
+              ) : (
+                <FaBars className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ${
+          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          onClick={() => setIsMenuOpen(false)}
+        />
+
+        {/* Menu Panel */}
+        <div
+          className={`absolute top-20 left-4 right-4 bg-[#0f172a]/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden transition-all duration-500 ${
+            isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+          }`}
+        >
+          {/* Search Mobile */}
+          <div className="p-4 border-b border-white/5">
+            <form onSubmit={handleSearch} className="relative">
               <input
                 type="text"
                 value={search}
-                onChange={e => setSearch(e.target.value)}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Rechercher des projets..."
-                className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-slate-200 bg-white/80 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all duration-300 text-slate-700 placeholder-slate-400 text-sm shadow-sm hover:shadow-md"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50"
               />
               <button
                 type="submit"
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-600 hover:text-indigo-700 transition-colors duration-300"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500"
               >
-                <FaSearch className="text-base" />
+                <FaSearch className="w-5 h-5" />
               </button>
             </form>
           </div>
 
-          {/* Bouton Hamburger avec animation */}
-          <button
-            className="md:hidden text-indigo-600 hover:text-indigo-700 focus:outline-none cursor-pointer transition-transform duration-300 hover:scale-110"
-            onClick={toggleMenu}
-            aria-expanded={isMenuOpen}
-          >
-            {isMenuOpen ? (
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2.5"
-                  d="M4 6h16M4 12h16m-7 6h7"
-                />
-              </svg>
-            )}
-          </button>
+          {/* Mobile Nav Links */}
+          <nav className="p-2">
+            {navLinks.map((link, index) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                  isActive(link.href)
+                    ? "text-emerald-400 bg-emerald-500/10"
+                    : "text-gray-300 hover:text-white hover:bg-white/5"
+                }`}
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-          {/* Menu Desktop - Navigation moderne */}
-          <nav className="hidden md:flex md:items-center md:space-x-2 lg:space-x-4">
-            <Link
-              href="/portfolio"
-              className={`text-sm lg:text-base font-medium font-poppins px-4 py-2 rounded-lg transition-all duration-300 ${
-                isActive('/portfolio')
-                  ? 'text-indigo-600 bg-indigo-50'
-                  : 'text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50'
-              }`}
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="/about"
-              className={`text-sm lg:text-base font-medium font-poppins px-4 py-2 rounded-lg transition-all duration-300 ${
-                isActive('/about')
-                  ? 'text-indigo-600 bg-indigo-50'
-                  : 'text-slate-700 hover:text-indigo-600 hover:bg-indigo-50/50'
-              }`}
-            >
-              À propos
-            </Link>
+          {/* Mobile CTA */}
+          <div className="p-4 border-t border-white/5">
             <Link
               href="/contact"
-              className={`text-sm lg:text-base font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg ${
-                isActive('/contact')
-                  ? 'bg-gradient-to-r from-indigo-600 to-indigo-500 text-white'
-                  : 'bg-gradient-to-r from-indigo-600 to-indigo-500 text-white hover:from-indigo-700 hover:to-indigo-600 hover:-translate-y-0.5'
-              }`}
+              onClick={() => setIsMenuOpen(false)}
+              className="btn-primary w-full text-center block"
             >
               Nous contacter
             </Link>
-          </nav>
-        </div>
-      </header>
-
-      {/* Menu Mobile avec glassmorphism */}
-      {isMenuOpen && (
-        <div className="fixed top-20 left-0 w-full glass-dark z-40 shadow-2xl md:hidden animate-fadeInDown border-b border-white/10">
-          <div className="p-6 flex flex-col gap-5">
-            {/* Barre de recherche (Mobile) */}
-            <form onSubmit={handleSearch} className="animate-fadeInUp">
-              <div className="relative">
-                <input
-                  type="text"
-                  value={search}
-                  onChange={e => setSearch(e.target.value)}
-                  placeholder="Rechercher des projets..."
-                  className="w-full pl-11 pr-4 py-2.5 rounded-xl border border-white/20 bg-white/10 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400 transition-all duration-300 text-white placeholder-slate-300 text-sm"
-                />
-                <button
-                  type="submit"
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
-                >
-                  <FaSearch className="text-base" />
-                </button>
-              </div>
-            </form>
-
-            {/* Liens de navigation - Style moderne */}
-            <nav className="flex flex-col space-y-2 animate-fadeInUp" style={{animationDelay: '100ms'}}>
-              <Link
-                href="/portfolio"
-                onClick={toggleMenu}
-                className={`px-4 py-3 rounded-lg transition-all duration-300 ease-out text-base font-medium ${
-                  isActive('/portfolio')
-                    ? 'bg-white/20 text-white backdrop-blur-sm'
-                    : 'text-slate-200 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/about"
-                onClick={toggleMenu}
-                className={`px-4 py-3 rounded-lg transition-all duration-300 ease-out text-base font-medium ${
-                  isActive('/about')
-                    ? 'bg-white/20 text-white backdrop-blur-sm'
-                    : 'text-slate-200 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                À propos
-              </Link>
-              <Link
-                href="/contact"
-                onClick={toggleMenu}
-                className={`px-4 py-3 rounded-lg transition-all duration-300 ease-out text-base font-medium ${
-                  isActive('/contact')
-                    ? 'bg-gradient-to-r from-indigo-600 to-indigo-500 text-white shadow-lg'
-                    : 'bg-white/10 text-white hover:bg-gradient-to-r hover:from-indigo-600 hover:to-indigo-500 hover:shadow-lg'
-                }`}
-              >
-                Nous contacter
-              </Link>
-            </nav>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }
