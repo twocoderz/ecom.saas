@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# twocoderz - Agence de Développement Web & Mobile
 
-## Getting Started
+twocoderz est une agence spécialisée dans le développement d'applications web et mobile innovantes. Ce projet est un site portfolio moderne construit avec Next.js 15.
 
-First, run the development server:
+## Technologies
+
+- **Framework:** Next.js 15.3.2 (App Router)
+- **Styling:** Tailwind CSS
+- **Animations:** CSS animations & transitions
+- **Icons:** React Icons (Fa, etc.)
+
+## Structure du Projet
+
+```
+src/
+├── app/
+│   ├── about/          - Page À propos
+│   ├── contact/        - Page Contact
+│   ├── developers/     - Page Développeurs
+│   ├── mobile/         - Page Services Mobile
+│   ├── portfolio/      - Page Portfolio
+│   ├── projects/       - Pages projets dynamiques
+│   ├── services/       - Page Services
+│   ├── web/            - Page Services Web
+│   ├── layout.js       - Layout principal
+│   └── page.js         - Page d'accueil
+├── components/
+│   ├── main/           - Composants principaux
+│   ├── header/         - Header/Navigation
+│   ├── footer/         - Footer
+│   ├── sidebar_left/   - Sidebar gauche
+│   └── sidebar_right/  - Sidebar droite
+├── data/              - Données JSON (projets, services, équipe)
+└── styles/            - Styles personnalisés
+```
+
+## Pour Commencer
+
+1. Installer les dépendances :
+
+```bash
+npm install
+```
+
+2. Lancer le serveur de développement :
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Ouvrir [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Build Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Déploiement
 
-To learn more about Next.js, take a look at the following resources:
+Déployé automatiquement sur Vercel via CI/CD.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Fonctionnalités
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Design moderne avec effets glassmorphism
+- Animations fluides et transitions
+- Portfolio avec recherche et filtrage
+- Pages dynamiques pour les projets
+- Responsive design (mobile, tablet, desktop)
