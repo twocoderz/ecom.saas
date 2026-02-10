@@ -1,31 +1,30 @@
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function ContactInfo() {
   const contactDetails = [
     {
       icon: FaEnvelope,
       label: "Email",
-      value: "contact@twocoderz.com",
-      href: "mailto:contact@twocoderz.com",
+      value: "aziamadjicrepin@gmail.com",
+      href: "mailto:aziamadjicrepin@gmail.com",
     },
     {
       icon: FaPhone,
       label: "Téléphone",
-      value: "+33 1 23 45 67 89",
-      href: "tel:+33123456789",
+      value: "+228 79 81 20 87",
+      href: "tel:+22879812087",
     },
     {
       icon: FaMapMarkerAlt,
       label: "Adresse",
-      value: "Paris, France",
+      value: "Lomé, Togo",
       href: null,
     },
   ];
 
   const socialLinks = [
-    { icon: FaTwitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: FaGithub, href: "https://github.com", label: "GitHub" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/107447199/", label: "LinkedIn" },
+    { icon: FaGithub, href: "https://github.com/twocoderz", label: "GitHub" },
   ];
 
   return (

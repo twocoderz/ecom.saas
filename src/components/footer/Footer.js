@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowUp } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaMapMarkerAlt, FaArrowUp } from "react-icons/fa";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -30,9 +30,8 @@ export default function Footer() {
   };
 
   const socialLinks = [
-    { icon: FaTwitter, href: "https://twitter.com", label: "Twitter", color: "hover:text-sky-400" },
-    { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn", color: "hover:text-blue-500" },
-    { icon: FaGithub, href: "https://github.com", label: "GitHub", color: "hover:text-white" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/company/107447199/", label: "LinkedIn", color: "hover:text-blue-500" },
+    { icon: FaGithub, href: "https://github.com/twocoderz", label: "GitHub", color: "hover:text-white" },
   ];
 
   return (
@@ -69,17 +68,17 @@ export default function Footer() {
 
             {/* Contact Info */}
             <div className="space-y-3">
-              <a href="mailto:contact@twocoderz.com" className="flex items-center gap-3 text-gray-400 hover:text-emerald-400 transition-colors">
+              <a href="mailto:aziamadjicrepin@gmail.com" className="flex items-center gap-3 text-gray-400 hover:text-emerald-400 transition-colors">
                 <FaEnvelope className="w-4 h-4" />
-                <span>contact@twocoderz.com</span>
+                <span>aziamadjicrepin@gmail.com</span>
               </a>
-              <a href="tel:+33123456789" className="flex items-center gap-3 text-gray-400 hover:text-emerald-400 transition-colors">
+              <a href="tel:+22879812087" className="flex items-center gap-3 text-gray-400 hover:text-emerald-400 transition-colors">
                 <FaPhone className="w-4 h-4" />
-                <span>+33 1 23 45 67 89</span>
+                <span>+228 79 81 20 87</span>
               </a>
               <div className="flex items-center gap-3 text-gray-400">
                 <FaMapMarkerAlt className="w-4 h-4" />
-                <span>Paris, France</span>
+                <span>Lomé, Togo</span>
               </div>
             </div>
           </div>
