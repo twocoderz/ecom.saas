@@ -25,6 +25,9 @@ export const metadata = {
     icon: "/logo.jpeg",
     shortcut: "/logo.jpeg",
     apple: "/logo.jpeg",
+    icon: [
+      { url: "/logo.jpeg", type: "image/jpeg" }
+    ],
   },
   openGraph: {
     title: "twocoderz - Développement Web & Mobile Premium",
