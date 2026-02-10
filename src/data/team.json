@@ -1,12 +1,22 @@
 [
   {
     "name": "Crépin AZIAMADJI",
-    "title": "Développeur Full-Stack",
-    "imageUrl": "/images/programmeur.png"
+    "role": "Développeur Full-Stack",
+    "imageUrl": "/images/programmeur.png",
+    "social": {
+      "github": "https://github.com/crepin7",
+      "linkedin": "https://www.linkedin.com/in/cr%C3%A9pin-aziamadji-8a1b722b0/",
+      "twitter": "https://x.com/Crepinote"
+    }
   },
   {
     "name": "Rahim ALI",
-    "title": "Développeur Full-Stack",
-    "imageUrl": "/images/programmeur.png"
+    "role": "Développeur Full-Stack",
+    "imageUrl": "/images/programmeur.png",
+    "social": {
+      "github": "https://github.com/rahim10020",
+      "linkedin": "",
+      "twitter": ""
+    }
   }
 ]

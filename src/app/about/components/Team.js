@@ -39,15 +39,36 @@ export default function Team() {
               
               {/* Social Links */}
               <div className="flex items-center gap-3">
-                <a href="#" className="text-gray-500 hover:text-emerald-400 transition-colors">
-                  <FaGithub className="w-4 h-4" />
-                </a>
-                <a href="#" className="text-gray-500 hover:text-emerald-400 transition-colors">
-                  <FaLinkedin className="w-4 h-4" />
-                </a>
-                <a href="#" className="text-gray-500 hover:text-emerald-400 transition-colors">
-                  <FaTwitter className="w-4 h-4" />
-                </a>
+                {member.social?.github && (
+                  <a 
+                    href={member.social.github} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-emerald-400 transition-colors"
+                  >
+                    <FaGithub className="w-4 h-4" />
+                  </a>
+                )}
+                {member.social?.linkedin && (
+                  <a 
+                    href={member.social.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-emerald-400 transition-colors"
+                  >
+                    <FaLinkedin className="w-4 h-4" />
+                  </a>
+                )}
+                {member.social?.twitter && (
+                  <a 
+                    href={member.social.twitter} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-500 hover:text-emerald-400 transition-colors"
+                  >
+                    <FaTwitter className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
