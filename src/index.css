@@ -1,1 +1,88 @@
 @import "tailwindcss";
+
+@theme {
+  /* Base colors */
+  --color-primary: #009ffd;
+  --color-white: #ffffff;
+  --color-black: #121516;
+
+  /* Black opacity scale */
+  --color-black-90: rgb(18 21 22 / 90%);
+  --color-black-80: rgb(18 21 22 / 80%);
+  --color-black-70: rgb(18 21 22 / 70%);
+  --color-black-60: rgb(18 21 22 / 60%);
+  --color-black-50: rgb(18 21 22 / 50%);
+  --color-black-40: rgb(18 21 22 / 40%);
+  --color-black-30: rgb(18 21 22 / 30%);
+  --color-black-20: rgb(18 21 22 / 20%);
+  --color-black-10: rgb(18 21 22 / 10%);
+  --color-black-5: rgb(18 21 22 / 5%);
+
+  /* Padding / spacing (px) */
+  /* Figma: p0 → 0, p0,5 → 2, p1 → 4, ..., p25 → 100 */
+  --spacing-p0: 0px;
+  --spacing-p0-5: 2px;
+  --spacing-p1: 4px;
+  --spacing-p1-5: 6px;
+  --spacing-p2: 8px;
+  --spacing-p2-5: 10px;
+  --spacing-p3: 12px;
+  --spacing-p3-5: 14px;
+  --spacing-p4: 16px;
+  --spacing-p4-5: 18px;
+  --spacing-p5: 20px;
+  --spacing-p5-5: 22px;
+  --spacing-p6: 24px;
+  --spacing-p6-5: 26px;
+  --spacing-p7: 28px;
+  --spacing-p7-5: 30px;
+  --spacing-p8: 32px;
+  --spacing-p8-5: 34px;
+  --spacing-p9: 36px;
+  --spacing-p9-5: 38px;
+  --spacing-p10: 40px;
+  --spacing-p10-5: 42px;
+  --spacing-p11: 44px;
+  --spacing-p11-5: 46px;
+  --spacing-p12: 48px;
+  --spacing-p12-5: 50px;
+  --spacing-p13: 52px;
+  --spacing-p13-5: 54px;
+  --spacing-p14: 56px;
+  --spacing-p14-5: 58px;
+  --spacing-p15: 60px;
+  --spacing-p15-5: 62px;
+  --spacing-p16: 64px;
+  --spacing-p16-5: 66px;
+  --spacing-p17: 68px;
+  --spacing-p17-5: 70px;
+  --spacing-p18: 72px;
+  --spacing-p18-5: 74px;
+  --spacing-p19: 76px;
+  --spacing-p19-5: 78px;
+  --spacing-p20: 80px;
+  --spacing-p20-5: 82px;
+  --spacing-p21: 84px;
+  --spacing-p21-5: 86px;
+  --spacing-p22: 88px;
+  --spacing-p22-5: 90px;
+  --spacing-p23: 92px;
+  --spacing-p23-5: 94px;
+  --spacing-p24: 96px;
+  --spacing-p24-5: 98px;
+  --spacing-p25: 100px;
+
+  /* Radius (px) */
+  /* Figma: r0,5 → 2, r1 → 4, ..., r10 → 40 */
+  --radius-r0-5: 2px;
+  --radius-r1: 4px;
+  --radius-r2: 8px;
+  --radius-r3: 12px;
+  --radius-r4: 16px;
+  --radius-r5: 20px;
+  --radius-r6: 24px;
+  --radius-r7: 28px;
+  --radius-r8: 32px;
+  --radius-r9: 36px;
+  --radius-r10: 40px;
+}
