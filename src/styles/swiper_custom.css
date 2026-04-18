@@ -1,8 +1,0 @@
-.swiper {
-  overflow: hidden !important; /* Masque la scrollbar */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.swiper::-webkit-scrollbar {
-  display: none;
-}
