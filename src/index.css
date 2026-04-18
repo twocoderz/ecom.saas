@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+
   /* Base colors */
   --color-primary: #009ffd;
   --color-white: #ffffff;
@@ -85,4 +87,10 @@
   --radius-r8: 32px;
   --radius-r9: 36px;
   --radius-r10: 40px;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
 }
