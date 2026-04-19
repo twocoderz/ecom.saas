@@ -10,3 +10,5 @@ export { default as EyeShowIcon } from "./EyeShowIcon";
 export { default as MinusIcon } from "./MinusIcon";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as ShoppingCartIcon } from "./ShoppingCartIcon";
+export { default as HamburgerMdIcon } from "./HamburgerMdIcon";
+export { default as CloseIcon } from "./CloseIcon";
