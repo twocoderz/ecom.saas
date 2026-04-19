@@ -1,3 +1,4 @@
+import Logo from "../branding/Logo";
 import { Container } from "../layout/Container";
 import { MegaMenu } from "./MegaMenu";
 
@@ -7,11 +8,11 @@ import { MegaMenu } from "./MegaMenu";
  */
 export function MainHeader() {
   return (
-    <header className="sticky top-0 z-20 border-b border-black/10 bg-white">
+    <header className="z-20 border-b border-black/10 bg-black">
       <Container>
         <div className="flex items-center justify-between py-4">
-          <strong className="text-lg font-bold">ecom.saas</strong>
-          <p className="text-sm text-black/70">Recherche | Compte | Panier</p>
+          <Logo />
+          <p className="text-sm text-white/70">Recherche | Compte | Panier</p>
         </div>
       </Container>
       <MegaMenu />
