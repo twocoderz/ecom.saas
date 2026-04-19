@@ -6,7 +6,7 @@ export default function CartButton() {
       <button
         type="button"
         aria-label="Go to cart"
-        className="cursor-pointer flex items-center gap-2 px-4 py-3"
+        className="cursor-pointer flex items-center gap-1 px-2 py-3"
       >
         <ShoppingCartIcon className="text-black-60 w-4 h-4" />
         <span className="text-sm font-normal text-black-80">Cart</span>

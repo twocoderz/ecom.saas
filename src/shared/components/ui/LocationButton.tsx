@@ -6,10 +6,10 @@ export default function LocationButton() {
       <button
         type="button"
         aria-label="Change location"
-        className="cursor-pointer flex items-center gap-2 px-4 py-3"
+        className="cursor-pointer flex items-center gap-1 px-4 py-3"
       >
-        <GlobeIcon className="text-black-60 w-3 h-3" />
-        <span className="text-black-80 text-sm font-normal">Choose</span>
+        <GlobeIcon className="text-black-60 w-4 h-4" />
+        <span className="text-black-80 text-sm font-normal">Choose...</span>
       </button>
     </div>
   );
