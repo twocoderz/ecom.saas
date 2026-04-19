@@ -3,6 +3,8 @@
 Ce plan explique dans quel ordre coder les fichiers deja structures, en gardant la logique JD-like:
 navigation forte, pages catalogue robustes, puis tunnel d'achat.
 
+Mise a jour: 2026-04-19
+
 ## Sprint 0 - Foundation (en place)
 
 Objectif:
@@ -52,11 +54,30 @@ Fichiers prioritaires:
 - src/shared/components/catalog/ProductGrid.tsx
 - src/shared/components/catalog/FilterSidebar.tsx
 - src/shared/components/catalog/SortBar.tsx
+- src/shared/data/products.ts
+- src/shared/data/plp.ts
 
 Livrables:
 
-- Listing avec filtres, tri, pagination
+- Listing avec filtres et tri reels
 - Composants produits reutilisables pour PLP + Search
+- Pattern drawer de filtres a droite type JD
+
+Etat d'avancement (Sprint 2):
+
+- Fait:
+  - ProductCard branchee aux vraies donnees produit
+  - ProductGrid branchee a un tableau de produits
+  - CategoryPage migree vers une barre de controles JD-like
+  - Filtres en drawer right overlay (plus de sidebar fixe a gauche)
+  - FilterSidebar convertie en panneau facettes accordions + chips actives + bouton View Items
+  - SortBar convertie en dropdown fonctionnel (relevance/newest/top rated/prix)
+  - Extraction des constantes PLP dans src/shared/data/plp.ts
+  - Build vert apres chaque etape
+- Reste a faire:
+  - Aligner SearchResultsPage sur le meme pattern de controles + filtres
+  - Ajouter pagination ou infinite scroll selon decision produit
+  - Synchroniser filtres/tri dans l'URL (query params)
 
 ## Sprint 3 - Product Detail (PDP)
 
@@ -142,6 +163,7 @@ Livrables:
 - Garder les composants de src/pages/\*\*/components pour les besoins strictement locaux.
 - Mettre a jour src/app/routeBlueprint.ts a chaque nouvelle route.
 - Eviter les logiques metier dans le layout global.
+- Centraliser les constantes UI/metier dans src/shared/data avant de les diffuser dans les composants.
 
 ## Definition of Done par sprint
 
@@ -149,3 +171,12 @@ Livrables:
 - Routes impactees testees manuellement
 - Aucun composant duplique inutilement
 - Documentation mise a jour si un nouveau bloc structurel est ajoute
+
+## Notes d'implementation recents
+
+- Le PLP categorie sert maintenant de reference visuelle/interactionnelle pour les autres listings.
+- Le module src/shared/data/plp.ts est la source unique pour:
+  - labels PLP
+  - options de tri
+  - options/ranges de prix
+  - labels et etat d'ouverture des sections de filtres

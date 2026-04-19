@@ -29,6 +29,8 @@ mais sans copier leur contenu ou assets.
   - src/shared/components/catalog/FilterSidebar.tsx
   - src/shared/components/catalog/SortBar.tsx
   - src/shared/components/catalog/ProductGrid.tsx
+  - src/shared/data/products.ts
+  - src/shared/data/plp.ts
 
 - Product detail page (PDP) type JD:
   - src/pages/product/ProductDetailPage.tsx
@@ -57,6 +59,7 @@ mais sans copier leur contenu ou assets.
 - Les pages injectent leurs blocs metier dans ce shell.
 - Les blocs partages evitent de reimplementer la meme UI sur plusieurs pages.
 - Les composants dans src/pages/\*\*/components sont specifiques a une page ou un groupe de pages.
+- Les constantes de comportement/copy PLP sont centralisees dans src/shared/data/plp.ts.
 
 ## 4) Ordre conseille pour coder la vraie version
 
@@ -66,7 +69,21 @@ mais sans copier leur contenu ou assets.
 4. Coder panier puis checkout etats par etape.
 5. Finaliser compte/support/legal.
 
-## 5) Fichiers de pilotage
+## 5) Etat implemente a date (2026-04-19)
+
+- Navigation globale: en place (desktop/mobile) avec mega menu et drawer mobile.
+- PLP categorie:
+  - barre de controles type JD (shop my store + show filters + sort)
+  - drawer de filtres a droite avec overlay
+  - facettes accordion (department/brand/category/price)
+  - chips de filtres actifs + clear all
+  - tri applique a la grille
+- Donnees:
+  - catalogue mock centralise: src/shared/data/products.ts
+  - config PLP centralisee: src/shared/data/plp.ts
+- Build: vert apres integration.
+
+## 6) Fichiers de pilotage
 
 - src/app/routeBlueprint.ts: inventaire des routes et de leur role.
 - src/app/componentBlueprint.ts: inventaire des composants reutilisables par groupe.
@@ -74,4 +91,4 @@ mais sans copier leur contenu ou assets.
 
 Ces deux fichiers servent de reference pour ne pas se perdre pendant les iterations.
 
-Etat actuel: le routeur est branche et toutes les pages scaffoldees sont accessibles via leurs routes.
+Etat actuel: le routeur est branche, toutes les pages scaffoldees sont accessibles, et le PLP categorie est deja passe d'un template statique a une base fonctionnelle data-driven.

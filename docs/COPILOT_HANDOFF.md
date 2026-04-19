@@ -14,15 +14,23 @@ sans perdre le contexte technique et organisationnel.
 
 1. docs/JD_STRUCTURE_MAP.md
 2. docs/IMPLEMENTATION_SPRINT_PLAN.md
-3. src/app/routeBlueprint.ts
-4. src/app/componentBlueprint.ts
-5. src/app/router.tsx
+3. src/shared/data/plp.ts
+4. src/shared/data/products.ts
+5. src/pages/category/CategoryPage.tsx
+6. src/shared/components/catalog/FilterSidebar.tsx
+7. src/shared/components/catalog/SortBar.tsx
+8. src/app/routeBlueprint.ts
+9. src/app/componentBlueprint.ts
+10. src/app/router.tsx
 
 ## 3) Etat actuel
 
 - Le scaffold pages/composants est en place
 - Le routeur est branche et mappe les pages principales
 - Les blueprints routes/composants existent et servent de source de verite
+- Le PLP categorie est fonctionnel (filtres + tri + drawer droite)
+- Le data layer PLP est centralise dans src/shared/data/plp.ts
+- Le catalogue mock est centralise dans src/shared/data/products.ts
 - Le build doit rester vert a chaque etape
 
 ## 4) Regles de travail a respecter
@@ -41,6 +49,11 @@ Lis d abord:
 
 - docs/JD_STRUCTURE_MAP.md
 - docs/IMPLEMENTATION_SPRINT_PLAN.md
+- src/shared/data/plp.ts
+- src/shared/data/products.ts
+- src/pages/category/CategoryPage.tsx
+- src/shared/components/catalog/FilterSidebar.tsx
+- src/shared/components/catalog/SortBar.tsx
 - src/app/routeBlueprint.ts
 - src/app/componentBlueprint.ts
 - src/app/router.tsx
@@ -52,6 +65,12 @@ Ensuite:
 3. N apporter que des changements necessaires et coherents avec les blueprints
 4. Ecrire tous les commentaires de code en francais clair
 5. Lancer pnpm run build et rapporter le resultat
+
+Priorite actuelle recommandee:
+
+1. Aligner SearchResultsPage sur le meme pattern que CategoryPage (controls + drawer + facettes)
+2. Ajouter synchronisation filtres/tri dans l URL
+3. Garder src/shared/data/plp.ts comme source unique des constantes PLP
 
 ## 6) Checklist de fin de tache
 
