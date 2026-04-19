@@ -23,7 +23,7 @@ export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="z-20 bg-black py-p2 px-p6">
+    <header className="z-20 bg-black py-p4 px-p2 lg:px-p6">
       <Container>
         {/* Version mobile */}
         <div className="lg:hidden">
@@ -37,25 +37,25 @@ export function MainHeader() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="focus-visible:outline focus-visible:outline-white"
               >
-                <HamburgerMdIcon className="text-white" />
+                <HamburgerMdIcon className="text-white w-7 h-7" />
               </button>
               <button type="button" aria-label="Change location">
-                <GlobeIcon className="text-white" />
+                <GlobeIcon className="text-white w-6 h-6" />
               </button>
             </div>
             <Logo />
             {/* Icones de droite */}
             <div className="flex items-center gap-p2">
               <button type="button" aria-label="Go to your account">
-                <UserIcon className="text-white" />
+                <UserIcon className="text-white w-7 h-7" />
               </button>
               <button type="button" aria-label="Shopping cart">
-                <ShoppingCartIcon className="text-white" />
+                <ShoppingCartIcon className="text-white w-7 h-7" />
               </button>
             </div>
           </div>
           {/* ligne2 : la barre de recherche en full width */}
-          <div className="py-p2">
+          <div className="py-p2 mt-2">
             <MobileSearchBar />
           </div>
           {/* Drawer mobile : seulement si ouvert */}

@@ -15,7 +15,7 @@ export default function HamburgerMdIcon(props: IconProps) {
       <path
         d="M5 17H19M5 12H19M5 7H19"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
