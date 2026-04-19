@@ -1,16 +1,11 @@
-import { HomePage } from './pages/home/HomePage'
-import { AppShell } from './shared/components/layout/AppShell'
+import { RouterProvider } from "react-router-dom";
+import { appRouter } from "./app/router";
 
 /**
- * Temporary root composition.
- * This keeps the app runnable while the routing layer is being wired.
+ * App root now delegates rendering to the route tree.
  */
 function App() {
-  return (
-    <AppShell>
-      <HomePage />
-    </AppShell>
-  )
+  return <RouterProvider router={appRouter} />;
 }
 
-export default App
+export default App;

@@ -8,7 +8,7 @@ mais sans copier leur contenu ou assets.
 - src/pages: pages du site, organisees par domaine fonctionnel.
 - src/shared/components: composants reutilisables transverses.
 - src/shared/icons: icones personnalisees TSX.
-- src/app: blueprints (routes et inventaire composants) pour piloter l'implementation.
+- src/app: blueprints (routes et inventaire composants) + routeur central.
 
 ## 2) Correspondance des zones du site
 
@@ -46,17 +46,17 @@ mais sans copier leur contenu ou assets.
   - src/shared/components/checkout/CheckoutStepper.tsx
 
 - Account / support / legal:
-  - src/pages/account/*
-  - src/pages/support/*
-  - src/pages/legal/*
-  - src/pages/system/*
+  - src/pages/account/\*
+  - src/pages/support/\*
+  - src/pages/legal/\*
+  - src/pages/system/\*
 
 ## 3) Logique de reutilisation
 
 - AppShell est le cadre principal (barre utilitaire, header, trust strip, footer).
 - Les pages injectent leurs blocs metier dans ce shell.
 - Les blocs partages evitent de reimplementer la meme UI sur plusieurs pages.
-- Les composants dans src/pages/**/components sont specifiques a une page ou un groupe de pages.
+- Les composants dans src/pages/\*\*/components sont specifiques a une page ou un groupe de pages.
 
 ## 4) Ordre conseille pour coder la vraie version
 
@@ -70,5 +70,8 @@ mais sans copier leur contenu ou assets.
 
 - src/app/routeBlueprint.ts: inventaire des routes et de leur role.
 - src/app/componentBlueprint.ts: inventaire des composants reutilisables par groupe.
+- src/app/router.tsx: implementation reelle du routeur, mappee au blueprint.
 
 Ces deux fichiers servent de reference pour ne pas se perdre pendant les iterations.
+
+Etat actuel: le routeur est branche et toutes les pages scaffoldees sont accessibles via leurs routes.

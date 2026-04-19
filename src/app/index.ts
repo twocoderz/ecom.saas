@@ -1,2 +1,3 @@
-export { componentBlueprint } from './componentBlueprint'
-export { routeBlueprint } from './routeBlueprint'
+export { componentBlueprint } from "./componentBlueprint";
+export { appRouter } from "./router";
+export { routeBlueprint } from "./routeBlueprint";
