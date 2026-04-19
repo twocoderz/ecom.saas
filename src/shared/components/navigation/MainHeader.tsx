@@ -1,5 +1,5 @@
-import { Container } from '../layout/Container'
-import { MegaMenu } from './MegaMenu'
+import { Container } from "../layout/Container";
+import { MegaMenu } from "./MegaMenu";
 
 /**
  * Main navigation header.
@@ -16,5 +16,5 @@ export function MainHeader() {
       </Container>
       <MegaMenu />
     </header>
-  )
+  );
 }
