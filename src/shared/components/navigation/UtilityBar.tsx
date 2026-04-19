@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Utility } from "../../data/Utilities";
 import { Container } from "../layout/Container";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../icons";
 
 /**
  * Thin top utility strip.
@@ -27,12 +28,25 @@ export function UtilityBar(props: UtilityBarProps) {
   };
 
   return (
-    <div className="bg-white py-2 text-black-80">
+    <div className="bg-white py-2 text-black-80 shadow-xs">
       <Container>
-        <p className="text-xs font-medium">{currentUtility.pText}</p>
-        <a href={currentUtility.href} className="underline">
-          {currentUtility.aText}
-        </a>
+        <div className="flex items-center justify-between">
+          <button>
+            <ChevronLeftIcon />
+          </button>
+          <div className="flex flex-col items-center">
+            <p className="text-xs font-medium">{currentUtility.pText}</p>
+            <a
+              href={currentUtility.href}
+              className="underline text-xs font-normal"
+            >
+              {currentUtility.aText}
+            </a>
+          </div>
+          <button>
+            <ChevronRightIcon />
+          </button>
+        </div>
       </Container>
     </div>
   );
