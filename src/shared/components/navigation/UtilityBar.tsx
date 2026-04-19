@@ -34,11 +34,16 @@ export function UtilityBar(props: UtilityBarProps) {
           <button
             type="button"
             onClick={handlePrev}
-            aria-label="recent message"
+            aria-label="previous message"
+            className="cursor-pointer group"
           >
-            <ChevronLeftIcon />
+            <ChevronLeftIcon className="text-black-80 group-hover:text-black transition-colors" />
           </button>
-          <div className="flex flex-col items-center" aria-live="polite">
+          <div
+            className="flex flex-col items-center"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             <p className="text-xs font-medium">{currentUtility.pText}</p>
             <a
               href={currentUtility.href}
@@ -47,8 +52,13 @@ export function UtilityBar(props: UtilityBarProps) {
               {currentUtility.aText}
             </a>
           </div>
-          <button type="button" onClick={handleNext} aria-label="next message">
-            <ChevronRightIcon />
+          <button
+            type="button"
+            onClick={handleNext}
+            aria-label="next message"
+            className="cursor-pointer group"
+          >
+            <ChevronRightIcon className="text-black-80 group-hover:text-black transition-colors" />
           </button>
         </div>
       </Container>
