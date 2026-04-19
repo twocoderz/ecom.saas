@@ -33,7 +33,10 @@ export function MainHeader() {
               </button>
             </div>
             <Logo />
-            <div></div>
+            {/* Icones de droite */}
+            <div className="flex items-center gap-p2">
+              <button></button>
+            </div>
           </div>
           {/* ligne2 : la barre de recherche en full */}
           <div></div>
