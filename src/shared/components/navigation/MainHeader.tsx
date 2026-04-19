@@ -64,7 +64,7 @@ export function MainHeader() {
         {/* Version desktop */}
         <div className="hidden lg:block">
           {/* Ligne1 : Logo, recherche + les actions */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between px-p8 mt-2">
             {/* Le Logo seul a gauche */}
             <Logo />
             {/* SearchBar + actions a droite */}

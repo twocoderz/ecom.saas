@@ -1,3 +1,3 @@
 export default function Logo() {
-  return <div className="w-6 h-6 bg-white"></div>;
+  return <div className="w-7 h-7 bg-white"></div>;
 }
