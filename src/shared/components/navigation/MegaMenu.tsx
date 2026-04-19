@@ -1,21 +1,34 @@
-import { Container } from '../layout/Container'
-
 /**
- * Desktop department mega-menu placeholder.
- * JD mapping: dense level-1 navigation for multi-category discovery.
+ * Menu categories desktop.
+ * Repere JD : barre horizontale dense avec categories de niveau 1.
  */
 export function MegaMenu() {
+  const items = [
+    "New Arrivals",
+    "Men",
+    "Women",
+    "Kids",
+    "Clothing",
+    "Accessories",
+    "Sale",
+    "Brands",
+    "Sneaker Releases",
+  ];
+
   return (
-    <nav className="border-t border-black/10">
-      <Container>
-        <ul className="flex flex-wrap gap-4 py-3 text-sm font-medium text-black/80">
-          <li>Tech</li>
-          <li>Maison</li>
-          <li>Mode</li>
-          <li>Beaute</li>
-          <li>Promo</li>
-        </ul>
-      </Container>
+    <nav className="mt-p8">
+      <ul className="flex items-center justify-between pb-2 text-xs font-medium text-white">
+        {items.map((item) => (
+          <li key={item}>
+            <button
+              type="button"
+              className="cursor-pointer whitespace-nowrap text-white/90 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              {item}
+            </button>
+          </li>
+        ))}
+      </ul>
     </nav>
-  )
+  );
 }

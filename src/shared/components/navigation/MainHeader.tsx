@@ -3,6 +3,7 @@ import Logo from "../branding/Logo";
 import { Container } from "../layout/Container";
 import { MegaMenu } from "./MegaMenu";
 import {
+  CloseIcon,
   GlobeIcon,
   HamburgerMdIcon,
   ShoppingCartIcon,
@@ -16,66 +17,104 @@ import AccountButton from "../ui/AccountButton";
 import CartButton from "../ui/CartButton";
 
 /**
- * Main navigation header.
- * JD mapping: brand area + search + account/cart actions + department nav.
+ * En-tete principal de navigation.
+ * Repere JD : logo + recherche + actions (localisation/compte/panier) + menu categories.
  */
 export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const mobileDrawerId = "mobile-main-menu";
 
   return (
-    <header className="z-20 bg-black py-p4 px-p2 lg:px-p6">
+    <header className="relative z-20 bg-black py-p2 lg:px-p6">
       <Container>
         {/* Version mobile */}
         <div className="lg:hidden">
-          {/* ligne1 : les icones */}
-          <div className="flex items-center justify-between">
-            {/* Icones de gauche */}
+          {/* Ligne 1 : actions + logo */}
+          <div className="flex items-center justify-between py-p2">
             <div className="flex items-center gap-p2">
               <button
                 type="button"
-                aria-label="Open or close mobile menu"
+                aria-label={
+                  isMobileMenuOpen
+                    ? "Fermer le menu mobile"
+                    : "Ouvrir le menu mobile"
+                }
+                aria-controls={mobileDrawerId}
+                aria-expanded={isMobileMenuOpen}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="focus-visible:outline focus-visible:outline-white"
+                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
-                <HamburgerMdIcon className="text-white w-7 h-7" />
+                {isMobileMenuOpen ? (
+                  <CloseIcon className="h-6 w-6 text-white" />
+                ) : (
+                  <HamburgerMdIcon className="h-7 w-7 text-white" />
+                )}
               </button>
-              <button type="button" aria-label="Change location">
-                <GlobeIcon className="text-white w-6 h-6" />
+              <button
+                type="button"
+                aria-label="Changer la localisation"
+                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <GlobeIcon className="h-6 w-6 text-white" />
               </button>
             </div>
             <Logo />
-            {/* Icones de droite */}
             <div className="flex items-center gap-p2">
-              <button type="button" aria-label="Go to your account">
-                <UserIcon className="text-white w-7 h-7" />
+              <button
+                type="button"
+                aria-label="Acceder a votre compte"
+                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <UserIcon className="h-7 w-7 text-white" />
               </button>
-              <button type="button" aria-label="Shopping cart">
-                <ShoppingCartIcon className="text-white w-7 h-7" />
+              <button
+                type="button"
+                aria-label="Voir le panier"
+                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <ShoppingCartIcon className="h-7 w-7 text-white" />
               </button>
             </div>
           </div>
-          {/* ligne2 : la barre de recherche en full width */}
-          <div className="py-p2 mt-2">
+
+          {/* Ligne 2 : recherche mobile pleine largeur */}
+          <div className="mt-p2 pb-p2">
             <MobileSearchBar />
           </div>
-          {/* Drawer mobile : seulement si ouvert */}
-          {isMobileMenuOpen && <MobileMenuDrawer />}
+
+          {/* Drawer mobile en overlay */}
+          {isMobileMenuOpen && (
+            <>
+              <button
+                type="button"
+                aria-label="Fermer le menu mobile"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="fixed inset-0 z-30 bg-black/40"
+              />
+              <div className="absolute left-0 right-0 top-full z-40 pt-p2">
+                <MobileMenuDrawer
+                  id={mobileDrawerId}
+                  onClose={() => setIsMobileMenuOpen(false)}
+                />
+              </div>
+            </>
+          )}
         </div>
+
         {/* Version desktop */}
         <div className="hidden lg:block">
-          {/* Ligne1 : Logo, recherche + les actions */}
-          <div className="flex items-center justify-between px-p8 mt-2">
-            {/* Le Logo seul a gauche */}
+          {/* Ligne 1 : logo + recherche + actions */}
+          <div className="flex items-center justify-between gap-p6 py-p2">
             <Logo />
-            {/* SearchBar + actions a droite */}
-            <div className="flex items-center">
+            <div className="flex flex-1 items-center justify-end">
               <DesktopSearchBar />
               <LocationButton />
               <AccountButton />
               <CartButton />
             </div>
           </div>
-          {/* Ligne2 : Le megamenu */}
+
+          {/* Ligne 2 : menu categories */}
           <MegaMenu />
         </div>
       </Container>
