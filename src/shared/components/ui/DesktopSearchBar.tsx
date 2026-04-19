@@ -1,8 +1,8 @@
 import { SearchIcon } from "../../icons";
 
-export default function MobileSearchBar() {
+export default function DesktopSearchBar() {
   return (
-    <div className="bg-white border border-black-70 px-p2 py-p2 rounded-full flex items-center gap-p2">
+    <div className="bg-white px-p2 py-p2 rounded-l-md flex items-center gap-p2">
       <SearchIcon className="text-black-80" />
       <input
         type="text"
