@@ -78,15 +78,24 @@ export function MobileMenuDrawer({ id, onClose }: MobileMenuDrawerProps) {
                     id={sectionId}
                     className="mt-p2 grid gap-p2 border-t border-black/10 pt-p2"
                   >
-                    {item.children.map((child) => (
-                      <li key={child.id}>
-                        <Link
-                          to={child.href}
-                          onClick={onClose}
-                          className="block text-sm text-black-70 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
-                        >
-                          {child.label}
-                        </Link>
+                    {item.sections.map((section) => (
+                      <li key={section.id} className="grid gap-p1">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-black/70">
+                          {section.title}
+                        </p>
+                        <ul className="grid gap-p1">
+                          {section.links.map((child) => (
+                            <li key={child.id}>
+                              <Link
+                                to={child.href}
+                                onClick={onClose}
+                                className="block text-sm text-black-70 underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
                       </li>
                     ))}
                   </ul>
