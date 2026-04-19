@@ -2,7 +2,12 @@ import { useState } from "react";
 import Logo from "../branding/Logo";
 import { Container } from "../layout/Container";
 import { MegaMenu } from "./MegaMenu";
-import { GlobeIcon, HamburgerMdIcon } from "../../icons";
+import {
+  GlobeIcon,
+  HamburgerMdIcon,
+  ShoppingCartIcon,
+  UserIcon,
+} from "../../icons";
 
 /**
  * Main navigation header.
@@ -22,23 +27,28 @@ export function MainHeader() {
             <div className="flex items-center gap-p2">
               <button
                 type="button"
-                aria-label="Ouvrir ou fermer le menu mobile"
+                aria-label="Open or close mobile menu"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="focus-visible:outline focus-visible:outline-white"
               >
                 <HamburgerMdIcon className="text-white" />
               </button>
-              <button type="button" aria-label="Changer de localisation">
+              <button type="button" aria-label="Change location">
                 <GlobeIcon className="text-white" />
               </button>
             </div>
             <Logo />
             {/* Icones de droite */}
             <div className="flex items-center gap-p2">
-              <button></button>
+              <button type="button" aria-label="Go to your account">
+                <UserIcon className="text-white" />
+              </button>
+              <button type="button" aria-label="Shopping cart">
+                <ShoppingCartIcon className="text-white" />
+              </button>
             </div>
           </div>
-          {/* ligne2 : la barre de recherche en full */}
+          {/* ligne2 : la barre de recherche en full width */}
           <div></div>
         </div>
         {/* Version desktop */}
