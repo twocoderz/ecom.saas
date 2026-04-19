@@ -61,7 +61,16 @@ export function MainHeader() {
           {isMobileMenuOpen && <MobileMenuDrawer />}
         </div>
         {/* Version desktop */}
-        <div></div>
+        <div className="hidden lg:block">
+          {/* Ligne1 : Logo, recherche + les actions */}
+          <div className="flex items-center justify-between">
+            {/* Le Logo seul a gauche */}
+            <Logo />
+            {/* SearchBar + actions a droite */}
+          </div>
+          {/* Ligne2 : Le megamenu */}
+          <MegaMenu />
+        </div>
       </Container>
       <MegaMenu />
     </header>
