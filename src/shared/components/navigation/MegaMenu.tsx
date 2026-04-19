@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { navMenuItems } from "../../data/NavMenu";
 
@@ -8,6 +8,30 @@ import { navMenuItems } from "../../data/NavMenu";
  */
 export function MegaMenu() {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
+
+  const openMenu = (id: string) => {
+    clearCloseTimer();
+    setActiveId(id);
+  };
+
+  const scheduleClose = () => {
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      setActiveId(null);
+    }, 180);
+  };
+
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, []);
 
   const activeItem = useMemo(
     () => navMenuItems.find((item) => item.id === activeId) ?? null,
@@ -18,15 +42,22 @@ export function MegaMenu() {
     <nav
       className="relative mt-p2"
       aria-label="Navigation principale desktop"
-      onMouseLeave={() => setActiveId(null)}
+      onMouseEnter={clearCloseTimer}
+      onMouseLeave={scheduleClose}
+      onBlur={(event) => {
+        const nextFocus = event.relatedTarget as Node | null;
+        if (!event.currentTarget.contains(nextFocus)) {
+          scheduleClose();
+        }
+      }}
     >
       <ul className="flex items-center justify-between gap-p3 py-p2 text-xs font-semibold text-white">
         {navMenuItems.map((item) => (
           <li key={item.id}>
             <Link
               to={item.href}
-              onMouseEnter={() => setActiveId(item.id)}
-              onFocus={() => setActiveId(item.id)}
+              onMouseEnter={() => openMenu(item.id)}
+              onFocus={() => openMenu(item.id)}
               className={`cursor-pointer whitespace-nowrap border-b-2 pb-p1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white ${
                 item.id === activeId
                   ? "border-white text-white"
@@ -40,7 +71,11 @@ export function MegaMenu() {
       </ul>
 
       {activeItem && (
-        <div className="absolute left-0 right-0 top-9 z-50 border border-black/15 bg-[#ececec] shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+        <div
+          className="absolute left-0 right-0 top-9 z-50 border border-black/15 bg-[#ececec] shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+          onMouseEnter={clearCloseTimer}
+          onMouseLeave={scheduleClose}
+        >
           <div className="grid grid-cols-[minmax(0,1fr)_280px] gap-p6 px-p6 py-p4">
             <div className="grid grid-cols-4 gap-p6">
               {activeItem.sections.map((section) => (
@@ -53,7 +88,7 @@ export function MegaMenu() {
                       <li key={link.id}>
                         <Link
                           to={link.href}
-                          className="text-xs hover:underline text-black/85 transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                          className="text-xs text-black/85 transition-colors hover:text-black hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                         >
                           {link.label}
                         </Link>
