@@ -1,3 +1,5 @@
+import { useState } from "react";
+import type { Utility } from "../../data/Utilities";
 import { Container } from "../layout/Container";
 
 /**
@@ -6,20 +8,30 @@ import { Container } from "../layout/Container";
  */
 
 export type UtilityBarProps = {
-  href: string;
-  pText: string;
-  aText: string;
+  utilities: Utility[];
 };
 
 export function UtilityBar(props: UtilityBarProps) {
-  const { href, pText, aText } = props;
+  const { utilities } = props;
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  if (utilities.length === 0) return null;
+  const currentUtility = utilities[currentIndex];
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev === 0 ? utilities.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev === utilities.length - 1 ? 0 : prev + 1));
+  };
 
   return (
     <div className="bg-white py-2 text-black-80">
       <Container>
-        <p className="text-xs font-medium">{pText}</p>
-        <a href={href} className="underline">
-          {aText}
+        <p className="text-xs font-medium">{currentUtility.pText}</p>
+        <a href={currentUtility.href} className="underline">
+          {currentUtility.aText}
         </a>
       </Container>
     </div>

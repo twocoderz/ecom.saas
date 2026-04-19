@@ -12,7 +12,7 @@ import { Utilities } from "../../data/Utilities";
 export function AppShell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-white text-black-80">
-      <UtilityBar />
+      <UtilityBar utilities={Utilities} />
       <MainHeader />
       <main>{children}</main>
       <TrustStrip />
