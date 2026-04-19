@@ -8,8 +8,8 @@ import {
   ShoppingCartIcon,
   UserIcon,
 } from "../../icons";
-import { Input } from "../ui/Input";
 import { MobileMenuDrawer } from "./MobileMenuDrawer";
+import MobileSearchBar from "../ui/MobileSearchBar";
 
 /**
  * Main navigation header.
@@ -52,10 +52,7 @@ export function MainHeader() {
           </div>
           {/* ligne2 : la barre de recherche en full width */}
           <div className="py-p2">
-            <Input
-              placeholder="Search for products..."
-              className="focus-visible:outline focus-visible:outline-white"
-            />
+            <MobileSearchBar />
           </div>
           {/* Drawer mobile : seulement si ouvert */}
           {isMobileMenuOpen && <MobileMenuDrawer />}
