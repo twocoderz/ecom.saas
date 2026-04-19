@@ -10,6 +10,10 @@ import {
 } from "../../icons";
 import { MobileMenuDrawer } from "./MobileMenuDrawer";
 import MobileSearchBar from "../ui/MobileSearchBar";
+import DesktopSearchBar from "../ui/DesktopSearchBar";
+import LocationButton from "../ui/LocationButton";
+import AccountButton from "../ui/AccountButton";
+import CartButton from "../ui/CartButton";
 
 /**
  * Main navigation header.
@@ -64,12 +68,17 @@ export function MainHeader() {
             {/* Le Logo seul a gauche */}
             <Logo />
             {/* SearchBar + actions a droite */}
+            <div className="flex items-center">
+              <DesktopSearchBar />
+              <LocationButton />
+              <AccountButton />
+              <CartButton />
+            </div>
           </div>
           {/* Ligne2 : Le megamenu */}
           <MegaMenu />
         </div>
       </Container>
-      <MegaMenu />
     </header>
   );
 }

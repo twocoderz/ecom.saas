@@ -44,7 +44,9 @@ export function UtilityBar(props: UtilityBarProps) {
             aria-live="polite"
             aria-atomic="true"
           >
-            <p className="text-xs font-medium">{currentUtility.pText}</p>
+            <p className="text-xs font-medium text-center">
+              {currentUtility.pText}
+            </p>
             <a
               href={currentUtility.href}
               className="underline text-xs font-normal"
