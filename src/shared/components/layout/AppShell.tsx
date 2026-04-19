@@ -1,8 +1,9 @@
-import type { ReactNode } from 'react'
-import { FooterColumns } from './FooterColumns'
-import { TrustStrip } from './TrustStrip'
-import { MainHeader } from '../navigation/MainHeader'
-import { UtilityBar } from '../navigation/UtilityBar'
+import type { ReactNode } from "react";
+import { FooterColumns } from "./FooterColumns";
+import { TrustStrip } from "./TrustStrip";
+import { MainHeader } from "../navigation/MainHeader";
+import { UtilityBar } from "../navigation/UtilityBar";
+import { Utilities } from "../../data/Utilities";
 
 /**
  * Global shell shared by most pages.
@@ -10,12 +11,12 @@ import { UtilityBar } from '../navigation/UtilityBar'
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-white text-black-80">
       <UtilityBar />
       <MainHeader />
       <main>{children}</main>
       <TrustStrip />
       <FooterColumns />
     </div>
-  )
+  );
 }
