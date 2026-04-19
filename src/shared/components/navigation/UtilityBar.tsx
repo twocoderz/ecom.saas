@@ -31,10 +31,14 @@ export function UtilityBar(props: UtilityBarProps) {
     <div className="bg-white py-2 text-black-80 shadow-xs">
       <Container>
         <div className="flex items-center justify-between">
-          <button>
+          <button
+            type="button"
+            onClick={handlePrev}
+            aria-label="recent message"
+          >
             <ChevronLeftIcon />
           </button>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center" aria-live="polite">
             <p className="text-xs font-medium">{currentUtility.pText}</p>
             <a
               href={currentUtility.href}
@@ -43,7 +47,7 @@ export function UtilityBar(props: UtilityBarProps) {
               {currentUtility.aText}
             </a>
           </div>
-          <button>
+          <button type="button" onClick={handleNext} aria-label="next message">
             <ChevronRightIcon />
           </button>
         </div>
