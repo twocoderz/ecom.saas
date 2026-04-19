@@ -7,17 +7,12 @@ import {
 } from "../../shared/components/catalog/SortBar";
 import { Container } from "../../shared/components/layout/Container";
 import { CategoryPageSpecifics } from "./components/CategoryPageSpecifics";
+import {
+  plpPageCopy,
+  priceLabelMap,
+  type PriceRange,
+} from "../../shared/data/plp";
 import { productCatalog } from "../../shared/data/products";
-
-type PriceRange = "all" | "under-50" | "50-200" | "200-500" | "500-plus";
-
-const priceLabelMap: Record<PriceRange, string> = {
-  all: "Tous les prix",
-  "under-50": "Moins de $50",
-  "50-200": "$50 a $200",
-  "200-500": "$200 a $500",
-  "500-plus": "Plus de $500",
-};
 
 /**
  * Template PLP type JD.
@@ -216,14 +211,16 @@ export function CategoryPage() {
     <Container>
       <div className="space-y-6 py-8">
         <nav className="text-xs text-black/70">
-          <span className="underline underline-offset-2">Home</span>
+          <span className="underline underline-offset-2">
+            {plpPageCopy.breadcrumbRoot}
+          </span>
           <span className="mx-2">/</span>
-          <span>New Arrivals</span>
+          <span>{plpPageCopy.breadcrumbCurrent}</span>
         </nav>
 
         <div className="flex items-end gap-2">
           <h1 className="text-4xl font-semibold text-black">
-            Men&apos;s New Arrivals
+            {plpPageCopy.heading}
           </h1>
           <p className="pb-1 text-sm text-black/70">
             ({filteredProducts.length} items)
@@ -257,7 +254,7 @@ export function CategoryPage() {
               onClick={clearAllFilters}
               className="text-xs text-black/70 underline underline-offset-2"
             >
-              Clear all
+              {plpPageCopy.clearAll}
             </button>
           </div>
         )}
@@ -283,13 +280,15 @@ export function CategoryPage() {
         }`}
       >
         <div className="flex items-center justify-between border-b border-black/10 px-4 py-3">
-          <p className="text-sm font-medium text-black/70">Options de filtre</p>
+          <p className="text-sm font-medium text-black/70">
+            {plpPageCopy.drawerSubtitle}
+          </p>
           <button
             type="button"
             onClick={() => setIsFilterOpen(false)}
             className="text-sm font-medium text-black underline underline-offset-2"
           >
-            Close
+            {plpPageCopy.close}
           </button>
         </div>
 

@@ -1,12 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { CaretDownIcon, CaretUpIcon } from "../../icons";
+import { plpPageCopy, sortOptions, type SortOption } from "../../data/plp";
 
-export type SortOption =
-  | "relevance"
-  | "newest"
-  | "top-rated"
-  | "price-low-high"
-  | "price-high-low";
+export type { SortOption } from "../../data/plp";
 
 type SortBarProps = {
   resultCount?: number;
@@ -17,14 +13,6 @@ type SortBarProps = {
   storeOnly?: boolean;
   onToggleStoreOnly?: (checked: boolean) => void;
 };
-
-const sortOptions: Array<{ value: SortOption; label: string }> = [
-  { value: "relevance", label: "Relevance" },
-  { value: "newest", label: "Newest" },
-  { value: "top-rated", label: "Top Rated" },
-  { value: "price-low-high", label: "Price: Low to High" },
-  { value: "price-high-low", label: "Price: High to Low" },
-];
 
 /**
  * Barre de controles PLP.
@@ -93,9 +81,9 @@ export function SortBar({
               className="h-5 w-5 rounded border-black/40"
             />
             <span>
-              <span className="font-semibold">Shop My Store:</span>{" "}
+              <span className="font-semibold">{plpPageCopy.shopMyStore}</span>{" "}
               <span className="underline underline-offset-2">
-                Choose My Store
+                {plpPageCopy.chooseMyStore}
               </span>
             </span>
           </label>
@@ -110,7 +98,9 @@ export function SortBar({
           }`}
           aria-label="Afficher les filtres"
         >
-          <span>Show Filters ({activeFilterCount})</span>
+          <span>
+            {plpPageCopy.showFilters} ({activeFilterCount})
+          </span>
           <span aria-hidden="true" className="tracking-[-1px]">
             |||
           </span>
@@ -126,7 +116,7 @@ export function SortBar({
             aria-label="Trier les produits"
           >
             <span>
-              <span className="font-semibold">Sort By:</span>{" "}
+              <span className="font-semibold">{plpPageCopy.sortBy}:</span>{" "}
               {selectedSortLabel}
             </span>
             {isSortOpen ? (

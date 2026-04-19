@@ -1,5 +1,14 @@
 import { useMemo, useState } from "react";
 import { CaretDownIcon, CaretUpIcon, CloseIcon } from "../../icons";
+import {
+  defaultOpenFilterSections,
+  filterSectionLabels,
+  plpPageCopy,
+  priceLabelMap,
+  priceRangeOptions,
+  type FilterSectionId,
+  type PriceRange,
+} from "../../data/plp";
 
 type FilterSidebarProps = {
   departments: string[];
@@ -11,31 +20,11 @@ type FilterSidebarProps = {
   categories: string[];
   selectedCategories: string[];
   onToggleCategory: (category: string) => void;
-  selectedPriceRange: "all" | "under-50" | "50-200" | "200-500" | "500-plus";
-  onSelectPriceRange: (
-    range: "all" | "under-50" | "50-200" | "200-500" | "500-plus",
-  ) => void;
+  selectedPriceRange: PriceRange;
+  onSelectPriceRange: (range: PriceRange) => void;
   onClearAll: () => void;
   onApply: () => void;
   resultCount: number;
-};
-
-const priceRangeOptions = [
-  { id: "all", label: "Tous les prix" },
-  { id: "under-50", label: "Moins de $50" },
-  { id: "50-200", label: "$50 a $200" },
-  { id: "200-500", label: "$200 a $500" },
-  { id: "500-plus", label: "Plus de $500" },
-] as const;
-
-type SectionId = "department" | "brand" | "category" | "price";
-
-const priceLabelMap: Record<string, string> = {
-  all: "Tous les prix",
-  "under-50": "Moins de $50",
-  "50-200": "$50 a $200",
-  "200-500": "$200 a $500",
-  "500-plus": "Plus de $500",
 };
 
 function formatLabel(value: string) {
@@ -66,14 +55,11 @@ export function FilterSidebar({
   onApply,
   resultCount,
 }: FilterSidebarProps) {
-  const [openSections, setOpenSections] = useState<Record<SectionId, boolean>>({
-    department: true,
-    brand: true,
-    category: false,
-    price: false,
-  });
+  const [openSections, setOpenSections] = useState<
+    Record<FilterSectionId, boolean>
+  >(defaultOpenFilterSections);
 
-  const toggleSection = (sectionId: SectionId) => {
+  const toggleSection = (sectionId: FilterSectionId) => {
     setOpenSections((prev) => ({
       ...prev,
       [sectionId]: !prev[sectionId],
@@ -124,7 +110,9 @@ export function FilterSidebar({
   return (
     <aside className="flex h-full flex-col bg-white">
       <div className="border-b border-black/10 px-4 py-4">
-        <h2 className="text-2xl font-semibold text-black">Filter &amp; Sort</h2>
+        <h2 className="text-2xl font-semibold text-black">
+          {plpPageCopy.drawerTitle}
+        </h2>
 
         <button
           type="button"
@@ -136,7 +124,7 @@ export function FilterSidebar({
               : "cursor-not-allowed text-black/30"
           }`}
         >
-          Clear all
+          {plpPageCopy.clearAll}
         </button>
 
         {hasActiveFilters && (
@@ -166,7 +154,9 @@ export function FilterSidebar({
             onClick={() => toggleSection("department")}
             className="flex w-full items-center justify-between py-4"
           >
-            <h3 className="text-xl font-semibold text-black">Department</h3>
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.department}
+            </h3>
             {openSections.department ? (
               <CaretUpIcon className="h-4 w-4 text-black" />
             ) : (
@@ -208,7 +198,9 @@ export function FilterSidebar({
             onClick={() => toggleSection("brand")}
             className="flex w-full items-center justify-between py-4"
           >
-            <h3 className="text-xl font-semibold text-black">Brand</h3>
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.brand}
+            </h3>
             {openSections.brand ? (
               <CaretUpIcon className="h-4 w-4 text-black" />
             ) : (
@@ -250,7 +242,9 @@ export function FilterSidebar({
             onClick={() => toggleSection("category")}
             className="flex w-full items-center justify-between py-4"
           >
-            <h3 className="text-xl font-semibold text-black">Category</h3>
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.category}
+            </h3>
             {openSections.category ? (
               <CaretUpIcon className="h-4 w-4 text-black" />
             ) : (
@@ -292,7 +286,9 @@ export function FilterSidebar({
             onClick={() => toggleSection("price")}
             className="flex w-full items-center justify-between py-4"
           >
-            <h3 className="text-xl font-semibold text-black">Price</h3>
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.price}
+            </h3>
             {openSections.price ? (
               <CaretUpIcon className="h-4 w-4 text-black" />
             ) : (
@@ -336,7 +332,7 @@ export function FilterSidebar({
           onClick={onApply}
           className="w-full rounded-sm bg-[#d8eb2a] px-4 py-3 text-sm font-semibold text-black"
         >
-          View Items ({resultCount})
+          {plpPageCopy.viewItems} ({resultCount})
         </button>
       </div>
     </aside>
