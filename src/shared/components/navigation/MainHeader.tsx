@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../branding/Logo";
 import { Container } from "../layout/Container";
 import { MegaMenu } from "./MegaMenu";
@@ -23,6 +23,21 @@ import CartButton from "../ui/CartButton";
 export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileDrawerId = "mobile-main-menu";
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      return;
+    }
+
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [isMobileMenuOpen]);
 
   return (
     <header className="relative z-20 bg-black py-p2 lg:px-p6">
