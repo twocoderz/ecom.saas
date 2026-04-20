@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { CaretDownIcon, CaretUpIcon } from "../../icons";
+import { CaretDownIcon, CaretUpIcon, FilterIcon } from "../../icons";
 import { plpPageCopy, sortOptions, type SortOption } from "../../data/plp";
 
 export type { SortOption } from "../../data/plp";
@@ -71,7 +71,7 @@ export function SortBar({
   return (
     <div className="space-y-4">
       <div className="grid gap-3 lg:grid-cols-[1.5fr_1fr_1fr]">
-        <div className="flex items-center rounded-sm border border-black-20 px-6 py-4 cursor-pointer hover:border-black-60">
+        <div className="flex items-center rounded-sm border border-black-20 px-6 py-4 cursor-pointer hover:border-black-50">
           <label className="flex cursor-pointer items-center gap-3">
             <input
               type="checkbox"
@@ -95,7 +95,7 @@ export function SortBar({
           type="button"
           onClick={onOpenFilters}
           disabled={!canOpenFilters}
-          className={`flex items-center justify-between rounded-md px-4 py-3 text-sm font-semibold text-white ${
+          className={`flex items-center justify-between rounded-sm px-4 py-4 cursor-pointer text-sm font-semibold text-white ${
             canOpenFilters ? "bg-black" : "cursor-not-allowed bg-black/40"
           }`}
           aria-label="Afficher les filtres"
@@ -103,9 +103,7 @@ export function SortBar({
           <span>
             {plpPageCopy.showFilters} ({activeFilterCount})
           </span>
-          <span aria-hidden="true" className="tracking-[-1px]">
-            |||
-          </span>
+          <FilterIcon />
         </button>
 
         <div ref={dropdownRef} className="relative">

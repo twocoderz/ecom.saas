@@ -220,10 +220,10 @@ export function CategoryPage() {
         </nav>
         {/* Heading */}
         <div className="flex items-end gap-2">
-          <h1 className="text-4xl font-semibold text-black">
+          <h1 className="text-4xl font-semibold text-black-80">
             {plpPageCopy.heading}
           </h1>
-          <p className="pb-1 text-sm text-black/70">
+          <p className="pb-1 text-sm text-black-60">
             ({filteredProducts.length} items)
           </p>
         </div>
