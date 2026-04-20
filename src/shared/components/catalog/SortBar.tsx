@@ -1,5 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { CaretDownIcon, CaretUpIcon, FilterIcon } from "../../icons";
+import {
+  CaretDownIcon,
+  CaretUpIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  FilterIcon,
+} from "../../icons";
 import { plpPageCopy, sortOptions, type SortOption } from "../../data/plp";
 
 export type { SortOption } from "../../data/plp";
@@ -110,7 +116,7 @@ export function SortBar({
           <button
             type="button"
             onClick={() => setIsSortOpen((prev) => !prev)}
-            className="flex w-full items-center justify-between rounded-md border border-black/20 bg-white px-4 py-3 text-sm text-black"
+            className="cursor-pointer flex w-full items-center justify-between rounded-sm border border-black-20 bg-white px-4 py-4 text-sm text-black-80 hover:border-black-50"
             aria-haspopup="menu"
             aria-expanded={isSortOpen}
             aria-label="Trier les produits"
@@ -120,9 +126,9 @@ export function SortBar({
               {selectedSortLabel}
             </span>
             {isSortOpen ? (
-              <CaretUpIcon className="h-3 w-3" />
+              <ChevronUpIcon className="" />
             ) : (
-              <CaretDownIcon className="h-3 w-3" />
+              <ChevronDownIcon className="" />
             )}
           </button>
 
