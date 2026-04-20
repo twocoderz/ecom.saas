@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { CaretDownIcon, CaretUpIcon, CloseIcon } from "../../icons";
+import { ChevronDownIcon, ChevronUpIcon, CloseIcon } from "../../icons";
 import {
   defaultOpenFilterSections,
   filterSectionLabels,
@@ -153,9 +153,9 @@ export function FilterSidebar({
               {filterSectionLabels.department}
             </h3>
             {openSections.department ? (
-              <CaretUpIcon className="h-4 w-4 text-black" />
+              <ChevronUpIcon className="h-4 w-4 text-black" />
             ) : (
-              <CaretDownIcon className="h-4 w-4 text-black" />
+              <ChevronDownIcon className="h-4 w-4 text-black" />
             )}
           </button>
 
@@ -197,9 +197,9 @@ export function FilterSidebar({
               {filterSectionLabels.brand}
             </h3>
             {openSections.brand ? (
-              <CaretUpIcon className="h-4 w-4 text-black" />
+              <ChevronUpIcon className="h-4 w-4 text-black" />
             ) : (
-              <CaretDownIcon className="h-4 w-4 text-black" />
+              <ChevronDownIcon className="h-4 w-4 text-black" />
             )}
           </button>
 
@@ -241,9 +241,9 @@ export function FilterSidebar({
               {filterSectionLabels.category}
             </h3>
             {openSections.category ? (
-              <CaretUpIcon className="h-4 w-4 text-black" />
+              <ChevronUpIcon className="h-4 w-4 text-black" />
             ) : (
-              <CaretDownIcon className="h-4 w-4 text-black" />
+              <ChevronDownIcon className="h-4 w-4 text-black" />
             )}
           </button>
 
@@ -285,9 +285,9 @@ export function FilterSidebar({
               {filterSectionLabels.price}
             </h3>
             {openSections.price ? (
-              <CaretUpIcon className="h-4 w-4 text-black" />
+              <ChevronUpIcon className="h-4 w-4 text-black" />
             ) : (
-              <CaretDownIcon className="h-4 w-4 text-black" />
+              <ChevronDownIcon className="h-4 w-4 text-black" />
             )}
           </button>
 
