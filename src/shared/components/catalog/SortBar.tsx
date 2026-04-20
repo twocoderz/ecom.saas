@@ -29,8 +29,8 @@ export function SortBar({
 }: SortBarProps) {
   const [isSortOpen, setIsSortOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const canOpenFilters = typeof onOpenFilters === "function";
   const canToggleStore = typeof onToggleStoreOnly === "function";
+  const hasActiveFilters = activeFilterCount > 0;
 
   useEffect(() => {
     if (!isSortOpen) {
@@ -94,9 +94,10 @@ export function SortBar({
         <button
           type="button"
           onClick={onOpenFilters}
-          disabled={!canOpenFilters}
-          className={`flex items-center justify-between rounded-sm px-4 py-4 cursor-pointer text-sm font-semibold text-white ${
-            canOpenFilters ? "bg-black" : "cursor-not-allowed bg-black/40"
+          className={`flex items-center justify-between rounded-sm border px-4 py-4 cursor-pointer text-sm font-semibold transition-colors ${
+            hasActiveFilters
+              ? "border-black bg-black text-white"
+              : "border-black-20 bg-white text-black-80 hover:border-black-50"
           }`}
           aria-label="Afficher les filtres"
         >
