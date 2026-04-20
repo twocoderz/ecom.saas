@@ -110,20 +110,6 @@ export function FilterSidebar({
   return (
     <aside className="flex h-full flex-col bg-white">
       <div className="border-b border-black/10 px-4 py-4">
-
-        <button
-          type="button"
-          onClick={onClearAll}
-          disabled={!hasActiveFilters}
-          className={`mt-4 text-sm underline underline-offset-2 ${
-            hasActiveFilters
-              ? "text-black/70"
-              : "cursor-not-allowed text-black/30"
-          }`}
-        >
-          {plpPageCopy.clearAll}
-        </button>
-
         {hasActiveFilters && (
           <>
             <ul className="mt-4 flex flex-wrap gap-2">
@@ -142,6 +128,18 @@ export function FilterSidebar({
             </ul>
           </>
         )}
+        <button
+          type="button"
+          onClick={onClearAll}
+          disabled={!hasActiveFilters}
+          className={`mt-4 text-xs underline underline-offset-2 ${
+            hasActiveFilters
+              ? "text-black-70"
+              : "cursor-not-allowed text-black-30"
+          }`}
+        >
+          {plpPageCopy.clearAll}
+        </button>
       </div>
 
       <div className="flex-1 overflow-y-auto">
