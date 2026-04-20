@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  CaretDownIcon,
-  CaretUpIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  FilterIcon,
-} from "../../icons";
+import { ChevronDownIcon, ChevronUpIcon, FilterIcon } from "../../icons";
 import { plpPageCopy, sortOptions, type SortOption } from "../../data/plp";
 
 export type { SortOption } from "../../data/plp";
@@ -135,7 +129,7 @@ export function SortBar({
           {isSortOpen && (
             <ul
               role="menu"
-              className="absolute right-0 top-[calc(100%+0.35rem)] z-30 w-full min-w-55 overflow-hidden rounded-md border border-black/35 bg-white shadow-lg"
+              className="absolute right-0 top-[calc(100%+0.10rem)] z-30 w-full min-w-55 overflow-hidden rounded-bl-md rounded-br-md border border-black-20 bg-white shadow-md"
             >
               {sortOptions.map((option) => {
                 const isActive = option.value === sortBy;
@@ -150,14 +144,14 @@ export function SortBar({
                         onSortChange?.(option.value);
                         setIsSortOpen(false);
                       }}
-                      className="flex w-full items-center justify-between border-b border-black/10 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-black/5"
+                      className="cursor-pointer flex w-full items-center justify-between border-b border-black/10 px-4 py-3 text-left text-sm last:border-b-0 hover:bg-black/5"
                     >
                       <span>{option.label}</span>
                       <span
                         className={`h-4 w-4 rounded-full border ${
                           isActive
                             ? "border-black bg-black"
-                            : "border-black/40 bg-transparent"
+                            : "border-black-60 bg-transparent"
                         }`}
                         aria-hidden="true"
                       />
