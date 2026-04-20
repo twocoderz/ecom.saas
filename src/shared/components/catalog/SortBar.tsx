@@ -120,11 +120,7 @@ export function SortBar({
               <span className="font-semibold">{plpPageCopy.sortBy}:</span>{" "}
               {selectedSortLabel}
             </span>
-            {isSortOpen ? (
-              <ChevronUpIcon className="" />
-            ) : (
-              <ChevronDownIcon className="" />
-            )}
+            {isSortOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </button>
 
           {isSortOpen && (
