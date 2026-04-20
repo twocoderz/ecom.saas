@@ -1,4 +1,5 @@
 import { plpPageCopy, type PriceRange } from "../../data/plp";
+import { CloseIcon } from "../../icons";
 import { FilterSidebar } from "./FilterSidebar";
 
 type CatalogFilterDrawerProps = {
@@ -48,27 +49,27 @@ export function CatalogFilterDrawer({
           type="button"
           aria-label="Fermer les filtres"
           onClick={onClose}
-          className="fixed inset-0 z-40 bg-black/55"
+          className="fixed inset-0 z-40 bg-black-50"
         />
       )}
 
       <aside
         id={id}
         aria-label="Panneau des filtres"
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-md transform bg-white shadow-2xl transition-transform duration-300 ${
+        className={`fixed inset-y-0 right-0 z-50 w-full max-w-sm transform bg-white shadow-xl transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between border-b border-black/10 px-4 py-3">
-          <p className="text-sm font-medium text-black/70">
-            {plpPageCopy.drawerSubtitle}
-          </p>
+        <div className="flex items-center justify-between border-b border-black-10 px-4 py-3">
+          <h2 className="text-xl font-semibold text-black-80">
+            {plpPageCopy.drawerTitle}
+          </h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-sm font-medium text-black underline underline-offset-2"
+            className="hover:bg-black-5 rounded-md transition-all duration-500 bg-transparent border border-black-10 p-2 cursor-pointer"
           >
-            {plpPageCopy.close}
+            <CloseIcon className="text-black w-3 h-3" />
           </button>
         </div>
 

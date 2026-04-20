@@ -110,9 +110,6 @@ export function FilterSidebar({
   return (
     <aside className="flex h-full flex-col bg-white">
       <div className="border-b border-black/10 px-4 py-4">
-        <h2 className="text-2xl font-semibold text-black">
-          {plpPageCopy.drawerTitle}
-        </h2>
 
         <button
           type="button"
