@@ -210,6 +210,7 @@ export function CategoryPage() {
   return (
     <Container>
       <div className="space-y-6 py-8">
+        {/* Bread crumbs */}
         <nav className="text-xs text-black/70">
           <span className="underline underline-offset-2">
             {plpPageCopy.breadcrumbRoot}
@@ -217,7 +218,7 @@ export function CategoryPage() {
           <span className="mx-2">/</span>
           <span>{plpPageCopy.breadcrumbCurrent}</span>
         </nav>
-
+        {/* Heading */}
         <div className="flex items-end gap-2">
           <h1 className="text-4xl font-semibold text-black">
             {plpPageCopy.heading}
