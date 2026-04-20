@@ -71,18 +71,20 @@ export function SortBar({
   return (
     <div className="space-y-4">
       <div className="grid gap-3 lg:grid-cols-[1.5fr_1fr_1fr]">
-        <div className="flex items-center rounded-md border border-black/15 px-4 py-3">
-          <label className="flex cursor-pointer items-center gap-3 text-sm text-black">
+        <div className="flex items-center rounded-sm border border-black-20 px-6 py-4 cursor-pointer hover:border-black-60">
+          <label className="flex cursor-pointer items-center gap-3">
             <input
               type="checkbox"
               checked={storeOnly}
               disabled={!canToggleStore}
               onChange={(event) => onToggleStoreOnly?.(event.target.checked)}
-              className="h-5 w-5 rounded border-black/40"
+              className="h-3 w-3 rounded border-black-40 text-black-60"
             />
             <span>
-              <span className="font-semibold">{plpPageCopy.shopMyStore}</span>{" "}
-              <span className="underline underline-offset-2">
+              <span className="font-semibold text-sm">
+                {plpPageCopy.shopMyStore}
+              </span>{" "}
+              <span className="underline text-xs underline-offset-2">
                 {plpPageCopy.chooseMyStore}
               </span>
             </span>
