@@ -54,7 +54,7 @@ Fichiers prioritaires:
 - src/shared/components/catalog/ProductGrid.tsx
 - src/shared/components/catalog/FilterSidebar.tsx
 - src/shared/components/catalog/SortBar.tsx
-- src/shared/data/products.ts
+- src/data/mock/products.ts
 - src/shared/data/plp.ts
 
 Livrables:

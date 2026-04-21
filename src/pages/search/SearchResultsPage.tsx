@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { CatalogFilterDrawer } from "../../shared/components/catalog/CatalogFilterDrawer";
 import { FilterPillsBar } from "../../shared/components/catalog/FilterPillsBar";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
@@ -6,6 +7,7 @@ import { Container } from "../../shared/components/layout/Container";
 import { PageHeader } from "../../shared/components/layout/PageHeader";
 import { useCatalogFilters } from "../../shared/hooks/useCatalogFilters";
 import { useFilterDrawer } from "../../shared/hooks/useFilterDrawer";
+import { applySeoToDocument } from "../../lib/seo";
 
 /**
  * Search results template.
@@ -33,18 +35,30 @@ export function SearchResultsPage() {
     activeFilterCount,
     activeFilterPills,
     clearAllFilters,
-  } = useCatalogFilters();
+    totalResults,
+    currentPage,
+    totalPages,
+    hasNextPage,
+    hasPreviousPage,
+    goToNextPage,
+    goToPreviousPage,
+    listingSeo,
+  } = useCatalogFilters({ slug: "search-results" });
+
+  useEffect(() => {
+    applySeoToDocument(listingSeo);
+  }, [listingSeo]);
 
   return (
     <Container>
       <div className="space-y-6 py-8">
         <PageHeader
           title="Recherche"
-          subtitle={`Resultats filtres et tries (${filteredProducts.length} items).`}
+          subtitle={`Resultats filtres et tries (${totalResults} items).`}
         />
 
         <SortBar
-          resultCount={filteredProducts.length}
+          resultCount={totalResults}
           activeFilterCount={activeFilterCount}
           sortBy={sortBy}
           onSortChange={setSortBy}
@@ -59,6 +73,28 @@ export function SearchResultsPage() {
         />
 
         <ProductGrid products={filteredProducts} />
+
+        <div className="flex items-center justify-between rounded-xl border border-black/10 px-4 py-3">
+          <button
+            type="button"
+            onClick={goToPreviousPage}
+            disabled={!hasPreviousPage}
+            className="rounded-md border border-black/20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <p className="text-sm text-black/70">
+            Page {currentPage} / {totalPages}
+          </p>
+          <button
+            type="button"
+            onClick={goToNextPage}
+            disabled={!hasNextPage}
+            className="rounded-md border border-black/20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
       </div>
 
       <CatalogFilterDrawer
@@ -77,7 +113,7 @@ export function SearchResultsPage() {
         selectedPriceRange={selectedPriceRange}
         onSelectPriceRange={setSelectedPriceRange}
         onClearAll={clearAllFilters}
-        resultCount={filteredProducts.length}
+        resultCount={totalResults}
       />
     </Container>
   );

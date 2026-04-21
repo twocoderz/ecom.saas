@@ -1,8 +1,9 @@
 import { ProductCard } from "./ProductCard";
-import { productCatalog, type Product } from "../../data/products";
+import { getDefaultPlpCards } from "../../../data/api/catalogApi";
+import type { PlpProductCard } from "../../../types";
 
 type ProductGridProps = {
-  products?: Product[];
+  products?: PlpProductCard[];
 };
 
 /**
@@ -10,7 +11,7 @@ type ProductGridProps = {
  * Repere JD : coeur du listing catalogue.
  */
 export function ProductGrid({ products }: ProductGridProps) {
-  const visibleProducts = products ?? productCatalog.slice(0, 12);
+  const visibleProducts = products ?? getDefaultPlpCards(12);
 
   if (visibleProducts.length === 0) {
     return (

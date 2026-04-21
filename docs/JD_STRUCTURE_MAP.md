@@ -29,7 +29,7 @@ mais sans copier leur contenu ou assets.
   - src/shared/components/catalog/FilterSidebar.tsx
   - src/shared/components/catalog/SortBar.tsx
   - src/shared/components/catalog/ProductGrid.tsx
-  - src/shared/data/products.ts
+  - src/data/mock/products.ts
   - src/shared/data/plp.ts
 
 - Product detail page (PDP) type JD:
@@ -79,7 +79,7 @@ mais sans copier leur contenu ou assets.
   - chips de filtres actifs + clear all
   - tri applique a la grille
 - Donnees:
-  - catalogue mock centralise: src/shared/data/products.ts
+  - catalogue mock centralise: src/data/mock/products.ts
   - config PLP centralisee: src/shared/data/plp.ts
 - Build: vert apres integration.
 

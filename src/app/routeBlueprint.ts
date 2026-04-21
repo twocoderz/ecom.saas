@@ -21,9 +21,15 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   // Catalog journey
   {
     id: "category",
-    path: "/c/:department/:category",
+    path: "/plp/:slug",
     page: "CategoryPage",
     jdReference: "Category listing style (PLP)",
+  },
+  {
+    id: "category-legacy",
+    path: "/c/:department/:category",
+    page: "CategoryPage",
+    jdReference: "Legacy listing alias kept during migration",
   },
   {
     id: "search",
@@ -45,9 +51,15 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   },
   {
     id: "product",
-    path: "/p/:productSlug",
+    path: "/pdp/:descriptiveSlug/:productId",
     page: "ProductDetailPage",
     jdReference: "Product detail page (PDP)",
+  },
+  {
+    id: "product-legacy",
+    path: "/p/:productSlug",
+    page: "ProductDetailPage",
+    jdReference: "Legacy PDP alias kept during migration",
   },
 
   // Cart and checkout

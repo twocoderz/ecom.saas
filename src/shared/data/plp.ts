@@ -1,11 +1,7 @@
-export type PriceRange = "all" | "under-50" | "50-200" | "200-500" | "500-plus";
+import type { PlpSortOption, PriceRange } from "../../types";
 
-export type SortOption =
-  | "relevance"
-  | "newest"
-  | "top-rated"
-  | "price-low-high"
-  | "price-high-low";
+export type SortOption = PlpSortOption;
+export type { PriceRange };
 
 export type FilterSectionId = "department" | "brand" | "category" | "price";
 
