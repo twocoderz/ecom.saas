@@ -20,6 +20,15 @@ type FilterSidebarProps = {
   categories: string[];
   selectedCategories: string[];
   onToggleCategory: (category: string) => void;
+  activities: string[];
+  selectedActivities: string[];
+  onToggleActivity: (activity: string) => void;
+  collections: string[];
+  selectedCollections: string[];
+  onToggleCollection: (collection: string) => void;
+  colors: string[];
+  selectedColors: string[];
+  onToggleColor: (color: string) => void;
   selectedPriceRange: PriceRange;
   onSelectPriceRange: (range: PriceRange) => void;
   onClearAll: () => void;
@@ -49,6 +58,15 @@ export function FilterSidebar({
   categories,
   selectedCategories,
   onToggleCategory,
+  activities,
+  selectedActivities,
+  onToggleActivity,
+  collections,
+  selectedCollections,
+  onToggleCollection,
+  colors,
+  selectedColors,
+  onToggleColor,
   selectedPriceRange,
   onSelectPriceRange,
   onClearAll,
@@ -83,6 +101,21 @@ export function FilterSidebar({
         label: formatLabel(category),
         onRemove: () => onToggleCategory(category),
       })),
+      ...selectedActivities.map((activity) => ({
+        key: `activity-${activity}`,
+        label: formatLabel(activity),
+        onRemove: () => onToggleActivity(activity),
+      })),
+      ...selectedCollections.map((collection) => ({
+        key: `collection-${collection}`,
+        label: formatLabel(collection),
+        onRemove: () => onToggleCollection(collection),
+      })),
+      ...selectedColors.map((color) => ({
+        key: `color-${color}`,
+        label: formatLabel(color),
+        onRemove: () => onToggleColor(color),
+      })),
     ];
 
     if (selectedPriceRange !== "all") {
@@ -98,10 +131,16 @@ export function FilterSidebar({
     selectedDepartments,
     selectedBrands,
     selectedCategories,
+    selectedActivities,
+    selectedCollections,
+    selectedColors,
     selectedPriceRange,
     onToggleDepartment,
     onToggleBrand,
     onToggleCategory,
+    onToggleActivity,
+    onToggleCollection,
+    onToggleColor,
     onSelectPriceRange,
   ]);
 
@@ -265,6 +304,138 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleCategory(category)}
+                        className="h-5 w-5 rounded border-black/30"
+                      />
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <section className="border-b border-black/10 px-4">
+          <button
+            type="button"
+            onClick={() => toggleSection("activity")}
+            className="flex w-full items-center justify-between py-4"
+          >
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.activity}
+            </h3>
+            {openSections.activity ? (
+              <ChevronUpIcon className="h-4 w-4 text-black" />
+            ) : (
+              <ChevronDownIcon className="h-4 w-4 text-black" />
+            )}
+          </button>
+
+          {openSections.activity && (
+            <ul className="grid gap-3 pb-4">
+              {activities.map((activity) => {
+                const inputId = `filter-activity-${activity}`;
+                const checked = selectedActivities.includes(activity);
+
+                return (
+                  <li key={activity}>
+                    <label
+                      htmlFor={inputId}
+                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                    >
+                      <span className="capitalize">{activity}</span>
+                      <input
+                        id={inputId}
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => onToggleActivity(activity)}
+                        className="h-5 w-5 rounded border-black/30"
+                      />
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <section className="border-b border-black/10 px-4">
+          <button
+            type="button"
+            onClick={() => toggleSection("collection")}
+            className="flex w-full items-center justify-between py-4"
+          >
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.collection}
+            </h3>
+            {openSections.collection ? (
+              <ChevronUpIcon className="h-4 w-4 text-black" />
+            ) : (
+              <ChevronDownIcon className="h-4 w-4 text-black" />
+            )}
+          </button>
+
+          {openSections.collection && (
+            <ul className="grid gap-3 pb-4">
+              {collections.map((collection) => {
+                const inputId = `filter-collection-${collection}`;
+                const checked = selectedCollections.includes(collection);
+
+                return (
+                  <li key={collection}>
+                    <label
+                      htmlFor={inputId}
+                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                    >
+                      <span className="capitalize">{collection}</span>
+                      <input
+                        id={inputId}
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => onToggleCollection(collection)}
+                        className="h-5 w-5 rounded border-black/30"
+                      />
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+
+        <section className="border-b border-black/10 px-4">
+          <button
+            type="button"
+            onClick={() => toggleSection("color")}
+            className="flex w-full items-center justify-between py-4"
+          >
+            <h3 className="text-xl font-semibold text-black">
+              {filterSectionLabels.color}
+            </h3>
+            {openSections.color ? (
+              <ChevronUpIcon className="h-4 w-4 text-black" />
+            ) : (
+              <ChevronDownIcon className="h-4 w-4 text-black" />
+            )}
+          </button>
+
+          {openSections.color && (
+            <ul className="grid gap-3 pb-4">
+              {colors.map((color) => {
+                const inputId = `filter-color-${color}`;
+                const checked = selectedColors.includes(color);
+
+                return (
+                  <li key={color}>
+                    <label
+                      htmlFor={inputId}
+                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                    >
+                      <span className="capitalize">{color}</span>
+                      <input
+                        id={inputId}
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => onToggleColor(color)}
                         className="h-5 w-5 rounded border-black/30"
                       />
                     </label>

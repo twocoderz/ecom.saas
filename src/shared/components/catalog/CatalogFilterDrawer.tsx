@@ -15,6 +15,15 @@ type CatalogFilterDrawerProps = {
   categories: string[];
   selectedCategories: string[];
   onToggleCategory: (category: string) => void;
+  activities: string[];
+  selectedActivities: string[];
+  onToggleActivity: (activity: string) => void;
+  collections: string[];
+  selectedCollections: string[];
+  onToggleCollection: (collection: string) => void;
+  colors: string[];
+  selectedColors: string[];
+  onToggleColor: (color: string) => void;
   selectedPriceRange: PriceRange;
   onSelectPriceRange: (range: PriceRange) => void;
   onClearAll: () => void;
@@ -37,6 +46,15 @@ export function CatalogFilterDrawer({
   categories,
   selectedCategories,
   onToggleCategory,
+  activities,
+  selectedActivities,
+  onToggleActivity,
+  collections,
+  selectedCollections,
+  onToggleCollection,
+  colors,
+  selectedColors,
+  onToggleColor,
   selectedPriceRange,
   onSelectPriceRange,
   onClearAll,
@@ -83,6 +101,15 @@ export function CatalogFilterDrawer({
           categories={categories}
           selectedCategories={selectedCategories}
           onToggleCategory={onToggleCategory}
+          activities={activities}
+          selectedActivities={selectedActivities}
+          onToggleActivity={onToggleActivity}
+          collections={collections}
+          selectedCollections={selectedCollections}
+          onToggleCollection={onToggleCollection}
+          colors={colors}
+          selectedColors={selectedColors}
+          onToggleColor={onToggleColor}
           selectedPriceRange={selectedPriceRange}
           onSelectPriceRange={onSelectPriceRange}
           onClearAll={onClearAll}

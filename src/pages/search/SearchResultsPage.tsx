@@ -23,14 +23,23 @@ export function SearchResultsPage() {
     departments,
     brands,
     categories,
+    activities,
+    collections,
+    colors,
     selectedDepartments,
     selectedBrands,
     selectedCategories,
+    selectedActivities,
+    selectedCollections,
+    selectedColors,
     selectedPriceRange,
     setSelectedPriceRange,
     toggleDepartment,
     toggleBrand,
     toggleCategory,
+    toggleActivity,
+    toggleCollection,
+    toggleColor,
     filteredProducts,
     activeFilterCount,
     activeFilterPills,
@@ -43,6 +52,7 @@ export function SearchResultsPage() {
     goToNextPage,
     goToPreviousPage,
     listingSeo,
+    searchQuery,
   } = useCatalogFilters({ slug: "search-results" });
 
   useEffect(() => {
@@ -54,7 +64,9 @@ export function SearchResultsPage() {
       <div className="space-y-6 py-8">
         <PageHeader
           title="Recherche"
-          subtitle={`Resultats filtres et tries (${totalResults} items).`}
+          subtitle={`Resultats filtres et tries (${totalResults} items)${
+            searchQuery ? ` pour "${searchQuery}"` : ""
+          }.`}
         />
 
         <SortBar
@@ -110,6 +122,15 @@ export function SearchResultsPage() {
         categories={categories}
         selectedCategories={selectedCategories}
         onToggleCategory={toggleCategory}
+        activities={activities}
+        selectedActivities={selectedActivities}
+        onToggleActivity={toggleActivity}
+        collections={collections}
+        selectedCollections={selectedCollections}
+        onToggleCollection={toggleCollection}
+        colors={colors}
+        selectedColors={selectedColors}
+        onToggleColor={toggleColor}
         selectedPriceRange={selectedPriceRange}
         onSelectPriceRange={setSelectedPriceRange}
         onClearAll={clearAllFilters}

@@ -3,7 +3,14 @@ import type { PlpSortOption, PriceRange } from "../../types";
 export type SortOption = PlpSortOption;
 export type { PriceRange };
 
-export type FilterSectionId = "department" | "brand" | "category" | "price";
+export type FilterSectionId =
+  | "department"
+  | "brand"
+  | "category"
+  | "activity"
+  | "collection"
+  | "color"
+  | "price";
 
 export const plpPageCopy = {
   breadcrumbRoot: "Home",
@@ -48,6 +55,9 @@ export const filterSectionLabels: Record<FilterSectionId, string> = {
   department: "Department",
   brand: "Brand",
   category: "Category",
+  activity: "Activity",
+  collection: "Collection",
+  color: "Color",
   price: "Price",
 };
 
@@ -55,5 +65,8 @@ export const defaultOpenFilterSections: Record<FilterSectionId, boolean> = {
   department: true,
   brand: true,
   category: false,
+  activity: false,
+  collection: false,
+  color: false,
   price: false,
 };

@@ -59,11 +59,39 @@ export function useCatalogFilters({
     [listingResponse.facets],
   );
 
+  const activities = useMemo(
+    () =>
+      listingResponse.facets
+        .find((facet) => facet.key === "activity")
+        ?.values.map((value) => value.value) ?? [],
+    [listingResponse.facets],
+  );
+
+  const collections = useMemo(
+    () =>
+      listingResponse.facets
+        .find((facet) => facet.key === "collection")
+        ?.values.map((value) => value.value) ?? [],
+    [listingResponse.facets],
+  );
+
+  const colors = useMemo(
+    () =>
+      listingResponse.facets
+        .find((facet) => facet.key === "color")
+        ?.values.map((value) => value.value) ?? [],
+    [listingResponse.facets],
+  );
+
   const selectedDepartments = filters.gender;
   const selectedBrands = filters.brand;
   const selectedCategories = filters.category;
+  const selectedActivities = filters.activity;
+  const selectedCollections = filters.collection;
+  const selectedColors = filters.color;
   const selectedPriceRange = filters.price_range as PriceRange;
   const sortBy = filters.sort as SortOption;
+  const searchQuery = filters.q;
 
   const filteredProducts: PlpProductCard[] = useMemo(() => {
     if (!storeOnly) {
@@ -86,6 +114,18 @@ export function useCatalogFilters({
     toggleArrayFilter("category", category);
   };
 
+  const toggleActivity = (activity: string) => {
+    toggleArrayFilter("activity", activity);
+  };
+
+  const toggleCollection = (collection: string) => {
+    toggleArrayFilter("collection", collection);
+  };
+
+  const toggleColor = (color: string) => {
+    toggleArrayFilter("color", color);
+  };
+
   const setSortBy = (value: SortOption) => {
     setSort(value);
   };
@@ -98,6 +138,9 @@ export function useCatalogFilters({
     selectedDepartments.length +
     selectedBrands.length +
     selectedCategories.length +
+    selectedActivities.length +
+    selectedCollections.length +
+    selectedColors.length +
     (selectedPriceRange === "all" ? 0 : 1);
 
   const activeFilterPills = useMemo(
@@ -119,6 +162,24 @@ export function useCatalogFilters({
           key: `category-${value}`,
           label: value,
           kind: "category" as const,
+          value,
+        })),
+        ...selectedActivities.map((value) => ({
+          key: `activity-${value}`,
+          label: value,
+          kind: "activity" as const,
+          value,
+        })),
+        ...selectedCollections.map((value) => ({
+          key: `collection-${value}`,
+          label: value,
+          kind: "collection" as const,
+          value,
+        })),
+        ...selectedColors.map((value) => ({
+          key: `color-${value}`,
+          label: value,
+          kind: "color" as const,
           value,
         })),
         ...(selectedPriceRange === "all"
@@ -156,6 +217,30 @@ export function useCatalogFilters({
           };
         }
 
+        if (descriptor.kind === "activity") {
+          return {
+            key: descriptor.key,
+            label: descriptor.label,
+            onRemove: () => toggleActivity(descriptor.value as string),
+          };
+        }
+
+        if (descriptor.kind === "collection") {
+          return {
+            key: descriptor.key,
+            label: descriptor.label,
+            onRemove: () => toggleCollection(descriptor.value as string),
+          };
+        }
+
+        if (descriptor.kind === "color") {
+          return {
+            key: descriptor.key,
+            label: descriptor.label,
+            onRemove: () => toggleColor(descriptor.value as string),
+          };
+        }
+
         return {
           key: descriptor.key,
           label: descriptor.label,
@@ -166,10 +251,16 @@ export function useCatalogFilters({
       selectedDepartments,
       selectedBrands,
       selectedCategories,
+      selectedActivities,
+      selectedCollections,
+      selectedColors,
       selectedPriceRange,
       toggleDepartment,
       toggleBrand,
       toggleCategory,
+      toggleActivity,
+      toggleCollection,
+      toggleColor,
     ],
   );
 
@@ -181,18 +272,28 @@ export function useCatalogFilters({
     departments,
     brands,
     categories,
+    activities,
+    collections,
+    colors,
     selectedDepartments,
     selectedBrands,
     selectedCategories,
+    selectedActivities,
+    selectedCollections,
+    selectedColors,
     selectedPriceRange,
     setSelectedPriceRange,
     toggleDepartment,
     toggleBrand,
     toggleCategory,
+    toggleActivity,
+    toggleCollection,
+    toggleColor,
     filteredProducts,
     activeFilterCount,
     activeFilterPills,
     clearAllFilters,
+    searchQuery,
     totalResults: listingResponse.pagination.total_items,
     currentPage: listingResponse.pagination.page,
     totalPages: listingResponse.pagination.total_pages,

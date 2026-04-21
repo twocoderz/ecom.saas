@@ -38,14 +38,23 @@ export function CategoryPage() {
     departments,
     brands,
     categories,
+    activities,
+    collections,
+    colors,
     selectedDepartments,
     selectedBrands,
     selectedCategories,
+    selectedActivities,
+    selectedCollections,
+    selectedColors,
     selectedPriceRange,
     setSelectedPriceRange,
     toggleDepartment,
     toggleBrand,
     toggleCategory,
+    toggleActivity,
+    toggleCollection,
+    toggleColor,
     filteredProducts,
     activeFilterCount,
     activeFilterPills,
@@ -137,6 +146,15 @@ export function CategoryPage() {
         categories={categories}
         selectedCategories={selectedCategories}
         onToggleCategory={toggleCategory}
+        activities={activities}
+        selectedActivities={selectedActivities}
+        onToggleActivity={toggleActivity}
+        collections={collections}
+        selectedCollections={selectedCollections}
+        onToggleCollection={toggleCollection}
+        colors={colors}
+        selectedColors={selectedColors}
+        onToggleColor={toggleColor}
         selectedPriceRange={selectedPriceRange}
         onSelectPriceRange={setSelectedPriceRange}
         onClearAll={clearAllFilters}
