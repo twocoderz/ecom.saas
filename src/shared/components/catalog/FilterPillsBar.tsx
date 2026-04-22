@@ -1,4 +1,5 @@
 import { plpPageCopy } from "../../data/plp";
+import { CloseIcon } from "../../icons";
 
 type FilterPillItem = {
   key: string;
@@ -26,15 +27,16 @@ export function FilterPillsBar({ pills, onClearAll }: FilterPillsBarProps) {
           key={pill.key}
           type="button"
           onClick={pill.onRemove}
-          className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white"
+          className="flex items-center gap-2 cursor-pointer rounded-full bg-black px-3 py-2 text-xs font-medium text-white"
         >
-          {pill.label} x
+          <span>{pill.label}</span>
+          <CloseIcon className="h-2 w-2 text-white/70 hover:text-white transition-all duration-300" />
         </button>
       ))}
       <button
         type="button"
         onClick={onClearAll}
-        className="text-xs text-black/70 underline underline-offset-2"
+        className="text-xs cursor-pointer text-black-70 hover:text-black transition-all duration-300 underline underline-offset-2"
       >
         {plpPageCopy.clearAll}
       </button>
