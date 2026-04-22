@@ -42,6 +42,16 @@ sans perdre le contexte technique et organisationnel.
 5. Mettre a jour la documentation si la structure change
 6. Valider avec pnpm run build apres les changements
 
+## 4a) Convention: Composants partages = src/shared/components uniquement
+
+**Source de verite unique:** src/shared/components/ est le seul emplacement pour les composants UI reutilisables.
+
+- ✅ Importer directement de src/shared/components/{catalog|product|layout|etc}
+- ❌ PAS de couche alias ou wrapper sous src/components
+- ❌ PAS de re-exports de src/components/
+
+Raison: Eviter la duplication logique et la fragmentation des imports. Une seule arborescence = une seule source de verite.
+
 ## 5) Prompt de reprise recommande (copier-coller)
 
 Tu reprends un projet e-commerce inspire de la structure JD Sports.
@@ -72,7 +82,7 @@ Priorite actuelle recommandee:
 2. Ajouter synchronisation filtres/tri dans l URL
 3. Garder src/shared/data/plp.ts comme source unique des constantes PLP
 
-## 6) Checklist de fin de tache
+## 7) Checklist de fin de tache
 
 - Build OK
 - Routes impactees verifiees
