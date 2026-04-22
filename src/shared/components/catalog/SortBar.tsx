@@ -71,7 +71,7 @@ export function SortBar({
   return (
     <div className="space-y-4">
       <div className="grid gap-3 lg:grid-cols-[1.5fr_1fr_1fr]">
-        <div className="flex items-center rounded-sm border border-black-20 px-6 py-4 cursor-pointer hover:border-black-50">
+        <div className="flex items-center rounded-sm border border-black-20 px-6 py-3 cursor-pointer hover:border-black-50">
           <label className="flex cursor-pointer items-center gap-3">
             <input
               type="checkbox"
@@ -94,7 +94,7 @@ export function SortBar({
         <button
           type="button"
           onClick={onOpenFilters}
-          className={`flex items-center justify-between rounded-sm border px-4 py-4 cursor-pointer text-sm font-semibold transition-colors ${
+          className={`flex items-center justify-between rounded-sm border px-4 py-3 cursor-pointer text-sm font-semibold transition-colors ${
             hasActiveFilters
               ? "border-black bg-black text-white"
               : "border-black-20 bg-white text-black-80 hover:border-black-50"
@@ -111,7 +111,7 @@ export function SortBar({
           <button
             type="button"
             onClick={() => setIsSortOpen((prev) => !prev)}
-            className="cursor-pointer flex w-full items-center justify-between rounded-sm border border-black-20 bg-white px-4 py-5 text-sm text-black-80 hover:border-black-50"
+            className="cursor-pointer flex w-full items-center justify-between rounded-sm border border-black-20 bg-white px-4 py-4 text-sm text-black-80 hover:border-black-50"
             aria-haspopup="menu"
             aria-expanded={isSortOpen}
             aria-label="Trier les produits"
