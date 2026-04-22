@@ -1,4 +1,3 @@
-import { CampaignCard } from "../../shared/components/merchandising/CampaignCard";
 import { CategoryTile } from "../../shared/components/merchandising/CategoryTile";
 import { CollectionRail } from "../../shared/components/merchandising/CollectionRail";
 import { HeroBanner } from "../../shared/components/merchandising/HeroBanner";
@@ -26,12 +25,7 @@ export function HomePage() {
       </Section>
 
       <Section title="Raccourcis categories">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <CategoryTile name="Tech" />
-          <CategoryTile name="Maison" />
-          <CategoryTile name="Mode" />
-          <CategoryTile name="Beaute" />
-        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
       </Section>
 
       <Section title="Collections tendances">
@@ -43,11 +37,7 @@ export function HomePage() {
       </Section>
 
       <Section title="Blocs campagne secondaires">
-        <div className="grid gap-4 md:grid-cols-3">
-          <CampaignCard title="Campagne 1" />
-          <CampaignCard title="Campagne 2" />
-          <CampaignCard title="Campagne 3" />
-        </div>
+        <div className="grid gap-4 md:grid-cols-3"></div>
       </Section>
 
       <Section title="Guide structure home">
