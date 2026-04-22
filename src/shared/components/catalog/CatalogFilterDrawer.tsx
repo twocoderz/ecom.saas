@@ -78,6 +78,7 @@ export function CatalogFilterDrawer({
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        {/* Header + close icon */}
         <div className="flex items-center justify-between border-b border-black-10 px-4 py-3">
           <h2 className="text-xl font-semibold text-black-80">
             {plpPageCopy.drawerTitle}

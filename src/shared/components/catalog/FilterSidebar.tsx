@@ -148,6 +148,7 @@ export function FilterSidebar({
 
   return (
     <aside className="flex h-full flex-col bg-white">
+      {/* Selected filters */}
       <div className="border-b border-black/10 px-4 py-4">
         {hasActiveFilters && (
           <>
@@ -157,10 +158,10 @@ export function FilterSidebar({
                   <button
                     type="button"
                     onClick={pill.onRemove}
-                    className="flex items-center gap-2 rounded-full bg-black px-3 py-1 text-xs font-medium text-white"
+                    className="flex items-center gap-2 rounded-full bg-black px-3 py-3 text-xs font-medium text-white"
                   >
                     <span>{pill.label}</span>
-                    <CloseIcon className="h-3 w-3" />
+                    <CloseIcon className="h-2 w-2" />
                   </button>
                 </li>
               ))}
