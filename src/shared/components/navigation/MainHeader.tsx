@@ -18,7 +18,6 @@ import CartButton from "../ui/CartButton";
 
 /**
  * En-tete principal de navigation.
- * Repere JD : logo + recherche + actions (localisation/compte/panier) + menu categories.
  */
 export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

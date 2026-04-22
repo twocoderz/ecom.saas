@@ -4,7 +4,6 @@ import { navMenuItems } from "../../data/NavMenu";
 
 /**
  * Menu categories desktop.
- * Repere JD : niveau 1 horizontal + panneau mega menu en overlay.
  */
 export function MegaMenu() {
   const [activeId, setActiveId] = useState<string | null>(null);

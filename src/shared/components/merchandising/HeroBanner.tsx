@@ -45,7 +45,6 @@ const SLIDES: HeroSlide[] = [
 
 /**
  * Campaign hero block.
- * JD mapping: top rotating campaign banners on homepage.
  */
 export function HeroBanner() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -81,7 +80,7 @@ export function HeroBanner() {
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className="relative h-55 md:h-80 mt-2">
+      <div className="relative h-55 md:h-85 mt-2">
         <img
           src={activeSlide.imageSrc}
           alt={activeSlide.imageAlt}
