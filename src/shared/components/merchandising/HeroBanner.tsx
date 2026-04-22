@@ -81,7 +81,7 @@ export function HeroBanner() {
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className="relative h-55 md:h-80">
+      <div className="relative h-55 md:h-80 mt-2">
         <img
           src={activeSlide.imageSrc}
           alt={activeSlide.imageAlt}
