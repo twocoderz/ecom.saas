@@ -183,7 +183,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("department")}
                 className="flex cursor-pointer w-full items-center justify-between px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.department}
                 </h3>
                 {openSections.department ? (
@@ -229,7 +229,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("brand")}
                 className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.brand}
                 </h3>
                 {openSections.brand ? (
@@ -275,7 +275,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("category")}
                 className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.category}
                 </h3>
                 {openSections.category ? (
@@ -321,7 +321,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("activity")}
                 className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.activity}
                 </h3>
                 {openSections.activity ? (
@@ -367,7 +367,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("collection")}
                 className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.collection}
                 </h3>
                 {openSections.collection ? (
@@ -413,7 +413,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("color")}
                 className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.color}
                 </h3>
                 {openSections.color ? (
@@ -459,7 +459,7 @@ export function FilterSidebar({
                 onClick={() => toggleSection("price")}
                 className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-lg font-medium text-black-80">
                   {filterSectionLabels.price}
                 </h3>
                 {openSections.price ? (
@@ -489,7 +489,7 @@ export function FilterSidebar({
                           name="price-range"
                           checked={checked}
                           onChange={() => onSelectPriceRange(range.id)}
-                          className="h-5 w-5 border-black/30 accent-black"
+                          className="h-5 w-5 border-black/30 accent-black-80"
                         />
                       </label>
                     </li>

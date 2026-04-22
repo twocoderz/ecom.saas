@@ -80,7 +80,7 @@ export function CatalogFilterDrawer({
       >
         {/* Header + close icon */}
         <div className="flex items-center justify-between border-b border-black-10 px-4 py-3">
-          <h2 className="text-xl font-semibold text-black-80">
+          <h2 className="text-2xl font-semibold text-black-80">
             {plpPageCopy.drawerTitle}
           </h2>
           <button
