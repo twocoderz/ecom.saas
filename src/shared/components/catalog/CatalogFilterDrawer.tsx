@@ -74,7 +74,7 @@ export function CatalogFilterDrawer({
       <aside
         id={id}
         aria-label="Panneau des filtres"
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-sm transform bg-white shadow-xl transition-transform duration-300 ${
+        className={`flex flex-col fixed inset-y-0 right-0 z-50 w-full max-w-sm transform bg-white shadow-xl transition-transform duration-300 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

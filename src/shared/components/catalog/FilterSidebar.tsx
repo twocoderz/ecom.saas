@@ -147,8 +147,8 @@ export function FilterSidebar({
   const hasActiveFilters = activePills.length > 0;
 
   return (
-    <aside className="flex h-full flex-col bg-white">
-      <div className="overflow-y-auto">
+    <aside className="flex flex-1 min-h-0 flex-col bg-white">
+      <div className="overflow-y-auto min-h-0 flex-1">
         {hasActiveFilters && (
           <div className="border-b border-black/10 px-4 py-4">
             <ul className="flex flex-wrap gap-2">
@@ -501,7 +501,7 @@ export function FilterSidebar({
         </div>
       </div>
 
-      <div className="border-t border-black/10 p-4">
+      <div className="border-t border-black-10 p-4">
         <button
           type="button"
           onClick={onApply}
