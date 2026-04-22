@@ -106,21 +106,23 @@ export function HeroBanner() {
         </button>
       </div>
 
-      <div className="space-y-4 px-4 py-6 text-center sm:px-8 sm:py-8">
-        <h2 className="text-3xl font-semibold text-black-80">
+      <div className="px-4 py-4 text-center sm:px-8">
+        <h2 className="text-2xl font-bold text-black-80">
           {activeSlide.title}
         </h2>
-        <p className="text-lg text-black/80">{activeSlide.subtitle}</p>
-        <div className="pt-1">
+        <p className="text-sm font-normal text-black/80 mb-8">
+          {activeSlide.subtitle}
+        </p>
+        <div>
           <Link
             to={activeSlide.ctaTo}
-            className="inline-flex min-w-57.5 items-center justify-center rounded-full border border-black-30 px-10 py-4 text-lg font-bold text-black-80 transition-colors hover:border-black-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
+            className="inline-flex min-w-57.5 items-center justify-center rounded-full border border-black-50 px-10 py-3 text-sm font-medium text-black-80 transition-colors hover:border-black-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
           >
             {activeSlide.ctaLabel}
           </Link>
         </div>
         <div
-          className="flex items-center justify-center gap-3 pt-2"
+          className="flex items-center justify-center gap-2 mt-4"
           role="tablist"
           aria-label="Pagination hero"
         >
@@ -134,7 +136,7 @@ export function HeroBanner() {
                 role="tab"
                 aria-label={`Aller au slide ${index + 1}`}
                 aria-current={isActive}
-                className={`h-3 w-3 rounded-full transition-colors ${
+                className={`h-2 w-2 rounded-full transition-colors ${
                   isActive ? "bg-black" : "bg-black/20"
                 }`}
               />

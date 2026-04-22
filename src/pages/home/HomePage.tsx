@@ -18,7 +18,7 @@ export function HomePage() {
   );
 
   return (
-    <div className="space-y-8 py-8">
+    <div className="space-y-4 py-8">
       {/* Category tiles */}
       <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
         <div className="flex min-w-max items-center gap-4 sm:flex-wrap sm:justify-center">
