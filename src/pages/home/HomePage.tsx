@@ -31,7 +31,7 @@ export function HomePage() {
           ))}
         </div>
       </div>
-      <Section title="">
+      <Section>
         <HeroBanner />
       </Section>
 

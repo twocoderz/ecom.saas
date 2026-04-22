@@ -1,17 +1,13 @@
 import type { ReactNode } from "react";
 import { Container } from "./Container";
 
-/**
- * Generic vertical section block used by page templates.
- * JD mapping: repeated homepage and listing section rhythm.
- */
-export function Section({
-  title,
-  children,
-}: {
-  title: string;
+export type SectionProps = {
+  title?: string;
   children: ReactNode;
-}) {
+};
+
+export function Section(props: SectionProps) {
+  const { title, children } = props;
   return (
     <section className="py-8 md:py-12">
       <Container>
