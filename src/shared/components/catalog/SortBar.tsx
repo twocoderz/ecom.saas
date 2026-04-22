@@ -111,7 +111,7 @@ export function SortBar({
           <button
             type="button"
             onClick={() => setIsSortOpen((prev) => !prev)}
-            className="cursor-pointer flex w-full items-center justify-between rounded-sm border border-black-20 bg-white px-4 py-4 text-sm text-black-80 hover:border-black-50"
+            className="cursor-pointer flex w-full items-center justify-between rounded-sm border border-black-20 bg-white px-4 py-5 text-sm text-black-80 hover:border-black-50"
             aria-haspopup="menu"
             aria-expanded={isSortOpen}
             aria-label="Trier les produits"
