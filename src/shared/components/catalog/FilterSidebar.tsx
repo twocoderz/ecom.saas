@@ -407,7 +407,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("color")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.color}
@@ -429,7 +429,7 @@ export function FilterSidebar({
                   <li key={color}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex cursor-pointer items-center justify-between text-xs text-black"
                     >
                       <span className="capitalize">{color}</span>
                       <input
@@ -437,7 +437,7 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleColor(color)}
-                        className="h-5 w-5 rounded border-black/30"
+                        className="h-3 w-3 rounded border-black/30"
                       />
                     </label>
                   </li>
