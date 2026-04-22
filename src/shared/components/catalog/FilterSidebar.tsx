@@ -187,7 +187,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("department")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.department}
@@ -209,7 +209,7 @@ export function FilterSidebar({
                   <li key={department}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex items-center justify-between text-xs text-black"
                     >
                       <span className="capitalize">{department}</span>
                       <input
@@ -217,7 +217,7 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleDepartment(department)}
-                        className="h-5 w-5 rounded border-black/30"
+                        className="h-3 w-3 rounded-md cursor-pointer border-black/30"
                       />
                     </label>
                   </li>
@@ -231,7 +231,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("brand")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.brand}
@@ -253,7 +253,7 @@ export function FilterSidebar({
                   <li key={brand}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex cursor-pointer items-center justify-between text-xs text-black"
                     >
                       <span>{brand}</span>
                       <input
@@ -261,7 +261,7 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleBrand(brand)}
-                        className="h-5 w-5 rounded border-black/30"
+                        className="h-3 w-3 rounded-md border-black/30"
                       />
                     </label>
                   </li>
@@ -275,7 +275,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("category")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.category}
