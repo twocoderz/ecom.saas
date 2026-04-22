@@ -235,7 +235,7 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("brand")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
               >
                 <h3 className="text-lg font-semibold text-black">
                   {filterSectionLabels.brand}
@@ -281,7 +281,7 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("category")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
               >
                 <h3 className="text-lg font-semibold text-black">
                   {filterSectionLabels.category}
@@ -327,7 +327,7 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("activity")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
               >
                 <h3 className="text-lg font-semibold text-black">
                   {filterSectionLabels.activity}
@@ -373,7 +373,7 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("collection")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
               >
                 <h3 className="text-lg font-semibold text-black">
                   {filterSectionLabels.collection}
@@ -419,7 +419,7 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("color")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
               >
                 <h3 className="text-lg font-semibold text-black">
                   {filterSectionLabels.color}
@@ -513,7 +513,7 @@ export function FilterSidebar({
         <button
           type="button"
           onClick={onApply}
-          className="w-full rounded-sm bg-primary px-4 py-3 text-sm font-semibold text-black"
+          className="rounded-sm bg-primary px-4 py-3 text-sm font-medium text-white"
         >
           {plpPageCopy.viewItems} ({resultCount})
         </button>
