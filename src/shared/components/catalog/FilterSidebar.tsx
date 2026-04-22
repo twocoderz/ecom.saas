@@ -203,7 +203,7 @@ export function FilterSidebar({
             </div>
 
             {openSections.department && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 py-4 px-4">
                 {departments.map((department) => {
                   const inputId = `filter-department-${department}`;
                   const checked = selectedDepartments.includes(department);
@@ -230,24 +230,26 @@ export function FilterSidebar({
             )}
           </section>
 
-          <section className="border-b border-black/10 px-4">
-            <button
-              type="button"
-              onClick={() => toggleSection("brand")}
-              className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
-            >
-              <h3 className="text-xl font-semibold text-black">
-                {filterSectionLabels.brand}
-              </h3>
-              {openSections.brand ? (
-                <ChevronUpIcon className="h-4 w-4 text-black" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-black" />
-              )}
-            </button>
+          <section className="border-b border-black/10">
+            <div className="hover:bg-black-5 transition-all duration-500">
+              <button
+                type="button"
+                onClick={() => toggleSection("brand")}
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+              >
+                <h3 className="text-lg font-semibold text-black">
+                  {filterSectionLabels.brand}
+                </h3>
+                {openSections.brand ? (
+                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                ) : (
+                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                )}
+              </button>
+            </div>
 
             {openSections.brand && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 px-4 py-4">
                 {brands.map((brand) => {
                   const inputId = `filter-brand-${brand}`;
                   const checked = selectedBrands.includes(brand);
@@ -274,24 +276,26 @@ export function FilterSidebar({
             )}
           </section>
 
-          <section className="border-b border-black/10 px-4">
-            <button
-              type="button"
-              onClick={() => toggleSection("category")}
-              className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
-            >
-              <h3 className="text-xl font-semibold text-black">
-                {filterSectionLabels.category}
-              </h3>
-              {openSections.category ? (
-                <ChevronUpIcon className="h-4 w-4 text-black" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-black" />
-              )}
-            </button>
+          <section className="border-b border-black/10">
+            <div className="hover:bg-black-5 transition-all duration-500">
+              <button
+                type="button"
+                onClick={() => toggleSection("category")}
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+              >
+                <h3 className="text-lg font-semibold text-black">
+                  {filterSectionLabels.category}
+                </h3>
+                {openSections.category ? (
+                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                ) : (
+                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                )}
+              </button>
+            </div>
 
             {openSections.category && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 px-4 py-4">
                 {categories.map((category) => {
                   const inputId = `filter-category-${category}`;
                   const checked = selectedCategories.includes(category);
@@ -318,24 +322,26 @@ export function FilterSidebar({
             )}
           </section>
 
-          <section className="border-b border-black/10 px-4">
-            <button
-              type="button"
-              onClick={() => toggleSection("activity")}
-              className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
-            >
-              <h3 className="text-xl font-semibold text-black">
-                {filterSectionLabels.activity}
-              </h3>
-              {openSections.activity ? (
-                <ChevronUpIcon className="h-4 w-4 text-black" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-black" />
-              )}
-            </button>
+          <section className="border-b border-black/10">
+            <div className="hover:bg-black-5 transition-all duration-500">
+              <button
+                type="button"
+                onClick={() => toggleSection("activity")}
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+              >
+                <h3 className="text-lg font-semibold text-black">
+                  {filterSectionLabels.activity}
+                </h3>
+                {openSections.activity ? (
+                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                ) : (
+                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                )}
+              </button>
+            </div>
 
             {openSections.activity && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 px-4 py-4">
                 {activities.map((activity) => {
                   const inputId = `filter-activity-${activity}`;
                   const checked = selectedActivities.includes(activity);
@@ -362,24 +368,26 @@ export function FilterSidebar({
             )}
           </section>
 
-          <section className="border-b border-black/10 px-4">
-            <button
-              type="button"
-              onClick={() => toggleSection("collection")}
-              className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
-            >
-              <h3 className="text-xl font-semibold text-black">
-                {filterSectionLabels.collection}
-              </h3>
-              {openSections.collection ? (
-                <ChevronUpIcon className="h-4 w-4 text-black" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-black" />
-              )}
-            </button>
+          <section className="border-b border-black/10">
+            <div className="hover:bg-black-5 transition-all duration-500">
+              <button
+                type="button"
+                onClick={() => toggleSection("collection")}
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+              >
+                <h3 className="text-lg font-semibold text-black">
+                  {filterSectionLabels.collection}
+                </h3>
+                {openSections.collection ? (
+                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                ) : (
+                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                )}
+              </button>
+            </div>
 
             {openSections.collection && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 px-4 py-4">
                 {collections.map((collection) => {
                   const inputId = `filter-collection-${collection}`;
                   const checked = selectedCollections.includes(collection);
@@ -406,24 +414,26 @@ export function FilterSidebar({
             )}
           </section>
 
-          <section className="border-b border-black/10 px-4">
-            <button
-              type="button"
-              onClick={() => toggleSection("color")}
-              className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
-            >
-              <h3 className="text-xl font-semibold text-black">
-                {filterSectionLabels.color}
-              </h3>
-              {openSections.color ? (
-                <ChevronUpIcon className="h-4 w-4 text-black" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-black" />
-              )}
-            </button>
+          <section className="border-b border-black/10">
+            <div className="hover:bg-black-5 transition-all duration-500">
+              <button
+                type="button"
+                onClick={() => toggleSection("color")}
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
+              >
+                <h3 className="text-lg font-semibold text-black">
+                  {filterSectionLabels.color}
+                </h3>
+                {openSections.color ? (
+                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                ) : (
+                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                )}
+              </button>
+            </div>
 
             {openSections.color && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 px-4 py-4">
                 {colors.map((color) => {
                   const inputId = `filter-color-${color}`;
                   const checked = selectedColors.includes(color);
@@ -450,24 +460,26 @@ export function FilterSidebar({
             )}
           </section>
 
-          <section className="px-4">
-            <button
-              type="button"
-              onClick={() => toggleSection("price")}
-              className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
-            >
-              <h3 className="text-xl font-semibold text-black">
-                {filterSectionLabels.price}
-              </h3>
-              {openSections.price ? (
-                <ChevronUpIcon className="h-4 w-4 text-black" />
-              ) : (
-                <ChevronDownIcon className="h-4 w-4 text-black" />
-              )}
-            </button>
+          <section>
+            <div className="hover:bg-black-5 transition-all duration-500">
+              <button
+                type="button"
+                onClick={() => toggleSection("price")}
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+              >
+                <h3 className="text-lg font-semibold text-black">
+                  {filterSectionLabels.price}
+                </h3>
+                {openSections.price ? (
+                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                ) : (
+                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                )}
+              </button>
+            </div>
 
             {openSections.price && (
-              <ul className="grid gap-3 pb-4">
+              <ul className="grid gap-3 px-4 py-4">
                 {priceRangeOptions.map((range) => {
                   const inputId = `filter-price-${range.id}`;
                   const checked = selectedPriceRange === range.id;
