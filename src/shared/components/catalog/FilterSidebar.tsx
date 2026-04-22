@@ -451,7 +451,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("price")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.price}
@@ -473,7 +473,7 @@ export function FilterSidebar({
                   <li key={range.id}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex cursor-pointer items-center justify-between text-xs text-black"
                     >
                       <span>{range.label}</span>
                       <input
@@ -482,7 +482,7 @@ export function FilterSidebar({
                         name="price-range"
                         checked={checked}
                         onChange={() => onSelectPriceRange(range.id)}
-                        className="h-5 w-5 border-black/30"
+                        className="h-3 w-3 border-black/30"
                       />
                     </label>
                   </li>
