@@ -1,11 +1,11 @@
-import { CampaignCard } from '../../shared/components/merchandising/CampaignCard'
-import { CategoryTile } from '../../shared/components/merchandising/CategoryTile'
-import { CollectionRail } from '../../shared/components/merchandising/CollectionRail'
-import { HeroBanner } from '../../shared/components/merchandising/HeroBanner'
-import { PromoStrip } from '../../shared/components/merchandising/PromoStrip'
-import { ProductGrid } from '../../shared/components/catalog/ProductGrid'
-import { Section } from '../../shared/components/layout/Section'
-import { HomeSectionsGuide } from './components/HomeSectionsGuide'
+import { CampaignCard } from "../../shared/components/merchandising/CampaignCard";
+import { CategoryTile } from "../../shared/components/merchandising/CategoryTile";
+import { CollectionRail } from "../../shared/components/merchandising/CollectionRail";
+import { HeroBanner } from "../../shared/components/merchandising/HeroBanner";
+import { PromoStrip } from "../../shared/components/merchandising/PromoStrip";
+import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
+import { Section } from "../../shared/components/layout/Section";
+import { HomeSectionsGuide } from "./components/HomeSectionsGuide";
 
 /**
  * Homepage template.
@@ -14,6 +14,9 @@ import { HomeSectionsGuide } from './components/HomeSectionsGuide'
 export function HomePage() {
   return (
     <div className="space-y-8 py-8">
+      <Section title="">
+        <CategoryTile name="Gifts for her" />
+      </Section>
       <Section title="Hero campagne">
         <HeroBanner />
       </Section>
@@ -51,5 +54,5 @@ export function HomePage() {
         <HomeSectionsGuide />
       </Section>
     </div>
-  )
+  );
 }
