@@ -6,6 +6,7 @@ import type {
   Collection,
   Gender,
 } from "../../types";
+import { BRAND_LOGO_FALLBACK } from "./assets";
 
 /**
  * Entites de reference du catalogue, alignees sur un modele relationnel type JD.
@@ -18,28 +19,38 @@ export const genders: Gender[] = [
 ];
 
 export const brands: Brand[] = [
-  { id: "br-nike", name: "Nike", slug: "nike", logo: "/images/base.png" },
-  { id: "br-adidas", name: "adidas", slug: "adidas", logo: "/images/base.png" },
-  { id: "br-puma", name: "Puma", slug: "puma", logo: "/images/base.png" },
-  { id: "br-jordan", name: "Jordan", slug: "jordan", logo: "/images/base.png" },
+  { id: "br-nike", name: "Nike", slug: "nike", logo: BRAND_LOGO_FALLBACK },
+  {
+    id: "br-adidas",
+    name: "adidas",
+    slug: "adidas",
+    logo: BRAND_LOGO_FALLBACK,
+  },
+  { id: "br-puma", name: "Puma", slug: "puma", logo: BRAND_LOGO_FALLBACK },
+  {
+    id: "br-jordan",
+    name: "Jordan",
+    slug: "jordan",
+    logo: BRAND_LOGO_FALLBACK,
+  },
   {
     id: "br-new-balance",
     name: "New Balance",
     slug: "new-balance",
-    logo: "/images/base.png",
+    logo: BRAND_LOGO_FALLBACK,
   },
-  { id: "br-asics", name: "ASICS", slug: "asics", logo: "/images/base.png" },
+  { id: "br-asics", name: "ASICS", slug: "asics", logo: BRAND_LOGO_FALLBACK },
   {
     id: "br-under-armour",
     name: "Under Armour",
     slug: "under-armour",
-    logo: "/images/base.png",
+    logo: BRAND_LOGO_FALLBACK,
   },
   {
     id: "br-converse",
     name: "Converse",
     slug: "converse",
-    logo: "/images/base.png",
+    logo: BRAND_LOGO_FALLBACK,
   },
 ];
 

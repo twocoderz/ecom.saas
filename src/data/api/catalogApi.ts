@@ -41,6 +41,7 @@ import {
   products,
   promotionById,
 } from "../mock";
+import { BRAND_LOGO_FALLBACK } from "../mock/assets";
 
 const CATEGORY_SLUGS = new Set(categories.map((category) => category.slug));
 const BRAND_SLUGS = new Set(brands.map((brand) => brand.slug));
@@ -143,7 +144,7 @@ function getEffectivePrice(product: Product): number {
 function getMainImage(productId: string): string {
   const images = productImageMap.get(productId) ?? [];
   const mainImage = images.find((image) => image.is_main) ?? images[0];
-  return mainImage?.url ?? "/images/base.png";
+  return mainImage?.url ?? BRAND_LOGO_FALLBACK;
 }
 
 function productToCard(product: Product): PlpProductCard {

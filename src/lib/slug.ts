@@ -1,3 +1,4 @@
+import { ROUTE_PREFIXES } from "../config/paths";
 import type { Product } from "../types";
 
 function toSlugPart(value: string): string {
@@ -43,12 +44,12 @@ export function buildPdpPath(
   descriptiveSlug: string,
   productId: string,
 ): string {
-  return `/pdp/${descriptiveSlug}/${productId}`;
+  return `${ROUTE_PREFIXES.pdp}/${descriptiveSlug}/${productId}`;
 }
 
 /**
  * Compose l'URL PLP canonique pour un slug de vue (categorie/marque/collection/activite).
  */
 export function buildPlpPath(slug: string): string {
-  return `/plp/${toSlugPart(slug)}`;
+  return `${ROUTE_PREFIXES.plp}/${toSlugPart(slug)}`;
 }

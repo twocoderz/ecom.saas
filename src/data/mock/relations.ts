@@ -8,6 +8,7 @@ import type {
   ProductVariant,
   Promotion,
 } from "../../types";
+import { MOCK_IMAGE_POOL } from "./assets";
 import { products } from "./products";
 
 export const productGenders: ProductGender[] = [
@@ -462,29 +463,6 @@ export const productPromotions: ProductPromotion[] = [
   { product_id: "prod-1020", promotion_id: "promo-clearance-25" },
 ];
 
-const imagePool = [
-  "/images/apple_laptop.png",
-  "/images/gamingLaptop1.png",
-  "/images/travelLaptop1.png",
-  "/images/iphone12M1.png",
-  "/images/oneplusN1.png",
-  "/images/oppophone1.png",
-  "/images/bed_with_storage.png",
-  "/images/desk.png",
-  "/images/sofa1.jpg",
-  "/images/wardrobe1.jpg",
-  "/images/coconut_oil.png",
-  "/images/dove_body_lotion.png",
-  "/images/parkavenueperfume.png",
-  "/images/roseShowerGel.png",
-  "/images/wowskincare.png",
-  "/images/mensjeans.png",
-  "/images/womenblouse.png",
-  "/images/womenkurtha.png",
-  "/images/pumatshirt1.png",
-  "/images/kidkurtha.png",
-];
-
 export const productImages: ProductImage[] = (() => {
   const productOrder = products.map((product) => product.id);
   const productIndexById = new Map(
@@ -495,7 +473,8 @@ export const productImages: ProductImage[] = (() => {
 
   return productVariants.flatMap((variant, variantIndex) => {
     const productIndex = productIndexById.get(variant.product_id) ?? 0;
-    const startIndex = (productIndex * 3 + variantIndex) % imagePool.length;
+    const startIndex =
+      (productIndex * 3 + variantIndex) % MOCK_IMAGE_POOL.length;
 
     const nextSortOrder = (sortCounters.get(variant.product_id) ?? 0) + 1;
     sortCounters.set(variant.product_id, nextSortOrder + 1);
@@ -504,7 +483,7 @@ export const productImages: ProductImage[] = (() => {
       id: `img-${variant.id}-1`,
       product_id: variant.product_id,
       variant_id: variant.id,
-      url: imagePool[startIndex % imagePool.length],
+      url: MOCK_IMAGE_POOL[startIndex % MOCK_IMAGE_POOL.length],
       alt: `${variant.product_id} ${variant.color} ${variant.size}`,
       is_main: nextSortOrder === 1,
       sort_order: nextSortOrder,
@@ -514,7 +493,7 @@ export const productImages: ProductImage[] = (() => {
       id: `img-${variant.id}-2`,
       product_id: variant.product_id,
       variant_id: variant.id,
-      url: imagePool[(startIndex + 1) % imagePool.length],
+      url: MOCK_IMAGE_POOL[(startIndex + 1) % MOCK_IMAGE_POOL.length],
       alt: `${variant.product_id} detail ${variant.color} ${variant.size}`,
       is_main: false,
       sort_order: nextSortOrder + 1,

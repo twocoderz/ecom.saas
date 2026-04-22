@@ -6,6 +6,7 @@ import {
   collections,
   genders,
 } from "./entities";
+import { BRAND_LOGO_FALLBACK, MOCK_IMAGE_POOL } from "./assets";
 import { products } from "./products";
 import {
   productActivities,
@@ -23,9 +24,11 @@ export {
   activities,
   attributes,
   brands,
+  BRAND_LOGO_FALLBACK,
   categories,
   collections,
   genders,
+  MOCK_IMAGE_POOL,
   productActivities,
   productAttributes,
   productCollections,

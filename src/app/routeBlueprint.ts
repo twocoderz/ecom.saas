@@ -1,3 +1,5 @@
+import { ROUTE_PATHS } from "../config/paths";
+
 /**
  * Route blueprint for the whole storefront.
  * JD mapping: mirrors top journeys and support/legal/account coverage
@@ -13,7 +15,7 @@ export type RouteBlueprintItem = {
 export const routeBlueprint: RouteBlueprintItem[] = [
   {
     id: "home",
-    path: "/",
+    path: ROUTE_PATHS.home,
     page: "HomePage",
     jdReference: "Homepage campaign and discovery rails",
   },
@@ -21,43 +23,43 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   // Catalog journey
   {
     id: "category",
-    path: "/plp/:slug",
+    path: ROUTE_PATHS.category,
     page: "CategoryPage",
     jdReference: "Category listing style (PLP)",
   },
   {
     id: "category-legacy",
-    path: "/c/:department/:category",
+    path: ROUTE_PATHS.categoryLegacy,
     page: "CategoryPage",
     jdReference: "Legacy listing alias kept during migration",
   },
   {
     id: "search",
-    path: "/search",
+    path: ROUTE_PATHS.search,
     page: "SearchResultsPage",
     jdReference: "Global search results",
   },
   {
     id: "brand",
-    path: "/brand/:slug",
+    path: ROUTE_PATHS.brand,
     page: "BrandPage",
     jdReference: "Brand landing pages",
   },
   {
     id: "collection",
-    path: "/collection/:slug",
+    path: ROUTE_PATHS.collection,
     page: "CollectionPage",
     jdReference: "Campaign and curated collections",
   },
   {
     id: "product",
-    path: "/pdp/:descriptiveSlug/:productId",
+    path: ROUTE_PATHS.product,
     page: "ProductDetailPage",
     jdReference: "Product detail page (PDP)",
   },
   {
     id: "product-legacy",
-    path: "/p/:productSlug",
+    path: ROUTE_PATHS.productLegacy,
     page: "ProductDetailPage",
     jdReference: "Legacy PDP alias kept during migration",
   },
@@ -65,31 +67,31 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   // Cart and checkout
   {
     id: "cart",
-    path: "/cart",
+    path: ROUTE_PATHS.cart,
     page: "CartPage",
     jdReference: "Bag / cart step before checkout",
   },
   {
     id: "checkout-info",
-    path: "/checkout/information",
+    path: ROUTE_PATHS.checkoutInfo,
     page: "CheckoutInformationPage",
     jdReference: "Checkout step: customer info",
   },
   {
     id: "checkout-shipping",
-    path: "/checkout/shipping",
+    path: ROUTE_PATHS.checkoutShipping,
     page: "CheckoutShippingPage",
     jdReference: "Checkout step: shipping method",
   },
   {
     id: "checkout-payment",
-    path: "/checkout/payment",
+    path: ROUTE_PATHS.checkoutPayment,
     page: "CheckoutPaymentPage",
     jdReference: "Checkout step: payment",
   },
   {
     id: "checkout-confirmation",
-    path: "/checkout/confirmation",
+    path: ROUTE_PATHS.checkoutConfirmation,
     page: "CheckoutConfirmationPage",
     jdReference: "Order confirmation",
   },
@@ -97,49 +99,49 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   // Account journey
   {
     id: "auth",
-    path: "/auth",
+    path: ROUTE_PATHS.auth,
     page: "AuthPage",
     jdReference: "Account sign in / sign up entry",
   },
   {
     id: "forgot-password",
-    path: "/auth/forgot-password",
+    path: ROUTE_PATHS.forgotPassword,
     page: "ForgotPasswordPage",
     jdReference: "Password recovery flow",
   },
   {
     id: "account-dashboard",
-    path: "/account",
+    path: ROUTE_PATHS.accountDashboard,
     page: "AccountDashboardPage",
     jdReference: "Customer dashboard and shortcuts",
   },
   {
     id: "account-orders",
-    path: "/account/orders",
+    path: ROUTE_PATHS.accountOrders,
     page: "OrdersPage",
     jdReference: "Order history list",
   },
   {
     id: "account-order-detail",
-    path: "/account/orders/:orderId",
+    path: ROUTE_PATHS.accountOrderDetail,
     page: "OrderDetailPage",
     jdReference: "Order tracking detail view",
   },
   {
     id: "account-addresses",
-    path: "/account/addresses",
+    path: ROUTE_PATHS.accountAddresses,
     page: "AddressesPage",
     jdReference: "Saved addresses management",
   },
   {
     id: "account-payment-methods",
-    path: "/account/payment-methods",
+    path: ROUTE_PATHS.accountPaymentMethods,
     page: "PaymentMethodsPage",
     jdReference: "Saved payment methods management",
   },
   {
     id: "account-wishlist",
-    path: "/account/wishlist",
+    path: ROUTE_PATHS.accountWishlist,
     page: "WishlistPage",
     jdReference: "Saved products list",
   },
@@ -147,55 +149,55 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   // Support and legal
   {
     id: "help",
-    path: "/help",
+    path: ROUTE_PATHS.help,
     page: "HelpPage",
     jdReference: "FAQ and customer support hub",
   },
   {
     id: "order-tracking",
-    path: "/track-order",
+    path: ROUTE_PATHS.orderTracking,
     page: "OrderTrackingPage",
     jdReference: "Track order utility",
   },
   {
     id: "shipping-returns",
-    path: "/shipping-returns",
+    path: ROUTE_PATHS.shippingReturns,
     page: "ShippingReturnsPage",
     jdReference: "Shipping and return policies",
   },
   {
     id: "contact",
-    path: "/contact",
+    path: ROUTE_PATHS.contact,
     page: "ContactPage",
     jdReference: "Customer contact channels",
   },
   {
     id: "legal-notice",
-    path: "/legal-notice",
+    path: ROUTE_PATHS.legalNotice,
     page: "LegalNoticePage",
     jdReference: "Legal entity information",
   },
   {
     id: "privacy-policy",
-    path: "/privacy-policy",
+    path: ROUTE_PATHS.privacyPolicy,
     page: "PrivacyPolicyPage",
     jdReference: "Privacy and data policy",
   },
   {
     id: "terms",
-    path: "/terms",
+    path: ROUTE_PATHS.terms,
     page: "TermsPage",
     jdReference: "Terms and conditions",
   },
   {
     id: "accessibility",
-    path: "/accessibility",
+    path: ROUTE_PATHS.accessibility,
     page: "AccessibilityPage",
     jdReference: "Accessibility statement",
   },
   {
     id: "site-map",
-    path: "/site-map",
+    path: ROUTE_PATHS.siteMap,
     page: "SiteMapPage",
     jdReference: "HTML sitemap page",
   },
@@ -203,19 +205,19 @@ export const routeBlueprint: RouteBlueprintItem[] = [
   // System pages
   {
     id: "maintenance",
-    path: "/maintenance",
+    path: ROUTE_PATHS.maintenance,
     page: "MaintenancePage",
     jdReference: "Maintenance fallback page",
   },
   {
     id: "error",
-    path: "/500",
+    path: ROUTE_PATHS.error,
     page: "ErrorPage",
     jdReference: "Unexpected server error page",
   },
   {
     id: "not-found",
-    path: "/404",
+    path: ROUTE_PATHS.notFound,
     page: "NotFoundPage",
     jdReference: "Explicit not-found page",
   },

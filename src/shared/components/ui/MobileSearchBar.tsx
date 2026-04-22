@@ -1,31 +1,11 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchQueryNavigation } from "../../hooks/useSearchQueryNavigation";
 import { SearchIcon } from "../../icons";
 
 export default function MobileSearchBar() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [searchParams] = useSearchParams();
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    if (location.pathname === "/search") {
-      setQuery(searchParams.get("q") ?? "");
-    }
-  }, [location.pathname, searchParams]);
+  const { query, setQuery, submitSearch } = useSearchQueryNavigation();
 
   const handleSubmit = () => {
-    const trimmed = query.trim();
-    const nextParams = new URLSearchParams();
-
-    if (trimmed) {
-      nextParams.set("q", trimmed);
-    }
-
-    navigate({
-      pathname: "/search",
-      search: nextParams.toString(),
-    });
+    submitSearch();
   };
 
   return (
