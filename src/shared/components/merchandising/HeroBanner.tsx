@@ -1,17 +1,147 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { buildPlpPath } from "../../../lib/slug";
+import { ChevronLeftIcon, ChevronRightIcon } from "../../icons";
+
+type HeroSlide = {
+  id: string;
+  imageSrc: string;
+  imageAlt: string;
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+  ctaTo: string;
+};
+
+const SLIDES: HeroSlide[] = [
+  {
+    id: "celebrate-her",
+    imageSrc: "/images/attractive_woman.png",
+    imageAlt: "Femme portant une tenue sportswear New Balance.",
+    title: "Celebrate Her",
+    subtitle: "Must-have styles for Mom, ready to gift.",
+    ctaLabel: "Shop Now",
+    ctaTo: buildPlpPath("t-shirts"),
+  },
+  {
+    id: "street-ready",
+    imageSrc: "/images/pumatshirt2.png",
+    imageAlt: "Haut sportswear pour collection street.",
+    title: "Street Ready",
+    subtitle: "Fresh drops for everyday movement.",
+    ctaLabel: "Shop Now",
+    ctaTo: buildPlpPath("lifestyle-shoes"),
+  },
+  {
+    id: "run-faster",
+    imageSrc: "/images/mensjeans.png",
+    imageAlt: "Look sport masculin pour sorties actives.",
+    title: "Run Faster",
+    subtitle: "Performance picks to level up your pace.",
+    ctaLabel: "Shop Now",
+    ctaTo: buildPlpPath("running-shoes"),
+  },
+];
+
 /**
  * Campaign hero block.
  * JD mapping: top rotating campaign banners on homepage.
  */
 export function HeroBanner() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % SLIDES.length);
+    }, 5000);
+
+    return () => window.clearInterval(intervalId);
+  }, [isPaused]);
+
+  const activeSlide = SLIDES[activeIndex];
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => (current - 1 + SLIDES.length) % SLIDES.length);
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => (current + 1) % SLIDES.length);
+  };
+
   return (
-    <div className="rounded-2xl bg-black p-10 text-white">
-      <p className="text-sm uppercase tracking-wide text-white/70">
-        Hero campagne
-      </p>
-      <h2 className="mt-2 text-3xl font-bold">Zone hero principale</h2>
-      <p className="mt-2 text-white/80">
-        A utiliser pour drop, promo saisonniere, ou collection phare.
-      </p>
-    </div>
+    <article
+      className="overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
+    >
+      <div className="relative h-55 md:h-80">
+        <img
+          src={activeSlide.imageSrc}
+          alt={activeSlide.imageAlt}
+          className="h-full w-full object-cover"
+        />
+        <button
+          type="button"
+          onClick={goToPrevious}
+          aria-label="Slide precedente"
+          className="absolute left-3 cursor-pointer top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-black-80 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
+        >
+          <ChevronLeftIcon className="h-5 w-5" />
+        </button>
+
+        <button
+          type="button"
+          onClick={goToNext}
+          aria-label="Slide suivante"
+          className="absolute right-3 cursor-pointer top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-black-80 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
+        >
+          <ChevronRightIcon className="h-5 w-5" />
+        </button>
+      </div>
+
+      <div className="space-y-4 px-4 py-6 text-center sm:px-8 sm:py-8">
+        <h2 className="text-3xl font-semibold text-black-80">
+          {activeSlide.title}
+        </h2>
+        <p className="text-lg text-black/80">{activeSlide.subtitle}</p>
+        <div className="pt-1">
+          <Link
+            to={activeSlide.ctaTo}
+            className="inline-flex min-w-57.5 items-center justify-center rounded-full border border-black-30 px-10 py-4 text-lg font-bold text-black-80 transition-colors hover:border-black-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
+          >
+            {activeSlide.ctaLabel}
+          </Link>
+        </div>
+        <div
+          className="flex items-center justify-center gap-3 pt-2"
+          role="tablist"
+          aria-label="Pagination hero"
+        >
+          {SLIDES.map((slide, index) => {
+            const isActive = index === activeIndex;
+            return (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                role="tab"
+                aria-label={`Aller au slide ${index + 1}`}
+                aria-current={isActive}
+                className={`h-3 w-3 rounded-full transition-colors ${
+                  isActive ? "bg-black" : "bg-black/20"
+                }`}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </article>
   );
 }

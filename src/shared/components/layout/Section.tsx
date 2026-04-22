@@ -9,9 +9,11 @@ export type SectionProps = {
 export function Section(props: SectionProps) {
   const { title, children } = props;
   return (
-    <section className="py-4 md:py-8">
+    <section>
       <Container>
-        <h2 className="mb-4 text-2xl font-semibold text-black-80">{title}</h2>
+        {title ? (
+          <h2 className="mb-4 text-2xl font-semibold text-black-80">{title}</h2>
+        ) : null}
         {children}
       </Container>
     </section>
