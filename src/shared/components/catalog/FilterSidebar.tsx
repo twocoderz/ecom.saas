@@ -185,7 +185,7 @@ export function FilterSidebar({
 
         <div className="">
           <section className="border-b border-black/10">
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("department")}
@@ -231,7 +231,7 @@ export function FilterSidebar({
           </section>
 
           <section className="border-b border-black/10">
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("brand")}
@@ -277,7 +277,7 @@ export function FilterSidebar({
           </section>
 
           <section className="border-b border-black/10">
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("category")}
@@ -323,7 +323,7 @@ export function FilterSidebar({
           </section>
 
           <section className="border-b border-black/10">
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("activity")}
@@ -369,7 +369,7 @@ export function FilterSidebar({
           </section>
 
           <section className="border-b border-black/10">
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("collection")}
@@ -415,7 +415,7 @@ export function FilterSidebar({
           </section>
 
           <section className="border-b border-black/10">
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("color")}
@@ -461,7 +461,7 @@ export function FilterSidebar({
           </section>
 
           <section>
-            <div className="hover:bg-black-5 transition-all duration-500">
+            <div className="hover:bg-black-5 transition-all duration-300">
               <button
                 type="button"
                 onClick={() => toggleSection("price")}
