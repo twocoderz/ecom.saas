@@ -149,39 +149,34 @@ export function FilterSidebar({
   return (
     <aside className="flex h-full flex-col bg-white">
       <div className="overflow-y-auto">
-        {/* Selected filters */}
-        <div className="border-b border-black/10 px-4 py-4">
-          {hasActiveFilters && (
-            <>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {activePills.map((pill) => (
-                  <li key={pill.key}>
-                    <button
-                      type="button"
-                      onClick={pill.onRemove}
-                      className="flex items-center gap-2 rounded-full bg-black px-3 py-3 text-xs font-medium text-white"
-                    >
-                      <span>{pill.label}</span>
-                      <CloseIcon className="h-2 w-2" />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-          <button
-            type="button"
-            onClick={onClearAll}
-            disabled={!hasActiveFilters}
-            className={`mt-4 text-xs underline underline-offset-2 ${
-              hasActiveFilters
-                ? "text-black-70"
-                : "cursor-not-allowed text-black-30"
-            }`}
-          >
-            {plpPageCopy.clearAll}
-          </button>
-        </div>
+        {/* ✅ FIX 1: Section pills + Clear all — visible seulement si filtres actifs */}
+        {hasActiveFilters && (
+          <div className="border-b border-black/10 px-4 py-4">
+            <ul className="flex flex-wrap gap-2">
+              {activePills.map((pill) => (
+                <li key={pill.key}>
+                  {/* ✅ FIX 2: Pills — padding corrigé py-1.5 au lieu de py-3 (trop carré avant) */}
+                  <button
+                    type="button"
+                    onClick={pill.onRemove}
+                    className="flex items-center gap-2 rounded-full bg-black px-3 py-1.5 text-xs font-medium text-white"
+                  >
+                    <span>{pill.label}</span>
+                    <CloseIcon className="h-2 w-2" />
+                  </button>
+                </li>
+              ))}
+            </ul>
+            {/* ✅ FIX 3: Clear all — plus de disabled/grisé, toujours cliquable quand visible */}
+            <button
+              type="button"
+              onClick={onClearAll}
+              className="mt-3 text-xs underline underline-offset-2 text-black/70"
+            >
+              {plpPageCopy.clearAll}
+            </button>
+          </div>
+        )}
 
         <div className="">
           <section className="border-b border-black/10">
@@ -189,9 +184,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("department")}
-                className="flex cursor-pointer w-full items-center justify-between px-4 py-2"
+                className="flex cursor-pointer w-full items-center justify-between px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.department}
                 </h3>
                 {openSections.department ? (
@@ -212,15 +207,16 @@ export function FilterSidebar({
                     <li key={department}>
                       <label
                         htmlFor={inputId}
-                        className="flex items-center justify-between text-xs text-black"
+                        className="flex items-center justify-between text-sm text-black cursor-pointer"
                       >
                         <span className="capitalize">{department}</span>
+                        {/* ✅ FIX 5: Checkboxes h-5 w-5 au lieu de h-3 w-3 — plus grands comme les exemples */}
                         <input
                           id={inputId}
                           type="checkbox"
                           checked={checked}
                           onChange={() => onToggleDepartment(department)}
-                          className="h-3 w-3 rounded-md cursor-pointer border-black/30"
+                          className="h-5 w-5 rounded cursor-pointer border-black/30 accent-black"
                         />
                       </label>
                     </li>
@@ -235,9 +231,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("brand")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.brand}
                 </h3>
                 {openSections.brand ? (
@@ -258,7 +254,7 @@ export function FilterSidebar({
                     <li key={brand}>
                       <label
                         htmlFor={inputId}
-                        className="flex cursor-pointer items-center justify-between text-xs text-black"
+                        className="flex cursor-pointer items-center justify-between text-sm text-black"
                       >
                         <span>{brand}</span>
                         <input
@@ -266,7 +262,7 @@ export function FilterSidebar({
                           type="checkbox"
                           checked={checked}
                           onChange={() => onToggleBrand(brand)}
-                          className="h-3 w-3 rounded-md border-black/30"
+                          className="h-5 w-5 rounded border-black/30 accent-black"
                         />
                       </label>
                     </li>
@@ -281,9 +277,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("category")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.category}
                 </h3>
                 {openSections.category ? (
@@ -304,7 +300,7 @@ export function FilterSidebar({
                     <li key={category}>
                       <label
                         htmlFor={inputId}
-                        className="flex cursor-pointer items-center justify-between text-xs text-black"
+                        className="flex cursor-pointer items-center justify-between text-sm text-black"
                       >
                         <span className="capitalize">{category}</span>
                         <input
@@ -312,7 +308,7 @@ export function FilterSidebar({
                           type="checkbox"
                           checked={checked}
                           onChange={() => onToggleCategory(category)}
-                          className="h-3 w-3 rounded-md border-black/30"
+                          className="h-5 w-5 rounded cursor-pointer border-black/30 accent-black"
                         />
                       </label>
                     </li>
@@ -327,9 +323,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("activity")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.activity}
                 </h3>
                 {openSections.activity ? (
@@ -350,7 +346,7 @@ export function FilterSidebar({
                     <li key={activity}>
                       <label
                         htmlFor={inputId}
-                        className="flex cursor-pointer items-center justify-between text-xs text-black"
+                        className="flex cursor-pointer items-center justify-between text-sm text-black"
                       >
                         <span className="capitalize">{activity}</span>
                         <input
@@ -358,7 +354,7 @@ export function FilterSidebar({
                           type="checkbox"
                           checked={checked}
                           onChange={() => onToggleActivity(activity)}
-                          className="h-3 w-3 rounded-md border-black/30"
+                          className="h-5 w-5 rounded cursor-pointer border-black/30 accent-black"
                         />
                       </label>
                     </li>
@@ -373,9 +369,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("collection")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.collection}
                 </h3>
                 {openSections.collection ? (
@@ -396,7 +392,7 @@ export function FilterSidebar({
                     <li key={collection}>
                       <label
                         htmlFor={inputId}
-                        className="flex cursor-pointer items-center justify-between text-xs text-black"
+                        className="flex cursor-pointer items-center justify-between text-sm text-black"
                       >
                         <span className="capitalize">{collection}</span>
                         <input
@@ -404,7 +400,7 @@ export function FilterSidebar({
                           type="checkbox"
                           checked={checked}
                           onChange={() => onToggleCollection(collection)}
-                          className="h-3 w-3 rounded-md border-black/30"
+                          className="h-5 w-5 rounded cursor-pointer border-black/30 accent-black"
                         />
                       </label>
                     </li>
@@ -419,9 +415,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("color")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.color}
                 </h3>
                 {openSections.color ? (
@@ -442,7 +438,7 @@ export function FilterSidebar({
                     <li key={color}>
                       <label
                         htmlFor={inputId}
-                        className="flex cursor-pointer items-center justify-between text-xs text-black"
+                        className="flex cursor-pointer items-center justify-between text-sm text-black"
                       >
                         <span className="capitalize">{color}</span>
                         <input
@@ -450,7 +446,7 @@ export function FilterSidebar({
                           type="checkbox"
                           checked={checked}
                           onChange={() => onToggleColor(color)}
-                          className="h-3 w-3 rounded border-black/30"
+                          className="h-5 w-5 rounded cursor-pointer border-black/30 accent-black"
                         />
                       </label>
                     </li>
@@ -465,9 +461,9 @@ export function FilterSidebar({
               <button
                 type="button"
                 onClick={() => toggleSection("price")}
-                className="flex w-full items-center justify-between cursor-pointer px-4 py-2"
+                className="flex w-full items-center justify-between cursor-pointer px-4 py-4"
               >
-                <h3 className="text-lg font-semibold text-black">
+                <h3 className="text-sm font-semibold text-black">
                   {filterSectionLabels.price}
                 </h3>
                 {openSections.price ? (
@@ -488,7 +484,7 @@ export function FilterSidebar({
                     <li key={range.id}>
                       <label
                         htmlFor={inputId}
-                        className="flex cursor-pointer items-center justify-between text-xs text-black"
+                        className="flex cursor-pointer items-center justify-between text-sm text-black"
                       >
                         <span>{range.label}</span>
                         <input
@@ -497,7 +493,7 @@ export function FilterSidebar({
                           name="price-range"
                           checked={checked}
                           onChange={() => onSelectPriceRange(range.id)}
-                          className="h-3 w-3 border-black/30"
+                          className="h-5 w-5 border-black/30 accent-black"
                         />
                       </label>
                     </li>
