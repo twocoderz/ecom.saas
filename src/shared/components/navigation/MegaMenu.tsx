@@ -39,7 +39,7 @@ export function MegaMenu() {
 
   return (
     <nav
-      className="relative mt-p2"
+      className="relative mt-6"
       aria-label="Navigation principale desktop"
       onMouseEnter={clearCloseTimer}
       onMouseLeave={scheduleClose}
