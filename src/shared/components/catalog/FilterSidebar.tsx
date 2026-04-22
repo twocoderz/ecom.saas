@@ -165,10 +165,10 @@ export function FilterSidebar({
                   <button
                     type="button"
                     onClick={pill.onRemove}
-                    className="flex items-center gap-2 rounded-full bg-black px-3 py-2 text-xs font-medium text-white"
+                    className="cursor-pointer flex items-center gap-2 rounded-full bg-black px-3 py-2 text-xs font-medium text-white"
                   >
                     <span>{pill.label}</span>
-                    <CloseIcon className="h-2 w-2" />
+                    <CloseIcon className="h-2 w-2 text-white/80 hover:text-white transition-all duration-300" />
                   </button>
                 </li>
               ))}
@@ -176,7 +176,7 @@ export function FilterSidebar({
             <button
               type="button"
               onClick={onClearAll}
-              className="mt-3 text-xs underline underline-offset-2 text-black-70"
+              className="mt-3 cursor-pointer text-xs underline underline-offset-2 text-black-70"
             >
               {plpPageCopy.clearAll}
             </button>
