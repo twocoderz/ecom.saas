@@ -297,7 +297,7 @@ export function FilterSidebar({
                   <li key={category}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex cursor-pointer items-center justify-between text-xs text-black"
                     >
                       <span className="capitalize">{category}</span>
                       <input
@@ -305,7 +305,7 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleCategory(category)}
-                        className="h-5 w-5 rounded border-black/30"
+                        className="h-3 w-3 rounded-md border-black/30"
                       />
                     </label>
                   </li>
@@ -319,7 +319,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("activity")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.activity}
@@ -341,7 +341,7 @@ export function FilterSidebar({
                   <li key={activity}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex cursor-pointer items-center justify-between text-xs text-black"
                     >
                       <span className="capitalize">{activity}</span>
                       <input
@@ -349,7 +349,7 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleActivity(activity)}
-                        className="h-5 w-5 rounded border-black/30"
+                        className="h-3 w-3 rounded-md border-black/30"
                       />
                     </label>
                   </li>
@@ -363,7 +363,7 @@ export function FilterSidebar({
           <button
             type="button"
             onClick={() => toggleSection("collection")}
-            className="flex w-full items-center justify-between py-4"
+            className="flex w-full items-center justify-between cursor-pointer hover:bg-black-5 transition-all duration-500 py-4"
           >
             <h3 className="text-xl font-semibold text-black">
               {filterSectionLabels.collection}
@@ -385,7 +385,7 @@ export function FilterSidebar({
                   <li key={collection}>
                     <label
                       htmlFor={inputId}
-                      className="flex cursor-pointer items-center justify-between text-sm text-black"
+                      className="flex cursor-pointer items-center justify-between text-xs text-black"
                     >
                       <span className="capitalize">{collection}</span>
                       <input
@@ -393,7 +393,7 @@ export function FilterSidebar({
                         type="checkbox"
                         checked={checked}
                         onChange={() => onToggleCollection(collection)}
-                        className="h-5 w-5 rounded border-black/30"
+                        className="h-3 w-3 rounded-md border-black/30"
                       />
                     </label>
                   </li>
