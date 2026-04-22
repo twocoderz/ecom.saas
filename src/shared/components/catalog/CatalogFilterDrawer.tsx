@@ -93,6 +93,7 @@ export function CatalogFilterDrawer({
         </div>
 
         <FilterSidebar
+          isOpen={isOpen}
           departments={departments}
           selectedDepartments={selectedDepartments}
           onToggleDepartment={onToggleDepartment}

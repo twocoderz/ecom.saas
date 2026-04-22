@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon, CloseIcon } from "../../icons";
 import {
   defaultOpenFilterSections,
@@ -11,6 +11,7 @@ import {
 } from "../../data/plp";
 
 type FilterSidebarProps = {
+  isOpen: boolean;
   departments: string[];
   selectedDepartments: string[];
   onToggleDepartment: (department: string) => void;
@@ -49,6 +50,7 @@ function formatLabel(value: string) {
  * Repere JD : colonnes de filtres (gender/brand/category/price) dans le panneau droit.
  */
 export function FilterSidebar({
+  isOpen,
   departments,
   selectedDepartments,
   onToggleDepartment,
@@ -76,6 +78,12 @@ export function FilterSidebar({
   const [openSections, setOpenSections] = useState<
     Record<FilterSectionId, boolean>
   >(defaultOpenFilterSections);
+
+  useEffect(() => {
+    if (isOpen) {
+      setOpenSections(defaultOpenFilterSections);
+    }
+  }, [isOpen]);
 
   const toggleSection = (sectionId: FilterSectionId) => {
     setOpenSections((prev) => ({

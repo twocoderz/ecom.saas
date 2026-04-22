@@ -62,8 +62,8 @@ export const filterSectionLabels: Record<FilterSectionId, string> = {
 };
 
 export const defaultOpenFilterSections: Record<FilterSectionId, boolean> = {
-  department: true,
-  brand: true,
+  department: false,
+  brand: false,
   category: false,
   activity: false,
   collection: false,
