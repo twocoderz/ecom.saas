@@ -327,63 +327,148 @@ function sortProducts(items: Product[], sort: PlpSortOption): Product[] {
   return sorted;
 }
 
-function buildFacets(filteredProducts: Product[]): PlpFacetBlock[] {
-  const gendersForFacet = filteredProducts.flatMap((product) =>
+type FacetFilterKey =
+  | "gender"
+  | "brand"
+  | "category"
+  | "activity"
+  | "collection"
+  | "color";
+
+function queryWithoutFacetFilter(
+  query: Required<PlpFiltersQuery>,
+  facet: FacetFilterKey,
+): Required<PlpFiltersQuery> {
+  if (facet === "gender") {
+    return { ...query, gender: [] };
+  }
+
+  if (facet === "brand") {
+    return { ...query, brand: [] };
+  }
+
+  if (facet === "category") {
+    return { ...query, category: [] };
+  }
+
+  if (facet === "activity") {
+    return { ...query, activity: [] };
+  }
+
+  if (facet === "collection") {
+    return { ...query, collection: [] };
+  }
+
+  return { ...query, color: [] };
+}
+
+function genderValuesFromProducts(sourceProducts: Product[]): string[] {
+  return sourceProducts.flatMap((product) =>
     Array.from(productGenderCodes.get(product.id) ?? []).map(
       (genderCode) => genderByCode.get(genderCode)?.slug ?? genderCode,
     ),
   );
+}
 
-  const brandsForFacet = filteredProducts.map(
+function brandValuesFromProducts(sourceProducts: Product[]): string[] {
+  return sourceProducts.map(
     (product) => brandById.get(product.brand_id)?.slug ?? "unknown",
   );
+}
 
-  const categoriesForFacet = filteredProducts.map(
+function categoryValuesFromProducts(sourceProducts: Product[]): string[] {
+  return sourceProducts.map(
     (product) => categoryById.get(product.category_id)?.slug ?? "unknown",
   );
+}
 
-  const activitiesForFacet = filteredProducts.flatMap((product) =>
+function activityValuesFromProducts(sourceProducts: Product[]): string[] {
+  return sourceProducts.flatMap((product) =>
     Array.from(productActivityIds.get(product.id) ?? []).map(
       (activityId) => activityById.get(activityId)?.slug ?? activityId,
     ),
   );
+}
 
-  const collectionsForFacet = filteredProducts.flatMap((product) =>
+function collectionValuesFromProducts(sourceProducts: Product[]): string[] {
+  return sourceProducts.flatMap((product) =>
     Array.from(productCollectionIds.get(product.id) ?? []).map(
       (collectionId) => collectionById.get(collectionId)?.slug ?? collectionId,
     ),
   );
+}
 
-  const colorsForFacet = filteredProducts.flatMap((product) => {
+function colorValuesFromProducts(sourceProducts: Product[]): string[] {
+  return sourceProducts.flatMap((product) => {
     const attributeRows = productAttributeMap.get(product.id) ?? [];
     return attributeRows
       .filter((row) => row.attribute_id === "attr-color")
       .map((row) => row.value.toLowerCase());
   });
+}
+
+function buildFacets(
+  seedProducts: Product[],
+  query: Required<PlpFiltersQuery>,
+): PlpFacetBlock[] {
+  const genderProducts = applyFilters(
+    seedProducts,
+    queryWithoutFacetFilter(query, "gender"),
+  );
+  const brandProducts = applyFilters(
+    seedProducts,
+    queryWithoutFacetFilter(query, "brand"),
+  );
+  const categoryProducts = applyFilters(
+    seedProducts,
+    queryWithoutFacetFilter(query, "category"),
+  );
+  const activityProducts = applyFilters(
+    seedProducts,
+    queryWithoutFacetFilter(query, "activity"),
+  );
+  const collectionProducts = applyFilters(
+    seedProducts,
+    queryWithoutFacetFilter(query, "collection"),
+  );
+  const colorProducts = applyFilters(
+    seedProducts,
+    queryWithoutFacetFilter(query, "color"),
+  );
 
   return [
     {
       key: "gender",
       label: "Gender",
-      values: buildFacetValues(gendersForFacet),
+      values: buildFacetValues(genderValuesFromProducts(genderProducts)),
     },
-    { key: "brand", label: "Brand", values: buildFacetValues(brandsForFacet) },
+    {
+      key: "brand",
+      label: "Brand",
+      values: buildFacetValues(brandValuesFromProducts(brandProducts)),
+    },
     {
       key: "category",
       label: "Category",
-      values: buildFacetValues(categoriesForFacet),
+      values: buildFacetValues(categoryValuesFromProducts(categoryProducts)),
     },
     {
       key: "activity",
       label: "Activity",
-      values: buildFacetValues(activitiesForFacet),
+      values: buildFacetValues(activityValuesFromProducts(activityProducts)),
     },
     {
       key: "collection",
       label: "Collection",
-      values: buildFacetValues(collectionsForFacet),
+      values: buildFacetValues(
+        collectionValuesFromProducts(collectionProducts),
+      ),
     },
-    { key: "color", label: "Color", values: buildFacetValues(colorsForFacet) },
+    {
+      key: "color",
+      label: "Color",
+      values: buildFacetValues(colorValuesFromProducts(colorProducts)),
+    },
   ];
 }
 
@@ -503,7 +588,7 @@ export function getPlpBySlug(
     seo,
     slug,
     filters: query,
-    facets: buildFacets(filteredProducts),
+    facets: buildFacets(seedProducts, query),
     items: paginatedItems,
     pagination: {
       page: query.page,

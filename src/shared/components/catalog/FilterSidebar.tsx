@@ -505,7 +505,7 @@ export function FilterSidebar({
         <button
           type="button"
           onClick={onApply}
-          className="rounded-sm bg-primary px-4 py-3 text-sm font-normal text-white"
+          className="rounded-sm cursor-pointer bg-primary px-4 py-3 text-sm font-normal text-white"
         >
           {plpPageCopy.viewItems} ({resultCount})
         </button>
