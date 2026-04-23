@@ -25,7 +25,7 @@ const SLIDES: HeroSlide[] = [
   },
   {
     id: "street-ready",
-    imageSrc: "/images/gamingLaptop1.png",
+    imageSrc: "/images/pexels.jpg",
     imageAlt: "Haut sportswear pour collection street.",
     title: "Street Ready",
     subtitle: "Fresh drops for everyday movement.",
