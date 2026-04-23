@@ -1,6 +1,7 @@
 import { CategoryTile } from "../../shared/components/merchandising/CategoryTile";
 import {
   BRAND_LOGO_FALLBACK,
+  brands,
   categories,
   collections,
   productCollections,
@@ -18,6 +19,38 @@ import { BrandTile } from "../../shared/components";
  * Homepage template.
  */
 export function HomePage() {
+  const brandLogoBySlug: Record<string, string> = {
+    nike: "/images/brand/nikee.png",
+  };
+  const logoCandidates = new Set([
+    "adidas.png",
+    "jordan.png",
+    "new-balance.png",
+    "nikee.png",
+    "prada.png",
+    "louis-vuitton.png",
+    "sonneti.svg",
+  ]);
+
+  const resolveBrandLogo = (slug: string): string | null => {
+    const explicit = brandLogoBySlug[slug];
+    if (explicit) {
+      return explicit;
+    }
+
+    const pngName = `${slug}.png`;
+    if (logoCandidates.has(pngName)) {
+      return `/images/brand/${pngName}`;
+    }
+
+    const svgName = `${slug}.svg`;
+    if (logoCandidates.has(svgName)) {
+      return `/images/brand/${svgName}`;
+    }
+
+    return null;
+  };
+
   const shortcutCategories = categories.filter(
     (category) => category.parent_id != null,
   );
@@ -42,6 +75,23 @@ export function HomePage() {
         imageAlt: mainImage?.alt ?? `Collection ${collection.name}`,
       };
     });
+  const brandCards = brands
+    .map((brand) => {
+      const logoSrc = resolveBrandLogo(brand.slug);
+
+      if (!logoSrc) {
+        return null;
+      }
+
+      return {
+        id: brand.id,
+        name: brand.name,
+        to: buildPlpPath(brand.slug),
+        logoSrc,
+        logoAlt: `Logo ${brand.name}`,
+      };
+    })
+    .filter((brand): brand is NonNullable<typeof brand> => brand !== null);
 
   return (
     <div className="space-y-4 py-8">
@@ -80,11 +130,16 @@ export function HomePage() {
 
       {/* Shop By brand */}
       <Section title="Shop By Brand">
-        <div className="flex items-center gap-4">
-          <BrandTile />
-          <BrandTile />
-          <BrandTile />
-          <BrandTile />
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {brandCards.map((brand) => (
+            <BrandTile
+              key={brand.id}
+              name={brand.name}
+              logoSrc={brand.logoSrc}
+              logoAlt={brand.logoAlt}
+              to={brand.to}
+            />
+          ))}
         </div>
       </Section>
 
