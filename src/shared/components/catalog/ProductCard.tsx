@@ -26,7 +26,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
   );
 
   return (
-    <article className="overflow-hidden rounded-xl border border-black/10 bg-white">
+    <article className="overflow-hidden rounded-md border border-black-10 bg-white">
       <div className="relative aspect-square bg-black/5">
         <Link to={pdpPath} aria-label={`Voir ${product.name}`}>
           <img
@@ -46,7 +46,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
       </div>
 
       <div className="p-4">
-        <div>
+        <div className="flex flex-col items-start">
           <p className="text-xs text-black-60">{colorLabel}</p>
           <Link to={pdpPath} className="block">
             <h3 className="line-clamp-2 text-md font-semibold leading-tight text-black">
@@ -54,23 +54,23 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
             </h3>
           </Link>
         </div>
-
-        <div className="flex items-center gap-2 text-sm">
-          <span
-            className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
-          >
-            ${(product.sale_price ?? product.price).toFixed(2)}
-          </span>
-          {hasDiscount && (
-            <span className="text-black/60 line-through">
-              ${product.price.toFixed(2)}
+        <div className="flex flex-col items-start">
+          <div className="flex items-center gap-2 text-sm">
+            <span
+              className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
+            >
+              ${(product.sale_price ?? product.price).toFixed(2)}
             </span>
-          )}
+            {hasDiscount && (
+              <span className="text-black/60 line-through">
+                ${product.price.toFixed(2)}
+              </span>
+            )}
+          </div>
+          {product.pricing_note ? (
+            <p className="text-xs text-black-80">{product.pricing_note}</p>
+          ) : null}
         </div>
-
-        {product.pricing_note ? (
-          <p className="text-xs text-black/80">{product.pricing_note}</p>
-        ) : null}
       </div>
     </article>
   );
