@@ -9,10 +9,10 @@ import {
 import { buildPlpPath } from "../../lib/slug";
 import { TrendingCollection } from "../../shared/components/merchandising/TrendingCollection";
 import { HeroBanner } from "../../shared/components/merchandising/HeroBanner";
-import { PromoStrip } from "../../shared/components/merchandising/PromoStrip";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { Section } from "../../shared/components/layout/Section";
 import { HomeSectionsGuide } from "./components/HomeSectionsGuide";
+import { BrandTile } from "../../shared/components";
 
 /**
  * Homepage template.
@@ -78,8 +78,14 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section title="">
-        <PromoStrip />
+      {/* Shop By brand */}
+      <Section title="Shop By Brand">
+        <div className="flex items-center gap-4">
+          <BrandTile />
+          <BrandTile />
+          <BrandTile />
+          <BrandTile />
+        </div>
       </Section>
 
       <Section title="Produits mis en avant">
