@@ -26,7 +26,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
   );
 
   return (
-    <article className="overflow-hidden rounded-md border border-black-10 bg-white">
+    <article className="overflow-hidden rounded-md border border-black-10 hover:border-black-80 bg-white">
       <div className="relative aspect-square bg-black-5">
         <Link to={pdpPath} aria-label={`Voir ${product.name}`}>
           <img
@@ -45,7 +45,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
         </button>
       </div>
 
-      <div className="flex flex-col items-start gap-4 px-4 py-8">
+      <div className="flex flex-col items-start gap-4 px-8 py-6">
         <div className="flex flex-col items-start">
           <p className="text-xs text-black-60">{colorLabel}</p>
           <Link to={pdpPath} className="block">
