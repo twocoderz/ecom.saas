@@ -1,5 +1,11 @@
 import { CategoryTile } from "../../shared/components/merchandising/CategoryTile";
-import { categories } from "../../data";
+import {
+  BRAND_LOGO_FALLBACK,
+  categories,
+  collections,
+  productCollections,
+  productImages,
+} from "../../data";
 import { buildPlpPath } from "../../lib/slug";
 import { TrendingCollection } from "../../shared/components/merchandising/TrendingCollection";
 import { HeroBanner } from "../../shared/components/merchandising/HeroBanner";
@@ -15,6 +21,27 @@ export function HomePage() {
   const shortcutCategories = categories.filter(
     (category) => category.parent_id != null,
   );
+  const trendingCollectionCards = collections
+    .filter((collection) => collection.is_trending)
+    .map((collection) => {
+      const relation = productCollections.find(
+        (item) => item.collection_id === collection.id,
+      );
+      const images = relation
+        ? productImages
+            .filter((image) => image.product_id === relation.product_id)
+            .sort((left, right) => left.sort_order - right.sort_order)
+        : [];
+      const mainImage = images.find((image) => image.is_main) ?? images[0];
+
+      return {
+        id: collection.id,
+        name: collection.name,
+        to: buildPlpPath(collection.slug),
+        imageSrc: mainImage?.url ?? BRAND_LOGO_FALLBACK,
+        imageAlt: mainImage?.alt ?? `Collection ${collection.name}`,
+      };
+    });
 
   return (
     <div className="space-y-4 py-8">
@@ -38,11 +65,16 @@ export function HomePage() {
 
       {/* Trending collections */}
       <Section title="💥 Trending Collections">
-        <div className="flex items-center gap-4">
-          <TrendingCollection />
-          <TrendingCollection />
-          <TrendingCollection />
-          <TrendingCollection />
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {trendingCollectionCards.map((collection) => (
+            <TrendingCollection
+              key={collection.id}
+              name={collection.name}
+              imageSrc={collection.imageSrc}
+              imageAlt={collection.imageAlt}
+              to={collection.to}
+            />
+          ))}
         </div>
       </Section>
 

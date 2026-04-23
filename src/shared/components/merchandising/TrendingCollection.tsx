@@ -1,18 +1,26 @@
 /**
  * Horizontal list section wrapper.
  */
+import { Link } from "react-router-dom";
 
-export function TrendingCollection() {
+type TrendingCollectionProps = {
+  name: string;
+  imageSrc: string;
+  imageAlt: string;
+  to: string;
+};
+
+export function TrendingCollection(props: TrendingCollectionProps) {
+  const { name, imageSrc, imageAlt, to } = props;
+
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="bg-black-5 p-8 rounded-md">
-        <img
-          src="/images/coding_laptop.png"
-          alt="coding laptop image"
-          className="w-48 h-48"
-        />
-      </div>
-      <h3 className="text-black-80 text-lg font-bold">Mac Book Pro</h3>
-    </div>
+    <article className="flex flex-col items-center gap-3">
+      <Link to={to} className="w-full" aria-label={`Voir ${name}`}>
+        <div className="aspect-[4/3] overflow-hidden rounded-md bg-black/5">
+          <img src={imageSrc} alt={imageAlt} className="h-full w-full object-cover" />
+        </div>
+      </Link>
+      <h3 className="text-center text-lg font-bold text-black-80">{name}</h3>
+    </article>
   );
 }
