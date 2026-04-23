@@ -152,6 +152,13 @@ function productToCard(product: Product): PlpProductCard {
   const category = categoryById.get(product.category_id);
   const principalGender = genderByCode.get(product.gender_id);
   const variants = productVariantMap.get(product.id) ?? [];
+  const uniqueColorCount = new Set(
+    variants
+      .map((variant) => variant.color.trim().toLowerCase())
+      .filter(Boolean),
+  ).size;
+  const hasDiscount =
+    typeof product.sale_price === "number" && product.sale_price < product.price;
 
   return {
     id: product.id,
@@ -165,6 +172,8 @@ function productToCard(product: Product): PlpProductCard {
     rating: productRatings[product.id] ?? 4,
     main_image: getMainImage(product.id),
     has_stock: variants.some((variant) => variant.stock > 0),
+    color_count: Math.max(1, uniqueColorCount),
+    pricing_note: hasDiscount ? "Limited Time Markdown. Price as Marked" : null,
   };
 }
 

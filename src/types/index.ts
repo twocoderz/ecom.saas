@@ -171,6 +171,8 @@ export type PlpProductCard = {
   rating: number;
   main_image: string;
   has_stock: boolean;
+  color_count: number;
+  pricing_note: string | null;
 };
 
 export type PaginationMeta = {

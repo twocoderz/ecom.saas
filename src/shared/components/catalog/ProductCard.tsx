@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ShoppingCartIcon } from "../../icons";
 import {
   buildPdpPath,
   generateProductDescriptiveSlug,
@@ -12,6 +13,8 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
   const hasDiscount =
     typeof product.sale_price === "number" &&
     product.sale_price < product.price;
+  const colorLabel =
+    product.color_count === 1 ? "1 color" : `${product.color_count} colors`;
 
   const pdpPath = buildPdpPath(
     generateProductDescriptiveSlug({
@@ -29,51 +32,45 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
           <img
             src={product.main_image}
             alt={product.name}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         </Link>
 
-        <div className="absolute left-2 top-2 flex gap-2">
-          {hasDiscount && (
-            <span className="rounded-full bg-primary px-2 py-1 text-[10px] font-semibold text-white">
-              Sale
-            </span>
-          )}
-        </div>
+        <button
+          type="button"
+          aria-label={`Ajouter ${product.name} au panier`}
+          className="absolute bottom-3 cursor-pointer right-3 flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-black/80 shadow-sm"
+        >
+          <ShoppingCartIcon className="h-5 w-5" />
+        </button>
       </div>
 
-      <div className="space-y-1 p-3">
-        <p className="text-xs uppercase tracking-wide text-black/60">
-          {product.brand}
-        </p>
-        <Link to={pdpPath} className="block">
-          <h3 className="line-clamp-2 text-sm font-semibold text-black">
-            {product.name}
-          </h3>
-        </Link>
+      <div className="p-4">
+        <div>
+          <p className="text-xs text-black-60">{colorLabel}</p>
+          <Link to={pdpPath} className="block">
+            <h3 className="line-clamp-2 text-md font-semibold leading-tight text-black">
+              {product.name}
+            </h3>
+          </Link>
+        </div>
 
         <div className="flex items-center gap-2 text-sm">
-          <span className="font-semibold text-black">
+          <span
+            className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
+          >
             ${(product.sale_price ?? product.price).toFixed(2)}
           </span>
           {hasDiscount && (
-            <span className="text-black/50 line-through">
+            <span className="text-black/60 line-through">
               ${product.price.toFixed(2)}
             </span>
           )}
         </div>
 
-        <p className="text-xs text-black/70">
-          Note {product.rating.toFixed(1)} / 5
-        </p>
-
-        <button
-          type="button"
-          className="mt-2 w-full rounded-sm border border-black/20 px-2 py-1 text-xs font-semibold"
-          disabled={!product.has_stock}
-        >
-          Quick Add To Bag
-        </button>
+        {product.pricing_note ? (
+          <p className="text-xs text-black/80">{product.pricing_note}</p>
+        ) : null}
       </div>
     </article>
   );
