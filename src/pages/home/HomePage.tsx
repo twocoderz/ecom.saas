@@ -1,7 +1,7 @@
 import { CategoryTile } from "../../shared/components/merchandising/CategoryTile";
 import { categories } from "../../data";
 import { buildPlpPath } from "../../lib/slug";
-import { CollectionRail } from "../../shared/components/merchandising/CollectionRail";
+import { TrendingCollection } from "../../shared/components/merchandising/TrendingCollection";
 import { HeroBanner } from "../../shared/components/merchandising/HeroBanner";
 import { PromoStrip } from "../../shared/components/merchandising/PromoStrip";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
@@ -10,7 +10,6 @@ import { HomeSectionsGuide } from "./components/HomeSectionsGuide";
 
 /**
  * Homepage template.
- * JD mapping: campaign-first discovery page with rails and merchandising blocks.
  */
 export function HomePage() {
   const shortcutCategories = categories.filter(
@@ -31,17 +30,24 @@ export function HomePage() {
           ))}
         </div>
       </div>
+
       {/* Hero banner */}
       <Section>
         <HeroBanner />
       </Section>
 
-      <Section title="Bande promo">
-        <PromoStrip />
+      {/* Trending collections */}
+      <Section title="💥 Trending Collections">
+        <div className="flex items-center gap-4">
+          <TrendingCollection />
+          <TrendingCollection />
+          <TrendingCollection />
+          <TrendingCollection />
+        </div>
       </Section>
 
-      <Section title="Collections tendances">
-        <CollectionRail />
+      <Section title="">
+        <PromoStrip />
       </Section>
 
       <Section title="Produits mis en avant">

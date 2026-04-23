@@ -15,7 +15,7 @@ mais sans copier leur contenu ou assets.
 - Homepage type JD:
   - src/pages/home/HomePage.tsx
   - src/pages/home/components/HomeSectionsGuide.tsx
-  - shared merchandising blocks: HeroBanner, PromoStrip, CategoryTile, CollectionRail, CampaignCard.
+  - shared merchandising blocks: HeroBanner, PromoStrip, CategoryTile, TrendingCollection, CampaignCard.
 
 - Navigation dense type JD:
   - src/shared/components/navigation/UtilityBar.tsx
