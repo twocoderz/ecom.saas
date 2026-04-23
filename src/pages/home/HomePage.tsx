@@ -41,7 +41,7 @@ export function HomePage() {
       </Section>
 
       {/* Trending collections */}
-      <Section title="💥 Trending Collections">
+      <Section title="💥 Trending Collections" className="mt-p18">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {trendingCollectionCards.map((collection) => (
             <TrendingCollection
@@ -56,7 +56,7 @@ export function HomePage() {
       </Section>
 
       {/* Shop By brand */}
-      <Section title="Shop By Brand">
+      <Section title="Shop By Brand" className="mt-p18">
         <div className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6">
           {brandCards.map((brand) => (
             <BrandTile
@@ -70,7 +70,7 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section title="Produits mis en avant">
+      <Section title="Top Picks For You">
         <ProductGrid />
       </Section>
 

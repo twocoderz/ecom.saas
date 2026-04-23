@@ -4,15 +4,16 @@ import { Container } from "./Container";
 export type SectionProps = {
   title?: string;
   children: ReactNode;
+  className?: string;
 };
 
 export function Section(props: SectionProps) {
-  const { title, children } = props;
+  const { title, children, className } = props;
   return (
-    <section>
+    <section className={className}>
       <Container>
         {title ? (
-          <h2 className="mb-4 text-2xl font-semibold text-black-80">{title}</h2>
+          <h2 className="mb-4 text-xl font-bold text-black-80">{title}</h2>
         ) : null}
         {children}
       </Container>
