@@ -17,7 +17,7 @@ export function BrandTile(props: BrandTileProps) {
     <Link
       to={to}
       aria-label={`Voir les produits ${name}`}
-      className="flex h-12 w-full items-center justify-center rounded-md border border-black-60 bg-black-5 p-2 transition-all duration-100 hover:border-4 hover:border-black-80"
+      className="flex h-20 w-full items-center justify-center rounded-md border border-black-60 bg-black-5 p-4 transition-all duration-100 hover:border-4 hover:border-black-80"
     >
       <img
         src={logoSrc}
