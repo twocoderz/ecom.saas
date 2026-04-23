@@ -70,7 +70,7 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section title="Top Picks For You">
+      <Section title="Top Picks For You" className="mt-p18">
         <ProductGrid />
       </Section>
 
