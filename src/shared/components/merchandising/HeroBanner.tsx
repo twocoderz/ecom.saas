@@ -25,7 +25,7 @@ const SLIDES: HeroSlide[] = [
   },
   {
     id: "street-ready",
-    imageSrc: "/images/pumatshirt2.png",
+    imageSrc: "/images/gamingLaptop1.png",
     imageAlt: "Haut sportswear pour collection street.",
     title: "Street Ready",
     subtitle: "Fresh drops for everyday movement.",
@@ -34,7 +34,8 @@ const SLIDES: HeroSlide[] = [
   },
   {
     id: "run-faster",
-    imageSrc: "/images/mensjeans.png",
+    imageSrc:
+      "/images/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png",
     imageAlt: "Look sport masculin pour sorties actives.",
     title: "Run Faster",
     subtitle: "Performance picks to level up your pace.",
