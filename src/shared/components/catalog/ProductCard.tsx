@@ -7,7 +7,6 @@ import type { PlpProductCard } from "../../../types";
 
 /**
  * Carte produit reutilisable pour PLP, recherche et recommandations.
- * Repere JD : meme pattern de carte repete sur les listings.
  */
 export function ProductCard({ product }: { product: PlpProductCard }) {
   const hasDiscount =

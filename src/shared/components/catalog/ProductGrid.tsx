@@ -8,7 +8,6 @@ type ProductGridProps = {
 
 /**
  * Grille de produits pour PLP et recherche.
- * Repere JD : coeur du listing catalogue.
  */
 export function ProductGrid({ products }: ProductGridProps) {
   const visibleProducts = products ?? getDefaultPlpCards(12);
