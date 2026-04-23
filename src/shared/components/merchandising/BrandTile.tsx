@@ -1,7 +1,10 @@
 /**
  * Brand shortcut tile.
- * JD mapping: "shop by brand" blocks.
  */
-export function BrandTile({ brand }: { brand: string }) {
-  return <article className="rounded-xl border border-black/10 p-4 font-medium">{brand}</article>
+export function BrandTile() {
+  return (
+    <div className="bg-black-5 p-6 flex items-center justify-center">
+      <img src="/images/brand/nike" alt="" />
+    </div>
+  );
 }
