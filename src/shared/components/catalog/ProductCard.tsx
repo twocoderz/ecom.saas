@@ -27,7 +27,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
 
   return (
     <article className="overflow-hidden rounded-md border border-black-10 bg-white">
-      <div className="relative aspect-square bg-black/5">
+      <div className="relative aspect-square bg-black-5">
         <Link to={pdpPath} aria-label={`Voir ${product.name}`}>
           <img
             src={product.main_image}
@@ -39,17 +39,17 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
         <button
           type="button"
           aria-label={`Ajouter ${product.name} au panier`}
-          className="absolute bottom-3 cursor-pointer right-3 flex h-10 w-10 items-center justify-center rounded-full border border-black/15 bg-white text-black/80 shadow-sm"
+          className="absolute bottom-2 cursor-pointer right-2 flex h-8 w-8 items-center justify-center rounded-full bg-white text-black-80 shadow-sm"
         >
           <ShoppingCartIcon className="h-5 w-5" />
         </button>
       </div>
 
-      <div className="p-4">
+      <div className="flex flex-col items-start gap-4 px-4 py-8">
         <div className="flex flex-col items-start">
           <p className="text-xs text-black-60">{colorLabel}</p>
           <Link to={pdpPath} className="block">
-            <h3 className="line-clamp-2 text-md font-semibold leading-tight text-black">
+            <h3 className="line-clamp-2 text-md font-bold leading-tight text-black-80">
               {product.name}
             </h3>
           </Link>
