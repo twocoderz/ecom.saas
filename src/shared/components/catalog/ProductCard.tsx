@@ -54,7 +54,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
             </h3>
           </Link>
         </div>
-        <div className="mt-4 min-h-13">
+        <div className="mt-4 min-h-p13">
           <div className="flex items-center gap-2 text-sm">
             <span
               className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
