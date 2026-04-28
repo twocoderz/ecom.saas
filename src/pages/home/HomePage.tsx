@@ -71,15 +71,15 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section title="Top Picks For You" className="mt-p18">
-        <ProductGrid />
-      </Section>
-
       <Section title="Top Trending Outfits">
         <div className="">
           <TrendingOutfit />
         </div>
       </Section>
+      <Section title="Top Picks For You" className="mt-p18">
+        <ProductGrid />
+      </Section>
+
 
       <Section title="Guide structure home">
         <HomeSectionsGuide />
