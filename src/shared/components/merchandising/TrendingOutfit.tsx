@@ -68,7 +68,7 @@ export function TrendingOutfit({ card }: TrendingOutfitProps) {
   if (!card) {
     return (
       <article className="rounded-xl border border-black/10 p-4 text-sm text-black/70">
-        Module outfit en attente de donnees.
+        Top Trendings Outfits coming soon.
       </article>
     );
   }
@@ -128,7 +128,7 @@ export function TrendingOutfit({ card }: TrendingOutfitProps) {
       <div className="mt-3 flex justify-center">
         <Link
           to={card.to}
-          className="inline-flex min-w-50 items-center justify-center rounded-full border border-black/25 bg-white px-6 py-2 text-sm font-semibold text-black transition-colors hover:bg-black hover:text-white"
+          className="inline-flex min-w-50 items-center justify-center rounded-full border border-black-20 bg-white px-6 py-3 text-xs font-semibold text-black transition-colors hover:border-black-90"
         >
           View Details
         </Link>
