@@ -100,3 +100,12 @@ input[type="checkbox"],
 input[type="radio"] {
   accent-color: #121516;
 }
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

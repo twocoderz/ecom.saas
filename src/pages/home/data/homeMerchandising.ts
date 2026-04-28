@@ -68,8 +68,7 @@ export type HomeTrendingOutfitItem = {
   imageSrc: string;
   imageAlt: string;
   pdpPath: string;
-  x: number;
-  y: number;
+  slot: TrendingOutfitSlot;
 };
 
 export type HomeTrendingOutfitCard = {
@@ -79,12 +78,19 @@ export type HomeTrendingOutfitCard = {
   items: HomeTrendingOutfitItem[];
 };
 
-const OUTFIT_POSITIONS: Array<{ x: number; y: number }> = [
-  { x: 12, y: 8 },
-  { x: 59, y: 18 },
-  { x: 32, y: 34 },
-  { x: 8, y: 58 },
-  { x: 64, y: 70 },
+export type TrendingOutfitSlot =
+  | "hero"
+  | "topRight"
+  | "center"
+  | "bottomLeft"
+  | "bottomRight";
+
+const OUTFIT_SLOTS: TrendingOutfitSlot[] = [
+  "hero",
+  "topRight",
+  "center",
+  "bottomLeft",
+  "bottomRight",
 ];
 
 export function getShortcutCategories() {
@@ -161,7 +167,7 @@ export function getTrendingOutfitCards(): HomeTrendingOutfitCard[] {
       const brandProducts = products
         .filter((product) => product.brand_id === brand.id)
         .sort((left, right) => left.name.localeCompare(right.name))
-        .slice(0, OUTFIT_POSITIONS.length);
+        .slice(0, OUTFIT_SLOTS.length);
 
       const items = brandProducts.map((product, index) => {
         const productRecord = productById.get(product.id) ?? product;
@@ -185,8 +191,7 @@ export function getTrendingOutfitCards(): HomeTrendingOutfitCard[] {
             }),
             product.id,
           ),
-          x: OUTFIT_POSITIONS[index].x,
-          y: OUTFIT_POSITIONS[index].y,
+          slot: OUTFIT_SLOTS[index],
         };
       });
 

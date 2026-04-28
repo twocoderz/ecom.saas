@@ -120,7 +120,7 @@ export function HomePage() {
         <div className="relative">
           <div
             ref={outfitRailRef}
-            className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0"
+            className="scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0"
           >
             {trendingOutfitCards.map((card) => (
               <div key={card.id} data-outfit-card>
