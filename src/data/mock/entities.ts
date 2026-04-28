@@ -194,6 +194,13 @@ export const collections: Collection[] = [
     description: "Warm and durable gear for cold weather workouts and activities.",
     is_trending: false,
   },
+  {
+    id: "col-casual-streetwear",
+    name: "Casual Streetwear",
+    slug: "casual-streetwear",
+    description: "Relaxed and stylish everyday wear for urban lifestyles.",
+    is_trending: true,
+  },
 ];
 
 export const attributes: Attribute[] = [

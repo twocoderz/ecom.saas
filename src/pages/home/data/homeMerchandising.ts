@@ -21,6 +21,7 @@ const COLLECTION_IMAGES: Record<string, string> = {
   "col-eco-friendly": "/images/dove_body_lotion.png",
   "col-urban-streetwear": "/images/womentop 1.png",
   "col-winter-training": "/images/wardrobe1.jpg",
+  "col-casual-streetwear": "/images/shirt.png",
 };
 
 const BRAND_LOGO_FILES = new Set([
