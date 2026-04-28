@@ -46,14 +46,14 @@ export function TrendingOutfit({ card }: TrendingOutfitProps) {
               <button
                 type="button"
                 aria-label={`Afficher ${item.name}`}
-                className="absolute -left-2 -top-2 z-20 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-black/25 bg-white text-black/75 transition-colors hover:bg-black hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                className="absolute -left-2 -top-2 z-20 flex h-6 w-6 cursor-pointer items-center justify-center rounded-full border border-black/25 bg-white text-black/75 transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
               >
                 <AddIcon className="h-3.5 w-3.5" />
               </button>
 
               <Link
                 to={item.pdpPath}
-                className="pointer-events-none absolute left-3 top-[-16px] z-30 flex w-[150px] translate-y-1 items-center justify-between rounded-md bg-black/80 px-2 py-2 text-white opacity-0 shadow-lg transition-all duration-150 group-hover/item:pointer-events-auto group-hover/item:translate-y-0 group-hover/item:opacity-100 group-focus-within/item:pointer-events-auto group-focus-within/item:translate-y-0 group-focus-within/item:opacity-100"
+                className="pointer-events-none absolute left-3 top-[-16px] z-30 flex w-37.5 translate-y-1 items-center justify-between rounded-md bg-black/80 px-2 py-2 text-white opacity-0 shadow-lg transition-all duration-150 group-hover/item:pointer-events-auto group-hover/item:translate-y-0 group-hover/item:opacity-100 group-focus-within/item:pointer-events-auto group-focus-within/item:translate-y-0 group-focus-within/item:opacity-100"
                 aria-label={`Voir le détail de ${item.name}`}
               >
                 <div className="min-w-0">
