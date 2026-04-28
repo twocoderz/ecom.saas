@@ -26,7 +26,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
   );
 
   return (
-    <article className="overflow-hidden rounded-md border border-black-10 hover:border-black-80 bg-white">
+    <article className="flex h-full flex-col overflow-hidden rounded-md border border-black-10 bg-white hover:border-black-80">
       <div className="relative aspect-square bg-black-5">
         <Link to={pdpPath} aria-label={`Voir ${product.name}`}>
           <img
@@ -45,8 +45,8 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
         </button>
       </div>
 
-      <div className="flex flex-col items-start gap-4 px-8 py-6">
-        <div className="flex flex-col items-start">
+      <div className="flex flex-1 flex-col items-start px-8 py-6">
+        <div className="min-h-16">
           <p className="text-xs text-black-60">{colorLabel}</p>
           <Link to={pdpPath} className="block">
             <h3 className="line-clamp-2 text-md font-bold leading-tight text-black-80">
@@ -54,7 +54,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
             </h3>
           </Link>
         </div>
-        <div className="flex flex-col items-start">
+        <div className="mt-4 min-h-13">
           <div className="flex items-center gap-2 text-sm">
             <span
               className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
@@ -67,9 +67,9 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
               </span>
             )}
           </div>
-          {product.pricing_note ? (
-            <p className="text-xs text-black-80">{product.pricing_note}</p>
-          ) : null}
+          <p className="line-clamp-2 text-xs text-black-80">
+            {product.pricing_note ?? "\u00a0"}
+          </p>
         </div>
       </div>
     </article>

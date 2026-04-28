@@ -134,7 +134,7 @@ export function HomePage() {
             aria-label="Voir les outfits precedents"
             onClick={() => scrollOutfitsByCard("left")}
             disabled={!canScrollLeft}
-            className={`absolute left-2 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/20 bg-white text-black shadow-sm transition sm:flex ${
+            className={`absolute left-2 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-black-20 bg-white hover:bg-black hover:text-white text-black shadow-sm transition-all duration-100 sm:flex ${
               canScrollLeft
                 ? "cursor-pointer opacity-100"
                 : "cursor-not-allowed opacity-35"
@@ -148,7 +148,7 @@ export function HomePage() {
             aria-label="Voir les outfits suivants"
             onClick={() => scrollOutfitsByCard("right")}
             disabled={!canScrollRight}
-            className={`absolute right-2 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/20 bg-white text-black shadow-sm transition sm:flex ${
+            className={`absolute right-2 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-black-20 bg-white hover:bg-black hover:text-white text-black shadow-sm transition-all duration-100 sm:flex ${
               canScrollRight
                 ? "cursor-pointer opacity-100"
                 : "cursor-not-allowed opacity-35"
