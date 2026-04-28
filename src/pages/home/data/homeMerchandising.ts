@@ -3,10 +3,13 @@ import {
   brands,
   categories,
   collections,
+  productById,
   productCollections,
   productImages,
+  products,
 } from "../../../data";
 import { buildPlpPath } from "../../../lib/slug";
+import { buildPdpPath, generateProductDescriptiveSlug } from "../../../lib";
 
 const BRAND_LOGO_BY_SLUG: Record<string, string> = {
   nike: "/images/brand/nikee.png",
@@ -57,6 +60,33 @@ export type HomeBrandCard = {
   logoAlt: string;
 };
 
+export type HomeTrendingOutfitItem = {
+  productId: string;
+  name: string;
+  price: number;
+  salePrice: number | null;
+  imageSrc: string;
+  imageAlt: string;
+  pdpPath: string;
+  x: number;
+  y: number;
+};
+
+export type HomeTrendingOutfitCard = {
+  id: string;
+  brandName: string;
+  to: string;
+  items: HomeTrendingOutfitItem[];
+};
+
+const OUTFIT_POSITIONS: Array<{ x: number; y: number }> = [
+  { x: 12, y: 8 },
+  { x: 59, y: 18 },
+  { x: 32, y: 34 },
+  { x: 8, y: 58 },
+  { x: 64, y: 70 },
+];
+
 export function getShortcutCategories() {
   return categories.filter((category) => category.parent_id != null);
 }
@@ -103,4 +133,69 @@ export function getBrandCards(): HomeBrandCard[] {
 
     return acc;
   }, []);
+}
+
+export function getTrendingOutfitCards(): HomeTrendingOutfitCard[] {
+  const imageMap = productImages.reduce<Map<string, typeof productImages>>(
+    (acc, image) => {
+      const current = acc.get(image.product_id) ?? [];
+      current.push(image);
+      acc.set(image.product_id, current);
+      return acc;
+    },
+    new Map(),
+  );
+
+  imageMap.forEach((images) => {
+    images.sort((left, right) => {
+      if (left.sort_order === right.sort_order) {
+        return left.id.localeCompare(right.id);
+      }
+
+      return left.sort_order - right.sort_order;
+    });
+  });
+
+  return brands
+    .map((brand) => {
+      const brandProducts = products
+        .filter((product) => product.brand_id === brand.id)
+        .sort((left, right) => left.name.localeCompare(right.name))
+        .slice(0, OUTFIT_POSITIONS.length);
+
+      const items = brandProducts.map((product, index) => {
+        const productRecord = productById.get(product.id) ?? product;
+        const images = imageMap.get(product.id) ?? [];
+        const mainImage = images.find((image) => image.is_main) ?? images[0];
+        const imageSrc = mainImage?.url ?? BRAND_LOGO_FALLBACK;
+        const imageAlt = mainImage?.alt ?? product.name;
+
+        return {
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          salePrice: product.sale_price,
+          imageSrc,
+          imageAlt,
+          pdpPath: buildPdpPath(
+            generateProductDescriptiveSlug({
+              gender: productRecord.gender_id,
+              brand: brand.name,
+              name: product.name,
+            }),
+            product.id,
+          ),
+          x: OUTFIT_POSITIONS[index].x,
+          y: OUTFIT_POSITIONS[index].y,
+        };
+      });
+
+      return {
+        id: `outfit-${brand.id}`,
+        brandName: brand.name,
+        to: buildPlpPath(brand.slug),
+        items,
+      };
+    })
+    .filter((card) => card.items.length > 0);
 }
