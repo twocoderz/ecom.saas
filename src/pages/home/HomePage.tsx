@@ -159,7 +159,7 @@ export function HomePage() {
         </div>
       </Section>
       <Section title="Top Picks For You" className="mt-p18">
-        <ProductGrid />
+        <ProductGrid layout="rail" showNavButtons />
       </Section>
 
       <Section title="Guide structure home">
