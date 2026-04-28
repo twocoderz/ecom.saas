@@ -11,6 +11,7 @@ import {
   getShortcutCategories,
   getTrendingCollectionCards,
 } from "./data/homeMerchandising";
+import { TrendingOutfit } from "../../shared/components/merchandising/TrendingOutfit";
 
 /**
  * Homepage template.
@@ -74,8 +75,10 @@ export function HomePage() {
         <ProductGrid />
       </Section>
 
-      <Section title="Blocs campagne secondaires">
-        <div className="grid gap-4 md:grid-cols-3"></div>
+      <Section title="Top Trending Outfits">
+        <div className="">
+          <TrendingOutfit />
+        </div>
       </Section>
 
       <Section title="Guide structure home">

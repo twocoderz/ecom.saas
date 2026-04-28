@@ -35,7 +35,7 @@ export const componentBlueprint: ComponentGroup[] = [
     items: [
       "HeroBanner",
       "PromoStrip",
-      "CampaignCard",
+      "TrendingOutfit",
       "CategoryTile",
       "BrandTile",
       "TrendingCollection",

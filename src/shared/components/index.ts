@@ -2,7 +2,7 @@ export { AddToCartPanel } from "./product/AddToCartPanel";
 export { AppShell } from "./layout/AppShell";
 export { Badge } from "./ui/Badge";
 export { BrandTile } from "./merchandising/BrandTile";
-export { CampaignCard } from "./merchandising/CampaignCard";
+export { TrendingOutfit } from "./merchandising/TrendingOutfit";
 export { CartSummary } from "./checkout/CartSummary";
 export { CategoryTile } from "./merchandising/CategoryTile";
 export { CheckoutStepper } from "./checkout/CheckoutStepper";
