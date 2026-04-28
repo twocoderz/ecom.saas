@@ -159,6 +159,41 @@ export const collections: Collection[] = [
     description: "Capsule urbaine casual orientee silhouette quotidienne.",
     is_trending: true,
   },
+  {
+    id: "col-athletic-performance",
+    name: "Athletic Performance",
+    slug: "athletic-performance",
+    description: "High-performance gear for serious athletes and training enthusiasts.",
+    is_trending: true,
+  },
+  {
+    id: "col-vintage-heritage",
+    name: "Vintage Heritage",
+    slug: "vintage-heritage",
+    description: "Timeless classics and retro designs from the brand's legacy.",
+    is_trending: true,
+  },
+  {
+    id: "col-eco-friendly",
+    name: "Eco Friendly",
+    slug: "eco-friendly",
+    description: "Sustainable materials and environmentally conscious designs.",
+    is_trending: false,
+  },
+  {
+    id: "col-urban-streetwear",
+    name: "Urban Streetwear",
+    slug: "urban-streetwear",
+    description: "Bold and edgy street fashion for the modern urban lifestyle.",
+    is_trending: true,
+  },
+  {
+    id: "col-winter-training",
+    name: "Winter Training",
+    slug: "winter-training",
+    description: "Warm and durable gear for cold weather workouts and activities.",
+    is_trending: false,
+  },
 ];
 
 export const attributes: Attribute[] = [
