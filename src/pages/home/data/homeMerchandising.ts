@@ -15,6 +15,14 @@ const BRAND_LOGO_BY_SLUG: Record<string, string> = {
   nike: "/images/brand/nikee.png",
 };
 
+const COLLECTION_IMAGES: Record<string, string> = {
+  "col-athletic-performance": "/images/pumatshirt1.png",
+  "col-vintage-heritage": "/images/mensjeans.png",
+  "col-eco-friendly": "/images/dove_body_lotion.png",
+  "col-urban-streetwear": "/images/womentop 1.png",
+  "col-winter-training": "/images/wardrobe1.jpg",
+};
+
 const BRAND_LOGO_FILES = new Set([
   "adidas.png",
   "jordan.png",
@@ -115,7 +123,7 @@ export function getTrendingCollectionCards(): HomeTrendingCollectionCard[] {
         id: collection.id,
         name: collection.name,
         to: buildPlpPath(collection.slug),
-        imageSrc: mainImage?.url ?? BRAND_LOGO_FALLBACK,
+        imageSrc: mainImage?.url ?? COLLECTION_IMAGES[collection.id] ?? BRAND_LOGO_FALLBACK,
         imageAlt: mainImage?.alt ?? `Collection ${collection.name}`,
       };
     });
