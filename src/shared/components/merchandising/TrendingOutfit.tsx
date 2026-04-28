@@ -24,7 +24,7 @@ export function TrendingOutfit({ card }: TrendingOutfitProps) {
   }
 
   return (
-    <article className="group relative h-125 w-[320px] shrink-0 snap-start overflow-hidden rounded-lg bg-black/5 p-4 sm:w-[360px]">
+    <article className="group relative h-125 w-[320px] shrink-0 snap-start overflow-hidden rounded-lg bg-black/5 p-4 sm:w-90">
       <div className="relative h-103">
         {card.items.map((item) => (
           <div
