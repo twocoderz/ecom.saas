@@ -153,12 +153,6 @@ export function HomePage() {
               showNavButtons
               cardVariant="compact"
             />
-            <ProductGrid
-              products={topPicks}
-              layout="rail"
-              showNavButtons
-              cardVariant="compact"
-            />
           </div>
         </Section>
       </div>
