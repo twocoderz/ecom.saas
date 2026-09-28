@@ -14,7 +14,7 @@ type SortBarProps = {
 
 /**
  * Barre de controles PLP.
- * Repere JD : Show Filters + Sort By.
+ * Repere JD : Shop My Store (mock visuel) + Show Filters + Sort By.
  */
 export function SortBar({
   resultCount = 0,
@@ -24,6 +24,7 @@ export function SortBar({
   onOpenFilters,
 }: SortBarProps) {
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [isStoreChecked, setIsStoreChecked] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const hasActiveFilters = activeFilterCount > 0;
 
@@ -65,7 +66,23 @@ export function SortBar({
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-3 lg:grid-cols-[1fr_1fr]">
+      <div className="grid gap-3 lg:grid-cols-[1fr_1fr_1fr]">
+        <label className="flex cursor-pointer items-center gap-2 rounded-sm border border-black-20 bg-white px-4 py-3 text-sm text-black-80 hover:border-black-50">
+          <input
+            type="checkbox"
+            checked={isStoreChecked}
+            onChange={() => setIsStoreChecked((prev) => !prev)}
+            className="h-4 w-4 shrink-0"
+            aria-label={plpPageCopy.chooseMyStore}
+          />
+          <span className="truncate">
+            <span className="font-semibold">{plpPageCopy.shopMyStore}</span>{" "}
+            <span className="underline underline-offset-2">
+              {plpPageCopy.chooseMyStore}
+            </span>
+          </span>
+        </label>
+
         <button
           type="button"
           onClick={onOpenFilters}

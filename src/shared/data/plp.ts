@@ -22,6 +22,8 @@ export const plpPageCopy = {
   close: "Fermer",
   showFilters: "Afficher les filtres",
   sortBy: "Trier par",
+  shopMyStore: "Shop My Store :",
+  chooseMyStore: "Choisir mon magasin",
   viewItems: "Voir les articles",
 } as const;
 

@@ -1,23 +1,23 @@
-import { TrendingOutfit } from "../../shared/components/merchandising/TrendingOutfit";
-import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
-import { Container } from "../../shared/components/layout/Container";
-import { PageHeader } from "../../shared/components/layout/PageHeader";
+import { useParams } from "react-router-dom";
+import { PlpListing } from "../../shared/components/catalog/PlpListing";
+import { getPlpDefaultSort } from "../../shared/data/plpListings";
+import { CollectionPageSpecifics } from "./components/CollectionPageSpecifics";
 
 /**
- * Curated collection page template.
- * JD mapping: themed collection pages (seasonal, trend, or campaign).
+ * Page collection/campagne type JD (ex: /collection/new-arrivals).
+ * Vraie PLP parametree : meme template que CategoryPage
+ * (breadcrumb, titre + count, toolbar, filtres, tri, pagination, SEO).
+ * "Nouveautes" trie par nouveautes par defaut.
  */
 export function CollectionPage() {
+  const params = useParams();
+  const slug = params.slug ?? "new-arrivals";
+
   return (
-    <Container>
-      <div className="space-y-6 py-8">
-        <PageHeader
-          title="Collection"
-          subtitle="Page collection/campagne avec bloc editorial + listing."
-        />
-        <TrendingOutfit title="Univers collection" />
-        <ProductGrid />
-      </div>
-    </Container>
+    <PlpListing
+      slug={slug}
+      defaultSort={getPlpDefaultSort(slug)}
+      specifics={<CollectionPageSpecifics />}
+    />
   );
 }
