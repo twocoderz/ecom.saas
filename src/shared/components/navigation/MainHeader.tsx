@@ -61,7 +61,7 @@ export function MainHeader() {
               {isMobileMenuOpen ? (
                 <CloseIcon className="h-6 w-6 text-white" />
               ) : (
-                <HamburgerMdIcon className="h-7 w-7 text-white" />
+                <HamburgerMdIcon className="h-8 w-8 text-white" />
               )}
             </button>
             <Logo />

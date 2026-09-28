@@ -9,7 +9,7 @@ export default function MobileSearchBar() {
   };
 
   return (
-    <div className="bg-white px-6 py-2 rounded-full flex items-center gap-p2 w-full">
+    <div className="bg-white px-2 py-2 rounded-sm flex items-center gap-p2 w-full">
       <button
         type="button"
         aria-label="Lancer la recherche"
