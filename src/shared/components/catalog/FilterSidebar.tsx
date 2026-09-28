@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { ChevronDownIcon, ChevronUpIcon, CloseIcon } from "../../icons";
 import {
   defaultOpenFilterSections,
@@ -74,12 +74,16 @@ export function FilterSidebar({
   const [openSections, setOpenSections] = useState<
     Record<FilterSectionId, boolean>
   >(defaultOpenFilterSections);
+  const [wasOpen, setWasOpen] = useState(isOpen);
 
-  useEffect(() => {
+  // Reset les sections a l'ouverture du drawer (ajustement pendant le rendu,
+  // pas dans un effet : pas de rendu en cascade).
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen);
     if (isOpen) {
       setOpenSections(defaultOpenFilterSections);
     }
-  }, [isOpen]);
+  }
 
   const toggleSection = (sectionId: FilterSectionId) => {
     setOpenSections((prev) => ({
