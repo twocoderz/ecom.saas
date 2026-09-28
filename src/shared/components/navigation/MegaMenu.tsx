@@ -50,7 +50,7 @@ export function MegaMenu() {
         }
       }}
     >
-      <ul className="flex items-center justify-between gap-p3 py-p2 text-md font-semibold text-white">
+      <ul className="flex items-center justify-between gap-p3 py-p2 text-md font-medium text-white">
         {navMenuItems.map((item) => (
           <li key={item.id}>
             <Link
