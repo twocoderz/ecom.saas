@@ -4,10 +4,6 @@ import { ChevronDownIcon, UserIcon } from "../../icons";
 import { useAuthStore } from "../../../stores/useAuthStore";
 import { ROUTE_PATHS } from "../../../config/paths";
 
-/**
- * Bouton compte façon JD : libellé + dropdown au hover/clic/tactile.
- * Invité : connexion / création de compte. Connecté : raccourcis + déconnexion.
- */
 export default function AccountButton() {
   const user = useAuthStore((s) => s.user);
   const signOut = useAuthStore((s) => s.signOut);
@@ -71,12 +67,12 @@ export default function AccountButton() {
             {user.name.charAt(0).toUpperCase()}
           </span>
         ) : (
-          <UserIcon className="h-4 w-4 text-black-80" />
+          <UserIcon className="h-6 w-6 text-black-80" />
         )}
         <span className="whitespace-nowrap text-sm font-normal">
           {user ? user.name : "Compte"}
         </span>
-        <ChevronDownIcon className="h-3 w-3 text-black-60" aria-hidden="true" />
+        <ChevronDownIcon className="h-6 w-6 text-black-60" aria-hidden="true" />
       </button>
 
       {open && (

@@ -24,7 +24,6 @@ export function MainHeader() {
   const cartCount = useCartStore((s) => s.count)();
   const burgerButtonRef = useRef<HTMLButtonElement>(null);
 
-  // Plein écran JD : verrouille le scroll du body + rend le focus au burger.
   useEffect(() => {
     if (!isMobileMenuOpen) {
       return;
