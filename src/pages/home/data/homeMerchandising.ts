@@ -211,5 +211,6 @@ export function getTrendingOutfitCards(): HomeTrendingOutfitCard[] {
         items,
       };
     })
-    .filter((card) => card.items.length > 0);
+    // Exclut les marques pauvres pour eviter les slots vides sur la home.
+    .filter((card) => card.items.length >= 3);
 }

@@ -1,0 +1,31 @@
+{
+  "common": {
+    "addToCart": "Ajouter au panier",
+    "viewDetails": "Voir détails",
+    "topPicks": "Top Picks For You",
+    "trendingOutfits": "Top Trending Outfits",
+    "emptyProducts": "Aucun produit ne correspond à cette sélection.",
+    "wishlistAdd": "Ajouter aux favoris",
+    "wishlistRemove": "Retirer des favoris",
+    "cart": "Panier",
+    "promoApplied": "Code promo appliqué.",
+    "promoUnknown": "Code promo inconnu."
+  },
+  "cart": {
+    "title": "Panier",
+    "subtitle": "Vérification des articles avant checkout.",
+    "empty": "Votre panier est vide.",
+    "subtotal": "Sous-total",
+    "discount": "Remise",
+    "total": "Total",
+    "promoPlaceholder": "Code promo (ex: WELCOME10)",
+    "apply": "Appliquer",
+    "checkout": "Passer au checkout"
+  },
+  "admin": {
+    "dashboard": "Tableau de bord",
+    "products": "Produits",
+    "orders": "Commandes",
+    "promos": "Promotions"
+  }
+}

@@ -33,3 +33,8 @@ export { ShippingReturnsPage } from './support/ShippingReturnsPage'
 export { ErrorPage } from './system/ErrorPage'
 export { MaintenancePage } from './system/MaintenancePage'
 export { NotFoundPage } from './system/NotFoundPage'
+
+export { AdminDashboardPage } from './admin/AdminDashboardPage'
+export { AdminOrdersPage } from './admin/AdminOrdersPage'
+export { AdminProductsPage } from './admin/AdminProductsPage'
+export { AdminPromosPage } from './admin/AdminPromosPage'

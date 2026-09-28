@@ -1,0 +1,42 @@
+import { promotionById, promotions } from "../mock";
+import type { MockOrder, Promotion } from "../../types";
+
+/**
+ * API mock boutique : promos + commandes.
+ */
+export function findPromoByCode(code: string): Promotion | null {
+  const normalized = code.trim().toUpperCase();
+  if (!normalized) return null;
+  return (
+    promotions.find((p) => p.code.toUpperCase() === normalized) ??
+    promotionById.get(normalized) ??
+    null
+  );
+}
+
+const MOCK_ORDERS: MockOrder[] = [
+  {
+    id: "CMD-1001",
+    total: 129.9,
+    currency: "USD",
+    status: "delivered",
+    created_at: "2026-03-02",
+    lines: [{ product_id: "prod-1001", name: "Article mock 1", qty: 1, unit_price: 129.9 }],
+  },
+  {
+    id: "CMD-1002",
+    total: 89.5,
+    currency: "USD",
+    status: "shipped",
+    created_at: "2026-04-11",
+    lines: [{ product_id: "prod-1002", name: "Article mock 2", qty: 2, unit_price: 44.75 }],
+  },
+];
+
+export function getMockOrders(): MockOrder[] {
+  return MOCK_ORDERS;
+}
+
+export function getMockOrderById(orderId: string): MockOrder | null {
+  return MOCK_ORDERS.find((o) => o.id === orderId) ?? null;
+}

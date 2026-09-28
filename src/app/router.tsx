@@ -1,8 +1,12 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import {
   AccessibilityPage,
   AccountDashboardPage,
   AddressesPage,
+  AdminDashboardPage,
+  AdminOrdersPage,
+  AdminProductsPage,
+  AdminPromosPage,
   AuthPage,
   BrandPage,
   CartPage,
@@ -32,7 +36,7 @@ import {
   TermsPage,
   WishlistPage,
 } from "../pages";
-import { AppShell } from "../shared/components/layout/AppShell";
+import { AdminLayout, StorefrontLayout } from "./layouts";
 import { routeBlueprint } from "./routeBlueprint";
 
 /**
@@ -50,22 +54,20 @@ function pathById(id: string): string {
 }
 
 /**
- * Shared storefront layout.
- * JD mapping: wraps most pages in the same header/trust/footer shell.
- */
-function StorefrontLayout() {
-  return (
-    <AppShell>
-      <Outlet />
-    </AppShell>
-  );
-}
-
-/**
  * Application router.
  * Includes all scaffolded pages to keep architecture and implementation aligned.
  */
 export const appRouter = createBrowserRouter([
+  {
+    path: pathById("admin-dashboard"),
+    element: <AdminLayout />,
+    children: [
+      { index: true, element: <AdminDashboardPage /> },
+      { path: pathById("admin-products").slice("/admin".length + 1), element: <AdminProductsPage /> },
+      { path: pathById("admin-orders").slice("/admin".length + 1), element: <AdminOrdersPage /> },
+      { path: pathById("admin-promos").slice("/admin".length + 1), element: <AdminPromosPage /> },
+    ],
+  },
   {
     path: pathById("home"),
     element: <StorefrontLayout />,

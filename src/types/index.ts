@@ -204,6 +204,31 @@ export type ApiPlpResponse = {
 
 export type AttributeMap = Record<string, string[]>;
 
+export type MockOrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+
+export type MockOrderLine = {
+  product_id: EntityId;
+  name: string;
+  qty: number;
+  unit_price: number;
+};
+
+export type MockOrder = {
+  id: EntityId;
+  total: number;
+  currency: "USD";
+  status: MockOrderStatus;
+  created_at: string;
+  lines: MockOrderLine[];
+};
+
+export type MockAddress = {
+  id: EntityId;
+  label: string;
+  city: string;
+  country: string;
+};
+
 export type ApiPdpResponse = {
   seo: SeoUrl;
   product: Product;

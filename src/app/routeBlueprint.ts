@@ -221,4 +221,30 @@ export const routeBlueprint: RouteBlueprintItem[] = [
     page: "NotFoundPage",
     jdReference: "Explicit not-found page",
   },
+
+  // Admin marchand (layout separe, mock)
+  {
+    id: "admin-dashboard",
+    path: ROUTE_PATHS.adminDashboard,
+    page: "AdminDashboardPage",
+    jdReference: "Merchant back-office home",
+  },
+  {
+    id: "admin-products",
+    path: ROUTE_PATHS.adminProducts,
+    page: "AdminProductsPage",
+    jdReference: "Merchant product list",
+  },
+  {
+    id: "admin-orders",
+    path: ROUTE_PATHS.adminOrders,
+    page: "AdminOrdersPage",
+    jdReference: "Merchant order list",
+  },
+  {
+    id: "admin-promos",
+    path: ROUTE_PATHS.adminPromos,
+    page: "AdminPromosPage",
+    jdReference: "Merchant promotion list",
+  },
 ];

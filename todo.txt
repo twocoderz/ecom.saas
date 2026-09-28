@@ -1,2 +1,2 @@
-- fix top picks cards
-- fix popups for trending outfits
+- [x] fix top picks cards (ProductCard/ProductGrid centralises + Price + Rail)
+- [x] fix popups for trending outfits (Popover controle, 1 seul ouvert, tactile + Escape)

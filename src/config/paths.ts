@@ -42,6 +42,11 @@ export const ROUTE_PATHS = {
   maintenance: "/maintenance",
   error: "/500",
   notFound: "/404",
+
+  adminDashboard: "/admin",
+  adminProducts: "/admin/products",
+  adminOrders: "/admin/orders",
+  adminPromos: "/admin/promos",
 } as const;
 
 export const SEARCH_QUERY_KEY = "q";

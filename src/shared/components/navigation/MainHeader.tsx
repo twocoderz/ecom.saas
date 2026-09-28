@@ -12,6 +12,7 @@ import {
 import { MobileMenuDrawer } from "./MobileMenuDrawer";
 import MobileSearchBar from "../ui/MobileSearchBar";
 import DesktopSearchBar from "../ui/DesktopSearchBar";
+import { PrefsSwitcher } from "../ui/PrefsSwitcher";
 import LocationButton from "../ui/LocationButton";
 import AccountButton from "../ui/AccountButton";
 import CartButton from "../ui/CartButton";
@@ -120,8 +121,9 @@ export function MainHeader() {
           {/* Ligne 1 : logo + recherche + actions */}
           <div className="flex items-center justify-between gap-p6 py-p2">
             <Logo />
-            <div className="flex flex-1 items-center justify-end">
+            <div className="flex flex-1 items-center justify-end gap-2">
               <DesktopSearchBar />
+              <PrefsSwitcher />
               <LocationButton />
               <AccountButton />
               <CartButton />
