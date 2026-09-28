@@ -6,7 +6,6 @@ import { TrendingCollection } from "../../shared/components/merchandising/Trendi
 import { HeroBanner } from "../../shared/components/merchandising/HeroBanner";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { Section } from "../../shared/components/layout/Section";
-import { HomeSectionsGuide } from "./components/HomeSectionsGuide";
 import { BrandTile } from "../../shared/components";
 import { PromoStrip } from "../../shared/components/merchandising/PromoStrip";
 import { Rail } from "../../shared/components/ui/Rail";
@@ -136,21 +135,28 @@ export function HomePage() {
         </Section>
 
         {/* Top picks : produits explicites + cartes corrigees */}
-        <Section title="Nos coups de cœur" className="mt-p18">
-          <ProductGrid
-            products={topPicks}
-            layout="rail"
-            showNavButtons
-            cardVariant="compact"
-          />
+        <Section title="Nos coups de cœur" className="mt-p18 mb-p18">
+          <div className="flex flex-col gap-8">
+            <ProductGrid
+              products={topPicks}
+              layout="rail"
+              showNavButtons
+              cardVariant="compact"
+            />
+            <ProductGrid
+              products={topPicks}
+              layout="rail"
+              showNavButtons
+              cardVariant="compact"
+            />
+            <ProductGrid
+              products={topPicks}
+              layout="rail"
+              showNavButtons
+              cardVariant="compact"
+            />
+          </div>
         </Section>
-
-        {/* Guide interne : visible uniquement en dev */}
-        {import.meta.env.DEV && (
-          <Section title="Guide de la structure d'accueil">
-            <HomeSectionsGuide />
-          </Section>
-        )}
       </div>
     </div>
   );
