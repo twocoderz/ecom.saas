@@ -79,7 +79,7 @@ export default function AccountButton() {
         <div
           role="menu"
           aria-label="Menu compte"
-          className="absolute right-0 top-[calc(100%+8px)] z-50 w-40 rounded-sm border border-black-20 bg-white p-4 text-black-80 shadow-lg"
+          className="absolute left-0 top-[calc(100%+4px)] z-50 w-58 rounded-xs border border-black-20 bg-white p-4 text-black-80 shadow-lg"
         >
           {user ? (
             <div className="space-y-3">
@@ -127,20 +127,19 @@ export default function AccountButton() {
               </button>
             </div>
           ) : (
-            <div className="space-y-3">
-              <p className="text-sm font-bold">Bienvenue</p>
-              <div className="grid gap-2">
+            <div className="py-2">
+              <div className="grid gap-6">
                 <Link
                   to={ROUTE_PATHS.auth}
                   onClick={() => setOpen(false)}
-                  className="text-sm font-semibold text-black-80"
+                  className="text-sm font-semibold text-black-60 hover:text-black-80 transition-colors duration-200"
                 >
                   Se connecter
                 </Link>
                 <Link
                   to={ROUTE_PATHS.auth}
                   onClick={() => setOpen(false)}
-                  className="text-black-80 text-sm font-semibold"
+                  className="text-black-60 hover:text-black-80 transition-colors duration-200 text-sm font-semibold"
                 >
                   Créer un compte
                 </Link>
