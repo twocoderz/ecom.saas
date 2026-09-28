@@ -158,17 +158,17 @@ export function FilterSidebar({
     <aside className="flex flex-1 min-h-0 flex-col bg-white">
       <div className="overflow-y-auto min-h-0 flex-1">
         {hasActiveFilters && (
-          <div className="border-b border-black/10 px-4 py-4">
+          <div className="border-b border-black-10 px-4 py-4">
             <ul className="flex flex-wrap gap-2">
               {activePills.map((pill) => (
                 <li key={pill.key}>
                   <button
                     type="button"
                     onClick={pill.onRemove}
-                    className="cursor-pointer flex items-center gap-2 rounded-full bg-black px-3 py-2 text-xs font-medium text-white"
+                    className="cursor-pointer flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm font-medium text-white"
                   >
                     <span>{pill.label}</span>
-                    <CloseIcon className="h-2 w-2 text-white/80 hover:text-white transition-all duration-300" />
+                    <CloseIcon className="h-4 w-4 text-white/80 hover:text-white transition-all duration-300" />
                   </button>
                 </li>
               ))}
@@ -176,7 +176,7 @@ export function FilterSidebar({
             <button
               type="button"
               onClick={onClearAll}
-              className="mt-3 cursor-pointer text-xs underline underline-offset-2 text-black-70"
+              className="mt-4 cursor-pointer text-xs underline underline-offset-2 text-black-70"
             >
               {plpPageCopy.clearAll}
             </button>
@@ -195,9 +195,9 @@ export function FilterSidebar({
                   {filterSectionLabels.department}
                 </h3>
                 {openSections.department ? (
-                  <ChevronUpIcon className="h-4 w-4 text-black" />
+                  <ChevronUpIcon className="h-5 w-5 text-black" />
                 ) : (
-                  <ChevronDownIcon className="h-4 w-4 text-black" />
+                  <ChevronDownIcon className="h-5 w-5 text-black" />
                 )}
               </button>
             </div>
