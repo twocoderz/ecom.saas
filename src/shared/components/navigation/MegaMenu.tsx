@@ -50,7 +50,7 @@ export function MegaMenu() {
         }
       }}
     >
-      <ul className="flex items-center justify-between gap-p3 py-p2 text-xs font-semibold text-white">
+      <ul className="flex items-center justify-between gap-p3 py-p2 text-md font-semibold text-white">
         {navMenuItems.map((item) => (
           <li key={item.id}>
             <Link
@@ -71,7 +71,7 @@ export function MegaMenu() {
 
       {activeItem && (
         <div
-          className="absolute left-0 right-0 top-9 z-50 border border-black/15 bg-[#ececec] shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+          className="absolute left-0 right-0 top-12 z-50 border border-black/15 bg-[#ececec] shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
           onMouseEnter={clearCloseTimer}
           onMouseLeave={scheduleClose}
         >
