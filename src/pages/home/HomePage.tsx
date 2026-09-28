@@ -40,7 +40,7 @@ export function HomePage() {
       {/* Hero plein écran */}
       <HeroBanner />
 
-      <div className="space-y-4 pt-8">
+      <div className="space-y-4 overflow-x-clip pt-8">
         {/* Acheter par genre */}
         <Section title="Acheter par genre">
           <div className="grid grid-cols-3 gap-4">
@@ -65,8 +65,11 @@ export function HomePage() {
         </Section>
 
         {/* Tuiles categories */}
-        <div className="-mx-4 overflow-x-auto px-4 mt-8 lg:mt-12 sm:mx-0 sm:px-0">
-          <div className="flex min-w-max items-center gap-4 sm:flex-wrap sm:justify-center">
+        <div className="mt-8 w-full overflow-x-clip lg:mt-12">
+          <div
+            aria-label="Catégories"
+            className="scrollbar-none flex snap-x snap-mandatory items-center gap-3 overflow-x-auto px-4 pb-1 sm:snap-none sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0"
+          >
             {shortcutCategories.map((category) => (
               <CategoryTile
                 key={category.id}
@@ -74,6 +77,7 @@ export function HomePage() {
                 to={buildPlpPath(category.slug)}
               />
             ))}
+            <span aria-hidden="true" className="w-1 shrink-0 sm:hidden" />
           </div>
         </div>
 
