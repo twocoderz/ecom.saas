@@ -1,23 +1,29 @@
 import { Link } from "react-router-dom";
 import { getDefaultPlpCards } from "../../../data/api/catalogApi";
-import { buildPdpPath, generateProductDescriptiveSlug } from "../../../lib/slug";
+import {
+  buildPdpPath,
+  generateProductDescriptiveSlug,
+} from "../../../lib/slug";
 import { buildSearchDestination } from "../../../config/paths";
 import { Price } from "../ui/Price";
 
-const TRENDING_SEARCHES = ["Jordan", "Nike", "adidas", "ASICS", "Salomon", "New Balance"];
+const TRENDING_SEARCHES = [
+  "Jordan",
+  "Nike",
+  "adidas",
+  "ASICS",
+  "Salomon",
+  "New Balance",
+];
 
-/**
- * Dropdown recherche façon JD : recherches tendances (pills) +
- * produits tendances (image, nom, prix XOF).
- */
 export function SearchOverlay({ onNavigate }: { onNavigate: () => void }) {
   const trendingProducts = getDefaultPlpCards(6);
 
   return (
-    <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 grid gap-6 rounded-md border border-black-20 bg-white p-4 text-black-80 shadow-lg sm:grid-cols-2">
+    <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-50 grid gap-6 rounded-xs border border-black-20 bg-white p-4 text-black-80 shadow-lg sm:grid-cols-2">
       <div>
         <p className="text-sm font-bold">Recherches tendances</p>
-        <ul className="mt-2 flex flex-wrap gap-2">
+        <ul className="mt-4 flex flex-wrap gap-2">
           {TRENDING_SEARCHES.map((term) => {
             const dest = buildSearchDestination(term);
             return (
