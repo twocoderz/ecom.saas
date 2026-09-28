@@ -38,7 +38,7 @@ export function FilterOptionRow({
     <li>
       <label
         htmlFor={inputId}
-        className="flex cursor-pointer items-center justify-between text-sm text-black"
+        className="flex cursor-pointer items-center justify-between text-md text-black-80"
       >
         <span>{capitalize ? capitalizeFirst(label) : label}</span>
         <input
