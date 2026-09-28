@@ -25,13 +25,13 @@ export function PromoStrip() {
       : `-${formatPrice(promo.discount_value, "XOF")}`;
 
   return (
-    <div className="rounded-lg bg-black p-4 text-center text-white">
-      <p className="text-sm font-bold uppercase tracking-tight sm:text-base">
+    <div className="rounded-lg bg-black px-4 py-8 text-center text-white">
+      <p className="text-md font-mdium uppercase tracking-tight sm:text-xl">
         {promo.name} : {value} avec le code {promo.code}
       </p>
       <Link
         to={ROUTE_PATHS.search}
-        className="mt-2 inline-block rounded-full bg-white px-6 py-2 text-xs font-bold text-black hover:bg-white/85"
+        className="mt-8 inline-block rounded-full bg-white px-8 py-2 text-lg font-medium text-black hover:bg-white/85"
       >
         J'en profite
       </Link>
