@@ -86,9 +86,9 @@ export function CatalogFilterDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="hover:bg-black-5 rounded-md transition-all duration-500 bg-transparent border border-black-10 p-2 cursor-pointer"
+            className="hover:bg-black-5 transition-all duration-500 bg-transparent p-2 cursor-pointer"
           >
-            <CloseIcon className="text-black w-3 h-3" />
+            <CloseIcon className="text-black w-5 h-5" />
           </button>
         </div>
 

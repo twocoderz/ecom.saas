@@ -45,10 +45,6 @@ function formatLabel(value: string) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
-/**
- * Panneau de facettes pour le tiroir de filtres.
- * Repere JD : colonnes de filtres (gender/brand/category/price) dans le panneau droit.
- */
 export function FilterSidebar({
   isOpen,
   departments,

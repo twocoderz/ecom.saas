@@ -1,5 +1,5 @@
 /**
- * Pagination partagee PLP / recherche (remplace les duplications locales).
+ * Pagination partagee PLP / recherche.
  */
 export function Pagination({
   page,
