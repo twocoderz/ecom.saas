@@ -22,7 +22,6 @@ type PlpListingProps = {
 };
 
 /**
- * Template PLP partage type JD.
  * Utilise par CategoryPage (/plp/*, /c/*) et CollectionPage (/collection/*).
  */
 export function PlpListing({
@@ -87,7 +86,10 @@ export function PlpListing({
       <div className="space-y-6 py-8">
         {/* Fil d'Ariane dynamique */}
         <nav className="text-xs text-black-70" aria-label="Fil d'Ariane">
-          <Link to="/" className="underline underline-offset-2 hover:text-black">
+          <Link
+            to="/"
+            className="underline underline-offset-2 hover:text-black"
+          >
             {plpPageCopy.breadcrumbRoot}
           </Link>
           <span className="mx-2" aria-hidden="true">
@@ -100,7 +102,9 @@ export function PlpListing({
           <h1 className="text-4xl font-semibold text-black-80">
             {readableTitle}
           </h1>
-          <p className="pb-1 text-sm text-black-60">({totalResults} articles)</p>
+          <p className="pb-1 text-sm text-black-60">
+            ({totalResults} articles)
+          </p>
         </div>
 
         <SortBar

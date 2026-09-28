@@ -4,7 +4,7 @@ import { getPlpDefaultSort } from "../../shared/data/plpListings";
 import { CollectionPageSpecifics } from "./components/CollectionPageSpecifics";
 
 /**
- * Page collection/campagne type JD (ex: /collection/new-arrivals).
+ * Page collection (ex: /collection/new-arrivals).
  * Vraie PLP parametree : meme template que CategoryPage
  * (breadcrumb, titre + count, toolbar, filtres, tri, pagination, SEO).
  * "Nouveautes" trie par nouveautes par defaut.
