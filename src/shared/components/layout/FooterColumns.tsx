@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { Container } from "./Container";
 import { ROUTE_PATHS } from "../../../config/paths";
 
-const LINK_GROUPS: Array<{ title: string; links: Array<{ label: string; to: string }> }> = [
+const LINK_GROUPS: Array<{
+  title: string;
+  links: Array<{ label: string; to: string }>;
+}> = [
   {
     title: "Aide",
     links: [
@@ -40,12 +43,15 @@ const LINK_GROUPS: Array<{ title: string; links: Array<{ label: string; to: stri
   },
 ];
 
-const SOCIALS = ["Instagram", "TikTok", "X", "YouTube"];
-const PAYMENTS = ["Visa", "Mastercard", "PayPal", "Mobile Money"];
+const SOCIALS: Array<{ label: string; iconSrc: string }> = [
+  { label: "Facebook", iconSrc: "/socials/facebook.svg" },
+  { label: "Instagram", iconSrc: "/socials/instagram.svg" },
+  { label: "LinkedIn", iconSrc: "/socials/linkedin.svg" },
+  { label: "TikTok", iconSrc: "/socials/tiktok.svg" },
+  { label: "WhatsApp", iconSrc: "/socials/whatsapp.svg" },
+  { label: "X", iconSrc: "/socials/x.svg" },
+];
 
-/**
- * Footer riche façon JD : newsletter, colonnes de liens réels, sociaux, paiements.
- */
 export function FooterColumns() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
@@ -120,37 +126,33 @@ export function FooterColumns() {
           ))}
         </div>
 
-        {/* Sociaux + paiements */}
-        <div className="flex flex-col gap-4 border-t border-white/15 py-6 md:flex-row md:items-center md:justify-between">
-          <ul className="flex flex-wrap gap-2" aria-label="Réseaux sociaux">
+        {/* Bas façon JD : copyright + icônes sociales */}
+        <div className="flex flex-col items-center gap-4 border-t border-white/15 py-6 md:flex-row md:items-center md:justify-between">
+          <p className="text-center text-xs text-white/50 md:text-left">
+            © {new Date().getFullYear()} ecom.saas — Template boutique démo.
+            Tous droits réservés.
+          </p>
+          <ul className="flex items-center gap-5" aria-label="Réseaux sociaux">
             {SOCIALS.map((social) => (
-              <li key={social}>
+              <li key={social.label}>
                 <a
                   href="#"
                   onClick={(event) => event.preventDefault()}
-                  aria-label={social}
-                  className="rounded-full border border-white/25 px-3 py-1 text-xs font-semibold text-white/80 hover:border-white hover:text-white"
+                  aria-label={social.label}
+                  className="block transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >
-                  {social}
+                  <img
+                    src={social.iconSrc}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    className="h-5 w-5"
+                  />
                 </a>
               </li>
             ))}
           </ul>
-          <ul className="flex flex-wrap gap-2" aria-label="Moyens de paiement">
-            {PAYMENTS.map((payment) => (
-              <li
-                key={payment}
-                className="rounded-sm bg-white/10 px-2 py-1 text-[11px] font-bold uppercase tracking-wide text-white/80"
-              >
-                {payment}
-              </li>
-            ))}
-          </ul>
         </div>
-
-        <p className="border-t border-white/15 py-4 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} ecom.saas — Template boutique démo. Tous droits réservés.
-        </p>
       </Container>
     </footer>
   );
