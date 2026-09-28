@@ -19,7 +19,7 @@ mais sans copier leur contenu ou assets.
 
 - Navigation dense type JD:
   - src/shared/components/navigation/UtilityBar.tsx
-  - src/shared/components/navigation/MainHeader.tsx
+  - src/shared/components/navigation/Header.tsx
   - src/shared/components/navigation/MegaMenu.tsx
   - src/shared/components/navigation/MobileMenuDrawer.tsx
   - src/shared/components/navigation/SearchOverlay.tsx

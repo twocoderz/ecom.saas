@@ -18,7 +18,7 @@ import CartButton from "../ui/CartButton";
 import { useCartStore } from "../../../stores/useCartStore";
 import { ROUTE_PATHS } from "../../../config/paths";
 
-export function MainHeader() {
+export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileDrawerId = "mobile-main-menu";
   const cartCount = useCartStore((s) => s.count)();

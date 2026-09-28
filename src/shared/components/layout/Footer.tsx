@@ -52,7 +52,7 @@ const SOCIALS: Array<{ label: string; iconSrc: string }> = [
   { label: "X", iconSrc: "/socials/x.svg" },
 ];
 
-export function FooterColumns() {
+export function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 

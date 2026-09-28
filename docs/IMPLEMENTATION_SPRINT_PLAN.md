@@ -27,11 +27,11 @@ Objectif:
 Fichiers prioritaires:
 
 - src/shared/components/navigation/UtilityBar.tsx
-- src/shared/components/navigation/MainHeader.tsx
+- src/shared/components/navigation/Header.tsx
 - src/shared/components/navigation/MegaMenu.tsx
 - src/shared/components/navigation/MobileMenuDrawer.tsx
 - src/shared/components/navigation/SearchOverlay.tsx
-- src/shared/components/layout/FooterColumns.tsx
+- src/shared/components/layout/Footer.tsx
 - src/shared/components/layout/TrustStrip.tsx
 
 Livrables:
