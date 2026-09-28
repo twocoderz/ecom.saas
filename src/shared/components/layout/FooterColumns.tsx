@@ -60,12 +60,12 @@ export function FooterColumns() {
     <footer className="bg-black text-white">
       <Container>
         {/* Newsletter */}
-        <div className="flex flex-col gap-4 border-b border-white/15 py-8 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 border-b border-white/15 py-8 md:flex-row md:items-center md:justify-between pt-12 mb-8">
           <div>
-            <h3 className="text-base font-bold uppercase tracking-tight">
+            <h3 className="text-xl font-bold uppercase tracking-tight">
               Reste informé des sorties
             </h3>
-            <p className="mt-1 text-sm text-white/70">
+            <p className="mt-2 text-md text-white/70">
               Nouveautés, promos et collections en avant-première.
             </p>
           </div>
@@ -91,11 +91,11 @@ export function FooterColumns() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="ton@email.com"
-                className="min-w-0 flex-1 rounded-md border border-white/25 bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/50"
+                className="min-w-0 flex-1 border border-white/25 bg-transparent px-3 py-4 text-sm text-white placeholder:text-white/50"
               />
               <button
                 type="submit"
-                className="rounded-md bg-white px-4 py-2 text-sm font-bold text-black hover:bg-white/85"
+                className="cursor-pointer bg-white px-6 py-4 text-md font-bold text-black hover:bg-white/85"
               >
                 S'inscrire
               </button>
@@ -104,18 +104,18 @@ export function FooterColumns() {
         </div>
 
         {/* Colonnes */}
-        <div className="grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 py-8 sm:grid-cols-2 lg:grid-cols-4 mb-12">
           {LINK_GROUPS.map((group) => (
             <nav key={group.title} aria-label={`Footer — ${group.title}`}>
-              <h3 className="text-sm font-semibold uppercase tracking-wide">
+              <h3 className="text-lg font-semibold uppercase tracking-wide">
                 {group.title}
               </h3>
-              <ul className="mt-3 space-y-2">
+              <ul className="mt-3 space-y-4">
                 {group.links.map((link) => (
                   <li key={link.to + link.label}>
                     <Link
                       to={link.to}
-                      className="text-sm text-white/70 hover:text-white hover:underline"
+                      className="text-md text-white/70 hover:text-white hover:underline"
                     >
                       {link.label}
                     </Link>
@@ -128,7 +128,7 @@ export function FooterColumns() {
 
         {/* Bas façon JD : copyright + icônes sociales */}
         <div className="flex flex-col items-center gap-4 border-t border-white/15 py-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-center text-xs text-white/50 md:text-left">
+          <p className="text-center text-sm text-white/50 md:text-left">
             © {new Date().getFullYear()} ecom.saas — Template boutique démo.
             Tous droits réservés.
           </p>
