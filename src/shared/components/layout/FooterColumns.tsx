@@ -126,7 +126,7 @@ export function FooterColumns() {
           ))}
         </div>
 
-        {/* Bas façon JD : copyright + icônes sociales */}
+        {/* Bas: copyright + icônes sociales */}
         <div className="flex flex-col items-center gap-4 border-t border-white/15 py-6 md:flex-row md:items-center md:justify-between">
           <p className="text-center text-sm text-white/50 md:text-left">
             © {new Date().getFullYear()} ecom.saas — Template boutique démo.

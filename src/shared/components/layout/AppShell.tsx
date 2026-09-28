@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { FooterColumns } from "./FooterColumns";
-import { TrustStrip } from "./TrustStrip";
 import { BackToTop } from "./BackToTop";
 import { MainHeader } from "../navigation/MainHeader";
 import { UtilityBar } from "../navigation/UtilityBar";
@@ -16,7 +15,6 @@ export function AppShell({ children }: { children: ReactNode }) {
       <UtilityBar utilities={Utilities} />
       <MainHeader />
       <main>{children}</main>
-      <TrustStrip />
       <FooterColumns />
       <BackToTop />
     </div>
