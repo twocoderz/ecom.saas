@@ -110,7 +110,7 @@ export function Footer() {
               <h3 className="text-lg font-semibold uppercase tracking-wide">
                 {group.title}
               </h3>
-              <ul className="mt-3 space-y-4">
+              <ul className="mt-8 space-y-4">
                 {group.links.map((link) => (
                   <li key={link.to + link.label}>
                     <Link

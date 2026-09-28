@@ -136,7 +136,7 @@ export function HomePage() {
 
         {/* Top picks : produits explicites + cartes corrigees */}
         <Section title="Nos coups de cœur" className="mt-p18 mb-p18">
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-12">
             <ProductGrid
               products={topPicks}
               layout="rail"
