@@ -56,7 +56,7 @@ export default function DesktopSearchBar() {
         type="button"
         aria-label="Lancer la recherche"
         onClick={handleSubmit}
-        className="mr-2 flex items-center justify-center self-center rounded-full bg-black-10 p-1.5 text-black-80 transition-colors hover:bg-black hover:text-white"
+        className="mr-2 flex items-center justify-center self-center rounded-full bg-black-10 p-1.5 text-black-80 transition-colors hover:bg-black hover:text-white cursor-pointer"
       >
         <ChevronRightIcon className="h-4 w-4" />
       </button>

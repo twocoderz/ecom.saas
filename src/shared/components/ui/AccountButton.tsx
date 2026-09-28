@@ -79,7 +79,7 @@ export default function AccountButton() {
         <div
           role="menu"
           aria-label="Menu compte"
-          className="absolute right-0 top-[calc(100%+8px)] z-50 w-60 rounded-md border border-black-20 bg-white p-4 text-black-80 shadow-lg"
+          className="absolute right-0 top-[calc(100%+8px)] z-50 w-40 rounded-sm border border-black-20 bg-white p-4 text-black-80 shadow-lg"
         >
           {user ? (
             <div className="space-y-3">
@@ -133,38 +133,18 @@ export default function AccountButton() {
                 <Link
                   to={ROUTE_PATHS.auth}
                   onClick={() => setOpen(false)}
-                  className="rounded-md bg-black px-4 py-2 text-center text-sm font-semibold text-white hover:bg-black-80"
+                  className="text-sm font-semibold text-black-80"
                 >
                   Se connecter
                 </Link>
                 <Link
                   to={ROUTE_PATHS.auth}
                   onClick={() => setOpen(false)}
-                  className="rounded-md border border-black-20 px-4 py-2 text-center text-sm font-semibold hover:border-black"
+                  className="text-black-80 text-sm font-semibold"
                 >
                   Créer un compte
                 </Link>
               </div>
-              <ul className="space-y-1 border-t border-black-10 pt-2 text-sm">
-                <li>
-                  <Link
-                    to={ROUTE_PATHS.orderTracking}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-sm px-2 py-1.5 hover:bg-black-5"
-                  >
-                    Suivre ma commande
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to={ROUTE_PATHS.help}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-sm px-2 py-1.5 hover:bg-black-5"
-                  >
-                    Aide
-                  </Link>
-                </li>
-              </ul>
             </div>
           )}
         </div>
