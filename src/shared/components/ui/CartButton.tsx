@@ -3,18 +3,15 @@ import { ShoppingCartIcon } from "../../icons";
 import { useCartStore } from "../../../stores/useCartStore";
 import { ROUTE_PATHS } from "../../../config/paths";
 
-/**
- * Segment panier du bloc header unifié (fond et séparateurs gérés par le parent).
- */
 export default function CartButton() {
   const count = useCartStore((s) => s.count)();
   return (
     <Link
       to={ROUTE_PATHS.cart}
       aria-label={`Voir le panier, ${count} articles`}
-      className="flex cursor-pointer items-center gap-1 px-4 text-black-80 transition-colors hover:bg-black-5"
+      className="flex cursor-pointer items-center gap-2 px-4 text-black-80 transition-colors hover:bg-black-5"
     >
-      <ShoppingCartIcon className="h-4 w-4 text-black-80" />
+      <ShoppingCartIcon className="h-6 w-6 text-black-80" />
       <span className="whitespace-nowrap text-sm font-normal">Panier</span>
       {count > 0 && (
         <span

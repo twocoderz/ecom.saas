@@ -79,7 +79,7 @@ export default function AccountButton() {
         <div
           role="menu"
           aria-label="Menu compte"
-          className="absolute left-0 top-[calc(100%+4px)] z-50 w-58 rounded-xs border border-black-20 bg-white p-4 text-black-80 shadow-lg"
+          className="absolute left-0 top-[calc(100%+4px)] z-50 w-60 rounded-xs border border-black-20 bg-white p-4 text-black-80 shadow-lg"
         >
           {user ? (
             <div className="space-y-3">
