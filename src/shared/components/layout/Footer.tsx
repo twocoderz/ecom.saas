@@ -95,7 +95,7 @@ export function Footer() {
               />
               <button
                 type="submit"
-                className="cursor-pointer bg-white px-6 py-4 text-md font-bold text-black hover:bg-white/85"
+                className="cursor-pointer rounded-xs bg-white px-6 py-4 text-md font-bold text-black hover:bg-white/85"
               >
                 S'inscrire
               </button>
