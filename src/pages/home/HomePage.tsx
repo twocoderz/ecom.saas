@@ -26,9 +26,6 @@ const GENDER_TILE_STYLES: Record<string, string> = {
   kids: "from-black-40 to-black-60",
 };
 
-/**
- * Page d'accueil : hero plein écran puis rails JD (genres, collections, marques, outfits, top picks).
- */
 export function HomePage() {
   const shortcutCategories = getShortcutCategories();
   const trendingCollectionCards = getTrendingCollectionCards();
@@ -69,7 +66,7 @@ export function HomePage() {
         </Section>
 
         {/* Tuiles categories */}
-        <div className="-mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0">
+        <div className="-mx-4 overflow-x-auto px-4 mt-8 lg:mt-12 sm:mx-0 sm:px-0">
           <div className="flex min-w-max items-center gap-4 sm:flex-wrap sm:justify-center">
             {shortcutCategories.map((category) => (
               <CategoryTile
