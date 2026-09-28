@@ -20,7 +20,7 @@ export function SearchOverlay({ onNavigate }: { onNavigate: () => void }) {
   const trendingProducts = getDefaultPlpCards(6);
 
   return (
-    <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-50 grid gap-6 rounded-xs border border-black-20 bg-white p-4 text-black-80 shadow-lg sm:grid-cols-2">
+    <div className="absolute left-0 right-0 top-[calc(100%+4px)] z-50 grid gap-8 rounded-xs border border-black-20 bg-white p-4 text-black-80 shadow-lg sm:grid-cols-2">
       <div>
         <p className="text-sm font-bold">Recherches tendances</p>
         <ul className="mt-4 flex flex-wrap gap-2">
@@ -43,7 +43,7 @@ export function SearchOverlay({ onNavigate }: { onNavigate: () => void }) {
 
       <div>
         <p className="text-sm font-bold">Produits tendances</p>
-        <ul className="mt-2 space-y-2">
+        <ul className="mt-4 space-y-4">
           {trendingProducts.map((product) => (
             <li key={product.id}>
               <Link
