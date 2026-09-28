@@ -17,9 +17,15 @@ export default function DesktopSearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative flex min-w-0 flex-1 items-stretch">
+    <div
+      ref={containerRef}
+      className="relative flex min-w-0 flex-1 items-stretch"
+    >
       <div className="flex min-w-0 flex-1 items-center gap-2 py-3 pl-4">
-        <SearchIcon className="h-4 w-4 shrink-0 text-black-80" aria-hidden="true" />
+        <SearchIcon
+          className="h-4 w-4 shrink-0 text-black-80"
+          aria-hidden="true"
+        />
         <label htmlFor="header-search" className="sr-only">
           Rechercher des produits
         </label>

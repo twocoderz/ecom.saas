@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import Logo from "../branding/Logo";
 import { Container } from "../layout/Container";
@@ -17,28 +18,25 @@ import CartButton from "../ui/CartButton";
 import { useCartStore } from "../../../stores/useCartStore";
 import { ROUTE_PATHS } from "../../../config/paths";
 
-/**
- * En-tête principal façon JD : bloc unifié recherche + compte + panier,
- * navigation catégories, version mobile compacte. 100% français, sans magasin.
- */
 export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileDrawerId = "mobile-main-menu";
   const cartCount = useCartStore((s) => s.count)();
+  const burgerButtonRef = useRef<HTMLButtonElement>(null);
 
+  // Plein écran JD : verrouille le scroll du body + rend le focus au burger.
   useEffect(() => {
     if (!isMobileMenuOpen) {
       return;
     }
 
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsMobileMenuOpen(false);
-      }
+    const previousOverflow = document.body.style.overflow;
+    const burgerButton = burgerButtonRef.current;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      burgerButton?.focus();
     };
-
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
   }, [isMobileMenuOpen]);
 
   return (
@@ -49,9 +47,12 @@ export function MainHeader() {
           {/* Ligne 1 : menu + logo + compte + panier */}
           <div className="flex items-center justify-between py-p2">
             <button
+              ref={burgerButtonRef}
               type="button"
               aria-label={
-                isMobileMenuOpen ? "Fermer le menu mobile" : "Ouvrir le menu mobile"
+                isMobileMenuOpen
+                  ? "Fermer le menu mobile"
+                  : "Ouvrir le menu mobile"
               }
               aria-controls={mobileDrawerId}
               aria-expanded={isMobileMenuOpen}
@@ -91,28 +92,24 @@ export function MainHeader() {
             </div>
           </div>
 
-          {/* Ligne 2 : recherche mobile pleine largeur */}
-          <div className="mt-p2 pb-p2">
-            <MobileSearchBar />
-          </div>
+          {/* Ligne 2 : recherche mobile pleine largeur, masquée quand le menu est ouvert */}
+          {!isMobileMenuOpen && (
+            <div className="mt-p2 pb-p2">
+              <MobileSearchBar />
+            </div>
+          )}
 
-          {/* Drawer mobile en overlay */}
-          {isMobileMenuOpen && (
-            <>
-              <button
-                type="button"
-                aria-label="Fermer le menu mobile"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="fixed inset-0 z-30 bg-black/40"
-              />
-              <div className="absolute left-0 right-0 top-full z-40 pt-p2">
+          {/* Drawer mobile plein écran façon JD */}
+          {isMobileMenuOpen &&
+            createPortal(
+              <div className="fixed inset-0 z-50 lg:hidden">
                 <MobileMenuDrawer
                   id={mobileDrawerId}
                   onClose={() => setIsMobileMenuOpen(false)}
                 />
-              </div>
-            </>
-          )}
+              </div>,
+              document.body,
+            )}
         </div>
 
         {/* Version desktop : un seul bloc segmenté */}
