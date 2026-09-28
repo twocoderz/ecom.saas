@@ -1,6 +1,2 @@
--- corriger le hover de compte
--- checker en meme temps le responsive
--- revoir la taille des nav items
--- revoir l'ouverture du menu mobile (faire comme pour jd)
--- corriger le layout 'nos coups de coeur' images trop grands
--- recoder le footer comme celle de jd
+-- revoir footer et finir
+-- commencer le codage des details
