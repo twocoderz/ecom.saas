@@ -13,52 +13,50 @@ export type FilterSectionId =
   | "price";
 
 export const plpPageCopy = {
-  breadcrumbRoot: "Home",
-  breadcrumbCurrent: "New Arrivals",
-  heading: "Men's New Arrivals",
-  drawerTitle: "Filter & Sort",
+  breadcrumbRoot: "Accueil",
+  breadcrumbCurrent: "Nouveautés",
+  heading: "Nouveautés homme",
+  drawerTitle: "Filtres & tri",
   drawerSubtitle: "Options de filtre",
-  clearAll: "Clear all",
-  close: "Close",
-  showFilters: "Show Filters",
-  sortBy: "Sort By",
-  shopMyStore: "Shop My Store:",
-  chooseMyStore: "Choose My Store",
-  viewItems: "View Items",
+  clearAll: "Tout effacer",
+  close: "Fermer",
+  showFilters: "Afficher les filtres",
+  sortBy: "Trier par",
+  viewItems: "Voir les articles",
 } as const;
 
 export const priceRangeOptions: Array<{ id: PriceRange; label: string }> = [
   { id: "all", label: "Tous les prix" },
-  { id: "under-50", label: "Moins de $50" },
-  { id: "50-200", label: "$50 a $200" },
-  { id: "200-500", label: "$200 a $500" },
-  { id: "500-plus", label: "Plus de $500" },
+  { id: "under-50", label: "Moins de 30 000 F" },
+  { id: "50-200", label: "30 000 à 120 000 F" },
+  { id: "200-500", label: "120 000 à 300 000 F" },
+  { id: "500-plus", label: "Plus de 300 000 F" },
 ];
 
 export const priceLabelMap: Record<PriceRange, string> = {
   all: "Tous les prix",
-  "under-50": "Moins de $50",
-  "50-200": "$50 a $200",
-  "200-500": "$200 a $500",
-  "500-plus": "Plus de $500",
+  "under-50": "Moins de 30 000 F",
+  "50-200": "30 000 à 120 000 F",
+  "200-500": "120 000 à 300 000 F",
+  "500-plus": "Plus de 300 000 F",
 };
 
 export const sortOptions: Array<{ value: SortOption; label: string }> = [
-  { value: "relevance", label: "Relevance" },
-  { value: "newest", label: "Newest" },
-  { value: "top-rated", label: "Top Rated" },
-  { value: "price-low-high", label: "Price: Low to High" },
-  { value: "price-high-low", label: "Price: High to Low" },
+  { value: "relevance", label: "Pertinence" },
+  { value: "newest", label: "Nouveautés" },
+  { value: "top-rated", label: "Mieux notés" },
+  { value: "price-low-high", label: "Prix croissant" },
+  { value: "price-high-low", label: "Prix décroissant" },
 ];
 
 export const filterSectionLabels: Record<FilterSectionId, string> = {
-  department: "Department",
-  brand: "Brand",
-  category: "Category",
-  activity: "Activity",
+  department: "Genre",
+  brand: "Marque",
+  category: "Catégorie",
+  activity: "Activité",
   collection: "Collection",
-  color: "Color",
-  price: "Price",
+  color: "Couleur",
+  price: "Prix",
 };
 
 export const defaultOpenFilterSections: Record<FilterSectionId, boolean> = {

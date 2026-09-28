@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { AddIcon, ChevronRightIcon } from "../../icons";
 import type {
   HomeTrendingOutfitCard,
@@ -36,7 +35,6 @@ function alignForSlot(slot: TrendingOutfitSlot): "left" | "right" {
  * Le conteneur est en overflow-visible pour ne pas clipper les popups.
  */
 export function TrendingOutfit({ card, activeProductId, onActiveChange }: TrendingOutfitProps) {
-  const { t } = useTranslation();
   if (!card) {
     return (
       <article className="rounded-xl border border-black-10 p-4 text-sm text-black-60">
@@ -110,7 +108,7 @@ export function TrendingOutfit({ card, activeProductId, onActiveChange }: Trendi
           to={card.to}
           className="inline-flex min-w-50 items-center justify-center rounded-full border border-black-20 bg-white px-6 py-3 text-xs font-semibold text-black transition-colors hover:border-black-90"
         >
-          {t("common.viewDetails")}
+          Voir détails
         </Link>
       </div>
     </article>

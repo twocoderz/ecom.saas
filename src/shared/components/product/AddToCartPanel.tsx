@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import type { ProductVariant } from "../../../types";
 import { useCartStore } from "../../../stores/useCartStore";
 import { QuantityStepper } from "../ui/QuantityStepper";
@@ -33,7 +32,6 @@ export function AddToCartPanel({
   salePriceUsd,
   variants,
 }: AddToCartPanelProps) {
-  const { t } = useTranslation();
   const addLine = useCartStore((s) => s.addLine);
 
   const colors = useMemo(
@@ -120,7 +118,7 @@ export function AddToCartPanel({
               aria-expanded={showGuide}
               className="text-xs font-semibold underline underline-offset-2 hover:text-black"
             >
-              {t("common.sizeGuide")}
+              Guide des tailles
             </button>
           </div>
           <div className="mt-1 flex flex-wrap gap-2">
@@ -164,13 +162,13 @@ export function AddToCartPanel({
 
         <p className="text-sm text-black-70" role="status">
           {inStock
-            ? t("common.inStock", { count: selectedVariant?.stock ?? 0 })
-            : t("common.outOfStock")}
+            ? `${selectedVariant?.stock ?? 0} unités en stock`
+            : "Rupture de stock pour cette variante"}
         </p>
 
         <div className="flex items-center gap-3">
           <QuantityStepper qty={qty} onChange={(next) => setQty(Math.max(1, next))} />
-          <span className="text-xs text-black-60">{t("common.quantity")}</span>
+          <span className="text-xs text-black-60">Quantité</span>
         </div>
 
         <button
@@ -179,7 +177,7 @@ export function AddToCartPanel({
           onClick={handleAdd}
           className="w-full rounded-sm bg-black px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-black-80 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {justAdded ? t("common.addedToBag") : t("common.addToCart")}
+          {justAdded ? "Ajouté au panier ✓" : "Ajouter au panier"}
         </button>
       </div>
     </section>

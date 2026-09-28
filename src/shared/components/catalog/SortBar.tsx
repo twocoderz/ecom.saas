@@ -10,13 +10,11 @@ type SortBarProps = {
   sortBy?: SortOption;
   onSortChange?: (value: SortOption) => void;
   onOpenFilters?: () => void;
-  storeOnly?: boolean;
-  onToggleStoreOnly?: (checked: boolean) => void;
 };
 
 /**
  * Barre de controles PLP.
- * Repere JD : Shop My Store + Show Filters + Sort By.
+ * Repere JD : Show Filters + Sort By.
  */
 export function SortBar({
   resultCount = 0,
@@ -24,12 +22,9 @@ export function SortBar({
   sortBy = "relevance",
   onSortChange,
   onOpenFilters,
-  storeOnly = false,
-  onToggleStoreOnly,
 }: SortBarProps) {
   const [isSortOpen, setIsSortOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
-  const canToggleStore = typeof onToggleStoreOnly === "function";
   const hasActiveFilters = activeFilterCount > 0;
 
   useEffect(() => {
@@ -70,27 +65,7 @@ export function SortBar({
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-3 lg:grid-cols-[1.5fr_1fr_1fr]">
-        <div className="flex items-center rounded-sm border border-black-20 px-6 py-3 cursor-pointer hover:border-black-50">
-          <label className="flex cursor-pointer items-center gap-3">
-            <input
-              type="checkbox"
-              checked={storeOnly}
-              disabled={!canToggleStore}
-              onChange={(event) => onToggleStoreOnly?.(event.target.checked)}
-              className="h-3 w-3 rounded border-black-40 text-black-60"
-            />
-            <span>
-              <span className="font-semibold text-sm">
-                {plpPageCopy.shopMyStore}
-              </span>{" "}
-              <span className="underline text-xs underline-offset-2">
-                {plpPageCopy.chooseMyStore}
-              </span>
-            </span>
-          </label>
-        </div>
-
+      <div className="grid gap-3 lg:grid-cols-[1fr_1fr]">
         <button
           type="button"
           onClick={onOpenFilters}

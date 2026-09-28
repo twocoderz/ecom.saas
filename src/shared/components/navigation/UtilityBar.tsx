@@ -34,7 +34,7 @@ export function UtilityBar(props: UtilityBarProps) {
           <button
             type="button"
             onClick={handlePrev}
-            aria-label="previous message"
+            aria-label="message précédent"
             className="cursor-pointer group"
           >
             <ChevronLeftIcon className="text-black-80 group-hover:text-black transition-colors" />
@@ -57,7 +57,7 @@ export function UtilityBar(props: UtilityBarProps) {
           <button
             type="button"
             onClick={handleNext}
-            aria-label="next message"
+            aria-label="message suivant"
             className="cursor-pointer group"
           >
             <ChevronRightIcon className="text-black-80 group-hover:text-black transition-colors" />

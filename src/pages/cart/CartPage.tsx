@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
 import { CartSummary } from '../../shared/components/checkout/CartSummary'
 import { Container } from '../../shared/components/layout/Container'
 import { PageHeader } from '../../shared/components/layout/PageHeader'
@@ -13,7 +12,6 @@ import { CartPageSpecifics } from './components/CartPageSpecifics'
  * Page panier : lignes reelles depuis le store + resume promo.
  */
 export function CartPage() {
-  const { t } = useTranslation()
   const lines = useCartStore((s) => s.lines)
   const setQty = useCartStore((s) => s.setQty)
   const removeLine = useCartStore((s) => s.removeLine)
@@ -21,12 +19,12 @@ export function CartPage() {
   return (
     <Container>
       <div className="space-y-6 py-8">
-        <PageHeader title={t('cart.title')} subtitle={t('cart.subtitle')} />
+        <PageHeader title="Panier" subtitle="Vérification des articles avant checkout." />
         {lines.length === 0 ? (
-          <EmptyState message={t('cart.empty')} />
+          <EmptyState message="Votre panier est vide." />
         ) : (
           <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
-            <section aria-label={t('cart.title')} className="divide-y divide-black-10 rounded-xl border border-black-10 bg-white">
+            <section aria-label="Panier" className="divide-y divide-black-10 rounded-xl border border-black-10 bg-white">
               {lines.map((line) => (
                 <div key={`${line.productId}-${line.variantId ?? 'base'}`} className="flex gap-4 p-4">
                   <img src={line.image} alt={line.name} className="h-20 w-20 shrink-0 rounded-md bg-black-5 object-contain" />

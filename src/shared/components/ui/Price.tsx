@@ -1,8 +1,7 @@
 import { formatPrice } from "../../../lib/currency";
-import { usePrefsStore } from "../../../stores/usePrefsStore";
 
 /**
- * Seul composant autorise a afficher un prix catalogue (USD -> devise).
+ * Affiche un prix catalogue en francs CFA (devise unique du site).
  */
 export function Price({
   amountUsd,
@@ -11,6 +10,5 @@ export function Price({
   amountUsd: number;
   className?: string;
 }) {
-  const currency = usePrefsStore((s) => s.currency);
-  return <span className={className}>{formatPrice(amountUsd, currency)}</span>;
+  return <span className={className}>{formatPrice(amountUsd, "XOF")}</span>;
 }

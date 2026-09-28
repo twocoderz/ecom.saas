@@ -17,8 +17,6 @@ import { applySeoToDocument } from "../../lib/seo";
 export function SearchResultsPage() {
   const { isFilterOpen, openFilters, closeFilters } = useFilterDrawer();
   const {
-    storeOnly,
-    setStoreOnly,
     sortBy,
     setSortBy,
     departments,
@@ -76,8 +74,6 @@ export function SearchResultsPage() {
           sortBy={sortBy}
           onSortChange={setSortBy}
           onOpenFilters={openFilters}
-          storeOnly={storeOnly}
-          onToggleStoreOnly={setStoreOnly}
         />
 
         <FilterPillsBar

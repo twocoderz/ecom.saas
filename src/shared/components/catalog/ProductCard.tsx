@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { HeartIcon, ShoppingCartIcon } from "../../icons";
 import {
   buildPdpPath,
@@ -17,7 +16,6 @@ import { useWishlistStore } from "../../../stores/useWishlistStore";
  * Style JD : fond blanc, bord fin, prix rouge si solde, note avis, badge promo.
  */
 export function ProductCard({ product }: { product: PlpProductCard }) {
-  const { t } = useTranslation();
   const addLine = useCartStore((s) => s.addLine);
   const toggleWishlist = useWishlistStore((s) => s.toggle);
   const isWished = useWishlistStore((s) => s.ids.includes(product.id));
@@ -59,7 +57,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
         <button
           type="button"
           aria-label={
-            isWished ? t("common.wishlistRemove") : t("common.wishlistAdd")
+            isWished ? "Retirer des favoris" : "Ajouter aux favoris"
           }
           aria-pressed={isWished}
           onClick={() => toggleWishlist(product.id)}
@@ -74,7 +72,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
 
         <button
           type="button"
-          aria-label={`${t("common.addToCart")} : ${product.name}`}
+          aria-label={`Ajouter ${product.name} au panier`}
           onClick={() =>
             addLine({
               productId: product.id,
@@ -93,7 +91,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
       <div className="flex flex-1 flex-col items-start px-4 py-4">
         <div className="min-h-16">
           <p className="text-xs text-black-60">
-            {t("common.colorCount", { count: product.color_count })}
+            {product.color_count} couleur{product.color_count > 1 ? "s" : ""}
           </p>
           <Link to={pdpPath} className="block">
             <h3 className="line-clamp-2 text-md font-bold leading-tight text-black-80">

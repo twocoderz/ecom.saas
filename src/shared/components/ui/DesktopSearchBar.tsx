@@ -1,8 +1,11 @@
 import { useRef, useState } from "react";
 import { useSearchQueryNavigation } from "../../hooks/useSearchQueryNavigation";
-import { SearchIcon } from "../../icons";
+import { ChevronRightIcon, SearchIcon } from "../../icons";
 import { SearchOverlay } from "../navigation/SearchOverlay";
 
+/**
+ * Segment recherche du bloc header unifié : loupe à gauche, flèche submit à droite.
+ */
 export default function DesktopSearchBar() {
   const { query, setQuery, submitSearch } = useSearchQueryNavigation();
   const [isFocused, setIsFocused] = useState(false);
@@ -14,21 +17,17 @@ export default function DesktopSearchBar() {
   };
 
   return (
-    <div ref={containerRef} className="relative">
-      <div className="bg-white px-4 py-3 rounded-l-sm flex items-center gap-p2 w-md">
-        <button
-          type="button"
-          aria-label="Lancer la recherche"
-          onClick={handleSubmit}
-          className="bg-transparent border-none p-0"
-        >
-          <SearchIcon className="text-black-80 w-4 h-4" />
-        </button>
+    <div ref={containerRef} className="relative flex min-w-0 flex-1 items-stretch">
+      <div className="flex min-w-0 flex-1 items-center gap-2 py-3 pl-4">
+        <SearchIcon className="h-4 w-4 shrink-0 text-black-80" aria-hidden="true" />
+        <label htmlFor="header-search" className="sr-only">
+          Rechercher des produits
+        </label>
         <input
+          id="header-search"
           type="text"
-          placeholder="Search for products..."
-          aria-label="Rechercher des produits"
-          className="border-none outline-none text-sm text-black-80 w-full"
+          placeholder="Rechercher Nike Dunk, adidas..."
+          className="w-full min-w-0 border-none bg-transparent text-sm text-black-80 outline-none placeholder:text-black-40"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           onFocus={() => setIsFocused(true)}
@@ -47,6 +46,14 @@ export default function DesktopSearchBar() {
           }}
         />
       </div>
+      <button
+        type="button"
+        aria-label="Lancer la recherche"
+        onClick={handleSubmit}
+        className="mr-2 flex items-center justify-center self-center rounded-full bg-black-10 p-1.5 text-black-80 transition-colors hover:bg-black hover:text-white"
+      >
+        <ChevronRightIcon className="h-4 w-4" />
+      </button>
       {isFocused && <SearchOverlay onNavigate={() => setIsFocused(false)} />}
     </div>
   );

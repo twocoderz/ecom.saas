@@ -51,6 +51,6 @@ export const componentBlueprint: ComponentGroup[] = [
     items: ["ProductGallery", "ProductInfoPanel", "AddToCartPanel"],
   },
   { group: "checkout", items: ["CartSummary", "CheckoutStepper"] },
-  { group: "ui", items: ["Button", "Input", "Badge", "Price", "Rail", "Popover", "EmptyState", "QuantityStepper", "PrefsSwitcher", "RatingStars"] },
+  { group: "ui", items: ["Button", "Input", "Badge", "Price", "Rail", "Popover", "EmptyState", "QuantityStepper", "RatingStars"] },
   { group: "admin", items: ["AdminShell", "StatCard", "DataTable"] },
 ];

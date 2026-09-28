@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useFilters } from "../../hooks/useFilters";
 import { useProducts } from "../../hooks/useProducts";
 import type { PlpProductCard, PlpSortOption, PriceRange } from "../../types";
@@ -19,8 +19,6 @@ export function useCatalogFilters({
 }: {
   slug?: string;
 } = {}) {
-  const [storeOnly, setStoreOnly] = useState(false);
-
   const {
     filters,
     toggleArrayFilter,
@@ -93,14 +91,7 @@ export function useCatalogFilters({
   const sortBy = filters.sort as SortOption;
   const searchQuery = filters.q;
 
-  const filteredProducts: PlpProductCard[] = useMemo(() => {
-    if (!storeOnly) {
-      return listingResponse.items;
-    }
-
-    // Simule un filtrage disponibilite magasin, sans modifier la structure API.
-    return listingResponse.items.filter((_product, index) => index % 2 === 0);
-  }, [listingResponse.items, storeOnly]);
+  const filteredProducts: PlpProductCard[] = listingResponse.items;
 
   const toggleDepartment = (department: string) => {
     toggleArrayFilter("gender", department);
@@ -265,8 +256,6 @@ export function useCatalogFilters({
   );
 
   return {
-    storeOnly,
-    setStoreOnly,
     sortBy,
     setSortBy,
     departments,

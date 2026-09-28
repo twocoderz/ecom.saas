@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { promotions } from "../../../data/mock";
+import { formatPrice } from "../../../lib/currency";
 import { ROUTE_PATHS } from "../../../config/paths";
 
 /**
@@ -20,8 +21,8 @@ export function PromoStrip() {
 
   const value =
     promo.discount_type === "percentage"
-      ? `-${promo.discount_value}%`
-      : `-${promo.discount_value} USD`;
+      ? `-${promo.discount_value} %`
+      : `-${formatPrice(promo.discount_value, "XOF")}`;
 
   return (
     <div className="rounded-lg bg-black p-4 text-center text-white">

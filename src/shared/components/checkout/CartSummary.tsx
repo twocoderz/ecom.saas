@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { applyPromo } from "../../../lib/currency";
 import { findPromoByCode } from "../../../data/api/shopApi";
@@ -12,7 +11,6 @@ import { ROUTE_PATHS } from "../../../config/paths";
  * Checkout simule : pas de PSP, CTA vers /checkout/information.
  */
 export function CartSummary() {
-  const { t } = useTranslation();
   const lines = useCartStore((s) => s.lines);
   const promoCode = useCartStore((s) => s.promoCode);
   const setPromoCode = useCartStore((s) => s.setPromoCode);
@@ -28,33 +26,33 @@ export function CartSummary() {
   const apply = () => {
     const promo = findPromoByCode(draft);
     if (!promo || promo.code.toUpperCase() !== draft.trim().toUpperCase()) {
-      setMessage(t("common.promoUnknown"));
+      setMessage("Code promo inconnu.");
       return;
     }
     setPromoCode(draft);
-    setMessage(t("common.promoApplied"));
+    setMessage("Code promo appliqué.");
   };
 
   return (
     <aside className="h-fit rounded-xl border border-black-10 bg-white p-4">
-      <h3 className="text-base font-semibold">{t("cart.total")}</h3>
+      <h3 className="text-base font-semibold">Total</h3>
       <dl className="mt-3 space-y-2 text-sm">
         <div className="flex justify-between">
-          <dt className="text-black-60">{t("cart.subtotal")} ({lines.length})</dt>
+          <dt className="text-black-60">Sous-total ({lines.length})</dt>
           <dd className="font-semibold">
             <Price amountUsd={subtotal} />
           </dd>
         </div>
         {result.applied && (
           <div className="flex justify-between text-green-700">
-            <dt>{t("cart.discount")} ({result.code})</dt>
+            <dt>Remise ({result.code})</dt>
             <dd className="font-semibold">
               −<Price amountUsd={result.discountAmountUsd} />
             </dd>
           </div>
         )}
         <div className="flex justify-between border-t border-black-10 pt-2 text-base font-bold">
-          <dt>{t("cart.total")}</dt>
+          <dt>Total</dt>
           <dd>
             <Price amountUsd={result.totalAfterDiscountUsd} />
           </dd>
@@ -69,7 +67,7 @@ export function CartSummary() {
           id="cart-promo"
           value={draft}
           onChange={(e) => setDraft(e.target.value)}
-          placeholder={t("cart.promoPlaceholder")}
+          placeholder="Code promo (ex: BUNDLE10)"
           className="min-w-0 flex-1 rounded-md border border-black-20 px-3 py-2 text-sm"
         />
         <button
@@ -77,7 +75,7 @@ export function CartSummary() {
           onClick={apply}
           className="rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-black-80"
         >
-          {t("cart.apply")}
+          Appliquer
         </button>
       </div>
       {message && (
@@ -90,7 +88,7 @@ export function CartSummary() {
         to={ROUTE_PATHS.checkoutInfo}
         className="mt-4 block rounded-md bg-black px-4 py-3 text-center text-sm font-semibold text-white hover:bg-black-80"
       >
-        {t("cart.checkout")}
+        Passer au checkout
       </Link>
     </aside>
   );

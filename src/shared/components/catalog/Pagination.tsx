@@ -27,7 +27,7 @@ export function Pagination({
         disabled={!hasPrevious}
         className="rounded-md border border-black-20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50 hover:border-black-80"
       >
-        Previous
+        Précédent
       </button>
       <p className="text-sm text-black-70" aria-live="polite">
         Page {page} / {totalPages}
@@ -38,7 +38,7 @@ export function Pagination({
         disabled={!hasNext}
         className="rounded-md border border-black-20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50 hover:border-black-80"
       >
-        Next
+        Suivant
       </button>
     </nav>
   );

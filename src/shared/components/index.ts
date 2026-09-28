@@ -10,7 +10,6 @@ export { Price } from "./ui/Price";
 export { QuantityStepper } from "./ui/QuantityStepper";
 export { Rail } from "./ui/Rail";
 export { RatingStars } from "./ui/RatingStars";
-export { PrefsSwitcher } from "./ui/PrefsSwitcher";
 export { AdminShell } from "./admin/AdminShell";
 export { BackToTop } from "./layout/BackToTop";
 export { CategoryTile } from "./merchandising/CategoryTile";

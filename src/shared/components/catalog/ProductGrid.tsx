@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { ProductCard } from "./ProductCard";
 import { Rail } from "../ui/Rail";
 import { EmptyState } from "../ui/EmptyState";
@@ -20,11 +19,10 @@ export function ProductGrid({
   layout = "grid",
   showNavButtons = false,
 }: ProductGridProps) {
-  const { t } = useTranslation();
   const visibleProducts = products ?? getDefaultPlpCards(12);
 
   if (visibleProducts.length === 0) {
-    return <EmptyState message={t("common.emptyProducts")} />;
+    return <EmptyState message="Aucun produit ne correspond à cette sélection." />;
   }
 
   if (layout === "rail") {
@@ -40,7 +38,7 @@ export function ProductGrid({
     // Les fleches JD sont toujours rendues via Rail ; showNavButtons garde la compatibilite.
     void showNavButtons;
     return (
-      <Rail itemSelector="[data-product-rail-item]" ariaLabel={t("common.topPicks")}>
+      <Rail itemSelector="[data-product-rail-item]" ariaLabel="Nos coups de cœur">
         {content}
       </Rail>
     );

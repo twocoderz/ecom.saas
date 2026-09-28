@@ -41,8 +41,6 @@ export function CategoryPage() {
 
   const { isFilterOpen, openFilters, closeFilters } = useFilterDrawer();
   const {
-    storeOnly,
-    setStoreOnly,
     sortBy,
     setSortBy,
     departments,
@@ -110,8 +108,6 @@ export function CategoryPage() {
           sortBy={sortBy}
           onSortChange={setSortBy}
           onOpenFilters={openFilters}
-          storeOnly={storeOnly}
-          onToggleStoreOnly={setStoreOnly}
         />
 
         <FilterPillsBar

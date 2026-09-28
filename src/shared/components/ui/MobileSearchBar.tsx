@@ -20,7 +20,7 @@ export default function MobileSearchBar() {
       </button>
       <input
         type="text"
-        placeholder="Search for products..."
+        placeholder="Rechercher des produits..."
         className="border-none outline-none text-sm text-black-80"
         value={query}
         onChange={(event) => setQuery(event.target.value)}

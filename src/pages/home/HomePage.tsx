@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { CategoryTile } from "../../shared/components/merchandising/CategoryTile";
 import { buildPlpPath } from "../../lib/slug";
@@ -31,7 +30,6 @@ const GENDER_TILE_STYLES: Record<string, string> = {
  * Page d'accueil : hero plein écran puis rails JD (genres, collections, marques, outfits, top picks).
  */
 export function HomePage() {
-  const { t } = useTranslation();
   const shortcutCategories = getShortcutCategories();
   const trendingCollectionCards = getTrendingCollectionCards();
   const brandCards = getBrandCards();
@@ -63,7 +61,7 @@ export function HomePage() {
                     Shop {gender.name}
                   </span>
                   <span className="mt-1 text-xs font-semibold underline underline-offset-2">
-                    {t("common.viewDetails")}
+                    Voir détails
                   </span>
                 </Link>
               ))}
@@ -119,10 +117,10 @@ export function HomePage() {
         </Section>
 
         {/* Outfits : un seul popup ouvert a la fois via Rail centralise */}
-        <Section title={t("common.trendingOutfits")} className="mt-p18">
+        <Section title="Top Tenues Tendances" className="mt-p18">
           <Rail
             itemSelector="[data-outfit-card]"
-            ariaLabel={t("common.trendingOutfits")}
+            ariaLabel="Top tenues tendances"
           >
             {trendingOutfitCards.map((card) => (
               <div
@@ -141,7 +139,7 @@ export function HomePage() {
         </Section>
 
         {/* Top picks : produits explicites + cartes corrigees */}
-        <Section title={t("common.topPicks")} className="mt-p18">
+        <Section title="Nos coups de cœur" className="mt-p18">
           <ProductGrid products={topPicks} layout="rail" showNavButtons />
         </Section>
 

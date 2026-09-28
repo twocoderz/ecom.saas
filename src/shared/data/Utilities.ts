@@ -7,17 +7,17 @@ export interface Utility {
 export const Utilities: Utility[] = [
   {
     href: "#",
-    pText: "Get a $10 reward when you join STATUS.",
-    aText: "Join for free or Sign In",
+    pText: "10 000 F offerts dès 50 000 F d'achat avec le code BIENVENUE.",
+    aText: "J'en profite",
   },
   {
     href: "#",
-    pText: "The best way to shop, redeem, and get access.",
-    aText: "Get the App",
+    pText: "Livraison rapide sur Lomé et partout au Togo.",
+    aText: "Voir les infos livraison",
   },
   {
     href: "#",
-    pText: "Over 213 Ecom stores now open",
-    aText: "Shop Your Store",
+    pText: "Paiement à la livraison et Mobile Money acceptés.",
+    aText: "Commander sereinement",
   },
 ];

@@ -32,27 +32,27 @@ export type NavItem = {
 export const navMenuItems: NavItem[] = [
   {
     id: "new-arrivals",
-    label: "New Arrivals",
+    label: "Nouveautés",
     href: "/collection/new-arrivals",
     sections: [
       {
         id: "new-arrivals-gender",
-        title: "SHOP BY GENDER",
+        title: "ACHETER PAR GENRE",
         links: [
-          { id: "new-men", label: "Men", href: "/c/men/all" },
-          { id: "new-women", label: "Women", href: "/c/women/all" },
-          { id: "new-boys", label: "Boys", href: "/c/kids/boys" },
-          { id: "new-girls", label: "Girls", href: "/c/kids/girls" },
+          { id: "new-men", label: "Homme", href: "/c/men/all" },
+          { id: "new-women", label: "Femme", href: "/c/women/all" },
+          { id: "new-boys", label: "Garçon", href: "/c/kids/boys" },
+          { id: "new-girls", label: "Fille", href: "/c/kids/girls" },
           {
             id: "new-all",
-            label: "All New Arrivals",
+            label: "Toutes les nouveautés",
             href: "/collection/new-arrivals",
           },
         ],
       },
       {
         id: "new-arrivals-brands",
-        title: "NEW FROM BRANDS",
+        title: "NOUVEAUTÉS PAR MARQUE",
         links: [
           { id: "new-jordan", label: "Jordan", href: "/brand/jordan" },
           { id: "new-nike", label: "Nike", href: "/brand/nike" },
@@ -70,21 +70,21 @@ export const navMenuItems: NavItem[] = [
       },
       {
         id: "new-arrivals-most-wanted",
-        title: "MOST WANTED",
+        title: "LES PLUS DEMANDÉS",
         links: [
           {
             id: "only-at-jd",
-            label: "Only at JD",
+            label: "Exclusivités",
             href: "/collection/only-at-jd",
           },
           {
             id: "soccer-styles",
-            label: "Soccer Styles",
+            label: "Styles football",
             href: "/collection/soccer-styles",
           },
           {
             id: "recent-releases-link",
-            label: "Recent Releases",
+            label: "Sorties récentes",
             href: "/collection/recent-releases",
           },
           {
@@ -94,7 +94,7 @@ export const navMenuItems: NavItem[] = [
           },
           {
             id: "jordan-retros",
-            label: "Jordan Retros",
+            label: "Jordan Rétro",
             href: "/collection/jordan-retros",
           },
           {
@@ -104,7 +104,7 @@ export const navMenuItems: NavItem[] = [
           },
           {
             id: "retro-running",
-            label: "Retro Running Shoes",
+            label: "Chaussures running rétro",
             href: "/collection/retro-running-shoes",
           },
           {
@@ -114,80 +114,80 @@ export const navMenuItems: NavItem[] = [
           },
           {
             id: "low-profile",
-            label: "Low Profile & Sneakerina",
+            label: "Sneakers basses",
             href: "/collection/low-profile-sneakers",
           },
         ],
       },
       {
         id: "new-arrivals-seasonal",
-        title: "GIFTS & SEASONAL",
+        title: "CADEAUX & SAISON",
         links: [
           {
             id: "pastel-styles",
-            label: "Pastel Styles",
+            label: "Styles pastel",
             href: "/collection/pastel-styles",
           },
           {
             id: "festival-fits",
-            label: "Festival Fits",
+            label: "Tenues festival",
             href: "/collection/festival-fits",
           },
           {
             id: "spring-essentials",
-            label: "Spring Essentials",
+            label: "Essentiels printemps",
             href: "/collection/spring-essentials",
           },
           {
             id: "mothers-day",
-            label: "Mother's Day Gifts",
+            label: "Cadeaux fête des mères",
             href: "/collection/mothers-day-gifts",
           },
           {
             id: "triple-white",
-            label: "Triple White Sneakers",
+            label: "Sneakers triple blanc",
             href: "/collection/triple-white-sneakers",
           },
           {
             id: "gifts-under-100",
-            label: "Gifts Under $100",
+            label: "Cadeaux moins de 60 000 F",
             href: "/collection/gifts-under-100",
           },
         ],
       },
     ],
     featured: {
-      title: "Recent Releases",
+      title: "Sorties récentes",
       href: "/collection/recent-releases",
-      imageAlt: "Recent releases",
+      imageAlt: "Sorties récentes",
     },
   },
   {
     id: "men",
-    label: "Men",
+    label: "Homme",
     href: "/c/men/all",
     sections: [
       {
         id: "men-shop",
-        title: "SHOP MEN",
+        title: "HOMME",
         links: [
-          { id: "men-all", label: "All Men", href: "/c/men/all" },
-          { id: "men-shoes", label: "Men Shoes", href: "/c/men/shoes" },
+          { id: "men-all", label: "Tout homme", href: "/c/men/all" },
+          { id: "men-shoes", label: "Chaussures homme", href: "/c/men/shoes" },
           {
             id: "men-clothing",
-            label: "Men Clothing",
+            label: "Vêtements homme",
             href: "/c/men/clothing",
           },
           {
             id: "men-accessories",
-            label: "Men Accessories",
+            label: "Accessoires homme",
             href: "/c/men/accessories",
           },
         ],
       },
       {
         id: "men-brands",
-        title: "TOP BRANDS",
+        title: "TOP MARQUES",
         links: [
           { id: "men-nike", label: "Nike", href: "/brand/nike" },
           { id: "men-jordan", label: "Jordan", href: "/brand/jordan" },
@@ -201,37 +201,37 @@ export const navMenuItems: NavItem[] = [
       },
       {
         id: "men-trending",
-        title: "TRENDING",
+        title: "TENDANCES",
         links: [
           {
             id: "men-best-sellers",
-            label: "Best Sellers",
+            label: "Meilleures ventes",
             href: "/collection/best-sellers-men",
           },
           {
             id: "men-new-arrivals",
-            label: "New Arrivals",
+            label: "Nouveautés",
             href: "/collection/new-arrivals-men",
           },
           {
             id: "men-retro",
-            label: "Retro Styles",
+            label: "Styles rétro",
             href: "/collection/retro-styles-men",
           },
         ],
       },
       {
         id: "men-seasonal",
-        title: "SEASONAL",
+        title: "SAISON",
         links: [
           {
             id: "men-spring",
-            label: "Spring Essentials",
+            label: "Essentiels printemps",
             href: "/collection/spring-essentials-men",
           },
           {
             id: "men-festival",
-            label: "Festival Fits",
+            label: "Tenues festival",
             href: "/collection/festival-fits-men",
           },
         ],
@@ -240,34 +240,34 @@ export const navMenuItems: NavItem[] = [
   },
   {
     id: "women",
-    label: "Women",
+    label: "Femme",
     href: "/c/women/all",
     sections: [
       {
         id: "women-shop",
-        title: "SHOP WOMEN",
+        title: "FEMME",
         links: [
-          { id: "women-all", label: "All Women", href: "/c/women/all" },
+          { id: "women-all", label: "Tout femme", href: "/c/women/all" },
           {
             id: "women-shoes",
-            label: "Women Shoes",
+            label: "Chaussures femme",
             href: "/c/women/shoes",
           },
           {
             id: "women-clothing",
-            label: "Women Clothing",
+            label: "Vêtements femme",
             href: "/c/women/clothing",
           },
           {
             id: "women-accessories",
-            label: "Women Accessories",
+            label: "Accessoires femme",
             href: "/c/women/accessories",
           },
         ],
       },
       {
         id: "women-brands",
-        title: "TOP BRANDS",
+        title: "TOP MARQUES",
         links: [
           { id: "women-nike", label: "Nike", href: "/brand/nike" },
           {
@@ -281,37 +281,37 @@ export const navMenuItems: NavItem[] = [
       },
       {
         id: "women-trending",
-        title: "TRENDING",
+        title: "TENDANCES",
         links: [
           {
             id: "women-best-sellers",
-            label: "Best Sellers",
+            label: "Meilleures ventes",
             href: "/collection/best-sellers-women",
           },
           {
             id: "women-new-arrivals",
-            label: "New Arrivals",
+            label: "Nouveautés",
             href: "/collection/new-arrivals-women",
           },
           {
             id: "women-trending-styles",
-            label: "Trending Styles",
+            label: "Styles tendance",
             href: "/collection/trending-women",
           },
         ],
       },
       {
         id: "women-seasonal",
-        title: "SEASONAL",
+        title: "SAISON",
         links: [
           {
             id: "women-festival",
-            label: "Festival Fits",
+            label: "Tenues festival",
             href: "/collection/festival-fits-women",
           },
           {
             id: "women-pastel",
-            label: "Pastel Styles",
+            label: "Styles pastel",
             href: "/collection/pastel-styles",
           },
         ],
@@ -320,39 +320,39 @@ export const navMenuItems: NavItem[] = [
   },
   {
     id: "kids",
-    label: "Kids",
+    label: "Enfant",
     href: "/c/kids/all",
     sections: [
       {
         id: "kids-shop",
-        title: "SHOP KIDS",
+        title: "ENFANT",
         links: [
-          { id: "kids-all", label: "All Kids", href: "/c/kids/all" },
-          { id: "kids-shoes", label: "Kids Shoes", href: "/c/kids/shoes" },
+          { id: "kids-all", label: "Tout enfant", href: "/c/kids/all" },
+          { id: "kids-shoes", label: "Chaussures enfant", href: "/c/kids/shoes" },
           {
             id: "kids-clothing",
-            label: "Kids Clothing",
+            label: "Vêtements enfant",
             href: "/c/kids/clothing",
           },
           {
             id: "kids-accessories",
-            label: "Kids Accessories",
+            label: "Accessoires enfant",
             href: "/c/kids/accessories",
           },
         ],
       },
       {
         id: "kids-trending",
-        title: "TRENDING",
+        title: "TENDANCES",
         links: [
           {
             id: "kids-new",
-            label: "New For Kids",
+            label: "Nouveautés enfant",
             href: "/collection/new-kids",
           },
           {
             id: "kids-back-to-school",
-            label: "Back to School",
+            label: "Rentrée scolaire",
             href: "/collection/back-to-school-kids",
           },
         ],
@@ -361,19 +361,19 @@ export const navMenuItems: NavItem[] = [
   },
   {
     id: "clothing",
-    label: "Clothing",
+    label: "Vêtements",
     href: "/c/all/clothing",
     sections: [
       {
         id: "clothing-core",
-        title: "CLOTHING",
+        title: "VÊTEMENTS",
         links: [
-          { id: "hoodies", label: "Hoodies", href: "/c/all/hoodies" },
-          { id: "tees", label: "Tees", href: "/c/all/tees" },
-          { id: "jackets", label: "Jackets", href: "/c/all/jackets" },
+          { id: "hoodies", label: "Sweats", href: "/c/all/hoodies" },
+          { id: "tees", label: "T-shirts", href: "/c/all/tees" },
+          { id: "jackets", label: "Vestes", href: "/c/all/jackets" },
           {
             id: "sets",
-            label: "Matching Sets",
+            label: "Ensembles assortis",
             href: "/collection/matching-sets",
           },
         ],
@@ -382,48 +382,48 @@ export const navMenuItems: NavItem[] = [
   },
   {
     id: "accessories",
-    label: "Accessories",
+    label: "Accessoires",
     href: "/c/all/accessories",
     sections: [
       {
         id: "accessories-core",
-        title: "ACCESSORIES",
+        title: "ACCESSOIRES",
         links: [
-          { id: "bags", label: "Bags", href: "/c/all/bags" },
-          { id: "hats", label: "Hats", href: "/c/all/hats" },
-          { id: "socks", label: "Socks", href: "/c/all/socks" },
-          { id: "gear", label: "Gear", href: "/c/all/accessories" },
+          { id: "bags", label: "Sacs", href: "/c/all/bags" },
+          { id: "hats", label: "Casquettes", href: "/c/all/hats" },
+          { id: "socks", label: "Chaussettes", href: "/c/all/socks" },
+          { id: "gear", label: "Équipement", href: "/c/all/accessories" },
         ],
       },
     ],
   },
   {
     id: "sale",
-    label: "Sale",
+    label: "Promos",
     href: "/collection/all-sale",
     sections: [
       {
         id: "sale-core",
-        title: "SALE",
+        title: "PROMOS",
         links: [
           {
             id: "sale-shoes",
-            label: "Sale Shoes",
+            label: "Chaussures en promo",
             href: "/c/all/sale-shoes",
           },
           {
             id: "sale-clothing",
-            label: "Sale Clothing",
+            label: "Vêtements en promo",
             href: "/c/all/sale-clothing",
           },
           {
             id: "sale-accessories",
-            label: "Sale Accessories",
+            label: "Accessoires en promo",
             href: "/c/all/sale-accessories",
           },
           {
             id: "under-100",
-            label: "Under 100",
+            label: "Moins de 60 000 F",
             href: "/collection/under-100",
           },
         ],
@@ -432,12 +432,12 @@ export const navMenuItems: NavItem[] = [
   },
   {
     id: "brands",
-    label: "Brands",
+    label: "Marques",
     href: "/brand/featured",
     sections: [
       {
         id: "brands-core",
-        title: "SHOP BY BRAND",
+        title: "ACHETER PAR MARQUE",
         links: [
           { id: "brand-nike", label: "Nike", href: "/brand/nike" },
           { id: "brand-adidas", label: "adidas", href: "/brand/adidas" },
@@ -453,31 +453,31 @@ export const navMenuItems: NavItem[] = [
   },
   {
     id: "sneaker-releases",
-    label: "Sneaker Releases",
+    label: "Sorties sneakers",
     href: "/collection/sneaker-releases",
     sections: [
       {
         id: "releases-core",
-        title: "SNEAKER RELEASES",
+        title: "SORTIES SNEAKERS",
         links: [
           {
             id: "release-calendar",
-            label: "Release Calendar",
+            label: "Calendrier des sorties",
             href: "/collection/sneaker-releases",
           },
           {
             id: "jordans",
-            label: "Jordan Releases",
+            label: "Sorties Jordan",
             href: "/collection/jordan-releases",
           },
           {
             id: "nike-releases",
-            label: "Nike Releases",
+            label: "Sorties Nike",
             href: "/collection/nike-releases",
           },
           {
             id: "alerts",
-            label: "Drop Alerts",
+            label: "Alertes drops",
             href: "/collection/drop-alerts",
           },
         ],

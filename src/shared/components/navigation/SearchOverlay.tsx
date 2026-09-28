@@ -1,55 +1,78 @@
 import { Link } from "react-router-dom";
-import { brands } from "../../../data/mock";
-import { buildPlpPath } from "../../../lib/slug";
+import { getDefaultPlpCards } from "../../../data/api/catalogApi";
+import { buildPdpPath, generateProductDescriptiveSlug } from "../../../lib/slug";
 import { buildSearchDestination } from "../../../config/paths";
+import { Price } from "../ui/Price";
 
-const POPULAR_SEARCHES = ["Air Max", "Jordan", "Running", "Hoodie", "Sneakers"];
+const TRENDING_SEARCHES = ["Jordan", "Nike", "adidas", "ASICS", "Salomon", "New Balance"];
 
 /**
- * Panneau de suggestions sous la barre de recherche façon JD :
- * recherches populaires + marques top.
+ * Dropdown recherche façon JD : recherches tendances (pills) +
+ * produits tendances (image, nom, prix XOF).
  */
 export function SearchOverlay({ onNavigate }: { onNavigate: () => void }) {
-  const topBrands = brands.slice(0, 6);
+  const trendingProducts = getDefaultPlpCards(6);
 
   return (
-    <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 rounded-md border border-black-20 bg-white p-4 text-black-80 shadow-lg">
-      <p className="text-xs font-bold uppercase tracking-wide text-black-60">
-        Recherches populaires
-      </p>
-      <ul className="mt-2 flex flex-wrap gap-2">
-        {POPULAR_SEARCHES.map((term) => {
-          const dest = buildSearchDestination(term);
-          return (
-            <li key={term}>
+    <div className="absolute left-0 right-0 top-[calc(100%+8px)] z-50 grid gap-6 rounded-md border border-black-20 bg-white p-4 text-black-80 shadow-lg sm:grid-cols-2">
+      <div>
+        <p className="text-sm font-bold">Recherches tendances</p>
+        <ul className="mt-2 flex flex-wrap gap-2">
+          {TRENDING_SEARCHES.map((term) => {
+            const dest = buildSearchDestination(term);
+            return (
+              <li key={term}>
+                <Link
+                  to={{ pathname: dest.pathname, search: dest.search }}
+                  onClick={onNavigate}
+                  className="inline-block rounded-full border border-black-20 px-3 py-1 text-xs font-semibold lowercase hover:border-black hover:bg-black hover:text-white"
+                >
+                  {term}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <div>
+        <p className="text-sm font-bold">Produits tendances</p>
+        <ul className="mt-2 space-y-2">
+          {trendingProducts.map((product) => (
+            <li key={product.id}>
               <Link
-                to={{ pathname: dest.pathname, search: dest.search }}
+                to={buildPdpPath(
+                  generateProductDescriptiveSlug({
+                    gender: product.principal_gender,
+                    brand: product.brand,
+                    name: product.name,
+                  }),
+                  product.id,
+                )}
                 onClick={onNavigate}
-                className="rounded-full border border-black-20 px-3 py-1 text-xs font-semibold hover:border-black hover:bg-black hover:text-white"
+                className="flex items-center gap-3 rounded-sm p-1 hover:bg-black-5"
               >
-                {term}
+                <img
+                  src={product.main_image}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  className="h-12 w-12 shrink-0 rounded-sm bg-black-5 object-contain"
+                />
+                <span className="min-w-0">
+                  <span className="block truncate text-xs font-semibold underline underline-offset-2">
+                    {product.name}
+                  </span>
+                  <Price
+                    amountUsd={product.sale_price ?? product.price}
+                    className="text-xs font-bold"
+                  />
+                </span>
               </Link>
             </li>
-          );
-        })}
-      </ul>
-
-      <p className="mt-4 text-xs font-bold uppercase tracking-wide text-black-60">
-        Marques top
-      </p>
-      <ul className="mt-2 grid gap-1">
-        {topBrands.map((brand) => (
-          <li key={brand.id}>
-            <Link
-              to={buildPlpPath(brand.slug)}
-              onClick={onNavigate}
-              className="block rounded-sm px-2 py-1.5 text-sm font-semibold hover:bg-black-5"
-            >
-              {brand.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

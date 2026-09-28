@@ -12,14 +12,14 @@ import {
 import { MobileMenuDrawer } from "./MobileMenuDrawer";
 import MobileSearchBar from "../ui/MobileSearchBar";
 import DesktopSearchBar from "../ui/DesktopSearchBar";
-import { PrefsSwitcher } from "../ui/PrefsSwitcher";
 import AccountButton from "../ui/AccountButton";
 import CartButton from "../ui/CartButton";
 import { useCartStore } from "../../../stores/useCartStore";
 import { ROUTE_PATHS } from "../../../config/paths";
 
 /**
- * En-tete principal de navigation (sticky façon JD).
+ * En-tête principal façon JD : bloc unifié recherche + compte + panier,
+ * navigation catégories, version mobile compacte. 100% français, sans magasin.
  */
 export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -46,31 +46,24 @@ export function MainHeader() {
       <Container>
         {/* Version mobile */}
         <div className="lg:hidden">
-          {/* Ligne 1 : actions + logo */}
+          {/* Ligne 1 : menu + logo + compte + panier */}
           <div className="flex items-center justify-between py-p2">
-            <div className="flex items-center gap-p2">
-              <button
-                type="button"
-                aria-label={
-                  isMobileMenuOpen
-                    ? "Fermer le menu mobile"
-                    : "Ouvrir le menu mobile"
-                }
-                aria-controls={mobileDrawerId}
-                aria-expanded={isMobileMenuOpen}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                {isMobileMenuOpen ? (
-                  <CloseIcon className="h-6 w-6 text-white" />
-                ) : (
-                  <HamburgerMdIcon className="h-7 w-7 text-white" />
-                )}
-              </button>
-              <span className="[&_select]:border-white/30 [&_select]:bg-black [&_select]:text-white">
-                <PrefsSwitcher compact />
-              </span>
-            </div>
+            <button
+              type="button"
+              aria-label={
+                isMobileMenuOpen ? "Fermer le menu mobile" : "Ouvrir le menu mobile"
+              }
+              aria-controls={mobileDrawerId}
+              aria-expanded={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              {isMobileMenuOpen ? (
+                <CloseIcon className="h-6 w-6 text-white" />
+              ) : (
+                <HamburgerMdIcon className="h-7 w-7 text-white" />
+              )}
+            </button>
             <Logo />
             <div className="flex items-center gap-p2">
               <Link
@@ -122,14 +115,13 @@ export function MainHeader() {
           )}
         </div>
 
-        {/* Version desktop */}
+        {/* Version desktop : un seul bloc segmenté */}
         <div className="hidden lg:block">
-          {/* Ligne 1 : logo + recherche + actions */}
+          {/* Ligne 1 : logo + bloc recherche/compte/panier */}
           <div className="flex items-center justify-between gap-p6 py-p2">
             <Logo />
-            <div className="flex flex-1 items-center justify-end gap-2">
+            <div className="flex w-full max-w-3xl items-stretch divide-x divide-black-20 rounded-sm bg-white">
               <DesktopSearchBar />
-              <PrefsSwitcher />
               <AccountButton />
               <CartButton />
             </div>
