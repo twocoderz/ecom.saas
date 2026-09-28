@@ -44,11 +44,11 @@ export function ProductCard({
         variant === "compact" ? "" : "h-full"
       }`}
     >
-      <div className="relative aspect-square bg-black-5">
+      <div className="relative aspect-square overflow-hidden bg-black-5">
         <Link
           to={pdpPath}
           aria-label={`Voir ${product.name}`}
-          className="block h-full"
+          className="absolute inset-0 block"
         >
           <img
             src={product.main_image}
