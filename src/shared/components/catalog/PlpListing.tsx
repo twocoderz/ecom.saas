@@ -157,6 +157,7 @@ export function PlpListing({
         onToggleColor={toggleColor}
         selectedPriceRange={selectedPriceRange}
         onSelectPriceRange={setSelectedPriceRange}
+        activePills={activeFilterPills}
         onClearAll={clearAllFilters}
         resultCount={totalResults}
       />

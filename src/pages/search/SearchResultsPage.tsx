@@ -117,6 +117,7 @@ export function SearchResultsPage() {
         onToggleColor={toggleColor}
         selectedPriceRange={selectedPriceRange}
         onSelectPriceRange={setSelectedPriceRange}
+        activePills={activeFilterPills}
         onClearAll={clearAllFilters}
         resultCount={totalResults}
       />

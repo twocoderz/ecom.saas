@@ -1,4 +1,8 @@
 import { plpPageCopy, type PriceRange } from "../../data/plp";
+import {
+  buildFilterSections,
+  type ActiveFilterPill,
+} from "../../data/filterSections";
 import { CloseIcon } from "../../icons";
 import { FilterSidebar } from "./FilterSidebar";
 
@@ -26,6 +30,7 @@ type CatalogFilterDrawerProps = {
   onToggleColor: (color: string) => void;
   selectedPriceRange: PriceRange;
   onSelectPriceRange: (range: PriceRange) => void;
+  activePills: ActiveFilterPill[];
   onClearAll: () => void;
   resultCount: number;
 };
@@ -57,9 +62,33 @@ export function CatalogFilterDrawer({
   onToggleColor,
   selectedPriceRange,
   onSelectPriceRange,
+  activePills,
   onClearAll,
   resultCount,
 }: CatalogFilterDrawerProps) {
+  const sections = buildFilterSections({
+    departments,
+    selectedDepartments,
+    onToggleDepartment,
+    brands,
+    selectedBrands,
+    onToggleBrand,
+    categories,
+    selectedCategories,
+    onToggleCategory,
+    activities,
+    selectedActivities,
+    onToggleActivity,
+    collections,
+    selectedCollections,
+    onToggleCollection,
+    colors,
+    selectedColors,
+    onToggleColor,
+    selectedPriceRange,
+    onSelectPriceRange,
+  });
+
   return (
     <>
       {isOpen && (
@@ -86,34 +115,16 @@ export function CatalogFilterDrawer({
           <button
             type="button"
             onClick={onClose}
-            className="hover:bg-black-5 transition-all duration-500 bg-transparent p-2 cursor-pointer"
+            className="hover:bg-black-5 rounded-md transition-all duration-500 bg-transparent border border-black-10 p-2 cursor-pointer"
           >
-            <CloseIcon className="text-black w-5 h-5" />
+            <CloseIcon className="text-black w-3 h-3" />
           </button>
         </div>
 
         <FilterSidebar
           isOpen={isOpen}
-          departments={departments}
-          selectedDepartments={selectedDepartments}
-          onToggleDepartment={onToggleDepartment}
-          brands={brands}
-          selectedBrands={selectedBrands}
-          onToggleBrand={onToggleBrand}
-          categories={categories}
-          selectedCategories={selectedCategories}
-          onToggleCategory={onToggleCategory}
-          activities={activities}
-          selectedActivities={selectedActivities}
-          onToggleActivity={onToggleActivity}
-          collections={collections}
-          selectedCollections={selectedCollections}
-          onToggleCollection={onToggleCollection}
-          colors={colors}
-          selectedColors={selectedColors}
-          onToggleColor={onToggleColor}
-          selectedPriceRange={selectedPriceRange}
-          onSelectPriceRange={onSelectPriceRange}
+          sections={sections}
+          activePills={activePills}
           onClearAll={onClearAll}
           onApply={onClose}
           resultCount={resultCount}

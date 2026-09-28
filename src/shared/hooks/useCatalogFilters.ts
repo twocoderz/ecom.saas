@@ -1,13 +1,11 @@
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useFilters } from "../../hooks/useFilters";
 import { useProducts } from "../../hooks/useProducts";
+import { priceLabelMap } from "../data/plp";
+import type { ActiveFilterPill } from "../data/filterSections";
 import type { PlpProductCard, PlpSortOption, PriceRange } from "../../types";
 
-export type ActiveFilterPill = {
-  key: string;
-  label: string;
-  onRemove: () => void;
-};
+export type { ActiveFilterPill };
 
 export type SortOption = PlpSortOption;
 
@@ -93,37 +91,61 @@ export function useCatalogFilters({
 
   const filteredProducts: PlpProductCard[] = listingResponse.items;
 
-  const toggleDepartment = (department: string) => {
-    toggleArrayFilter("gender", department);
-  };
+  const toggleDepartment = useCallback(
+    (department: string) => {
+      toggleArrayFilter("gender", department);
+    },
+    [toggleArrayFilter],
+  );
 
-  const toggleBrand = (brand: string) => {
-    toggleArrayFilter("brand", brand);
-  };
+  const toggleBrand = useCallback(
+    (brand: string) => {
+      toggleArrayFilter("brand", brand);
+    },
+    [toggleArrayFilter],
+  );
 
-  const toggleCategory = (category: string) => {
-    toggleArrayFilter("category", category);
-  };
+  const toggleCategory = useCallback(
+    (category: string) => {
+      toggleArrayFilter("category", category);
+    },
+    [toggleArrayFilter],
+  );
 
-  const toggleActivity = (activity: string) => {
-    toggleArrayFilter("activity", activity);
-  };
+  const toggleActivity = useCallback(
+    (activity: string) => {
+      toggleArrayFilter("activity", activity);
+    },
+    [toggleArrayFilter],
+  );
 
-  const toggleCollection = (collection: string) => {
-    toggleArrayFilter("collection", collection);
-  };
+  const toggleCollection = useCallback(
+    (collection: string) => {
+      toggleArrayFilter("collection", collection);
+    },
+    [toggleArrayFilter],
+  );
 
-  const toggleColor = (color: string) => {
-    toggleArrayFilter("color", color);
-  };
+  const toggleColor = useCallback(
+    (color: string) => {
+      toggleArrayFilter("color", color);
+    },
+    [toggleArrayFilter],
+  );
 
-  const setSortBy = (value: SortOption) => {
-    setSort(value);
-  };
+  const setSortBy = useCallback(
+    (value: SortOption) => {
+      setSort(value);
+    },
+    [setSort],
+  );
 
-  const setSelectedPriceRange = (value: PriceRange) => {
-    setPriceRange(value);
-  };
+  const setSelectedPriceRange = useCallback(
+    (value: PriceRange) => {
+      setPriceRange(value);
+    },
+    [setPriceRange],
+  );
 
   const activeFilterCount =
     selectedDepartments.length +
@@ -178,7 +200,7 @@ export function useCatalogFilters({
           : [
               {
                 key: `price-${selectedPriceRange}`,
-                label: selectedPriceRange,
+                label: priceLabelMap[selectedPriceRange],
                 kind: "price" as const,
                 value: selectedPriceRange,
               },
@@ -252,6 +274,7 @@ export function useCatalogFilters({
       toggleActivity,
       toggleCollection,
       toggleColor,
+      setSelectedPriceRange,
     ],
   );
 
