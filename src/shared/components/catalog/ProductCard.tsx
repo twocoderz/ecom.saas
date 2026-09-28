@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ShoppingCartIcon } from "../../icons";
+import { HeartIcon, ShoppingCartIcon } from "../../icons";
 import {
   buildPdpPath,
   generateProductDescriptiveSlug,
 } from "../../../lib/slug";
+import { mockReviewCount } from "../../../lib/reviews";
 import type { PlpProductCard } from "../../../types";
 import { Price } from "../ui/Price";
+import { RatingStars } from "../ui/RatingStars";
 import { useCartStore } from "../../../stores/useCartStore";
 import { useWishlistStore } from "../../../stores/useWishlistStore";
 
 /**
  * Carte produit reutilisable pour PLP, recherche et Top Picks.
- * Style JD : fond blanc, bord fin, prix rouge si solde, wishlist + panier.
+ * Style JD : fond blanc, bord fin, prix rouge si solde, note avis, badge promo.
  */
 export function ProductCard({ product }: { product: PlpProductCard }) {
   const { t } = useTranslation();
@@ -23,8 +25,9 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
   const hasDiscount =
     typeof product.sale_price === "number" &&
     product.sale_price < product.price;
-  const colorLabel =
-    product.color_count === 1 ? "1 color" : `${product.color_count} colors`;
+  const discountPct = hasDiscount
+    ? Math.round((1 - (product.sale_price as number) / product.price) * 100)
+    : 0;
 
   const pdpPath = buildPdpPath(
     generateProductDescriptiveSlug({
@@ -47,18 +50,26 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
           />
         </Link>
 
+        {hasDiscount && (
+          <span className="absolute left-2 top-2 rounded-sm bg-[#d60000] px-2 py-1 text-[11px] font-bold text-white">
+            -{discountPct}%
+          </span>
+        )}
+
         <button
           type="button"
-          aria-label={isWished ? t("common.wishlistRemove") : t("common.wishlistAdd")}
+          aria-label={
+            isWished ? t("common.wishlistRemove") : t("common.wishlistAdd")
+          }
           aria-pressed={isWished}
           onClick={() => toggleWishlist(product.id)}
-          className={`absolute left-2 top-2 flex h-8 w-8 items-center justify-center rounded-full shadow-sm transition-colors ${
-            isWished ? "bg-black text-white" : "bg-white text-black-80 hover:bg-black hover:text-white"
+          className={`absolute bottom-2 left-2 flex h-8 w-8 items-center justify-center rounded-full shadow-sm transition-colors ${
+            isWished
+              ? "bg-black text-white"
+              : "bg-white text-black-80 hover:bg-black hover:text-white"
           }`}
         >
-          <span aria-hidden="true" className="text-base leading-none">
-            {isWished ? "♥" : "♡"}
-          </span>
+          <HeartIcon filled={isWished} className="h-4 w-4" />
         </button>
 
         <button
@@ -81,12 +92,20 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
 
       <div className="flex flex-1 flex-col items-start px-4 py-4">
         <div className="min-h-16">
-          <p className="text-xs text-black-60">{colorLabel}</p>
+          <p className="text-xs text-black-60">
+            {t("common.colorCount", { count: product.color_count })}
+          </p>
           <Link to={pdpPath} className="block">
             <h3 className="line-clamp-2 text-md font-bold leading-tight text-black-80">
               {product.name}
             </h3>
           </Link>
+          <div className="mt-1">
+            <RatingStars
+              rating={product.rating}
+              reviewCount={mockReviewCount(product.id)}
+            />
+          </div>
         </div>
         <div className="mt-4 min-h-p13">
           <div className="flex items-center gap-2 text-sm">

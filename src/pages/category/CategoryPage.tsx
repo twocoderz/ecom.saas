@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CatalogFilterDrawer } from "../../shared/components/catalog/CatalogFilterDrawer";
 import { FilterPillsBar } from "../../shared/components/catalog/FilterPillsBar";
+import { Pagination } from "../../shared/components/catalog/Pagination";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { SortBar } from "../../shared/components/catalog/SortBar";
 import { useCatalogFilters } from "../../shared/hooks/useCatalogFilters";
@@ -28,6 +29,15 @@ export function CategoryPage() {
 
     return "mens-shoes";
   }, [params.category, params.department, params.slug]);
+
+  const readableTitle = useMemo(
+    () =>
+      resolvedSlug
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
+    [resolvedSlug],
+  );
 
   const { isFilterOpen, openFilters, closeFilters } = useFilterDrawer();
   const {
@@ -76,18 +86,20 @@ export function CategoryPage() {
   return (
     <Container>
       <div className="space-y-6 py-8">
-        {/* Bread crumbs */}
-        <nav className="text-xs text-black/70">
-          <span className="underline underline-offset-2">
+        {/* Fil d'Ariane dynamique */}
+        <nav className="text-xs text-black-70" aria-label="Fil d'Ariane">
+          <Link to="/" className="underline underline-offset-2 hover:text-black">
             {plpPageCopy.breadcrumbRoot}
+          </Link>
+          <span className="mx-2" aria-hidden="true">
+            /
           </span>
-          <span className="mx-2">/</span>
-          <span>{plpPageCopy.breadcrumbCurrent}</span>
+          <span aria-current="page">{readableTitle}</span>
         </nav>
-        {/* Heading */}
+        {/* Titre */}
         <div className="flex items-end gap-2">
           <h1 className="text-4xl font-semibold text-black-80">
-            {resolvedSlug.replace(/-/g, " ")}
+            {readableTitle}
           </h1>
           <p className="pb-1 text-sm text-black-60">({totalResults} items)</p>
         </div>
@@ -109,27 +121,14 @@ export function CategoryPage() {
 
         <ProductGrid products={filteredProducts} />
 
-        <div className="flex items-center justify-between rounded-xl border border-black/10 px-4 py-3">
-          <button
-            type="button"
-            onClick={goToPreviousPage}
-            disabled={!hasPreviousPage}
-            className="rounded-md border border-black/20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <p className="text-sm text-black/70">
-            Page {currentPage} / {totalPages}
-          </p>
-          <button
-            type="button"
-            onClick={goToNextPage}
-            disabled={!hasNextPage}
-            className="rounded-md border border-black/20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
+        <Pagination
+          page={currentPage}
+          totalPages={totalPages}
+          hasPrevious={hasPreviousPage}
+          hasNext={hasNextPage}
+          onPrevious={goToPreviousPage}
+          onNext={goToNextPage}
+        />
         <CategoryPageSpecifics />
       </div>
 

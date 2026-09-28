@@ -34,8 +34,7 @@ const SLIDES: HeroSlide[] = [
   },
   {
     id: "run-faster",
-    imageSrc:
-      "/images/portrait-two-african-females-holding-shopping-bags-while-reacting-something-their-smartphone 1.png",
+    imageSrc: "/images/portrait-shopping-react.png",
     imageAlt: "Look sport masculin pour sorties actives.",
     title: "Run Faster",
     subtitle: "Performance picks to level up your pace.",
@@ -45,7 +44,7 @@ const SLIDES: HeroSlide[] = [
 ];
 
 /**
- * Campaign hero block.
+ * Hero plein écran façon JD : image de fond, texte superposé, CTA.
  */
 export function HeroBanner() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -63,8 +62,6 @@ export function HeroBanner() {
     return () => window.clearInterval(intervalId);
   }, [isPaused]);
 
-  const activeSlide = SLIDES[activeIndex];
-
   const goToPrevious = () => {
     setActiveIndex((current) => (current - 1 + SLIDES.length) % SLIDES.length);
   };
@@ -74,24 +71,64 @@ export function HeroBanner() {
   };
 
   return (
-    <article
-      className="overflow-hidden"
+    <section
+      aria-roledescription="carousel"
+      aria-label="Campagnes à la une"
+      className="relative w-full overflow-hidden bg-black"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className="relative h-55 md:h-85 mt-2">
-        <img
-          src={activeSlide.imageSrc}
-          alt={activeSlide.imageAlt}
-          className="h-full w-full object-cover"
-        />
+      <div className="relative h-[420px] md:h-[520px]">
+        {SLIDES.map((slide, index) => {
+          const isActive = index === activeIndex;
+          return (
+            <div
+              key={slide.id}
+              aria-hidden={!isActive}
+              className={`absolute inset-0 transition-opacity duration-700 ${
+                isActive ? "opacity-100" : "pointer-events-none opacity-0"
+              }`}
+            >
+              <img
+                src={slide.imageSrc}
+                alt={slide.imageAlt}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+            </div>
+          );
+        })}
+
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="mx-auto w-full max-w-6xl px-4 pb-10 md:px-8">
+            {SLIDES.map((slide, index) =>
+              index === activeIndex ? (
+                <div key={slide.id} className="max-w-xl text-white">
+                  <h2 className="text-4xl font-bold uppercase leading-none tracking-tight md:text-6xl">
+                    {slide.title}
+                  </h2>
+                  <p className="mt-2 text-sm font-normal text-white/85 md:text-base">
+                    {slide.subtitle}
+                  </p>
+                  <Link
+                    to={slide.ctaTo}
+                    className="mt-4 inline-flex min-w-50 items-center justify-center rounded-full bg-white px-10 py-3 text-sm font-bold text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  >
+                    {slide.ctaLabel}
+                  </Link>
+                </div>
+              ) : null,
+            )}
+          </div>
+        </div>
+
         <button
           type="button"
           onClick={goToPrevious}
-          aria-label="Slide precedente"
-          className="absolute left-3 cursor-pointer top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-black-80 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
+          aria-label="Slide précédente"
+          className="absolute left-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 text-black-80 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <ChevronLeftIcon className="h-5 w-5" />
         </button>
@@ -100,32 +137,19 @@ export function HeroBanner() {
           type="button"
           onClick={goToNext}
           aria-label="Slide suivante"
-          className="absolute right-3 cursor-pointer top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 text-black-80 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
+          className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer rounded-full bg-white/90 p-2 text-black-80 transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
           <ChevronRightIcon className="h-5 w-5" />
         </button>
-      </div>
 
-      <div className="px-4 py-4 text-center sm:px-8">
-        <h2 className="text-2xl font-bold text-black-80">
-          {activeSlide.title}
-        </h2>
-        <p className="text-sm font-normal text-black/80 mb-8">
-          {activeSlide.subtitle}
-        </p>
-        <div>
-          <Link
-            to={activeSlide.ctaTo}
-            className="inline-flex min-w-57.5 items-center justify-center rounded-full border border-black-50 px-10 py-3 text-sm font-medium text-black-80 transition-colors hover:border-black-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black-80 focus-visible:ring-offset-2"
-          >
-            {activeSlide.ctaLabel}
-          </Link>
-        </div>
         <div
-          className="flex items-center justify-center gap-2 mt-4"
+          className="absolute bottom-4 right-4 flex items-center gap-2 md:right-8"
           role="tablist"
           aria-label="Pagination hero"
         >
+          <span className="mr-1 text-xs font-semibold text-white/80">
+            {activeIndex + 1} / {SLIDES.length}
+          </span>
           {SLIDES.map((slide, index) => {
             const isActive = index === activeIndex;
             return (
@@ -134,16 +158,16 @@ export function HeroBanner() {
                 type="button"
                 onClick={() => setActiveIndex(index)}
                 role="tab"
+                aria-selected={isActive}
                 aria-label={`Aller au slide ${index + 1}`}
-                aria-current={isActive}
-                className={`h-2 w-2 rounded-full transition-colors ${
-                  isActive ? "bg-black" : "bg-black/20"
+                className={`h-2 rounded-full transition-all ${
+                  isActive ? "w-6 bg-white" : "w-2 bg-white/40 hover:bg-white/70"
                 }`}
               />
             );
           })}
         </div>
       </div>
-    </article>
+    </section>
   );
 }

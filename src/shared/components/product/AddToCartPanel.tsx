@@ -1,15 +1,41 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import type { ProductVariant } from "../../../types";
+import { useCartStore } from "../../../stores/useCartStore";
+import { QuantityStepper } from "../ui/QuantityStepper";
 
 type AddToCartPanelProps = {
+  productId: string;
+  productName: string;
+  productImage: string;
+  priceUsd: number;
+  salePriceUsd: number | null;
   variants: ProductVariant[];
 };
 
+const SIZE_GUIDE_ROWS: Array<[string, string, string]> = [
+  ["40", "25,0 cm", "UK 6"],
+  ["41", "25,7 cm", "UK 7"],
+  ["42", "26,0 cm", "UK 7.5"],
+  ["43", "26,7 cm", "UK 8.5"],
+  ["44", "27,1 cm", "UK 9"],
+  ["45", "27,9 cm", "UK 10"],
+];
+
 /**
- * Buy box actions.
- * JD mapping: PDP buy controls (size/quantity/add to cart).
+ * Buy box PDP : couleur/taille/quantite + ajout panier + guide des tailles.
  */
-export function AddToCartPanel({ variants }: AddToCartPanelProps) {
+export function AddToCartPanel({
+  productId,
+  productName,
+  productImage,
+  priceUsd,
+  salePriceUsd,
+  variants,
+}: AddToCartPanelProps) {
+  const { t } = useTranslation();
+  const addLine = useCartStore((s) => s.addLine);
+
   const colors = useMemo(
     () => Array.from(new Set(variants.map((variant) => variant.color))),
     [variants],
@@ -26,6 +52,9 @@ export function AddToCartPanel({ variants }: AddToCartPanelProps) {
   );
 
   const [selectedSize, setSelectedSize] = useState(availableSizes[0] ?? "");
+  const [qty, setQty] = useState(1);
+  const [showGuide, setShowGuide] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
 
   const selectedVariant = useMemo(
     () =>
@@ -38,16 +67,31 @@ export function AddToCartPanel({ variants }: AddToCartPanelProps) {
 
   const inStock = (selectedVariant?.stock ?? 0) > 0;
 
+  const handleAdd = () => {
+    if (!inStock) return;
+    addLine({
+      productId,
+      variantId: selectedVariant?.id,
+      name: `${productName} — ${selectedColor} / ${selectedSize}`,
+      image: productImage,
+      unitPriceUsd: salePriceUsd ?? priceUsd,
+      qty,
+    });
+    setJustAdded(true);
+    window.setTimeout(() => setJustAdded(false), 2000);
+  };
+
   return (
-    <section className="rounded-xl border border-black/10 p-4">
+    <section className="rounded-xl border border-black-10 bg-white p-4">
       <div className="space-y-3 text-sm">
         <div>
-          <p className="text-xs font-semibold uppercase text-black/60">Color</p>
+          <p className="text-xs font-semibold uppercase text-black-60">Color</p>
           <div className="mt-1 flex flex-wrap gap-2">
             {colors.map((color) => (
               <button
                 key={color}
                 type="button"
+                aria-pressed={selectedColor === color}
                 onClick={() => {
                   setSelectedColor(color);
                   const firstSize =
@@ -55,7 +99,11 @@ export function AddToCartPanel({ variants }: AddToCartPanelProps) {
                     "";
                   setSelectedSize(firstSize);
                 }}
-                className="rounded-md border border-black/20 px-2 py-1"
+                className={`rounded-md border px-2 py-1 transition-colors ${
+                  selectedColor === color
+                    ? "border-black bg-black text-white"
+                    : "border-black-20 hover:border-black-80"
+                }`}
               >
                 {color}
               </button>
@@ -64,33 +112,74 @@ export function AddToCartPanel({ variants }: AddToCartPanelProps) {
         </div>
 
         <div>
-          <p className="text-xs font-semibold uppercase text-black/60">Size</p>
+          <div className="flex items-center justify-between">
+            <p className="text-xs font-semibold uppercase text-black-60">Size</p>
+            <button
+              type="button"
+              onClick={() => setShowGuide((prev) => !prev)}
+              aria-expanded={showGuide}
+              className="text-xs font-semibold underline underline-offset-2 hover:text-black"
+            >
+              {t("common.sizeGuide")}
+            </button>
+          </div>
           <div className="mt-1 flex flex-wrap gap-2">
             {availableSizes.map((size) => (
               <button
                 key={size}
                 type="button"
+                aria-pressed={selectedSize === size}
                 onClick={() => setSelectedSize(size)}
-                className="rounded-md border border-black/20 px-2 py-1"
+                className={`min-w-11 rounded-md border px-2 py-1 transition-colors ${
+                  selectedSize === size
+                    ? "border-black bg-black text-white"
+                    : "border-black-20 hover:border-black-80"
+                }`}
               >
                 {size}
               </button>
             ))}
           </div>
+          {showGuide && (
+            <table className="mt-2 w-full text-left text-xs">
+              <thead>
+                <tr className="text-black-60">
+                  <th scope="col" className="py-1 pr-2">EU</th>
+                  <th scope="col" className="py-1 pr-2">Pied</th>
+                  <th scope="col" className="py-1">UK</th>
+                </tr>
+              </thead>
+              <tbody>
+                {SIZE_GUIDE_ROWS.map(([eu, foot, uk]) => (
+                  <tr key={eu} className="border-t border-black-10">
+                    <td className="py-1 pr-2 font-semibold">{eu}</td>
+                    <td className="py-1 pr-2">{foot}</td>
+                    <td className="py-1">{uk}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
 
-        <p className="text-sm text-black/70">
+        <p className="text-sm text-black-70" role="status">
           {inStock
-            ? `En stock: ${selectedVariant?.stock ?? 0} unites`
-            : "Rupture de stock pour cette variante"}
+            ? t("common.inStock", { count: selectedVariant?.stock ?? 0 })
+            : t("common.outOfStock")}
         </p>
+
+        <div className="flex items-center gap-3">
+          <QuantityStepper qty={qty} onChange={(next) => setQty(Math.max(1, next))} />
+          <span className="text-xs text-black-60">{t("common.quantity")}</span>
+        </div>
 
         <button
           type="button"
           disabled={!inStock}
-          className="w-full rounded-sm border border-black/20 px-4 py-3 text-sm font-semibold disabled:cursor-not-allowed disabled:opacity-50"
+          onClick={handleAdd}
+          className="w-full rounded-sm bg-black px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-black-80 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          Quick Add To Bag
+          {justAdded ? t("common.addedToBag") : t("common.addToCart")}
         </button>
       </div>
     </section>

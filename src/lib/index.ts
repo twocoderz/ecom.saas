@@ -5,9 +5,15 @@ export {
   toSearchParams,
   toggleFilterValue,
 } from "./filters";
-export { applyPromo, convertFromUsd, effectivePrice, formatPrice } from "./currency";
+export {
+  applyPromo,
+  convertFromUsd,
+  effectivePrice,
+  formatPrice,
+} from "./currency";
 export type { CurrencyCode, PromoResult } from "./currency";
 export { applySeoToDocument, createSeoUrl } from "./seo";
+export { mockReviewCount } from "./reviews";
 export {
   buildPdpPath,
   buildPlpPath,

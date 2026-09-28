@@ -19,7 +19,7 @@ const COLLECTION_IMAGES: Record<string, string> = {
   "col-athletic-performance": "/images/pumatshirt1.png",
   "col-vintage-heritage": "/images/mensjeans.png",
   "col-eco-friendly": "/images/dove_body_lotion.png",
-  "col-urban-streetwear": "/images/womentop 1.png",
+  "col-urban-streetwear": "/images/womentop-1.png",
   "col-winter-training": "/images/wardrobe1.jpg",
   "col-casual-streetwear": "/images/shirt.png",
 };

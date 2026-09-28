@@ -9,7 +9,14 @@
     "wishlistRemove": "Remove from wishlist",
     "cart": "Bag",
     "promoApplied": "Promo code applied.",
-    "promoUnknown": "Unknown promo code."
+    "promoUnknown": "Unknown promo code.",
+    "colorCount_one": "{{count}} colour",
+    "colorCount_other": "{{count}} colours",
+    "addedToBag": "Added to bag ✓",
+    "sizeGuide": "Size guide",
+    "inStock": "{{count}} units in stock",
+    "outOfStock": "Out of stock for this variant",
+    "quantity": "Quantity"
   },
   "cart": {
     "title": "Bag",

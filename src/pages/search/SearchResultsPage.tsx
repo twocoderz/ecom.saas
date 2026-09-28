@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { CatalogFilterDrawer } from "../../shared/components/catalog/CatalogFilterDrawer";
 import { FilterPillsBar } from "../../shared/components/catalog/FilterPillsBar";
+import { Pagination } from "../../shared/components/catalog/Pagination";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { SortBar } from "../../shared/components/catalog/SortBar";
 import { Container } from "../../shared/components/layout/Container";
@@ -86,27 +87,14 @@ export function SearchResultsPage() {
 
         <ProductGrid products={filteredProducts} />
 
-        <div className="flex items-center justify-between rounded-xl border border-black/10 px-4 py-3">
-          <button
-            type="button"
-            onClick={goToPreviousPage}
-            disabled={!hasPreviousPage}
-            className="rounded-md border border-black/20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <p className="text-sm text-black/70">
-            Page {currentPage} / {totalPages}
-          </p>
-          <button
-            type="button"
-            onClick={goToNextPage}
-            disabled={!hasNextPage}
-            className="rounded-md border border-black/20 px-3 py-1 text-sm disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
+        <Pagination
+          page={currentPage}
+          totalPages={totalPages}
+          hasPrevious={hasPreviousPage}
+          hasNext={hasNextPage}
+          onPrevious={goToPreviousPage}
+          onNext={goToNextPage}
+        />
       </div>
 
       <CatalogFilterDrawer

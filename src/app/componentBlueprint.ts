@@ -18,6 +18,7 @@ export const componentBlueprint: ComponentGroup[] = [
       "PageHeader",
       "TrustStrip",
       "FooterColumns",
+      "BackToTop",
     ],
   },
   {
@@ -43,13 +44,13 @@ export const componentBlueprint: ComponentGroup[] = [
   },
   {
     group: "catalog",
-    items: ["ProductCard", "ProductGrid", "FilterSidebar", "SortBar"],
+    items: ["ProductCard", "ProductGrid", "FilterSidebar", "CatalogFilterDrawer", "FilterPillsBar", "Pagination", "SortBar"],
   },
   {
     group: "product",
     items: ["ProductGallery", "ProductInfoPanel", "AddToCartPanel"],
   },
   { group: "checkout", items: ["CartSummary", "CheckoutStepper"] },
-  { group: "ui", items: ["Button", "Input", "Badge", "Price", "Rail", "Popover", "EmptyState", "QuantityStepper", "PrefsSwitcher"] },
+  { group: "ui", items: ["Button", "Input", "Badge", "Price", "Rail", "Popover", "EmptyState", "QuantityStepper", "PrefsSwitcher", "RatingStars"] },
   { group: "admin", items: ["AdminShell", "StatCard", "DataTable"] },
 ];

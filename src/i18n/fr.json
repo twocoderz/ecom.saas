@@ -9,7 +9,14 @@
     "wishlistRemove": "Retirer des favoris",
     "cart": "Panier",
     "promoApplied": "Code promo appliqué.",
-    "promoUnknown": "Code promo inconnu."
+    "promoUnknown": "Code promo inconnu.",
+    "colorCount_one": "{{count}} couleur",
+    "colorCount_other": "{{count}} couleurs",
+    "addedToBag": "Ajouté au panier ✓",
+    "sizeGuide": "Guide des tailles",
+    "inStock": "{{count}} unités en stock",
+    "outOfStock": "Rupture de stock pour cette variante",
+    "quantity": "Quantité"
   },
   "cart": {
     "title": "Panier",

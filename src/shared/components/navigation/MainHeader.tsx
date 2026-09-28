@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Logo from "../branding/Logo";
 import { Container } from "../layout/Container";
 import { MegaMenu } from "./MegaMenu";
 import {
   CloseIcon,
-  GlobeIcon,
   HamburgerMdIcon,
   ShoppingCartIcon,
   UserIcon,
@@ -13,16 +13,18 @@ import { MobileMenuDrawer } from "./MobileMenuDrawer";
 import MobileSearchBar from "../ui/MobileSearchBar";
 import DesktopSearchBar from "../ui/DesktopSearchBar";
 import { PrefsSwitcher } from "../ui/PrefsSwitcher";
-import LocationButton from "../ui/LocationButton";
 import AccountButton from "../ui/AccountButton";
 import CartButton from "../ui/CartButton";
+import { useCartStore } from "../../../stores/useCartStore";
+import { ROUTE_PATHS } from "../../../config/paths";
 
 /**
- * En-tete principal de navigation.
+ * En-tete principal de navigation (sticky façon JD).
  */
 export function MainHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileDrawerId = "mobile-main-menu";
+  const cartCount = useCartStore((s) => s.count)();
 
   useEffect(() => {
     if (!isMobileMenuOpen) {
@@ -40,7 +42,7 @@ export function MainHeader() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="relative z-20 bg-black py-p2 lg:px-p6">
+    <header className="sticky top-0 z-30 bg-black py-p2 lg:px-p6">
       <Container>
         {/* Version mobile */}
         <div className="lg:hidden">
@@ -65,30 +67,34 @@ export function MainHeader() {
                   <HamburgerMdIcon className="h-7 w-7 text-white" />
                 )}
               </button>
-              <button
-                type="button"
-                aria-label="Changer la localisation"
-                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              >
-                <GlobeIcon className="h-6 w-6 text-white" />
-              </button>
+              <span className="[&_select]:border-white/30 [&_select]:bg-black [&_select]:text-white">
+                <PrefsSwitcher compact />
+              </span>
             </div>
             <Logo />
             <div className="flex items-center gap-p2">
-              <button
-                type="button"
-                aria-label="Acceder a votre compte"
+              <Link
+                to={ROUTE_PATHS.auth}
+                aria-label="Accéder à votre compte"
                 className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <UserIcon className="h-7 w-7 text-white" />
-              </button>
-              <button
-                type="button"
-                aria-label="Voir le panier"
-                className="flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              </Link>
+              <Link
+                to={ROUTE_PATHS.cart}
+                aria-label={`Voir le panier, ${cartCount} articles`}
+                className="relative flex h-10 w-10 items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <ShoppingCartIcon className="h-7 w-7 text-white" />
-              </button>
+                {cartCount > 0 && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-white px-1 text-[10px] font-bold text-black"
+                  >
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
             </div>
           </div>
 
@@ -124,7 +130,6 @@ export function MainHeader() {
             <div className="flex flex-1 items-center justify-end gap-2">
               <DesktopSearchBar />
               <PrefsSwitcher />
-              <LocationButton />
               <AccountButton />
               <CartButton />
             </div>

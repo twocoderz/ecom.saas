@@ -12,6 +12,8 @@ export { default as SearchIcon } from "./SearchIcon";
 export { default as ShoppingCartIcon } from "./ShoppingCartIcon";
 export { default as HamburgerMdIcon } from "./HamburgerMdIcon";
 export { default as CloseIcon } from "./CloseIcon";
+export { default as HeartIcon } from "./HeartIcon";
+export { default as LockIcon } from "./LockIcon";
 export { default as GlobeIcon } from "./GlobeIcon";
 export { default as UserIcon } from "./UserIcon";
 export { default as ChevronDownIcon } from "./ChevronDownIcon";

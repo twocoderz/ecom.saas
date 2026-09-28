@@ -1,13 +1,14 @@
 import type { ReactNode } from "react";
 import { FooterColumns } from "./FooterColumns";
 import { TrustStrip } from "./TrustStrip";
+import { BackToTop } from "./BackToTop";
 import { MainHeader } from "../navigation/MainHeader";
 import { UtilityBar } from "../navigation/UtilityBar";
 import { Utilities } from "../../data/Utilities";
 
 /**
  * Global shell shared by most pages.
- * JD mapping: utility bar + main header + trust strip + rich footer.
+ * JD mapping: utility bar + sticky main header + trust strip + rich footer.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -17,6 +18,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main>{children}</main>
       <TrustStrip />
       <FooterColumns />
+      <BackToTop />
     </div>
   );
 }
