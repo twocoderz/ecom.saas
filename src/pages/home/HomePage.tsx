@@ -137,7 +137,12 @@ export function HomePage() {
 
         {/* Top picks : produits explicites + cartes corrigees */}
         <Section title="Nos coups de cœur" className="mt-p18">
-          <ProductGrid products={topPicks} layout="rail" showNavButtons />
+          <ProductGrid
+            products={topPicks}
+            layout="rail"
+            showNavButtons
+            cardVariant="compact"
+          />
         </Section>
 
         {/* Guide interne : visible uniquement en dev */}

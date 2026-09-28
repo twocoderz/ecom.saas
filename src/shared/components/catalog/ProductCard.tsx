@@ -11,11 +11,13 @@ import { RatingStars } from "../ui/RatingStars";
 import { useCartStore } from "../../../stores/useCartStore";
 import { useWishlistStore } from "../../../stores/useWishlistStore";
 
-/**
- * Carte produit reutilisable pour PLP, recherche et Top Picks.
- * Style JD : fond blanc, bord fin, prix rouge si solde, note avis, badge promo.
- */
-export function ProductCard({ product }: { product: PlpProductCard }) {
+export function ProductCard({
+  product,
+  variant = "default",
+}: {
+  product: PlpProductCard;
+  variant?: "default" | "compact";
+}) {
   const addLine = useCartStore((s) => s.addLine);
   const toggleWishlist = useWishlistStore((s) => s.toggle);
   const isWished = useWishlistStore((s) => s.ids.includes(product.id));
@@ -37,7 +39,11 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
   );
 
   return (
-    <article className="flex h-full flex-col overflow-hidden rounded-md border border-black-10 bg-white transition-colors hover:border-black-80">
+    <article
+      className={`flex flex-col overflow-hidden rounded-md border border-black-10 bg-white transition-colors hover:border-black-80 ${
+        variant === "compact" ? "" : "h-full"
+      }`}
+    >
       <div className="relative aspect-square bg-black-5">
         <Link to={pdpPath} aria-label={`Voir ${product.name}`}>
           <img
@@ -56,9 +62,7 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
 
         <button
           type="button"
-          aria-label={
-            isWished ? "Retirer des favoris" : "Ajouter aux favoris"
-          }
+          aria-label={isWished ? "Retirer des favoris" : "Ajouter aux favoris"}
           aria-pressed={isWished}
           onClick={() => toggleWishlist(product.id)}
           className={`absolute bottom-2 left-2 flex h-8 w-8 items-center justify-center rounded-full shadow-sm transition-colors ${
@@ -88,25 +92,31 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
         </button>
       </div>
 
-      <div className="flex flex-1 flex-col items-start px-4 py-4">
-        <div className="min-h-16">
+      <div
+        className={`flex flex-col items-start ${
+          variant === "compact" ? "px-3 py-3" : "flex-1 px-4 py-4"
+        }`}
+      >
+        <div className={variant === "compact" ? "" : "min-h-16"}>
           <p className="text-xs text-black-60">
             {product.color_count} couleur{product.color_count > 1 ? "s" : ""}
           </p>
           <Link to={pdpPath} className="block">
-            <h3 className="line-clamp-2 text-md font-bold leading-tight text-black-80">
+            <h3 className="line-clamp-2 min-h-10 text-md font-bold leading-tight text-black-80">
               {product.name}
             </h3>
           </Link>
-          <div className="mt-1">
-            <RatingStars
-              rating={product.rating}
-              reviewCount={mockReviewCount(product.id)}
-            />
-          </div>
+          {variant === "default" && (
+            <div className="mt-1">
+              <RatingStars
+                rating={product.rating}
+                reviewCount={mockReviewCount(product.id)}
+              />
+            </div>
+          )}
         </div>
-        <div className="mt-4 min-h-p13">
-          <div className="flex items-center gap-2 text-sm">
+        <div className={variant === "compact" ? "mt-2" : "mt-4 min-h-p13"}>
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <Price
               amountUsd={product.sale_price ?? product.price}
               className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
@@ -114,13 +124,15 @@ export function ProductCard({ product }: { product: PlpProductCard }) {
             {hasDiscount && (
               <Price
                 amountUsd={product.price}
-                className="text-black-60 line-through"
+                className="text-xs text-black-60 line-through"
               />
             )}
           </div>
-          <p className="line-clamp-2 text-xs text-black-80">
-            {product.pricing_note ?? " "}
-          </p>
+          {product.pricing_note ? (
+            <p className="mt-1 line-clamp-2 text-xs text-black-80">
+              {product.pricing_note}
+            </p>
+          ) : null}
         </div>
       </div>
     </article>

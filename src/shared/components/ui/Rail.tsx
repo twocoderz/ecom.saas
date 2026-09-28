@@ -1,18 +1,22 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../icons";
 
-/**
- * Rail horizontal JD-like avec fleches rondes (desktop).
- * Centralise la logique dupliquee HomePage / ProductGrid.
- */
 export function Rail({
   children,
   itemSelector,
   ariaLabel,
+  alignItems = "stretch",
 }: {
   children: ReactNode;
   itemSelector: string;
   ariaLabel: string;
+  alignItems?: "start" | "stretch";
 }) {
   const railRef = useRef<HTMLDivElement | null>(null);
   const [canLeft, setCanLeft] = useState(false);
@@ -43,7 +47,10 @@ export function Rail({
     if (!rail) return;
     const first = rail.querySelector<HTMLElement>(itemSelector);
     const amount = (first?.offsetWidth ?? 300) + 16;
-    rail.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+    rail.scrollBy({
+      left: dir === "left" ? -amount : amount,
+      behavior: "smooth",
+    });
   };
 
   const arrowClass = (enabled: boolean) =>
@@ -56,7 +63,9 @@ export function Rail({
       <div
         ref={railRef}
         aria-label={ariaLabel}
-        className="scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0"
+        className={`scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0 ${
+          alignItems === "start" ? "items-start" : "items-stretch"
+        }`}
       >
         {children}
       </div>
