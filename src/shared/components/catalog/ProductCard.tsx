@@ -45,7 +45,11 @@ export function ProductCard({
       }`}
     >
       <div className="relative aspect-square bg-black-5">
-        <Link to={pdpPath} aria-label={`Voir ${product.name}`}>
+        <Link
+          to={pdpPath}
+          aria-label={`Voir ${product.name}`}
+          className="block h-full"
+        >
           <img
             src={product.main_image}
             alt={product.name}
@@ -128,7 +132,11 @@ export function ProductCard({
               />
             )}
           </div>
-          {product.pricing_note ? (
+          {variant === "compact" ? (
+            <p className="mt-1 line-clamp-2 min-h-8 text-xs text-black-80">
+              {product.pricing_note ?? ""}
+            </p>
+          ) : product.pricing_note ? (
             <p className="mt-1 line-clamp-2 text-xs text-black-80">
               {product.pricing_note}
             </p>
