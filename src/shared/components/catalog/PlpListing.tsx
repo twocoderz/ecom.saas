@@ -1,4 +1,4 @@
-import { useEffect, type ReactNode } from "react";
+import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { CatalogFilterDrawer } from "./CatalogFilterDrawer";
 import { FilterPillsBar } from "./FilterPillsBar";
@@ -17,8 +17,6 @@ type PlpListingProps = {
   /** Tri force quand l'URL ne precise pas ?sort (ex: "newest" pour Nouveautes). */
   defaultSort?: "newest";
   titleOverride?: string;
-  /** Bloc editorial bas de page (CategoryPageSpecifics, CollectionPageSpecifics...). */
-  specifics?: ReactNode;
 };
 
 /**
@@ -28,7 +26,6 @@ export function PlpListing({
   slug,
   defaultSort,
   titleOverride,
-  specifics,
 }: PlpListingProps) {
   const readableTitle = resolvePlpTitle(slug, titleOverride);
   const [searchParams] = useSearchParams();
@@ -83,7 +80,7 @@ export function PlpListing({
 
   return (
     <Container>
-      <div className="space-y-6 py-8">
+      <div className="space-y-6 py-8 mb-12">
         {/* Fil d'Ariane dynamique */}
         <nav className="text-xs text-black-70" aria-label="Fil d'Ariane">
           <Link
@@ -130,7 +127,6 @@ export function PlpListing({
           onPrevious={goToPreviousPage}
           onNext={goToNextPage}
         />
-        {specifics}
       </div>
 
       <CatalogFilterDrawer

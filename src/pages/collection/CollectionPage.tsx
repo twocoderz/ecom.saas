@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { PlpListing } from "../../shared/components/catalog/PlpListing";
 import { getPlpDefaultSort } from "../../shared/data/plpListings";
-import { CollectionPageSpecifics } from "./components/CollectionPageSpecifics";
 
 /**
  * Page collection (ex: /collection/new-arrivals).
@@ -13,11 +12,5 @@ export function CollectionPage() {
   const params = useParams();
   const slug = params.slug ?? "new-arrivals";
 
-  return (
-    <PlpListing
-      slug={slug}
-      defaultSort={getPlpDefaultSort(slug)}
-      specifics={<CollectionPageSpecifics />}
-    />
-  );
+  return <PlpListing slug={slug} defaultSort={getPlpDefaultSort(slug)} />;
 }
