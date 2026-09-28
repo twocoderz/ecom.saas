@@ -19,7 +19,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
     <div className="min-h-screen bg-black-5 text-black-80">
       <header className="border-b border-black-10 bg-white">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-2 px-2 py-3 md:px-8">
-          <strong className="mr-4 text-sm font-bold">Admin marchand (mock)</strong>
+          <strong className="mr-4 text-sm font-bold">Admin marchand (démo)</strong>
           {LINKS.map((l) => (
             <Link
               key={l.to}

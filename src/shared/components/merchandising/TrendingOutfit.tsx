@@ -38,7 +38,7 @@ export function TrendingOutfit({ card, activeProductId, onActiveChange }: Trendi
   if (!card) {
     return (
       <article className="rounded-xl border border-black-10 p-4 text-sm text-black-60">
-        Top Trendings Outfits coming soon.
+        Nos tenues tendances arrivent bientôt.
       </article>
     );
   }

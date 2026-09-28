@@ -15,7 +15,7 @@ const drafts: DraftProduct[] = [
       "Silhouette classique Air avec amorti visible et empeigne multicouche.",
     price: 189,
     sale_price: 159,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1002",
@@ -28,7 +28,7 @@ const drafts: DraftProduct[] = [
       "Chaussure running polyvalente pour entrainement quotidien et longues distances.",
     price: 149,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1003",
@@ -41,7 +41,7 @@ const drafts: DraftProduct[] = [
       "Cushioning reactif et empeigne textile pour transitions fluides.",
     price: 199,
     sale_price: 169,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1004",
@@ -54,7 +54,7 @@ const drafts: DraftProduct[] = [
       "Modele running stable avec mousse legere et traction multi-surfaces.",
     price: 139,
     sale_price: 119,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1005",
@@ -67,7 +67,7 @@ const drafts: DraftProduct[] = [
       "Runner retro premium avec details techniques inspires des annees 2000.",
     price: 179,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1006",
@@ -79,7 +79,7 @@ const drafts: DraftProduct[] = [
     description: "Soutien pronation et amorti maximal pour sorties intensives.",
     price: 209,
     sale_price: 189,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1007",
@@ -92,7 +92,7 @@ const drafts: DraftProduct[] = [
       "Sneaker inspiree basketball avec empeigne mixte cuir/textile.",
     price: 159,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1008",
@@ -105,7 +105,7 @@ const drafts: DraftProduct[] = [
       "Semelle architecturee et look lifestyle unisex orientee streetwear.",
     price: 129,
     sale_price: 99,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1009",
@@ -117,7 +117,7 @@ const drafts: DraftProduct[] = [
     description: "Hoodie zippe coupe athletique avec isolation legere.",
     price: 129,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1010",
@@ -129,7 +129,7 @@ const drafts: DraftProduct[] = [
     description: "T-shirt coton quotidien, branding frontal discret.",
     price: 35,
     sale_price: 29,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1011",
@@ -141,7 +141,7 @@ const drafts: DraftProduct[] = [
     description: "Veste training zippee avec col montant et coupe regular.",
     price: 79,
     sale_price: 64,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1012",
@@ -153,7 +153,7 @@ const drafts: DraftProduct[] = [
     description: "Jogger molletonne pour echauffement et sorties casual.",
     price: 69,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1013",
@@ -165,7 +165,7 @@ const drafts: DraftProduct[] = [
     description: "Short respirant avec evacuation rapide de la transpiration.",
     price: 45,
     sale_price: 35,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1014",
@@ -177,7 +177,7 @@ const drafts: DraftProduct[] = [
     description: "Short football junior leger pour entrainements club.",
     price: 30,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1015",
@@ -190,7 +190,7 @@ const drafts: DraftProduct[] = [
       "Sac urbain avec compartiment principal et poches accessoires.",
     price: 55,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1016",
@@ -203,7 +203,7 @@ const drafts: DraftProduct[] = [
       "Version junior de la silhouette Air Max 90 avec maintien renforce.",
     price: 119,
     sale_price: 99,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1017",
@@ -215,7 +215,7 @@ const drafts: DraftProduct[] = [
     description: "Sneaker suede junior au style heritage.",
     price: 89,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1018",
@@ -227,7 +227,7 @@ const drafts: DraftProduct[] = [
     description: "Plateforme lifestyle feminine avec empeigne en cuir souple.",
     price: 109,
     sale_price: 89,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1019",
@@ -239,7 +239,7 @@ const drafts: DraftProduct[] = [
     description: "Runner unisex look 2000 avec mesh respirant.",
     price: 119,
     sale_price: null,
-    currency: "USD",
+    currency: "XOF",
   },
   {
     id: "prod-1020",
@@ -252,7 +252,7 @@ const drafts: DraftProduct[] = [
       "Running daily trainer dynamique avec retour energie accentue.",
     price: 169,
     sale_price: 149,
-    currency: "USD",
+    currency: "XOF",
   },
 ];
 

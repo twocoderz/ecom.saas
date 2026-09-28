@@ -83,7 +83,7 @@ export function AddToCartPanel({
     <section className="rounded-xl border border-black-10 bg-white p-4">
       <div className="space-y-3 text-sm">
         <div>
-          <p className="text-xs font-semibold uppercase text-black-60">Color</p>
+          <p className="text-xs font-semibold uppercase text-black-60">Couleur</p>
           <div className="mt-1 flex flex-wrap gap-2">
             {colors.map((color) => (
               <button
@@ -111,7 +111,7 @@ export function AddToCartPanel({
 
         <div>
           <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase text-black-60">Size</p>
+            <p className="text-xs font-semibold uppercase text-black-60">Taille</p>
             <button
               type="button"
               onClick={() => setShowGuide((prev) => !prev)}

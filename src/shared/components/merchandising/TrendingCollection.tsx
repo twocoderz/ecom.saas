@@ -24,7 +24,7 @@ export function TrendingCollection(props: TrendingCollectionProps) {
           />
         </div>
       </Link>
-      <h3 className="text-center text-sm font-bold text-black-80">{name}</h3>
+      <h3 className="text-center text-md font-bold text-black-80">{name}</h3>
     </article>
   );
 }

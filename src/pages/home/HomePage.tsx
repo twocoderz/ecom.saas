@@ -42,8 +42,8 @@ export function HomePage() {
       <HeroBanner />
 
       <div className="space-y-4 pt-8">
-        {/* Shop by gender */}
-        <Section title="Shop By Gender">
+        {/* Acheter par genre */}
+        <Section title="Acheter par genre">
           <div className="grid grid-cols-3 gap-4">
             {genders
               .filter((gender) => gender.code !== "unisex")
@@ -55,7 +55,7 @@ export function HomePage() {
                   className={`flex min-h-28 flex-col items-start justify-end rounded-md bg-linear-to-br p-4 text-white transition-transform hover:scale-[1.02] sm:min-h-40 ${GENDER_TILE_STYLES[gender.code] ?? "from-black-70 to-black"}`}
                 >
                   <span className="text-lg font-bold uppercase tracking-tight sm:text-2xl">
-                    Shop {gender.name}
+                    Voir {gender.name}
                   </span>
                   <span className="mt-1 text-xs font-semibold underline underline-offset-2">
                     Voir détails
@@ -79,7 +79,7 @@ export function HomePage() {
         </div>
 
         {/* Collections */}
-        <Section title="Trending Collections" className="mt-p18">
+        <Section title="Collections tendances" className="mt-p18">
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {trendingCollectionCards.map((collection) => (
               <TrendingCollection
@@ -94,7 +94,7 @@ export function HomePage() {
         </Section>
 
         {/* Marques */}
-        <Section title="Shop By Brand" className="mt-p18">
+        <Section title="Acheter par marque" className="mt-p18">
           <div className="grid grid-cols-3 gap-4 md:grid-cols-4 lg:grid-cols-6">
             {brandCards.map((brand) => (
               <BrandTile
@@ -142,7 +142,7 @@ export function HomePage() {
 
         {/* Guide interne : visible uniquement en dev */}
         {import.meta.env.DEV && (
-          <Section title="Guide structure home">
+          <Section title="Guide de la structure d'accueil">
             <HomeSectionsGuide />
           </Section>
         )}

@@ -5,7 +5,7 @@
 export function CategoryPageSpecifics() {
   return (
     <section className="rounded-xl border border-black/10 p-4">
-      <p className="text-sm text-black/80">Specifique PLP: facettes, tri, badges promo, pagination.</p>
+      <p className="text-sm text-black/80">Spécifique PLP : facettes, tri, badges promo, pagination.</p>
     </section>
   )
 }

@@ -88,6 +88,6 @@ export function applyPromo(
     discountAmountUsd: discount,
     totalAfterDiscountUsd: Math.max(0, subtotalUsd - discount),
     applied: true,
-    reason: "Code promo applique.",
+    reason: "Code promo appliqué.",
   };
 }

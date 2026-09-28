@@ -3,6 +3,14 @@ import { mockReviewCount } from "../../../lib/reviews";
 import { Price } from "../ui/Price";
 import { RatingStars } from "../ui/RatingStars";
 
+const ATTRIBUTE_LABELS: Record<string, string> = {
+  color: "Couleur",
+  material: "Matière",
+  style: "Style",
+  fit: "Coupe",
+  technology: "Technologie",
+};
+
 type ProductInfoPanelProps = {
   detail: ApiPdpResponse;
 };
@@ -42,7 +50,7 @@ export function ProductInfoPanel({ detail }: ProductInfoPanelProps) {
       <ul className="mt-3 space-y-1 text-sm text-black-80">
         {Object.entries(detail.attributes).map(([key, values]) => (
           <li key={key}>
-            <span className="font-semibold capitalize">{key}:</span>{" "}
+            <span className="font-semibold">{ATTRIBUTE_LABELS[key] ?? key} :</span>{" "}
             {values.join(", ")}
           </li>
         ))}

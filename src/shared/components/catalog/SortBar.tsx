@@ -61,7 +61,7 @@ export function SortBar({
   }, [isSortOpen]);
 
   const selectedSortLabel =
-    sortOptions.find((option) => option.value === sortBy)?.label ?? "Relevance";
+    sortOptions.find((option) => option.value === sortBy)?.label ?? "Pertinence";
 
   return (
     <div className="space-y-4">
@@ -136,7 +136,7 @@ export function SortBar({
         </div>
       </div>
 
-      <p className="sr-only">{resultCount} items</p>
+      <p className="sr-only">{resultCount} articles</p>
     </div>
   );
 }

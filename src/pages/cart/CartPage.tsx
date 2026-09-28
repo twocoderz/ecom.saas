@@ -19,7 +19,7 @@ export function CartPage() {
   return (
     <Container>
       <div className="space-y-6 py-8">
-        <PageHeader title="Panier" subtitle="Vérification des articles avant checkout." />
+        <PageHeader title="Panier" subtitle="Vérification des articles avant de passer commande." />
         {lines.length === 0 ? (
           <EmptyState message="Votre panier est vide." />
         ) : (

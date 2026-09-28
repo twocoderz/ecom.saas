@@ -63,7 +63,7 @@ export function SearchResultsPage() {
       <div className="space-y-6 py-8">
         <PageHeader
           title="Recherche"
-          subtitle={`Resultats filtres et tries (${totalResults} items)${
+          subtitle={`Résultats filtrés et triés (${totalResults} articles)${
             searchQuery ? ` pour "${searchQuery}"` : ""
           }.`}
         />

@@ -5,7 +5,7 @@
 export function AccountPageSpecifics() {
   return (
     <section className="rounded-xl border border-black/10 p-4">
-      <p className="text-sm text-black/80">Specifique compte: navigation secondaire + blocs de gestion client.</p>
+      <p className="text-sm text-black/80">Spécifique compte : navigation secondaire + blocs de gestion client.</p>
     </section>
   )
 }

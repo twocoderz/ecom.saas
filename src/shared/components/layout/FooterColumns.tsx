@@ -19,7 +19,7 @@ const LINK_GROUPS: Array<{ title: string; links: Array<{ label: string; to: stri
       { label: "Se connecter", to: ROUTE_PATHS.auth },
       { label: "Tableau de bord", to: ROUTE_PATHS.accountDashboard },
       { label: "Mes commandes", to: ROUTE_PATHS.accountOrders },
-      { label: "Ma wishlist", to: ROUTE_PATHS.accountWishlist },
+      { label: "Ma liste d'envies", to: ROUTE_PATHS.accountWishlist },
     ],
   },
   {
@@ -31,7 +31,7 @@ const LINK_GROUPS: Array<{ title: string; links: Array<{ label: string; to: stri
     ],
   },
   {
-    title: "Legal",
+    title: "Infos légales",
     links: [
       { label: "Mentions légales", to: ROUTE_PATHS.legalNotice },
       { label: "Confidentialité", to: ROUTE_PATHS.privacyPolicy },
@@ -57,7 +57,7 @@ export function FooterColumns() {
         <div className="flex flex-col gap-4 border-b border-white/15 py-8 md:flex-row md:items-center md:justify-between">
           <div>
             <h3 className="text-base font-bold uppercase tracking-tight">
-              Reste informé des drops
+              Reste informé des sorties
             </h3>
             <p className="mt-1 text-sm text-white/70">
               Nouveautés, promos et collections en avant-première.
@@ -76,7 +76,7 @@ export function FooterColumns() {
               }}
             >
               <label htmlFor="newsletter-email" className="sr-only">
-                Email newsletter
+                E-mail infolettre
               </label>
               <input
                 id="newsletter-email"
@@ -91,7 +91,7 @@ export function FooterColumns() {
                 type="submit"
                 className="rounded-md bg-white px-4 py-2 text-sm font-bold text-black hover:bg-white/85"
               >
-                OK
+                S'inscrire
               </button>
             </form>
           )}

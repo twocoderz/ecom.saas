@@ -88,7 +88,7 @@ export function CartSummary() {
         to={ROUTE_PATHS.checkoutInfo}
         className="mt-4 block rounded-md bg-black px-4 py-3 text-center text-sm font-semibold text-white hover:bg-black-80"
       >
-        Passer au checkout
+        Passer commande
       </Link>
     </aside>
   );

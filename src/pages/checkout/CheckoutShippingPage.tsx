@@ -12,7 +12,7 @@ export function CheckoutShippingPage() {
       <div className="space-y-6 py-8">
         <CheckoutStepper />
         <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
-          <section className="rounded-xl border border-black/10 p-4">Selection mode de livraison</section>
+          <section className="rounded-xl border border-black/10 p-4">Sélection mode de livraison</section>
           <CartSummary />
         </div>
       </div>

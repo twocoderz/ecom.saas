@@ -6,7 +6,7 @@ import { useAuthStore } from '../../stores/useAuthStore'
 import { ROUTE_PATHS } from '../../config/paths'
 
 /**
- * Auth mock : email seul, *@admin.* => role admin pour tester /admin.
+ * Auth démo : email seul, *@admin.* => role admin pour tester /admin.
  */
 export function AuthPage() {
   const [email, setEmail] = useState('')
@@ -25,7 +25,7 @@ export function AuthPage() {
   return (
     <Container>
       <div className="space-y-6 py-8">
-        <PageHeader title="Connexion / Inscription" subtitle="Mock sans backend : utilisez test@shop.com ou admin@shop.admin" />
+        <PageHeader title="Connexion / Inscription" subtitle="Démo sans backend : utilisez test@shop.com ou admin@shop.admin" />
         {user ? (
           <section className="rounded-xl border border-black-10 bg-white p-4">
             <p className="text-sm">Connecté en tant que <strong>{user.email}</strong> ({user.role}).</p>
@@ -40,7 +40,7 @@ export function AuthPage() {
         ) : (
           <form onSubmit={submit} className="max-w-md space-y-3 rounded-xl border border-black-10 bg-white p-4">
             <label htmlFor="auth-email" className="text-sm font-semibold">
-              Email
+              E-mail
             </label>
             <input
               id="auth-email"
@@ -52,7 +52,7 @@ export function AuthPage() {
               className="w-full rounded-md border border-black-20 px-3 py-2 text-sm"
             />
             <button type="submit" className="w-full rounded-md bg-black px-4 py-2 text-sm font-semibold text-white hover:bg-black-80">
-              Se connecter (mock)
+              Se connecter
             </button>
           </form>
         )}

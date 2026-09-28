@@ -15,7 +15,7 @@ export function CollectionPage() {
           title="Collection"
           subtitle="Page collection/campagne avec bloc editorial + listing."
         />
-        <TrendingOutfit title="Storytelling collection" />
+        <TrendingOutfit title="Univers collection" />
         <ProductGrid />
       </div>
     </Container>

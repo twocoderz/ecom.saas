@@ -9,7 +9,7 @@ export function TermsPage() {
     <Container>
       <section className="space-y-2 py-8">
         <h1 className="text-2xl font-semibold">Conditions d'utilisation</h1>
-        <p className="text-black/70">Regles d'utilisation de la plateforme.</p>
+        <p className="text-black/70">Règles d'utilisation de la plateforme.</p>
       </section>
     </Container>
   )

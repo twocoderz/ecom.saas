@@ -164,7 +164,7 @@ function productToCard(product: Product): PlpProductCard {
     id: product.id,
     slug: product.slug,
     name: product.name,
-    brand: brand?.name ?? "Unknown",
+    brand: brand?.name ?? "Inconnue",
     principal_gender: principalGender?.slug ?? "unisex",
     category: category?.slug ?? "unknown",
     price: product.price,
@@ -173,7 +173,7 @@ function productToCard(product: Product): PlpProductCard {
     main_image: getMainImage(product.id),
     has_stock: variants.some((variant) => variant.stock > 0),
     color_count: Math.max(1, uniqueColorCount),
-    pricing_note: hasDiscount ? "Limited Time Markdown. Price as Marked" : null,
+    pricing_note: hasDiscount ? "Remise limitée. Prix affiché" : null,
   };
 }
 
@@ -448,22 +448,22 @@ function buildFacets(
   return [
     {
       key: "gender",
-      label: "Gender",
+      label: "Genre",
       values: buildFacetValues(genderValuesFromProducts(genderProducts)),
     },
     {
       key: "brand",
-      label: "Brand",
+      label: "Marque",
       values: buildFacetValues(brandValuesFromProducts(brandProducts)),
     },
     {
       key: "category",
-      label: "Category",
+      label: "Catégorie",
       values: buildFacetValues(categoryValuesFromProducts(categoryProducts)),
     },
     {
       key: "activity",
-      label: "Activity",
+      label: "Activité",
       values: buildFacetValues(activityValuesFromProducts(activityProducts)),
     },
     {
@@ -475,7 +475,7 @@ function buildFacets(
     },
     {
       key: "color",
-      label: "Color",
+      label: "Couleur",
       values: buildFacetValues(colorValuesFromProducts(colorProducts)),
     },
   ];
@@ -589,7 +589,7 @@ export function getPlpBySlug(
     type: "plp",
     slug,
     path: buildPlpPath(slug),
-    title: `${slug.replace(/-/g, " ")} | JD-style Listing`,
+    title: `${slug.replace(/-/g, " ")} | Liste boutique`,
     description: `Decouvrez ${totalItems} produits pour ${slug.replace(/-/g, " ")} avec filtres partageables.`,
   });
 
@@ -691,8 +691,8 @@ export function getPdpBySlug(input: {
     type: "pdp",
     slug: descriptiveSlug,
     path: buildPdpPath(descriptiveSlug, product.id),
-    title: `${brand.name} ${product.name} | JD-style PDP`,
-    description: `${product.name} - ${category.name}. Prix ${getEffectivePrice(product)} USD.`,
+    title: `${brand.name} ${product.name} | Fiche produit`,
+    description: `${product.name} - ${category.name}. Prix ${getEffectivePrice(product)} F CFA.`,
   });
 
   return {

@@ -1,6 +1,3 @@
-/**
- * Brand shortcut tile.
- */
 import { Link } from "react-router-dom";
 
 type BrandTileProps = {

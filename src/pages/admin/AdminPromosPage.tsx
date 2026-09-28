@@ -2,7 +2,7 @@ import { DataTable } from "../../shared/components/admin/DataTable";
 import { promotions } from "../../data/mock";
 
 /**
- * Liste promotions mock.
+ * Liste promotions démo.
  */
 export function AdminPromosPage() {
   return (
@@ -13,7 +13,7 @@ export function AdminPromosPage() {
         rows={promotions.map((p) => [
           p.code,
           p.name,
-          p.discount_type,
+          p.discount_type === "percentage" ? "pourcentage" : "fixe",
           String(p.discount_value),
           p.is_active ? "oui" : "non",
         ])}

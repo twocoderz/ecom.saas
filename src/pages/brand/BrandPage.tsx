@@ -10,7 +10,7 @@ export function BrandPage() {
   return (
     <Container>
       <div className="space-y-6 py-8">
-        <PageHeader title="Marque" subtitle="Landing marque avec merchandising + produits." />
+        <PageHeader title="Marque" subtitle="Page marque avec sélection et produits." />
         <ProductGrid />
       </div>
     </Container>

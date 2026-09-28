@@ -6,7 +6,7 @@ import { getDefaultPlpCards } from '../../data/api/catalogApi'
 import { useWishlistStore } from '../../stores/useWishlistStore'
 
 /**
- * Wishlist reelle depuis le store (ids -> cartes catalogue).
+ * Liste d'envies réelle depuis le store (ids -> cartes catalogue).
  */
 export function WishlistPage() {
   const ids = useWishlistStore((s) => s.ids)
@@ -20,7 +20,7 @@ export function WishlistPage() {
       <div className="space-y-6 py-8">
         <h1 className="text-2xl font-semibold">Liste d'envies ({ids.length})</h1>
         {products.length === 0 ? (
-          <EmptyState message="Votre wishlist est vide. Touchez le cœur sur une carte produit." />
+          <EmptyState message="Votre liste d'envies est vide. Touchez le cœur sur une carte produit." />
         ) : (
           <ProductGrid products={products} layout="grid" />
         )}

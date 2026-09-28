@@ -30,14 +30,20 @@ export function CategoryPage() {
     return "mens-shoes";
   }, [params.category, params.department, params.slug]);
 
-  const readableTitle = useMemo(
-    () =>
-      resolvedSlug
-        .split("-")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" "),
-    [resolvedSlug],
-  );
+  const readableTitle = useMemo(() => {
+    const slugMap: Record<string, string> = {
+      "mens-shoes": "Chaussures homme",
+      "mens-clothing": "Vêtements homme",
+      "womens-shoes": "Chaussures femme",
+      "womens-clothing": "Vêtements femme",
+      "kids-shoes": "Chaussures enfant",
+    };
+    if (slugMap[resolvedSlug]) return slugMap[resolvedSlug];
+    return resolvedSlug
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }, [resolvedSlug]);
 
   const { isFilterOpen, openFilters, closeFilters } = useFilterDrawer();
   const {
@@ -99,7 +105,7 @@ export function CategoryPage() {
           <h1 className="text-4xl font-semibold text-black-80">
             {readableTitle}
           </h1>
-          <p className="pb-1 text-sm text-black-60">({totalResults} items)</p>
+          <p className="pb-1 text-sm text-black-60">({totalResults} articles)</p>
         </div>
 
         <SortBar

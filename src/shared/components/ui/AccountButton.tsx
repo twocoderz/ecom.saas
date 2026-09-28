@@ -111,7 +111,7 @@ export default function AccountButton() {
                     onClick={() => setOpen(false)}
                     className="block rounded-sm px-2 py-1.5 hover:bg-black-5"
                   >
-                    Ma wishlist
+                    Ma liste d'envies
                   </Link>
                 </li>
               </ul>

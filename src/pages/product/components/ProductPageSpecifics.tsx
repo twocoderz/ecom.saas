@@ -6,7 +6,7 @@ export function ProductPageSpecifics() {
   return (
     <section className="rounded-xl border border-black/10 p-4">
       <p className="text-sm text-black/80">
-        Specifique PDP: variantes, stock, livraison, cross-sell et reassurance.
+        Spécifique PDP : variantes, stock, livraison, cross-sell et réassurance.
       </p>
     </section>
   )

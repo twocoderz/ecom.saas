@@ -9,7 +9,7 @@ export function AdminProductsPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Produits ({products.length})</h1>
       <DataTable
-        columns={["SKU", "Nom", "Marque", "Categorie", "Prix USD", "Solde USD"]}
+        columns={["SKU", "Nom", "Marque", "Catégorie", "Prix (F CFA)", "Solde (F CFA)"]}
         rows={products.slice(0, 50).map((p) => [
           p.sku,
           p.name,

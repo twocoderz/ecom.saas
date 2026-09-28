@@ -9,7 +9,7 @@ export function SiteMapPage() {
     <Container>
       <section className="space-y-2 py-8">
         <h1 className="text-2xl font-semibold">Plan du site</h1>
-        <p className="text-black/70">Index des pages departement, marque, legal et support.</p>
+        <p className="text-black/70">Index des pages département, marque, pages légales et support.</p>
       </section>
     </Container>
   )
