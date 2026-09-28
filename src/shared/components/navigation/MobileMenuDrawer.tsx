@@ -95,7 +95,7 @@ export function MobileMenuDrawer({ id, onClose }: MobileMenuDrawerProps) {
       <div className="relative flex h-14 shrink-0 items-center justify-between bg-black px-p4 text-white">
         {depth === 0 ? (
           <>
-            <Logo />
+            <Logo onClick={onClose} />
             <button
               ref={closeButtonRef}
               type="button"
