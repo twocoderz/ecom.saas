@@ -11,7 +11,7 @@ export function QuantityStepper({
   onChange: (qty: number) => void;
 }) {
   return (
-    <div className="inline-flex items-center rounded-full border border-black-20">
+    <div className="inline-flex items-center rounded-xs border border-black-30">
       <button
         type="button"
         aria-label="Diminuer la quantité"

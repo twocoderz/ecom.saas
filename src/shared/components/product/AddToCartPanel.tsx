@@ -157,7 +157,7 @@ export function AddToCartPanel({
             Guide des tailles
           </button>
         </div>
-        <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4">
+        <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-5">
           {sizesForColor.map((variant) => {
             const out = variant.stock <= 0;
             const isActive = selectedSize === variant.size;
@@ -174,7 +174,7 @@ export function AddToCartPanel({
                   onSizeChange(variant.size);
                   setSizeError(false);
                 }}
-                className={`rounded-xs cursor-pointer border px-1 py-4 text-sm font-medium transition-colors ${
+                className={`rounded-xs cursor-pointer border px-1 py-2 text-sm font-medium transition-colors ${
                   isActive
                     ? "border-black bg-black-80 text-white"
                     : out
