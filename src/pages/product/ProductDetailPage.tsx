@@ -137,90 +137,94 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
             images={galleryImages}
             productName={`${detail.brand.name} ${detail.product.name}`}
           />
-          <div className="space-y-5">
-            <ProductInfoPanel
-              detail={detail}
-              selectedColorName={selectedColor}
-            />
-            <AddToCartPanel
-              productId={detail.product.id}
-              productName={`${detail.brand.name} ${detail.product.name}`}
-              productImage={mainImage}
-              priceUsd={detail.product.price}
-              salePriceUsd={detail.product.sale_price}
-              variants={detail.variants}
-              images={detail.images}
-              selectedColor={selectedColor}
-              selectedSize={selectedSize}
-              onColorChange={(color) => {
-                setSelectedColor(color);
-                setSelectedSize(null);
-              }}
-              onSizeChange={setSelectedSize}
-            />
+          <div className="flex flex-col gap-8">
+            <div className="space-y-5">
+              <ProductInfoPanel
+                detail={detail}
+                selectedColorName={selectedColor}
+              />
+              <AddToCartPanel
+                productId={detail.product.id}
+                productName={`${detail.brand.name} ${detail.product.name}`}
+                productImage={mainImage}
+                priceUsd={detail.product.price}
+                salePriceUsd={detail.product.sale_price}
+                variants={detail.variants}
+                images={detail.images}
+                selectedColor={selectedColor}
+                selectedSize={selectedSize}
+                onColorChange={(color) => {
+                  setSelectedColor(color);
+                  setSelectedSize(null);
+                }}
+                onSizeChange={setSelectedSize}
+              />
+            </div>
+
+            {/* Détails produit */}
+            <div className="border-t border-black-10">
+              <details className="border-b border-black-10 py-4" open>
+                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
+                  Détails produit
+                  <span aria-hidden="true">⌃</span>
+                </summary>
+                <div className="mt-3 space-y-4 text-sm text-black-80">
+                  <div>
+                    <h3 className="font-bold">Comment choisir votre taille</h3>
+                    <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
+                      <li>
+                        Nos tailles chaussures sont en pointure EU (ex : 40, 41,
+                        42). Consultez le guide des tailles pour la
+                        correspondance en cm.
+                      </li>
+                      <li>
+                        Pour le textile, les tailles vont de XS à XL. Si vous
+                        hésitez entre deux tailles, prenez la plus grande.
+                      </li>
+                    </ul>
+                  </div>
+                  <p>{detail.product.description}</p>
+                  <div>
+                    <h3 className="font-bold">Caractéristiques</h3>
+                    <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
+                      {Object.entries(detail.attributes).map(
+                        ([key, values]) => (
+                          <li key={key}>
+                            <span className="font-semibold text-black-80">
+                              {ATTRIBUTE_LABELS[key] ?? key} :
+                            </span>{" "}
+                            {values.join(", ")}
+                          </li>
+                        ),
+                      )}
+                      <li>Marque : {detail.brand.name}</li>
+                      <li>Référence : {detail.product.sku}</li>
+                    </ul>
+                  </div>
+                </div>
+              </details>
+
+              <details className="border-b border-black-10 py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
+                  Livraison &amp; retours
+                  <span aria-hidden="true">⌄</span>
+                </summary>
+                <p className="mt-2 text-sm text-black-70">
+                  Livraison suivie sous 3 à 5 jours ouvrés. Retrait gratuit en
+                  magasin le jour même. Retours gratuits sous 30 jours, articles
+                  non portés avec étiquettes.
+                </p>
+              </details>
+
+              <ProductReviews
+                productId={detail.product.id}
+                productName={`${detail.brand.name} ${detail.product.name}`}
+              />
+            </div>
           </div>
         </div>
 
-        {/* Détails produit façon JD */}
-        <div className="border-t border-black-10">
-          <details className="border-b border-black-10 py-4" open>
-            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
-              Détails produit
-              <span aria-hidden="true">⌃</span>
-            </summary>
-            <div className="mt-3 space-y-4 text-sm text-black-80">
-              <div>
-                <h3 className="font-bold">Comment choisir votre taille</h3>
-                <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
-                  <li>
-                    Nos tailles chaussures sont en pointure EU (ex : 40, 41,
-                    42). Consultez le guide des tailles pour la correspondance
-                    en cm.
-                  </li>
-                  <li>
-                    Pour le textile, les tailles vont de XS à XL. Si vous
-                    hésitez entre deux tailles, prenez la plus grande.
-                  </li>
-                </ul>
-              </div>
-              <p>{detail.product.description}</p>
-              <div>
-                <h3 className="font-bold">Caractéristiques</h3>
-                <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
-                  {Object.entries(detail.attributes).map(([key, values]) => (
-                    <li key={key}>
-                      <span className="font-semibold text-black-80">
-                        {ATTRIBUTE_LABELS[key] ?? key} :
-                      </span>{" "}
-                      {values.join(", ")}
-                    </li>
-                  ))}
-                  <li>Marque : {detail.brand.name}</li>
-                  <li>Référence : {detail.product.sku}</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-
-          <details className="border-b border-black-10 py-4">
-            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
-              Livraison &amp; retours
-              <span aria-hidden="true">⌄</span>
-            </summary>
-            <p className="mt-2 text-sm text-black-70">
-              Livraison suivie sous 3 à 5 jours ouvrés. Retrait gratuit en
-              magasin le jour même. Retours gratuits sous 30 jours, articles non
-              portés avec étiquettes.
-            </p>
-          </details>
-
-          <ProductReviews
-            productId={detail.product.id}
-            productName={`${detail.brand.name} ${detail.product.name}`}
-          />
-        </div>
-
-        {/* Recommandations conservées */}
+        {/* Recommandations */}
         {detail.related_products.length > 0 && (
           <Section title="Vous aimerez aussi">
             <ProductGrid products={detail.related_products} layout="rail" />
