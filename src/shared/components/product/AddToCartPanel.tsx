@@ -102,10 +102,11 @@ export function AddToCartPanel({
   };
 
   return (
-    <section className="space-y-4" aria-label="Choix de la variante et achat">
+    <section className="space-y-10" aria-label="Choix de la variante et achat">
       {/* Couleur: swatch image + nom déjà affiché dans InfoPanel */}
       <div>
-        <div className="flex gap-2">
+        <h4 className="text-lg font-medium text-black-80 mb-4">Couleurs</h4>
+        <div className="flex gap-6">
           {colors.map((color) => {
             const isActive = selectedColor === color;
             const thumb = colorThumbnails.get(color);
@@ -119,9 +120,9 @@ export function AddToCartPanel({
                 onClick={() => {
                   onColorChange(color);
                 }}
-                className={`h-14 w-14 overflow-hidden rounded-md bg-[#f5f5f5] transition-all ${
+                className={`h-14 w-14 overflow-hidden rounded-xs cursor-pointer bg-[#f5f5f5] transition-all ${
                   isActive
-                    ? "ring-2 ring-black ring-offset-1"
+                    ? "ring-2 ring-black-70 ring-offset-1"
                     : "opacity-80 ring-1 ring-black-10 hover:opacity-100 hover:ring-black-40"
                 }`}
               >
@@ -144,19 +145,19 @@ export function AddToCartPanel({
         </div>
       </div>
 
-      {/* Taille façon JD : label + guide à droite, grille compacte */}
+      {/* Taille : label + guide à droite, grille compacte */}
       <div>
         <div className="flex items-center justify-between">
-          <p className="text-sm font-bold">Taille</p>
+          <h4 className="text-lg font-medium text-black-80">Taille</h4>
           <button
             type="button"
             onClick={() => setShowGuide(true)}
-            className="text-xs underline underline-offset-2 hover:text-black"
+            className="text-xs underline underline-offset-2 cursor-pointer hover:text-black"
           >
             Guide des tailles
           </button>
         </div>
-        <div className="mt-2 grid grid-cols-4 gap-2 sm:grid-cols-5">
+        <div className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-4">
           {sizesForColor.map((variant) => {
             const out = variant.stock <= 0;
             const isActive = selectedSize === variant.size;
@@ -173,11 +174,11 @@ export function AddToCartPanel({
                   onSizeChange(variant.size);
                   setSizeError(false);
                 }}
-                className={`rounded-md border px-1 py-2 text-xs font-medium transition-colors ${
+                className={`rounded-xs border px-1 py-4 text-sm font-medium transition-colors ${
                   isActive
                     ? "border-black bg-black text-white"
                     : out
-                      ? "cursor-not-allowed border-black-10 text-black-30 line-through"
+                      ? "cursor-not-allowed border-black-20 text-black-30 line-through"
                       : "border-black-20 hover:border-black"
                 }`}
               >
