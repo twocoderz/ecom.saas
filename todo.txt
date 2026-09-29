@@ -1,1 +1,1 @@
--- continuer avec le codage des details
+-- continuer avec le codage de product details
