@@ -174,7 +174,7 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
                     className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
                   />
                 </summary>
-                <div className="mt-3 space-y-4 text-sm text-black-80">
+                <div className="mt-4 space-y-4 text-sm text-black-80">
                   <div>
                     <h3 className="font-bold">Comment choisir votre taille</h3>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
@@ -211,14 +211,14 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
               </details>
 
               <details className="group border-b border-black-10 py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-md font-bold [&::-webkit-details-marker]:hidden">
                   Livraison &amp; retours
                   <ChevronDownIcon
                     aria-hidden="true"
-                    className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                    className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
                   />
                 </summary>
-                <p className="mt-2 text-sm text-black-70">
+                <p className="mt-4 text-sm text-black-70">
                   Livraison suivie sous 3 à 5 jours ouvrés. Retrait gratuit en
                   magasin le jour même. Retours gratuits sous 30 jours, articles
                   non portés avec étiquettes.

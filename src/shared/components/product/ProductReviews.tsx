@@ -10,10 +10,13 @@ type ProductReviewsProps = {
 };
 
 /**
- * Accordéon avis façon JD, en français : note, bouton écrire un avis,
+ * Accordéon avis, en français : note, bouton écrire un avis,
  * message vide si aucun avis détaillé.
  */
-export function ProductReviews({ productId, productName }: ProductReviewsProps) {
+export function ProductReviews({
+  productId,
+  productName,
+}: ProductReviewsProps) {
   const rating = productRatings[productId] ?? 0;
   const reviewCount = mockReviewCount(productId);
   const [showForm, setShowForm] = useState(false);
@@ -25,18 +28,20 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
       className="group border-t border-black-10 py-4"
       open
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between text-md font-bold [&::-webkit-details-marker]:hidden">
         <span>
           Avis {rating.toFixed(1)}{" "}
-          <span className="font-normal text-black-60">({reviewCount} avis)</span>
+          <span className="font-normal text-black-60">
+            ({reviewCount} avis)
+          </span>
         </span>
         <ChevronDownIcon
           aria-hidden="true"
-          className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+          className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
         />
       </summary>
 
-      <div className="mt-3 space-y-3">
+      <div className="mt-4 space-y-3">
         <div className="flex items-center gap-2">
           <RatingStars rating={rating} />
           <span className="text-xs text-black-60">
@@ -48,7 +53,7 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
           <button
             type="button"
             onClick={() => setShowForm(true)}
-            className="w-full rounded-md border border-black px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
+            className="w-50 cursor-pointer rounded-xs mt-6 border border-black px-4 py-3 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
           >
             Écrire un avis
           </button>
