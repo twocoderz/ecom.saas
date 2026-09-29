@@ -1,7 +1,10 @@
 import { useMemo, useState } from "react";
-import type { ProductVariant } from "../../../types";
+import type { ProductImage, ProductVariant } from "../../../types";
 import { useCartStore } from "../../../stores/useCartStore";
 import { QuantityStepper } from "../ui/QuantityStepper";
+import { FulfillmentSelector } from "./FulfillmentSelector";
+import { PaymentMethods } from "./PaymentMethods";
+import { SizeGuideModal } from "./SizeGuideModal";
 
 type AddToCartPanelProps = {
   productId: string;
@@ -10,19 +13,17 @@ type AddToCartPanelProps = {
   priceUsd: number;
   salePriceUsd: number | null;
   variants: ProductVariant[];
+  images: ProductImage[];
+  selectedColor: string;
+  selectedSize: string | null;
+  onColorChange: (color: string) => void;
+  onSizeChange: (size: string) => void;
 };
 
-const SIZE_GUIDE_ROWS: Array<[string, string, string]> = [
-  ["40", "25,0 cm", "UK 6"],
-  ["41", "25,7 cm", "UK 7"],
-  ["42", "26,0 cm", "UK 7.5"],
-  ["43", "26,7 cm", "UK 8.5"],
-  ["44", "27,1 cm", "UK 9"],
-  ["45", "27,9 cm", "UK 10"],
-];
-
 /**
- * Buy box PDP : couleur/taille/quantite + ajout panier + guide des tailles.
+ * Buy box PDP façon JD : swatches couleur avec image, grille tailles FR,
+ * livraison/retrait, paiement mobile money, CTA couleur primaire.
+ * La taille n'est pas présélectionnée : le client doit la choisir.
  */
 export function AddToCartPanel({
   productId,
@@ -31,6 +32,11 @@ export function AddToCartPanel({
   priceUsd,
   salePriceUsd,
   variants,
+  images,
+  selectedColor,
+  selectedSize,
+  onColorChange,
+  onSizeChange,
 }: AddToCartPanelProps) {
   const addLine = useCartStore((s) => s.addLine);
 
@@ -39,20 +45,33 @@ export function AddToCartPanel({
     [variants],
   );
 
-  const [selectedColor, setSelectedColor] = useState(colors[0] ?? "");
+  const colorThumbnails = useMemo(() => {
+    const variantColorById = new Map(
+      variants.map((variant) => [variant.id, variant.color]),
+    );
+    const result = new Map<string, string>();
+    for (const image of images) {
+      if (!image.variant_id) continue;
+      const color = variantColorById.get(image.variant_id);
+      if (color && !result.has(color)) {
+        result.set(color, image.url);
+      }
+    }
+    return result;
+  }, [images, variants]);
 
-  const availableSizes = useMemo(
-    () =>
-      variants
-        .filter((variant) => variant.color === selectedColor)
-        .map((variant) => variant.size),
+  const sizesForColor = useMemo(
+    () => variants.filter((variant) => variant.color === selectedColor),
     [selectedColor, variants],
   );
 
-  const [selectedSize, setSelectedSize] = useState(availableSizes[0] ?? "");
   const [qty, setQty] = useState(1);
   const [showGuide, setShowGuide] = useState(false);
+  const [fulfillment, setFulfillment] = useState<"livraison" | "retrait">(
+    "livraison",
+  );
   const [justAdded, setJustAdded] = useState(false);
+  const [sizeError, setSizeError] = useState(false);
 
   const selectedVariant = useMemo(
     () =>
@@ -64,8 +83,13 @@ export function AddToCartPanel({
   );
 
   const inStock = (selectedVariant?.stock ?? 0) > 0;
+  const canAdd = selectedSize !== null && inStock;
 
   const handleAdd = () => {
+    if (selectedSize === null) {
+      setSizeError(true);
+      return;
+    }
     if (!inStock) return;
     addLine({
       productId,
@@ -80,106 +104,131 @@ export function AddToCartPanel({
   };
 
   return (
-    <section className="rounded-xl border border-black-10 bg-white p-4">
-      <div className="space-y-3 text-sm">
-        <div>
-          <p className="text-xs font-semibold uppercase text-black-60">Couleur</p>
-          <div className="mt-1 flex flex-wrap gap-2">
-            {colors.map((color) => (
+    <section className="space-y-4" aria-label="Choix de la variante et achat">
+      {/* Couleur façon JD : swatch image + nom déjà affiché dans InfoPanel */}
+      <div>
+        <div className="flex gap-2">
+          {colors.map((color) => {
+            const isActive = selectedColor === color;
+            const thumb = colorThumbnails.get(color);
+            return (
               <button
                 key={color}
                 type="button"
-                aria-pressed={selectedColor === color}
+                title={color}
+                aria-label={`Couleur ${color}`}
+                aria-pressed={isActive}
                 onClick={() => {
-                  setSelectedColor(color);
-                  const firstSize =
-                    variants.find((variant) => variant.color === color)?.size ??
-                    "";
-                  setSelectedSize(firstSize);
+                  onColorChange(color);
                 }}
-                className={`rounded-md border px-2 py-1 transition-colors ${
-                  selectedColor === color
-                    ? "border-black bg-black text-white"
-                    : "border-black-20 hover:border-black-80"
+                className={`h-14 w-14 overflow-hidden rounded-md bg-[#f5f5f5] transition-all ${
+                  isActive
+                    ? "ring-2 ring-black ring-offset-1"
+                    : "opacity-80 ring-1 ring-black-10 hover:opacity-100 hover:ring-black-40"
                 }`}
               >
-                {color}
+                {thumb ? (
+                  <img
+                    src={thumb}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span className="flex h-full w-full items-center justify-center text-xs font-bold uppercase">
+                    {color.slice(0, 2)}
+                  </span>
+                )}
               </button>
-            ))}
-          </div>
+            );
+          })}
         </div>
-
-        <div>
-          <div className="flex items-center justify-between">
-            <p className="text-xs font-semibold uppercase text-black-60">Taille</p>
-            <button
-              type="button"
-              onClick={() => setShowGuide((prev) => !prev)}
-              aria-expanded={showGuide}
-              className="text-xs font-semibold underline underline-offset-2 hover:text-black"
-            >
-              Guide des tailles
-            </button>
-          </div>
-          <div className="mt-1 flex flex-wrap gap-2">
-            {availableSizes.map((size) => (
-              <button
-                key={size}
-                type="button"
-                aria-pressed={selectedSize === size}
-                onClick={() => setSelectedSize(size)}
-                className={`min-w-11 rounded-md border px-2 py-1 transition-colors ${
-                  selectedSize === size
-                    ? "border-black bg-black text-white"
-                    : "border-black-20 hover:border-black-80"
-                }`}
-              >
-                {size}
-              </button>
-            ))}
-          </div>
-          {showGuide && (
-            <table className="mt-2 w-full text-left text-xs">
-              <thead>
-                <tr className="text-black-60">
-                  <th scope="col" className="py-1 pr-2">EU</th>
-                  <th scope="col" className="py-1 pr-2">Pied</th>
-                  <th scope="col" className="py-1">UK</th>
-                </tr>
-              </thead>
-              <tbody>
-                {SIZE_GUIDE_ROWS.map(([eu, foot, uk]) => (
-                  <tr key={eu} className="border-t border-black-10">
-                    <td className="py-1 pr-2 font-semibold">{eu}</td>
-                    <td className="py-1 pr-2">{foot}</td>
-                    <td className="py-1">{uk}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-
-        <p className="text-sm text-black-70" role="status">
-          {inStock
-            ? `${selectedVariant?.stock ?? 0} unités en stock`
-            : "Rupture de stock pour cette variante"}
-        </p>
-
-        <div className="flex items-center gap-3">
-          <QuantityStepper qty={qty} onChange={(next) => setQty(Math.max(1, next))} />
-          <span className="text-xs text-black-60">Quantité</span>
-        </div>
-
-        <button
-          type="button"
-          disabled={!inStock}
-          onClick={handleAdd}
-          className="w-full rounded-sm bg-black px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-black-80 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {justAdded ? "Ajouté au panier ✓" : "Ajouter au panier"}
-        </button>
       </div>
+
+      {/* Taille façon JD : label + guide à droite, grille compacte */}
+      <div>
+        <div className="flex items-center justify-between">
+          <p className="text-sm font-bold">Taille</p>
+          <button
+            type="button"
+            onClick={() => setShowGuide(true)}
+            className="text-xs underline underline-offset-2 hover:text-black"
+          >
+            Guide des tailles
+          </button>
+        </div>
+        <div className="mt-2 grid grid-cols-4 gap-2 sm:grid-cols-5">
+          {sizesForColor.map((variant) => {
+            const out = variant.stock <= 0;
+            const isActive = selectedSize === variant.size;
+            return (
+              <button
+                key={variant.id}
+                type="button"
+                disabled={out}
+                aria-pressed={isActive}
+                title={out ? `${variant.size} — Rupture de stock` : variant.size}
+                onClick={() => {
+                  onSizeChange(variant.size);
+                  setSizeError(false);
+                }}
+                className={`rounded-md border px-1 py-2 text-xs font-medium transition-colors ${
+                  isActive
+                    ? "border-black bg-black text-white"
+                    : out
+                      ? "cursor-not-allowed border-black-10 text-black-30 line-through"
+                      : "border-black-20 hover:border-black"
+                }`}
+              >
+                {variant.size}
+              </button>
+            );
+          })}
+        </div>
+        {sizeError && selectedSize === null && (
+          <p className="mt-1.5 text-xs font-semibold text-[#d60000]" role="alert">
+            Veuillez sélectionner une taille.
+          </p>
+        )}
+        {selectedVariant && (
+          <p className="mt-1.5 text-xs text-black-70" role="status">
+            {inStock
+              ? `${selectedVariant.stock} unités en stock`
+              : "Rupture de stock pour cette taille"}
+          </p>
+        )}
+      </div>
+
+      <FulfillmentSelector
+        mode={fulfillment}
+        onChange={setFulfillment}
+        hasSelectedSize={selectedSize !== null}
+      />
+
+      <PaymentMethods />
+
+      <div className="flex items-center gap-3">
+        <QuantityStepper qty={qty} onChange={(next) => setQty(Math.max(1, next))} />
+        <span className="text-xs text-black-60">Quantité</span>
+      </div>
+
+      <button
+        type="button"
+        disabled={!canAdd}
+        onClick={handleAdd}
+        className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3.5 text-sm font-bold text-white transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
+      >
+        <span aria-hidden="true">🛍</span>
+        {justAdded ? "Ajouté au panier ✓" : "Ajouter au panier"}
+      </button>
+      {!canAdd && selectedSize === null && (
+        <p className="text-center text-xs text-black-60">
+          Sélectionnez une taille pour ajouter au panier
+        </p>
+      )}
+
+      <SizeGuideModal open={showGuide} onClose={() => setShowGuide(false)} />
     </section>
   );
 }

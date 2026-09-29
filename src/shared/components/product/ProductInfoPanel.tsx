@@ -1,66 +1,71 @@
 import type { ApiPdpResponse } from "../../../types";
 import { mockReviewCount } from "../../../lib/reviews";
+import { productRatings } from "../../../data/mock/relations";
 import { Price } from "../ui/Price";
 import { RatingStars } from "../ui/RatingStars";
 
-const ATTRIBUTE_LABELS: Record<string, string> = {
-  color: "Couleur",
-  material: "Matière",
-  style: "Style",
-  fit: "Coupe",
-  technology: "Technologie",
-};
-
 type ProductInfoPanelProps = {
   detail: ApiPdpResponse;
+  selectedColorName?: string;
 };
 
 /**
- * Bloc d'information produit (colonne droite PDP).
- * Prix affiches dans la devise active, note avis façon JD.
+ * Bloc haut de colonne droite façon JD : marque, titre, note, prix,
+ * nom de couleur. Les sélecteurs couleur/taille vivent dans AddToCartPanel.
  */
-export function ProductInfoPanel({ detail }: ProductInfoPanelProps) {
+export function ProductInfoPanel({
+  detail,
+  selectedColorName,
+}: ProductInfoPanelProps) {
   const hasDiscount =
     detail.product.sale_price !== null &&
     detail.product.sale_price < detail.product.price;
 
-  return (
-    <section className="rounded-xl border border-black-10 bg-white p-4">
-      <p className="text-xs uppercase tracking-wide text-black-60">
-        {detail.brand.name}
-      </p>
-      <h2 className="text-xl font-semibold">{detail.product.name}</h2>
+  const rating = productRatings[detail.product.id] ?? 4;
+  const reviewCount = mockReviewCount(detail.product.id);
+  const colorLabel =
+    selectedColorName ?? detail.attributes.color?.join(" / ") ?? "";
 
-      <div className="mt-2">
-        <RatingStars rating={4} reviewCount={mockReviewCount(detail.product.id)} />
+  return (
+    <section aria-label="Informations produit">
+      <h1 className="text-xl font-bold leading-tight text-black lg:text-2xl">
+        {detail.brand.name} {detail.product.name}
+      </h1>
+
+      <div className="mt-1.5">
+        <a
+          href="#avis-produit"
+          className="inline-flex items-center gap-1.5 hover:underline"
+        >
+          <RatingStars rating={rating} reviewCount={reviewCount} />
+        </a>
       </div>
 
-      <div className="mt-2 flex items-center gap-2 text-sm">
+      <div className="mt-2 flex items-center gap-2 text-base">
         <Price
           amountUsd={detail.product.sale_price ?? detail.product.price}
-          className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
+          className={`font-bold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
         />
         {hasDiscount && (
-          <Price amountUsd={detail.product.price} className="text-black-60 line-through" />
+          <Price
+            amountUsd={detail.product.price}
+            className="text-sm text-black-60 line-through"
+          />
         )}
       </div>
 
-      <p className="mt-2 text-sm text-black-70">{detail.product.description}</p>
-
-      <ul className="mt-3 space-y-1 text-sm text-black-80">
-        {Object.entries(detail.attributes).map(([key, values]) => (
-          <li key={key}>
-            <span className="font-semibold">{ATTRIBUTE_LABELS[key] ?? key} :</span>{" "}
-            {values.join(", ")}
-          </li>
-        ))}
-      </ul>
+      {colorLabel && (
+        <p className="mt-3 text-sm text-black-80">
+          <span className="text-black-60">Couleur : </span>
+          <span className="font-medium capitalize">{colorLabel}</span>
+        </p>
+      )}
 
       {detail.promotions.length > 0 && (
-        <div className="mt-3 rounded-md border border-black-10 p-2 text-xs text-black-70">
-          Promotions actives:{" "}
-          {detail.promotions.map((promotion) => promotion.code).join(", ")}
-        </div>
+        <p className="mt-2 inline-block rounded bg-black-5 px-2 py-1 text-xs font-semibold text-black-80">
+          {detail.promotions[0]?.code} :{" "}
+          {detail.promotions[0]?.description ?? "Offre en cours"}
+        </p>
       )}
     </section>
   );
