@@ -5,8 +5,9 @@ import {
   generateProductDescriptiveSlug,
 } from "../../../lib/slug";
 import { mockReviewCount } from "../../../lib/reviews";
+import { discountInfo } from "../../../lib/currency";
 import type { PlpProductCard } from "../../../types";
-import { Price } from "../ui/Price";
+import { ProductPrice } from "../ui/ProductPrice";
 import { RatingStars } from "../ui/RatingStars";
 import { useCartStore } from "../../../stores/useCartStore";
 import { useWishlistStore } from "../../../stores/useWishlistStore";
@@ -22,12 +23,10 @@ export function ProductCard({
   const toggleWishlist = useWishlistStore((s) => s.toggle);
   const isWished = useWishlistStore((s) => s.ids.includes(product.id));
 
-  const hasDiscount =
-    typeof product.sale_price === "number" &&
-    product.sale_price < product.price;
-  const discountPct = hasDiscount
-    ? Math.round((1 - (product.sale_price as number) / product.price) * 100)
-    : 0;
+  const { hasDiscount, discountPct } = discountInfo(
+    product.price,
+    product.sale_price,
+  );
 
   const pdpPath = buildPdpPath(
     generateProductDescriptiveSlug({
@@ -120,18 +119,11 @@ export function ProductCard({
           )}
         </div>
         <div className={variant === "compact" ? "mt-2" : "mt-4 min-h-p13"}>
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
-            <Price
-              amountUsd={product.sale_price ?? product.price}
-              className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
-            />
-            {hasDiscount && (
-              <Price
-                amountUsd={product.price}
-                className="text-xs text-black-60 line-through"
-              />
-            )}
-          </div>
+          <ProductPrice
+            price={product.price}
+            salePrice={product.sale_price}
+            size={variant === "compact" ? "compact" : "card"}
+          />
           {variant === "compact" ? (
             <p className="mt-1 line-clamp-2 min-h-8 text-xs text-black-80">
               {product.pricing_note ?? ""}

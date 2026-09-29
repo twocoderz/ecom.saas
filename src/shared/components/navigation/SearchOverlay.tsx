@@ -5,7 +5,7 @@ import {
   generateProductDescriptiveSlug,
 } from "../../../lib/slug";
 import { buildSearchDestination } from "../../../config/paths";
-import { Price } from "../ui/Price";
+import { ProductPrice } from "../ui/ProductPrice";
 
 const TRENDING_SEARCHES = [
   "Jordan",
@@ -69,9 +69,10 @@ export function SearchOverlay({ onNavigate }: { onNavigate: () => void }) {
                   <span className="block truncate text-sm font-semibold underline underline-offset-2">
                     {product.name}
                   </span>
-                  <Price
-                    amountUsd={product.sale_price ?? product.price}
-                    className="text-xs font-bold"
+                  <ProductPrice
+                    price={product.price}
+                    salePrice={product.sale_price}
+                    size="compact"
                   />
                 </span>
               </Link>

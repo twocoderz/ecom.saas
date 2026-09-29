@@ -1,5 +1,5 @@
 import type { ApiPdpResponse } from "../../../types";
-import { Price } from "../ui/Price";
+import { ProductPrice } from "../ui/ProductPrice";
 
 type ProductInfoPanelProps = {
   detail: ApiPdpResponse;
@@ -11,10 +11,6 @@ type ProductInfoPanelProps = {
  * nom de couleur. Les sélecteurs couleur/taille vivent dans AddToCartPanel.
  */
 export function ProductInfoPanel({ detail }: ProductInfoPanelProps) {
-  const hasDiscount =
-    detail.product.sale_price !== null &&
-    detail.product.sale_price < detail.product.price;
-
   return (
     <section className="mb-8" aria-label="Informations produit">
       <h1 className="text-xl font-bold leading-tight text-black-80 lg:text-3xl">
@@ -22,17 +18,12 @@ export function ProductInfoPanel({ detail }: ProductInfoPanelProps) {
       </h1>
 
       <div className="flex flex-col gap-2">
-        <div className="mt-4 flex items-center gap-2 text-md">
-          <Price
-            amountUsd={detail.product.sale_price ?? detail.product.price}
-            className={`font-bold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
+        <div className="mt-4">
+          <ProductPrice
+            price={detail.product.price}
+            salePrice={detail.product.sale_price}
+            size="pdp"
           />
-          {hasDiscount && (
-            <Price
-              amountUsd={detail.product.price}
-              className="text-md text-black-60 line-through"
-            />
-          )}
         </div>
 
         {detail.promotions.length > 0 && (

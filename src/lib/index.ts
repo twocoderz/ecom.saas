@@ -8,10 +8,11 @@ export {
 export {
   applyPromo,
   convertFromUsd,
+  discountInfo,
   effectivePrice,
   formatPrice,
 } from "./currency";
-export type { CurrencyCode, PromoResult } from "./currency";
+export type { CurrencyCode, DiscountInfo, PromoResult } from "./currency";
 export { applySeoToDocument, createSeoUrl } from "./seo";
 export { mockReviewCount } from "./reviews";
 export {

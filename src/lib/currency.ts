@@ -41,6 +41,33 @@ export function effectivePrice(price: number, salePrice: number | null): number 
   return salePrice ?? price;
 }
 
+export type DiscountInfo = {
+  hasDiscount: boolean;
+  discountPct: number;
+  savingsUsd: number;
+};
+
+/**
+ * Infos remise centralisées : un seul calcul pour cartes, PDP, recherche.
+ * Les prix catalogue étant stockés en USD, les montants restent en USD
+ * jusqu'au formatage (conversion via formatPrice).
+ */
+export function discountInfo(
+  price: number,
+  salePrice: number | null,
+): DiscountInfo {
+  const hasDiscount =
+    typeof salePrice === "number" && salePrice < price && price > 0;
+  if (!hasDiscount) {
+    return { hasDiscount: false, discountPct: 0, savingsUsd: 0 };
+  }
+  return {
+    hasDiscount: true,
+    discountPct: Math.round((1 - (salePrice as number) / price) * 100),
+    savingsUsd: price - (salePrice as number),
+  };
+}
+
 export type PromoResult = {
   code: string;
   discountAmountUsd: number;

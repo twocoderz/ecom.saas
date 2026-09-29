@@ -1,5 +1,6 @@
 import { DataTable } from "../../shared/components/admin/DataTable";
 import { products, brandById, categoryById } from "../../data/mock";
+import { formatPrice } from "../../lib/currency";
 
 /**
  * Liste produits marchand (mock lecture seule pour le MVP).
@@ -15,8 +16,8 @@ export function AdminProductsPage() {
           p.name,
           brandById.get(p.brand_id)?.name ?? "?",
           categoryById.get(p.category_id)?.name ?? "?",
-          p.price.toFixed(2),
-          p.sale_price != null ? p.sale_price.toFixed(2) : "—",
+          p.price != null ? formatPrice(p.price, "XOF") : "—",
+          p.sale_price != null ? formatPrice(p.sale_price, "XOF") : "—",
         ])}
       />
     </div>
