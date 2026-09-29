@@ -105,7 +105,7 @@ export function AddToCartPanel({
     <section className="space-y-10" aria-label="Choix de la variante et achat">
       {/* Couleur: swatch image + nom déjà affiché dans InfoPanel */}
       <div>
-        <h4 className="text-lg font-medium text-black-80 mb-4">Couleurs</h4>
+        <h4 className="text-md font-medium text-black-80 mb-3">Couleurs</h4>
         <div className="flex gap-6">
           {colors.map((color) => {
             const isActive = selectedColor === color;
@@ -122,7 +122,7 @@ export function AddToCartPanel({
                 }}
                 className={`h-14 w-14 overflow-hidden rounded-xs cursor-pointer bg-[#f5f5f5] transition-all ${
                   isActive
-                    ? "ring-2 ring-black-70 ring-offset-1"
+                    ? "ring-1 ring-black-70 ring-offset-1"
                     : "opacity-80 ring-1 ring-black-10 hover:opacity-100 hover:ring-black-40"
                 }`}
               >
@@ -148,7 +148,7 @@ export function AddToCartPanel({
       {/* Taille : label + guide à droite, grille compacte */}
       <div>
         <div className="flex items-center justify-between">
-          <h4 className="text-lg font-medium text-black-80">Taille</h4>
+          <h4 className="text-md font-medium text-black-80">Taille</h4>
           <button
             type="button"
             onClick={() => setShowGuide(true)}
@@ -157,7 +157,7 @@ export function AddToCartPanel({
             Guide des tailles
           </button>
         </div>
-        <div className="mt-4 grid grid-cols-4 gap-2 sm:grid-cols-5">
+        <div className="mt-3 grid grid-cols-4 gap-2 sm:grid-cols-5">
           {sizesForColor.map((variant) => {
             const out = variant.stock <= 0;
             const isActive = selectedSize === variant.size;
@@ -217,7 +217,7 @@ export function AddToCartPanel({
           qty={qty}
           onChange={(next) => setQty(Math.max(1, next))}
         />
-        <span className="text-xs text-black-70">Quantité</span>
+        <span className="text-sm text-black-80">Quantité</span>
       </div>
 
       <button

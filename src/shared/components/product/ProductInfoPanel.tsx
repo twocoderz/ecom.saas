@@ -12,7 +12,7 @@ type ProductInfoPanelProps = {
  */
 export function ProductInfoPanel({ detail }: ProductInfoPanelProps) {
   return (
-    <section className="mb-8" aria-label="Informations produit">
+    <section className="mb-4" aria-label="Informations produit">
       <h1 className="text-xl font-bold leading-tight text-black-80 lg:text-3xl">
         {detail.brand.name} {detail.product.name}
       </h1>
