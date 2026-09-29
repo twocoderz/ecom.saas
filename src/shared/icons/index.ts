@@ -19,3 +19,5 @@ export { default as UserIcon } from "./UserIcon";
 export { default as ChevronDownIcon } from "./ChevronDownIcon";
 export { default as FilterIcon } from "./FilterIcon";
 export { default as ChevronUpIcon } from "./ChevronUpIcon";
+export { default as StoreIcon } from "./StoreIcon";
+export { default as TruckIcon } from "./TruckIcon";

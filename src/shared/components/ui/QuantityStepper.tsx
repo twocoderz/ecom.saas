@@ -20,7 +20,10 @@ export function QuantityStepper({
       >
         <MinusIcon className="h-4 w-4" />
       </button>
-      <span className="w-8 text-center text-sm font-semibold" aria-live="polite">
+      <span
+        className="w-8 text-center text-sm font-semibold"
+        aria-live="polite"
+      >
         {qty}
       </span>
       <button

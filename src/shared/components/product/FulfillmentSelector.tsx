@@ -1,3 +1,5 @@
+import { StoreIcon, TruckIcon } from "../../icons";
+
 type FulfillmentMode = "livraison" | "retrait";
 
 type FulfillmentSelectorProps = {
@@ -27,8 +29,8 @@ export function FulfillmentSelector({
             : "border-black-10 hover:border-black-40"
         }`}
       >
-        <span aria-hidden="true" className="text-lg">
-          🚚
+        <span aria-hidden="true" className="shrink-0 text-black-80">
+          <TruckIcon className="h-5 w-5" />
         </span>
         <span className="flex-1">
           <span className="block text-md font-bold">Livraison</span>
@@ -61,8 +63,8 @@ export function FulfillmentSelector({
             : "border-black-10 hover:border-black-40"
         }`}
       >
-        <span aria-hidden="true" className="text-lg">
-          🏬
+        <span aria-hidden="true" className="shrink-0 text-black-80">
+          <StoreIcon className="h-5 w-5" />
         </span>
         <span className="flex-1">
           <span className="block text-md font-bold">Retrait gratuit</span>

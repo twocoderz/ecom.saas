@@ -217,7 +217,7 @@ export function AddToCartPanel({
           qty={qty}
           onChange={(next) => setQty(Math.max(1, next))}
         />
-        <span className="text-xs text-black-60">Quantité</span>
+        <span className="text-xs text-black-70">Quantité</span>
       </div>
 
       <button
