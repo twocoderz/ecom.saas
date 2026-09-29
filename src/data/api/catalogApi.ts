@@ -159,7 +159,8 @@ function productToCard(product: Product): PlpProductCard {
       .filter(Boolean),
   ).size;
   const hasDiscount =
-    typeof product.sale_price === "number" && product.sale_price < product.price;
+    typeof product.sale_price === "number" &&
+    product.sale_price < product.price;
 
   return {
     id: product.id,

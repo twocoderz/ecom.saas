@@ -7,11 +7,11 @@ import type { Promotion } from "../types";
 
 /**
  * Formate un montant en francs CFA.
- * Milliers séparés par une espace insécable + suffixe "FCFA"
- * (ex : 13 400 FCFA, 123 456 600 FCFA). Montants exacts, sans décimales.
+ * Milliers séparés par un point + suffixe "FCFA"
+ * (ex : 13.400 FCFA, 123.456.600 FCFA). Montants exacts, sans décimales.
  */
 export function formatPrice(amount: number): string {
-  const grouped = new Intl.NumberFormat("fr-FR", {
+  const grouped = new Intl.NumberFormat("de-DE", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   }).format(Math.round(amount));
