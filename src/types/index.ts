@@ -54,7 +54,7 @@ export type Product = {
   description: string;
   price: number;
   sale_price: number | null;
-  currency: "USD" | "XOF";
+  currency: "XOF";
 };
 
 export type ProductGender = {
@@ -216,7 +216,7 @@ export type MockOrderLine = {
 export type MockOrder = {
   id: EntityId;
   total: number;
-  currency: "USD" | "XOF";
+  currency: "XOF";
   status: MockOrderStatus;
   created_at: string;
   lines: MockOrderLine[];

@@ -5,14 +5,14 @@ import { formatPrice } from "../../../lib/currency";
  * `as="del"` pour un ancien prix barré (sémantique + lecteurs d'écran).
  */
 export function Price({
-  amountUsd,
+  amount,
   className,
   as = "span",
 }: {
-  amountUsd: number;
+  amount: number;
   className?: string;
   as?: "span" | "del" | "ins" | "strong";
 }) {
   const Tag = as;
-  return <Tag className={className}>{formatPrice(amountUsd)}</Tag>;
+  return <Tag className={className}>{formatPrice(amount)}</Tag>;
 }

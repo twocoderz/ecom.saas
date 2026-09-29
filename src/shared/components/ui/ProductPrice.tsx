@@ -21,7 +21,7 @@ export function ProductPrice({
   size = "card",
   showSavings,
 }: ProductPriceProps) {
-  const { hasDiscount, discountPct, savingsUsd } = discountInfo(
+  const { hasDiscount, discountPct, savings } = discountInfo(
     price,
     salePrice,
   );
@@ -32,12 +32,12 @@ export function ProductPrice({
       <div>
         <div className="flex flex-wrap items-center gap-2 text-base">
           <Price
-            amountUsd={salePrice ?? price}
+            amount={salePrice ?? price}
             className={`font-bold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
           />
           {hasDiscount && (
             <Price
-              amountUsd={price}
+              amount={price}
               as="del"
               className="text-sm text-black-60"
             />
@@ -50,7 +50,7 @@ export function ProductPrice({
         </div>
         {hasDiscount && shouldShowSavings && (
           <p className="mt-1 text-xs font-semibold text-[#d60000]">
-            Économisez <Price amountUsd={savingsUsd} /> ({discountPct} %)
+            Économisez <Price amount={savings} /> ({discountPct} %)
           </p>
         )}
       </div>
@@ -60,12 +60,12 @@ export function ProductPrice({
   return (
     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
       <Price
-        amountUsd={salePrice ?? price}
+        amount={salePrice ?? price}
         className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
       />
       {hasDiscount && (
         <Price
-          amountUsd={price}
+          amount={price}
           as="del"
           className={size === "compact" ? "text-[11px] text-black-60" : "text-xs text-black-60"}
         />

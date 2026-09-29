@@ -14,7 +14,7 @@ export function CartSummary() {
   const lines = useCartStore((s) => s.lines);
   const promoCode = useCartStore((s) => s.promoCode);
   const setPromoCode = useCartStore((s) => s.setPromoCode);
-  const subtotal = useCartStore((s) => s.subtotalUsd)();
+  const subtotal = useCartStore((s) => s.subtotal)();
   const [draft, setDraft] = useState(promoCode);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -40,21 +40,21 @@ export function CartSummary() {
         <div className="flex justify-between">
           <dt className="text-black-60">Sous-total ({lines.length})</dt>
           <dd className="font-semibold">
-            <Price amountUsd={subtotal} />
+            <Price amount={subtotal} />
           </dd>
         </div>
         {result.applied && (
           <div className="flex justify-between text-green-700">
             <dt>Remise ({result.code})</dt>
             <dd className="font-semibold">
-              −<Price amountUsd={result.discountAmountUsd} />
+              −<Price amount={result.discountAmount} />
             </dd>
           </div>
         )}
         <div className="flex justify-between border-t border-black-10 pt-2 text-base font-bold">
           <dt>Total</dt>
           <dd>
-            <Price amountUsd={result.totalAfterDiscountUsd} />
+            <Price amount={result.totalAfterDiscount} />
           </dd>
         </div>
       </dl>

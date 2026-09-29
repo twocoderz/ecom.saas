@@ -92,7 +92,7 @@ export function TrendingOutfit({ card, activeProductId, onActiveChange }: Trendi
                   <div className="min-w-0">
                     <p className="line-clamp-2 text-xs font-medium leading-4">{item.name}</p>
                     <p className="mt-1 text-xs font-semibold">
-                      <Price amountUsd={item.salePrice ?? item.price} />
+                      <Price amount={item.salePrice ?? item.price} />
                     </p>
                   </div>
                   <ChevronRightIcon className="h-4 w-4 shrink-0" />

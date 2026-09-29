@@ -9,7 +9,7 @@ export type CartLine = {
   variantId?: string;
   name: string;
   image: string;
-  unitPriceUsd: number;
+  unitPrice: number;
   qty: number;
 };
 
@@ -21,7 +21,7 @@ type CartState = {
   setQty: (productId: string, variantId: string | undefined, qty: number) => void;
   clear: () => void;
   setPromoCode: (code: string) => void;
-  subtotalUsd: () => number;
+  subtotal: () => number;
   count: () => number;
 };
 
@@ -63,10 +63,11 @@ export const useCartStore = create<CartState>()(
         })),
       clear: () => set({ lines: [], promoCode: "" }),
       setPromoCode: (promoCode) => set({ promoCode }),
-      subtotalUsd: () =>
-        get().lines.reduce((sum, l) => sum + l.unitPriceUsd * l.qty, 0),
+      subtotal: () =>
+        get().lines.reduce((sum, l) => sum + l.unitPrice * l.qty, 0),
       count: () => get().lines.reduce((sum, l) => sum + l.qty, 0),
     }),
-    { name: "ecom-cart" },
+    // Clé versionnée : les paniers persistés avant la migration FCFA sont invalidés.
+    { name: "ecom-cart-v2" },
   ),
 );

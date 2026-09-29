@@ -85,7 +85,7 @@ export function ProductCard({
               productId: product.id,
               name: product.name,
               image: product.main_image,
-              unitPriceUsd: product.sale_price ?? product.price,
+              unitPrice: product.sale_price ?? product.price,
               qty: 1,
             })
           }

@@ -2,30 +2,19 @@ import type { Promotion } from "../types";
 
 /**
  * Devise unique du site : franc CFA (XOF).
- * Les prix catalogue sont stockes en USD, convertis a l'affichage.
+ * Tous les montants sont stockes et manipules en FCFA.
  */
 
-/** Taux mock USD -> XOF (a remplacer par un vrai provider). */
-const RATE_FROM_USD = 605;
-
 /**
- * Convertit un montant USD vers le franc CFA.
- */
-export function convertFromUsd(amountUsd: number): number {
-  return amountUsd * RATE_FROM_USD;
-}
-
-/**
- * Formate un montant USD en francs CFA.
+ * Formate un montant en francs CFA.
  * Milliers séparés par une espace insécable + suffixe "FCFA"
  * (ex : 13 400 FCFA, 123 456 600 FCFA). Montants exacts, sans décimales.
  */
-export function formatPrice(amountUsd: number): string {
-  const converted = convertFromUsd(amountUsd);
+export function formatPrice(amount: number): string {
   const grouped = new Intl.NumberFormat("fr-FR", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(Math.round(converted));
+  }).format(Math.round(amount));
   return `${grouped} FCFA`;
 }
 
@@ -39,13 +28,12 @@ export function effectivePrice(price: number, salePrice: number | null): number 
 export type DiscountInfo = {
   hasDiscount: boolean;
   discountPct: number;
-  savingsUsd: number;
+  savings: number;
 };
 
 /**
  * Infos remise centralisées : un seul calcul pour cartes, PDP, recherche.
- * Les prix catalogue étant stockés en USD, les montants restent en USD
- * jusqu'au formatage (conversion via formatPrice).
+ * Tous les montants sont en FCFA.
  */
 export function discountInfo(
   price: number,
@@ -54,19 +42,19 @@ export function discountInfo(
   const hasDiscount =
     typeof salePrice === "number" && salePrice < price && price > 0;
   if (!hasDiscount) {
-    return { hasDiscount: false, discountPct: 0, savingsUsd: 0 };
+    return { hasDiscount: false, discountPct: 0, savings: 0 };
   }
   return {
     hasDiscount: true,
     discountPct: Math.round((1 - (salePrice as number) / price) * 100),
-    savingsUsd: price - (salePrice as number),
+    savings: price - (salePrice as number),
   };
 }
 
 export type PromoResult = {
   code: string;
-  discountAmountUsd: number;
-  totalAfterDiscountUsd: number;
+  discountAmount: number;
+  totalAfterDiscount: number;
   applied: boolean;
   reason: string;
 };
@@ -75,7 +63,7 @@ export type PromoResult = {
  * Moteur promo minimal : % ou fixe, actif sur la periode, applique au sous-total.
  */
 export function applyPromo(
-  subtotalUsd: number,
+  subtotal: number,
   promo: Promotion | null | undefined,
   codeInput: string,
 ): PromoResult {
@@ -83,8 +71,8 @@ export function applyPromo(
   if (!promo || promo.code.toUpperCase() !== code) {
     return {
       code,
-      discountAmountUsd: 0,
-      totalAfterDiscountUsd: subtotalUsd,
+      discountAmount: 0,
+      totalAfterDiscount: subtotal,
       applied: false,
       reason: "Code promo inconnu.",
     };
@@ -95,20 +83,20 @@ export function applyPromo(
   if (!active) {
     return {
       code,
-      discountAmountUsd: 0,
-      totalAfterDiscountUsd: subtotalUsd,
+      discountAmount: 0,
+      totalAfterDiscount: subtotal,
       applied: false,
       reason: "Code promo expire ou inactif.",
     };
   }
   const discount =
     promo.discount_type === "percentage"
-      ? (subtotalUsd * promo.discount_value) / 100
-      : Math.min(promo.discount_value, subtotalUsd);
+      ? (subtotal * promo.discount_value) / 100
+      : Math.min(promo.discount_value, subtotal);
   return {
     code,
-    discountAmountUsd: discount,
-    totalAfterDiscountUsd: Math.max(0, subtotalUsd - discount),
+    discountAmount: discount,
+    totalAfterDiscount: Math.max(0, subtotal - discount),
     applied: true,
     reason: "Code promo appliqué.",
   };

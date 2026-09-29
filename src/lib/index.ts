@@ -7,7 +7,6 @@ export {
 } from "./filters";
 export {
   applyPromo,
-  convertFromUsd,
   discountInfo,
   effectivePrice,
   formatPrice,

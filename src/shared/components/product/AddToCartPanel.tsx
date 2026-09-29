@@ -10,8 +10,8 @@ type AddToCartPanelProps = {
   productId: string;
   productName: string;
   productImage: string;
-  priceUsd: number;
-  salePriceUsd: number | null;
+  price: number;
+  salePrice: number | null;
   variants: ProductVariant[];
   images: ProductImage[];
   selectedColor: string;
@@ -27,8 +27,8 @@ export function AddToCartPanel({
   productId,
   productName,
   productImage,
-  priceUsd,
-  salePriceUsd,
+  price,
+  salePrice,
   variants,
   images,
   selectedColor,
@@ -94,7 +94,7 @@ export function AddToCartPanel({
       variantId: selectedVariant?.id,
       name: `${productName} — ${selectedColor} / ${selectedSize}`,
       image: productImage,
-      unitPriceUsd: salePriceUsd ?? priceUsd,
+      unitPrice: salePrice ?? price,
       qty,
     });
     setJustAdded(true);

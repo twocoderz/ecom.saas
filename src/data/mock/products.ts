@@ -13,8 +13,8 @@ const drafts: DraftProduct[] = [
     name: "Nike Air Max 97",
     description:
       "Silhouette classique Air avec amorti visible et empeigne multicouche.",
-    price: 189,
-    sale_price: 159,
+    price: 114345,
+    sale_price: 96195,
     currency: "XOF",
   },
   {
@@ -26,7 +26,7 @@ const drafts: DraftProduct[] = [
     name: "Nike Pegasus 41",
     description:
       "Chaussure running polyvalente pour entrainement quotidien et longues distances.",
-    price: 149,
+    price: 90145,
     sale_price: null,
     currency: "XOF",
   },
@@ -39,8 +39,8 @@ const drafts: DraftProduct[] = [
     name: "adidas Ultraboost Light",
     description:
       "Cushioning reactif et empeigne textile pour transitions fluides.",
-    price: 199,
-    sale_price: 169,
+    price: 120395,
+    sale_price: 102245,
     currency: "XOF",
   },
   {
@@ -52,8 +52,8 @@ const drafts: DraftProduct[] = [
     name: "Puma Velocity Nitro 3",
     description:
       "Modele running stable avec mousse legere et traction multi-surfaces.",
-    price: 139,
-    sale_price: 119,
+    price: 84095,
+    sale_price: 71995,
     currency: "XOF",
   },
   {
@@ -65,7 +65,7 @@ const drafts: DraftProduct[] = [
     name: "New Balance 1906R",
     description:
       "Runner retro premium avec details techniques inspires des annees 2000.",
-    price: 179,
+    price: 108295,
     sale_price: null,
     currency: "XOF",
   },
@@ -77,8 +77,8 @@ const drafts: DraftProduct[] = [
     sku: "AS-KYN31-BLK",
     name: "ASICS Gel-Kayano 31",
     description: "Soutien pronation et amorti maximal pour sorties intensives.",
-    price: 209,
-    sale_price: 189,
+    price: 126445,
+    sale_price: 114345,
     currency: "XOF",
   },
   {
@@ -90,7 +90,7 @@ const drafts: DraftProduct[] = [
     name: "Jordan Flight Court",
     description:
       "Sneaker inspiree basketball avec empeigne mixte cuir/textile.",
-    price: 159,
+    price: 96195,
     sale_price: null,
     currency: "XOF",
   },
@@ -103,8 +103,8 @@ const drafts: DraftProduct[] = [
     name: "Converse Run Star Legacy",
     description:
       "Semelle architecturee et look lifestyle unisex orientee streetwear.",
-    price: 129,
-    sale_price: 99,
+    price: 78045,
+    sale_price: 59895,
     currency: "XOF",
   },
   {
@@ -115,7 +115,7 @@ const drafts: DraftProduct[] = [
     sku: "NK-TFLC-HDY-BLK",
     name: "Nike Tech Fleece Hoodie",
     description: "Hoodie zippe coupe athletique avec isolation legere.",
-    price: 129,
+    price: 78045,
     sale_price: null,
     currency: "XOF",
   },
@@ -127,8 +127,8 @@ const drafts: DraftProduct[] = [
     sku: "AD-ESS-TEE-WHT",
     name: "adidas Essentials Logo Tee",
     description: "T-shirt coton quotidien, branding frontal discret.",
-    price: 35,
-    sale_price: 29,
+    price: 21175,
+    sale_price: 17545,
     currency: "XOF",
   },
   {
@@ -139,8 +139,8 @@ const drafts: DraftProduct[] = [
     sku: "PM-TMG-JKT-NVY",
     name: "Puma Teamgoal Track Jacket",
     description: "Veste training zippee avec col montant et coupe regular.",
-    price: 79,
-    sale_price: 64,
+    price: 47795,
+    sale_price: 38720,
     currency: "XOF",
   },
   {
@@ -151,7 +151,7 @@ const drafts: DraftProduct[] = [
     sku: "UA-RVL-JGR-GRY",
     name: "Under Armour Rival Fleece Jogger",
     description: "Jogger molletonne pour echauffement et sorties casual.",
-    price: 69,
+    price: 41745,
     sale_price: null,
     currency: "XOF",
   },
@@ -163,8 +163,8 @@ const drafts: DraftProduct[] = [
     sku: "NK-DRFIT-SRT-BLK",
     name: "Nike Dri-FIT Training Shorts",
     description: "Short respirant avec evacuation rapide de la transpiration.",
-    price: 45,
-    sale_price: 35,
+    price: 27225,
+    sale_price: 21175,
     currency: "XOF",
   },
   {
@@ -175,7 +175,7 @@ const drafts: DraftProduct[] = [
     sku: "AD-ENT-SRT-BLU",
     name: "adidas Entrada Football Shorts",
     description: "Short football junior leger pour entrainements club.",
-    price: 30,
+    price: 18150,
     sale_price: null,
     currency: "XOF",
   },
@@ -188,7 +188,7 @@ const drafts: DraftProduct[] = [
     name: "Jordan Jumpman Backpack",
     description:
       "Sac urbain avec compartiment principal et poches accessoires.",
-    price: 55,
+    price: 33275,
     sale_price: null,
     currency: "XOF",
   },
@@ -201,8 +201,8 @@ const drafts: DraftProduct[] = [
     name: "Nike Air Max 90 Kids",
     description:
       "Version junior de la silhouette Air Max 90 avec maintien renforce.",
-    price: 119,
-    sale_price: 99,
+    price: 71995,
+    sale_price: 59895,
     currency: "XOF",
   },
   {
@@ -213,7 +213,7 @@ const drafts: DraftProduct[] = [
     sku: "AD-GZL-KID-GRN",
     name: "adidas Gazelle Kids",
     description: "Sneaker suede junior au style heritage.",
-    price: 89,
+    price: 53845,
     sale_price: null,
     currency: "XOF",
   },
@@ -225,8 +225,8 @@ const drafts: DraftProduct[] = [
     sku: "PM-MYZ-WMN-CRM",
     name: "Puma Mayze Women",
     description: "Plateforme lifestyle feminine avec empeigne en cuir souple.",
-    price: 109,
-    sale_price: 89,
+    price: 65945,
+    sale_price: 53845,
     currency: "XOF",
   },
   {
@@ -237,7 +237,7 @@ const drafts: DraftProduct[] = [
     sku: "NB-530-UNI-SIL",
     name: "New Balance 530",
     description: "Runner unisex look 2000 avec mesh respirant.",
-    price: 119,
+    price: 71995,
     sale_price: null,
     currency: "XOF",
   },
@@ -250,8 +250,8 @@ const drafts: DraftProduct[] = [
     name: "ASICS Novablast 5",
     description:
       "Running daily trainer dynamique avec retour energie accentue.",
-    price: 169,
-    sale_price: 149,
+    price: 102245,
+    sale_price: 90145,
     currency: "XOF",
   },
 ];

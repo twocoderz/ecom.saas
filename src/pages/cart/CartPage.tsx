@@ -31,7 +31,7 @@ export function CartPage() {
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-semibold">{line.name}</p>
                     <p className="mt-1 text-sm text-black-60">
-                      <Price amountUsd={line.unitPriceUsd} />
+                      <Price amount={line.unitPrice} />
                     </p>
                     <div className="mt-2 flex items-center gap-3">
                       <QuantityStepper
@@ -48,7 +48,7 @@ export function CartPage() {
                     </div>
                   </div>
                   <p className="text-sm font-bold">
-                    <Price amountUsd={line.unitPriceUsd * line.qty} />
+                    <Price amount={line.unitPrice * line.qty} />
                   </p>
                 </div>
               ))}

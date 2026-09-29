@@ -149,8 +149,8 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
                 productId={detail.product.id}
                 productName={`${detail.brand.name} ${detail.product.name}`}
                 productImage={mainImage}
-                priceUsd={detail.product.price}
-                salePriceUsd={detail.product.sale_price}
+                price={detail.product.price}
+                salePrice={detail.product.sale_price}
                 variants={detail.variants}
                 images={detail.images}
                 selectedColor={selectedColor}

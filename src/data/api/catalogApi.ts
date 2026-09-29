@@ -5,6 +5,7 @@ import {
   generateProductDescriptiveSlug,
 } from "../../lib/slug";
 import { createSeoUrl } from "../../lib/seo";
+import { formatPrice } from "../../lib/currency";
 import type {
   ApiPdpResponse,
   ApiPlpResponse,
@@ -692,7 +693,7 @@ export function getPdpBySlug(input: {
     slug: descriptiveSlug,
     path: buildPdpPath(descriptiveSlug, product.id),
     title: `${brand.name} ${product.name} | Fiche produit`,
-    description: `${product.name} - ${category.name}. Prix ${getEffectivePrice(product)} FCFA.`,
+    description: `${product.name} - ${category.name}. Prix ${formatPrice(getEffectivePrice(product))}.`,
   });
 
   return {
