@@ -14,5 +14,5 @@ export function Price({
   as?: "span" | "del" | "ins" | "strong";
 }) {
   const Tag = as;
-  return <Tag className={className}>{formatPrice(amountUsd, "XOF")}</Tag>;
+  return <Tag className={className}>{formatPrice(amountUsd)}</Tag>;
 }

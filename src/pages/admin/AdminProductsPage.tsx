@@ -10,15 +10,24 @@ export function AdminProductsPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Produits ({products.length})</h1>
       <DataTable
-        columns={["SKU", "Nom", "Marque", "Catégorie", "Prix (F CFA)", "Solde (F CFA)"]}
-        rows={products.slice(0, 50).map((p) => [
-          p.sku,
-          p.name,
-          brandById.get(p.brand_id)?.name ?? "?",
-          categoryById.get(p.category_id)?.name ?? "?",
-          p.price != null ? formatPrice(p.price, "XOF") : "—",
-          p.sale_price != null ? formatPrice(p.sale_price, "XOF") : "—",
-        ])}
+        columns={[
+          "SKU",
+          "Nom",
+          "Marque",
+          "Catégorie",
+          "Prix (FCFA)",
+          "Solde (FCFA)",
+        ]}
+        rows={products
+          .slice(0, 50)
+          .map((p) => [
+            p.sku,
+            p.name,
+            brandById.get(p.brand_id)?.name ?? "?",
+            categoryById.get(p.category_id)?.name ?? "?",
+          p.price != null ? formatPrice(p.price) : "—",
+          p.sale_price != null ? formatPrice(p.sale_price) : "—",
+          ])}
       />
     </div>
   );

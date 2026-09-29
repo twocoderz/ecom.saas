@@ -1,37 +1,32 @@
 import type { Promotion } from "../types";
 
 /**
- * Devises supportees par le template single-shop.
+ * Devise unique du site : franc CFA (XOF).
  * Les prix catalogue sont stockes en USD, convertis a l'affichage.
  */
-export type CurrencyCode = "XOF" | "EUR" | "USD";
 
-/** Taux mock USD -> devise cible (a remplacer par un vrai provider). */
-const RATES_FROM_USD: Record<CurrencyCode, number> = {
-  USD: 1,
-  EUR: 0.92,
-  XOF: 605,
-};
+/** Taux mock USD -> XOF (a remplacer par un vrai provider). */
+const RATE_FROM_USD = 605;
 
 /**
- * Convertit un montant USD vers la devise cible.
+ * Convertit un montant USD vers le franc CFA.
  */
-export function convertFromUsd(amountUsd: number, currency: CurrencyCode): number {
-  return amountUsd * RATES_FROM_USD[currency];
+export function convertFromUsd(amountUsd: number): number {
+  return amountUsd * RATE_FROM_USD;
 }
 
 /**
- * Formate un montant USD dans la devise cible avec Intl.
+ * Formate un montant USD en francs CFA.
+ * Milliers séparés par une espace insécable + suffixe "FCFA"
+ * (ex : 13 400 FCFA, 123 456 600 FCFA). Montants exacts, sans décimales.
  */
-export function formatPrice(amountUsd: number, currency: CurrencyCode): string {
-  const converted = convertFromUsd(amountUsd, currency);
-  const fractionDigits = currency === "XOF" ? 0 : 2;
-  return new Intl.NumberFormat(currency === "XOF" ? "fr-SN" : undefined, {
-    style: "currency",
-    currency,
-    minimumFractionDigits: fractionDigits,
-    maximumFractionDigits: fractionDigits,
-  }).format(converted);
+export function formatPrice(amountUsd: number): string {
+  const converted = convertFromUsd(amountUsd);
+  const grouped = new Intl.NumberFormat("fr-FR", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(Math.round(converted));
+  return `${grouped} FCFA`;
 }
 
 /**

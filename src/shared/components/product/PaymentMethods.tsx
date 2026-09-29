@@ -10,7 +10,7 @@ export function PaymentMethods() {
         <span className="underline underline-offset-2">En savoir plus</span>
       </p>
       <div className="flex items-center gap-2">
-        <span className="flex h-9 items-center rounded-md border border-black-10 bg-white px-2.5">
+        <span className="flex h-9 items-center rounded-xs border border-black-10 bg-white px-3">
           <img
             src="/images/payments/mixx.svg"
             alt="Mixx by Yas (T-Money)"
@@ -18,7 +18,7 @@ export function PaymentMethods() {
             loading="lazy"
           />
         </span>
-        <span className="flex h-9 items-center rounded-md border border-black-10 bg-white px-2.5">
+        <span className="flex h-9 items-center rounded-xs border border-black-10 bg-white px-3">
           <img
             src="/images/payments/flooz.png"
             alt="Flooz"
@@ -26,7 +26,7 @@ export function PaymentMethods() {
             loading="lazy"
           />
         </span>
-        <span className="flex h-9 items-center rounded-md border border-black-10 bg-white px-2.5 text-xs font-bold italic text-[#1a1f71]">
+        <span className="flex h-9 items-center rounded-xs border border-black-10 bg-white px-3 text-xs font-bold italic text-[#1a1f71]">
           VISA
         </span>
       </div>

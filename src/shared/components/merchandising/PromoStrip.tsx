@@ -22,7 +22,7 @@ export function PromoStrip() {
   const value =
     promo.discount_type === "percentage"
       ? `-${promo.discount_value} %`
-      : `-${formatPrice(promo.discount_value, "XOF")}`;
+      : `-${formatPrice(promo.discount_value)}`;
 
   return (
     <div className="rounded-lg bg-black px-4 py-8 text-center text-white">

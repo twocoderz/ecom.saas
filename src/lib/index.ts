@@ -12,7 +12,7 @@ export {
   effectivePrice,
   formatPrice,
 } from "./currency";
-export type { CurrencyCode, DiscountInfo, PromoResult } from "./currency";
+export type { DiscountInfo, PromoResult } from "./currency";
 export { applySeoToDocument, createSeoUrl } from "./seo";
 export { mockReviewCount } from "./reviews";
 export {

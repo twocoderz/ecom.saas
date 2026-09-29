@@ -692,7 +692,7 @@ export function getPdpBySlug(input: {
     slug: descriptiveSlug,
     path: buildPdpPath(descriptiveSlug, product.id),
     title: `${brand.name} ${product.name} | Fiche produit`,
-    description: `${product.name} - ${category.name}. Prix ${getEffectivePrice(product)} F CFA.`,
+    description: `${product.name} - ${category.name}. Prix ${getEffectivePrice(product)} FCFA.`,
   });
 
   return {

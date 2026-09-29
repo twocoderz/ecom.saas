@@ -1,6 +1,7 @@
 import { StatCard } from "../../shared/components/admin/StatCard";
 import { DataTable } from "../../shared/components/admin/DataTable";
 import { getMockOrders } from "../../data/api/shopApi";
+import { formatPrice } from "../../lib/currency";
 import { products, promotions } from "../../data/mock";
 import type { MockOrderStatus } from "../../types";
 
@@ -23,11 +24,19 @@ export function AdminDashboardPage() {
       <div className="grid gap-4 sm:grid-cols-3">
         <StatCard label="Produits catalogue" value={String(products.length)} />
         <StatCard label="Commandes (démo)" value={String(orders.length)} />
-        <StatCard label="Promotions actives" value={String(promotions.filter((p) => p.is_active).length)} />
+        <StatCard
+          label="Promotions actives"
+          value={String(promotions.filter((p) => p.is_active).length)}
+        />
       </div>
       <DataTable
-        columns={["Commande", "Statut", "Total (F CFA)", "Date"]}
-        rows={orders.map((o) => [o.id, STATUS_LABELS[o.status] ?? o.status, o.total.toFixed(2), o.created_at])}
+        columns={["Commande", "Statut", "Total (FCFA)", "Date"]}
+        rows={orders.map((o) => [
+          o.id,
+          STATUS_LABELS[o.status] ?? o.status,
+          formatPrice(o.total),
+          o.created_at,
+        ])}
       />
     </div>
   );
