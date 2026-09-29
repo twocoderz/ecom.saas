@@ -21,8 +21,6 @@ type AddToCartPanelProps = {
 };
 
 /**
- * Buy box PDP façon JD : swatches couleur avec image, grille tailles FR,
- * livraison/retrait, paiement mobile money, CTA couleur primaire.
  * La taille n'est pas présélectionnée : le client doit la choisir.
  */
 export function AddToCartPanel({
@@ -105,7 +103,7 @@ export function AddToCartPanel({
 
   return (
     <section className="space-y-4" aria-label="Choix de la variante et achat">
-      {/* Couleur façon JD : swatch image + nom déjà affiché dans InfoPanel */}
+      {/* Couleur: swatch image + nom déjà affiché dans InfoPanel */}
       <div>
         <div className="flex gap-2">
           {colors.map((color) => {
@@ -168,7 +166,9 @@ export function AddToCartPanel({
                 type="button"
                 disabled={out}
                 aria-pressed={isActive}
-                title={out ? `${variant.size} — Rupture de stock` : variant.size}
+                title={
+                  out ? `${variant.size} — Rupture de stock` : variant.size
+                }
                 onClick={() => {
                   onSizeChange(variant.size);
                   setSizeError(false);
@@ -187,7 +187,10 @@ export function AddToCartPanel({
           })}
         </div>
         {sizeError && selectedSize === null && (
-          <p className="mt-1.5 text-xs font-semibold text-[#d60000]" role="alert">
+          <p
+            className="mt-1.5 text-xs font-semibold text-[#d60000]"
+            role="alert"
+          >
             Veuillez sélectionner une taille.
           </p>
         )}
@@ -209,7 +212,10 @@ export function AddToCartPanel({
       <PaymentMethods />
 
       <div className="flex items-center gap-3">
-        <QuantityStepper qty={qty} onChange={(next) => setQty(Math.max(1, next))} />
+        <QuantityStepper
+          qty={qty}
+          onChange={(next) => setQty(Math.max(1, next))}
+        />
         <span className="text-xs text-black-60">Quantité</span>
       </div>
 

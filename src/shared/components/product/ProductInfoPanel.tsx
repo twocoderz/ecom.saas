@@ -10,7 +10,7 @@ type ProductInfoPanelProps = {
 };
 
 /**
- * Bloc haut de colonne droite façon JD : marque, titre, note, prix,
+ * Bloc haut de colonne droite: marque, titre, note, prix,
  * nom de couleur. Les sélecteurs couleur/taille vivent dans AddToCartPanel.
  */
 export function ProductInfoPanel({
@@ -28,7 +28,7 @@ export function ProductInfoPanel({
 
   return (
     <section aria-label="Informations produit">
-      <h1 className="text-xl font-bold leading-tight text-black lg:text-2xl">
+      <h1 className="text-xl font-bold leading-tight text-black-80 lg:text-3xl">
         {detail.brand.name} {detail.product.name}
       </h1>
 
