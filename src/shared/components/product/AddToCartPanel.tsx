@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { ProductImage, ProductVariant } from "../../../types";
 import { useCartStore } from "../../../stores/useCartStore";
+import { ShoppingCartIcon } from "../../icons";
 import { QuantityStepper } from "../ui/QuantityStepper";
 import { FulfillmentSelector } from "./FulfillmentSelector";
 import { PaymentMethods } from "./PaymentMethods";
@@ -226,8 +227,8 @@ export function AddToCartPanel({
         onClick={handleAdd}
         className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3.5 text-sm font-bold text-white transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        <span aria-hidden="true">🛍</span>
-        {justAdded ? "Ajouté au panier ✓" : "Ajouter au panier"}
+        <ShoppingCartIcon aria-hidden="true" className="h-5 w-5" />
+        {justAdded ? "Ajouté au panier" : "Ajouter au panier"}
       </button>
       {!canAdd && selectedSize === null && (
         <p className="text-center text-xs text-black-60">

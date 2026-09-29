@@ -12,6 +12,7 @@ import { ProductReviews } from "../../shared/components/product/ProductReviews";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { Container } from "../../shared/components/layout/Container";
 import { Section } from "../../shared/components/layout/Section";
+import { ChevronDownIcon } from "../../shared/icons";
 
 const ATTRIBUTE_LABELS: Record<string, string> = {
   color: "Couleur",
@@ -165,10 +166,13 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
 
             {/* Détails produit */}
             <div className="border-t border-black-10">
-              <details className="border-b border-black-10 py-4" open>
+              <details className="group border-b border-black-10 py-4" open>
                 <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
                   Détails produit
-                  <span aria-hidden="true">⌃</span>
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                  />
                 </summary>
                 <div className="mt-3 space-y-4 text-sm text-black-80">
                   <div>
@@ -206,10 +210,13 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
                 </div>
               </details>
 
-              <details className="border-b border-black-10 py-4">
+              <details className="group border-b border-black-10 py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
                   Livraison &amp; retours
-                  <span aria-hidden="true">⌄</span>
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                  />
                 </summary>
                 <p className="mt-2 text-sm text-black-70">
                   Livraison suivie sous 3 à 5 jours ouvrés. Retrait gratuit en
