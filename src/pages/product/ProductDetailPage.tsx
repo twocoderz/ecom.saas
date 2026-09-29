@@ -132,12 +132,14 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
           </span>
         </nav>
 
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
-          <ProductGallery
-            images={galleryImages}
-            productName={`${detail.brand.name} ${detail.product.name}`}
-          />
-          <div className="flex flex-col gap-8">
+        <div className="grid gap-8 lg:grid-cols-5 lg:gap-16">
+          <div className="lg:col-span-3">
+            <ProductGallery
+              images={galleryImages}
+              productName={`${detail.brand.name} ${detail.product.name}`}
+            />
+          </div>
+          <div className="flex flex-col gap-8 lg:col-span-2">
             <div className="space-y-5">
               <ProductInfoPanel
                 detail={detail}
