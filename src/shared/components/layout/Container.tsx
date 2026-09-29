@@ -5,6 +5,6 @@ import type { ReactNode } from "react";
  */
 export function Container({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-7xl px-2 md:px-8">{children}</div>
+    <div className="mx-auto w-full max-w-7xl px-2 md:px-4">{children}</div>
   );
 }

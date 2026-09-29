@@ -101,7 +101,7 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
   return (
     <Container>
       <div className="space-y-6 py-6 lg:py-8">
-        {/* Fil d'Ariane façon JD */}
+        {/* Fil d'Ariane */}
         <nav className="text-xs text-black-70" aria-label="Fil d'Ariane">
           <Link to="/" className="hover:text-black hover:underline">
             Accueil
