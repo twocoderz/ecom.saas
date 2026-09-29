@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ProductImage } from "../../../types";
 import { ChevronLeftIcon, ChevronRightIcon } from "../../icons";
 
@@ -8,7 +8,8 @@ type ProductGalleryProps = {
 };
 
 /**
- * Galerie PDP : image principale + flèches + miniatures avec état actif.
+ * Galerie PDP façon JD : grande image sur fond gris clair,
+ * rail horizontal de miniatures, compteur et bouton "Comment le porter".
  */
 export function ProductGallery({ productName, images }: ProductGalleryProps) {
   const sortedImages = useMemo(
@@ -20,6 +21,10 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
     sortedImages[0]?.id ?? null,
   );
 
+  useEffect(() => {
+    setSelectedImageId(sortedImages[0]?.id ?? null);
+  }, [sortedImages]);
+
   const selectedIndex = Math.max(
     0,
     sortedImages.findIndex((image) => image.id === selectedImageId),
@@ -28,7 +33,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
 
   if (!selectedImage) {
     return (
-      <div className="rounded-xl border border-black-10 bg-white p-4">
+      <div className="rounded-lg bg-[#f5f5f5] p-4">
         <p className="text-sm text-black-70">
           Aucune image produit disponible.
         </p>
@@ -43,67 +48,78 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
   };
 
   return (
-    <div className="rounded-xl border border-black-10 bg-white p-4">
-      <div className="space-y-3">
-        <div className="relative aspect-square overflow-hidden rounded-lg border border-black-10 bg-black-5">
-          <img
-            src={selectedImage.url}
-            alt={selectedImage.alt || productName}
-            className="h-full w-full object-contain"
-          />
-          {sortedImages.length > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={() => goTo(selectedIndex - 1)}
-                aria-label="Image précédente"
-                className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-sm hover:bg-black hover:text-white"
-              >
-                <ChevronLeftIcon className="h-5 w-5" />
-              </button>
-              <button
-                type="button"
-                onClick={() => goTo(selectedIndex + 1)}
-                aria-label="Image suivante"
-                className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-sm hover:bg-black hover:text-white"
-              >
-                <ChevronRightIcon className="h-5 w-5" />
-              </button>
-              <span className="absolute bottom-2 right-2 rounded-full bg-black/70 px-2 py-0.5 text-[11px] font-semibold text-white">
-                {selectedIndex + 1} / {sortedImages.length}
-              </span>
-            </>
-          )}
-        </div>
-
+    <div className="space-y-3">
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f5f5f5]">
+        <img
+          src={selectedImage.url}
+          alt={selectedImage.alt || productName}
+          className="h-full w-full object-contain"
+        />
         {sortedImages.length > 1 && (
-          <div className="grid grid-cols-4 gap-2" role="tablist" aria-label="Miniatures produit">
-            {sortedImages.slice(0, 8).map((image, index) => {
-              const isActive = image.id === selectedImage.id;
-              return (
-                <button
-                  key={image.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setSelectedImageId(image.id)}
-                  className={`overflow-hidden rounded-md border-2 transition-colors ${
-                    isActive ? "border-black" : "border-black-10 hover:border-black-40"
-                  }`}
-                  aria-label={`Voir image ${index + 1}`}
-                >
-                  <img
-                    src={image.url}
-                    alt={image.alt || productName}
-                    loading="lazy"
-                    className="aspect-square h-full w-full bg-black-5 object-contain"
-                  />
-                </button>
-              );
-            })}
-          </div>
+          <>
+            <button
+              type="button"
+              onClick={() => goTo(selectedIndex - 1)}
+              aria-label="Image précédente"
+              className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-black hover:text-white"
+            >
+              <ChevronLeftIcon className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => goTo(selectedIndex + 1)}
+              aria-label="Image suivante"
+              className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-black hover:text-white"
+            >
+              <ChevronRightIcon className="h-5 w-5" />
+            </button>
+          </>
         )}
+        <details className="group absolute bottom-3 right-3">
+          <summary className="cursor-pointer list-none rounded-full bg-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:bg-black hover:text-white [&::-webkit-details-marker]:hidden">
+            Comment le porter
+            <span aria-hidden="true"> ⌄</span>
+          </summary>
+          <div className="absolute bottom-10 right-0 w-64 rounded-lg bg-white p-3 text-xs text-black-70 shadow-lg">
+            Portez-le avec un jean brut et un t-shirt uni pour un look casual,
+            ou avec un ensemble survêtement pour un style sportswear complet.
+          </div>
+        </details>
       </div>
+
+      {sortedImages.length > 1 && (
+        <div
+          className="scrollbar-none flex gap-2 overflow-x-auto pb-1"
+          role="tablist"
+          aria-label="Miniatures produit"
+        >
+          {sortedImages.slice(0, 8).map((image, index) => {
+            const isActive = image.id === selectedImage.id;
+            return (
+              <button
+                key={image.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                aria-label={`Voir image ${index + 1}`}
+                onClick={() => setSelectedImageId(image.id)}
+                className={`h-20 w-20 shrink-0 overflow-hidden rounded-md bg-[#f5f5f5] transition-all ${
+                  isActive
+                    ? "ring-2 ring-black ring-offset-1"
+                    : "opacity-80 hover:opacity-100 hover:ring-1 hover:ring-black-40"
+                }`}
+              >
+                <img
+                  src={image.url}
+                  alt={image.alt || productName}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
