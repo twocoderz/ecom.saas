@@ -227,7 +227,11 @@ export function AddToCartPanel({
         onClick={handleAdd}
         className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3.5 text-sm font-bold text-white transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
       >
-        <ShoppingCartIcon aria-hidden="true" className="h-5 w-5" />
+        <ShoppingCartIcon
+          strokeWidth={2}
+          aria-hidden="true"
+          className="h-5 w-5"
+        />
         {justAdded ? "Ajouté au panier" : "Ajouter au panier"}
       </button>
       {!canAdd && selectedSize === null && (

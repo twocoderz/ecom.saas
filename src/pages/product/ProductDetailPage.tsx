@@ -167,11 +167,11 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
             {/* Détails produit */}
             <div className="border-t border-black-10">
               <details className="group border-b border-black-10 py-4" open>
-                <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-md font-bold [&::-webkit-details-marker]:hidden">
                   Détails produit
                   <ChevronDownIcon
                     aria-hidden="true"
-                    className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                    className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
                   />
                 </summary>
                 <div className="mt-3 space-y-4 text-sm text-black-80">

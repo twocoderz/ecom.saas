@@ -1,16 +1,25 @@
 import type { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ROUTE_PATHS } from "../../../config/paths";
+import { ChevronLeftIcon } from "../../icons";
 
 /**
  * Layout back-office isole (pas de AppShell storefront).
  */
-const LINKS = [
+const LINKS: Array<{ to: string; label: ReactNode }> = [
   { to: ROUTE_PATHS.adminDashboard, label: "Tableau de bord" },
   { to: ROUTE_PATHS.adminProducts, label: "Produits" },
   { to: ROUTE_PATHS.adminOrders, label: "Commandes" },
   { to: ROUTE_PATHS.adminPromos, label: "Promotions" },
-  { to: ROUTE_PATHS.home, label: "← Retour boutique" },
+  {
+    to: ROUTE_PATHS.home,
+    label: (
+      <span className="inline-flex items-center gap-1">
+        <ChevronLeftIcon aria-hidden="true" className="h-3 w-3" />
+        Retour boutique
+      </span>
+    ),
+  },
 ];
 
 export function AdminShell({ children }: { children: ReactNode }) {

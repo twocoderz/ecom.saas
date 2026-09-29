@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { mockReviewCount } from "../../../lib/reviews";
 import { productRatings } from "../../../data/mock/relations";
+import { ChevronDownIcon } from "../../icons";
 import { RatingStars } from "../ui/RatingStars";
 
 type ProductReviewsProps = {
@@ -21,15 +22,18 @@ export function ProductReviews({ productId, productName }: ProductReviewsProps) 
   return (
     <details
       id="avis-produit"
-      className="border-t border-black-10 py-4"
+      className="group border-t border-black-10 py-4"
       open
     >
       <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-bold [&::-webkit-details-marker]:hidden">
         <span>
-          Avis {rating.toFixed(1)} ★{" "}
+          Avis {rating.toFixed(1)}{" "}
           <span className="font-normal text-black-60">({reviewCount} avis)</span>
         </span>
-        <span aria-hidden="true">⌃</span>
+        <ChevronDownIcon
+          aria-hidden="true"
+          className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+        />
       </summary>
 
       <div className="mt-3 space-y-3">

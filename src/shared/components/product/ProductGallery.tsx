@@ -1,6 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import type { ProductImage } from "../../../types";
-import { ChevronLeftIcon, ChevronRightIcon } from "../../icons";
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "../../icons";
 
 type ProductGalleryProps = {
   productName: string;
@@ -17,13 +21,9 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
     [images],
   );
 
-  const [selectedImageId, setSelectedImageId] = useState<string | null>(
-    sortedImages[0]?.id ?? null,
-  );
-
-  useEffect(() => {
-    setSelectedImageId(sortedImages[0]?.id ?? null);
-  }, [sortedImages]);
+  // Sans effet : si l'image sélectionnée n'est plus dans la liste
+  // (ex : changement de couleur), on retombe sur la première.
+  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
 
   const selectedIndex = Math.max(
     0,
@@ -76,9 +76,12 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
           </>
         )}
         <details className="group absolute bottom-3 right-3">
-          <summary className="cursor-pointer list-none rounded-full bg-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:bg-black hover:text-white [&::-webkit-details-marker]:hidden">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full bg-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:bg-black hover:text-white [&::-webkit-details-marker]:hidden">
             Comment le porter
-            <span aria-hidden="true"> ⌄</span>
+            <ChevronDownIcon
+              aria-hidden="true"
+              className="h-3.5 w-3.5 transition-transform group-open:rotate-180"
+            />
           </summary>
           <div className="absolute bottom-10 right-0 w-64 rounded-lg bg-white p-3 text-xs text-black-70 shadow-lg">
             Portez-le avec un jean brut et un t-shirt uni pour un look casual,

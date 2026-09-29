@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { CloseIcon } from "../../icons";
 
 const SHOE_ROWS: Array<[string, string, string, string]> = [
   ["40", "25,0 cm", "UK 6", "US 7"],
@@ -59,7 +60,7 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
             aria-label="Fermer le guide des tailles"
             className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-black-5"
           >
-            ✕
+            <CloseIcon aria-hidden="true" className="h-4 w-4" />
           </button>
         </div>
 
