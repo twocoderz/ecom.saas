@@ -174,9 +174,9 @@ export function AddToCartPanel({
                   onSizeChange(variant.size);
                   setSizeError(false);
                 }}
-                className={`rounded-xs border px-1 py-4 text-sm font-medium transition-colors ${
+                className={`rounded-xs cursor-pointer border px-1 py-4 text-sm font-medium transition-colors ${
                   isActive
-                    ? "border-black bg-black text-white"
+                    ? "border-black bg-black-80 text-white"
                     : out
                       ? "cursor-not-allowed border-black-20 text-black-30 line-through"
                       : "border-black-20 hover:border-black"

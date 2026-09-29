@@ -7,7 +7,7 @@ type FulfillmentSelectorProps = {
 };
 
 /**
- * Bloc livraison / retrait façon JD, version visuelle simple en français.
+ * Bloc livraison / retrait version visuelle simple en français.
  */
 export function FulfillmentSelector({
   mode,
@@ -21,16 +21,18 @@ export function FulfillmentSelector({
         role="radio"
         aria-checked={mode === "livraison"}
         onClick={() => onChange("livraison")}
-        className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left transition-colors ${
+        className={`flex w-full items-center gap-3 cursor-pointer rounded-xs border p-4 text-left transition-colors ${
           mode === "livraison"
-            ? "border-black"
+            ? "border-black-80"
             : "border-black-10 hover:border-black-40"
         }`}
       >
-        <span aria-hidden="true" className="text-lg">🚚</span>
+        <span aria-hidden="true" className="text-lg">
+          🚚
+        </span>
         <span className="flex-1">
-          <span className="block text-sm font-bold">Livraison</span>
-          <span className="block text-xs text-black-70">
+          <span className="block text-md font-bold">Livraison</span>
+          <span className="block text-sm text-black-70">
             {hasSelectedSize
               ? "Expédition sous 3 à 5 jours ouvrés"
               : "Sélectionnez une taille pour voir le délai"}
@@ -53,16 +55,18 @@ export function FulfillmentSelector({
         role="radio"
         aria-checked={mode === "retrait"}
         onClick={() => onChange("retrait")}
-        className={`flex w-full items-center gap-3 rounded-lg border p-3 text-left transition-colors ${
+        className={`flex w-full items-center gap-3 rounded-xs cursor-pointer border p-4 text-left transition-colors ${
           mode === "retrait"
             ? "border-black"
             : "border-black-10 hover:border-black-40"
         }`}
       >
-        <span aria-hidden="true" className="text-lg">🏬</span>
+        <span aria-hidden="true" className="text-lg">
+          🏬
+        </span>
         <span className="flex-1">
-          <span className="block text-sm font-bold">Retrait gratuit</span>
-          <span className="block text-xs text-black-70">
+          <span className="block text-md font-bold">Retrait gratuit</span>
+          <span className="block text-sm text-black-70">
             À retirer aujourd&apos;hui en magasin
           </span>
         </span>
