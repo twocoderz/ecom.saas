@@ -41,7 +41,7 @@ export function ProductReviews({
         />
       </summary>
 
-      <div className="mt-4 space-y-3">
+      <div className="mt-4 space-y-4">
         <div className="flex items-center gap-2">
           <RatingStars rating={rating} />
           <span className="text-xs text-black-60">
@@ -50,13 +50,15 @@ export function ProductReviews({
         </div>
 
         {!showForm ? (
-          <button
-            type="button"
-            onClick={() => setShowForm(true)}
-            className="w-50 cursor-pointer rounded-xs mt-6 border border-black px-4 py-3 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
-          >
-            Écrire un avis
-          </button>
+          <div className="flex items-center justify-center">
+            <button
+              type="button"
+              onClick={() => setShowForm(true)}
+              className="w-50 cursor-pointer rounded-xs mt-6 border border-black px-4 py-3 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
+            >
+              Écrire un avis
+            </button>
+          </div>
         ) : (
           <form
             className="space-y-2 rounded-lg bg-black-5 p-3"
