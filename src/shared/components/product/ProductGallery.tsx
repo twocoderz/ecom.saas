@@ -55,7 +55,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
 
   return (
     <div className="space-y-3">
-      <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f5f5f5]">
+      <div className="relative aspect-square overflow-hidden rounded-xs bg-[#f5f5f5]">
         <img
           key={selectedImage.id}
           src={selectedImage.url}
@@ -72,7 +72,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
               className="h-3.5 w-3.5 transition-transform group-open:rotate-180"
             />
           </summary>
-          <div className="absolute bottom-10 right-0 w-64 rounded-lg bg-white p-3 text-xs text-black-70 shadow-lg">
+          <div className="absolute bottom-10 right-0 w-64 rounded-xs bg-white p-3 text-xs text-black-70 shadow-lg">
             Portez-le avec un jean brut et un t-shirt uni pour un look casual,
             ou avec un ensemble survêtement pour un style sportswear complet.
           </div>
@@ -97,7 +97,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
                 onClick={() => selectImage(image.id)}
                 onMouseEnter={() => selectImage(image.id)}
                 onFocus={() => selectImage(image.id)}
-                className={`h-20 w-20 shrink-0 overflow-hidden rounded-md bg-[#f5f5f5] transition-all ${
+                className={`h-20 w-20 mt-6 shrink-0 overflow-hidden rounded-xs bg-[#f5f5f5] transition-all ${
                   isActive
                     ? "ring-2 ring-black ring-offset-1"
                     : "opacity-80 hover:opacity-100 hover:ring-1 hover:ring-black-40"
