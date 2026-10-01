@@ -75,14 +75,14 @@ export function MegaMenu() {
           onMouseEnter={clearCloseTimer}
           onMouseLeave={scheduleClose}
         >
-          <div className="grid grid-cols-[minmax(0,1fr)_280px] gap-p6 px-p6 py-p4">
+          <div className="grid grid-cols-[minmax(0,1fr)_280px] gap-p6 px-p6 pt-p4 pb-20">
             <div className="grid grid-cols-4 gap-p6">
               {activeItem.sections.map((section) => (
                 <section key={section.id} className="mt-4">
                   <h3 className="border-b-2 border-black/60 pb-p1 text-sm font-bold uppercase tracking-tight text-black">
                     {section.title}
                   </h3>
-                  <ul className="mt-p2 grid gap-p4">
+                  <ul className="mt-p4 grid gap-p4">
                     {section.links.map((link) => (
                       <li key={link.id}>
                         <Link

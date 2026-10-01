@@ -62,11 +62,12 @@ export function SortBar({
   }, [isSortOpen]);
 
   const selectedSortLabel =
-    sortOptions.find((option) => option.value === sortBy)?.label ?? "Pertinence";
+    sortOptions.find((option) => option.value === sortBy)?.label ??
+    "Pertinence";
 
   return (
     <div className="space-y-4">
-      <div className="grid gap-3 lg:grid-cols-[1fr_1fr_1fr]">
+      <div className="grid gap-3 lg:grid-cols-[2fr_1fr_1fr]">
         <label className="flex cursor-pointer items-center gap-2 rounded-sm border border-black-20 bg-white px-4 py-3 text-sm text-black-80 hover:border-black-50">
           <input
             type="checkbox"
