@@ -109,3 +109,41 @@ input[type="radio"] {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* Galerie PDP : glissade directionnelle au changement d'image */
+@keyframes gallery-slide-from-right {
+  from {
+    transform: translateX(48px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes gallery-slide-from-left {
+  from {
+    transform: translateX(-48px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.gallery-slide-right {
+  animation: gallery-slide-from-right 0.32s ease-out;
+}
+
+.gallery-slide-left {
+  animation: gallery-slide-from-left 0.32s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-slide-right,
+  .gallery-slide-left {
+    animation: none;
+  }
+}

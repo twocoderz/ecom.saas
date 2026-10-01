@@ -1,10 +1,6 @@
 import { useMemo, useState } from "react";
 import type { ProductImage } from "../../../types";
-import {
-  ChevronDownIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-} from "../../icons";
+import { ChevronDownIcon } from "../../icons";
 
 type ProductGalleryProps = {
   productName: string;
@@ -12,8 +8,10 @@ type ProductGalleryProps = {
 };
 
 /**
- * Galerie PDP façon JD : grande image sur fond gris clair,
- * rail horizontal de miniatures, compteur et bouton "Comment le porter".
+ * Galerie PDP : grande image sur fond gris clair,
+ * rail horizontal de miniatures, bouton "Comment le porter".
+ * Sans flèches : le survol (hover) d'une miniature affiche
+ * l'image en grand avec une glissade directionnelle.
  */
 export function ProductGallery({ productName, images }: ProductGalleryProps) {
   const sortedImages = useMemo(
@@ -24,6 +22,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
   // Sans effet : si l'image sélectionnée n'est plus dans la liste
   // (ex : changement de couleur), on retombe sur la première.
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+  const [direction, setDirection] = useState<1 | -1>(1);
 
   const selectedIndex = Math.max(
     0,
@@ -41,40 +40,30 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
     );
   }
 
-  const goTo = (index: number) => {
-    const total = sortedImages.length;
-    const next = ((index % total) + total) % total;
-    setSelectedImageId(sortedImages[next]?.id ?? null);
+  const selectImage = (imageId: string) => {
+    if (imageId === selectedImage.id) {
+      return;
+    }
+    const newIndex = sortedImages.findIndex((image) => image.id === imageId);
+    if (newIndex < 0) {
+      return;
+    }
+    // Droite -> centre si on avance, gauche -> centre si on recule.
+    setDirection(newIndex > selectedIndex ? 1 : -1);
+    setSelectedImageId(imageId);
   };
 
   return (
     <div className="space-y-3">
       <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f5f5f5]">
         <img
+          key={selectedImage.id}
           src={selectedImage.url}
           alt={selectedImage.alt || productName}
-          className="h-full w-full object-contain"
+          className={`h-full w-full object-contain ${
+            direction === 1 ? "gallery-slide-right" : "gallery-slide-left"
+          }`}
         />
-        {sortedImages.length > 1 && (
-          <>
-            <button
-              type="button"
-              onClick={() => goTo(selectedIndex - 1)}
-              aria-label="Image précédente"
-              className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-black hover:text-white"
-            >
-              <ChevronLeftIcon className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => goTo(selectedIndex + 1)}
-              aria-label="Image suivante"
-              className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white text-black shadow-sm transition-colors hover:bg-black hover:text-white"
-            >
-              <ChevronRightIcon className="h-5 w-5" />
-            </button>
-          </>
-        )}
         <details className="group absolute bottom-3 right-3">
           <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full bg-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:bg-black hover:text-white [&::-webkit-details-marker]:hidden">
             Comment le porter
@@ -105,7 +94,9 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
                 role="tab"
                 aria-selected={isActive}
                 aria-label={`Voir image ${index + 1}`}
-                onClick={() => setSelectedImageId(image.id)}
+                onClick={() => selectImage(image.id)}
+                onMouseEnter={() => selectImage(image.id)}
+                onFocus={() => selectImage(image.id)}
                 className={`h-20 w-20 shrink-0 overflow-hidden rounded-md bg-[#f5f5f5] transition-all ${
                   isActive
                     ? "ring-2 ring-black ring-offset-1"
