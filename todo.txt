@@ -1,2 +1,1 @@
--- continuer avec le codage de product details
--- 
+-- faire le responsive de product detail page, coder la page de panier
