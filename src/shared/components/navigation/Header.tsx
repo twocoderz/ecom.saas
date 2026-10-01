@@ -39,7 +39,7 @@ export function Header() {
   }, [isMobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-30 bg-black py-p2 lg:px-p6">
+    <header className="bg-black py-p2 lg:px-p6">
       <Container>
         {/* Version mobile */}
         <div className="lg:hidden">

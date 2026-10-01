@@ -7,7 +7,7 @@ import { Utilities } from "../../data/Utilities";
 
 /**
  * Global shell shared by most pages.
- * JD mapping: utility bar + sticky main header + trust strip + rich footer.
+ * JD mapping: utility bar + static main header + trust strip + rich footer.
  */
 export function AppShell({ children }: { children: ReactNode }) {
   return (
