@@ -82,12 +82,12 @@ export function MegaMenu() {
                   <h3 className="border-b-2 border-black/60 pb-p1 text-sm font-bold uppercase tracking-tight text-black">
                     {section.title}
                   </h3>
-                  <ul className="mt-p2 grid gap-p2">
+                  <ul className="mt-p2 grid gap-p4">
                     {section.links.map((link) => (
                       <li key={link.id}>
                         <Link
                           to={link.href}
-                          className="text-xs text-black/85 transition-colors hover:text-black hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
+                          className="text-md text-black/85 transition-colors hover:text-black hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black"
                         >
                           {link.label}
                         </Link>
