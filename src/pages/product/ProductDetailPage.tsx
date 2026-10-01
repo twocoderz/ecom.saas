@@ -23,7 +23,7 @@ const ATTRIBUTE_LABELS: Record<string, string> = {
 };
 
 /**
- * Fiche produit façon JD : fil d'Ariane, galerie + colonne achat,
+ * Fiche produit : fil d'Ariane, galerie + colonne achat,
  * accordéons détails puis recommandations "Vous aimerez aussi".
  */
 export function ProductDetailPage() {
