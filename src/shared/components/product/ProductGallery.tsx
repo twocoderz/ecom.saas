@@ -65,7 +65,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
           }`}
         />
         <details className="group absolute bottom-3 right-3">
-          <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full bg-white px-3 py-1.5 text-xs font-semibold shadow-sm hover:bg-black hover:text-white [&::-webkit-details-marker]:hidden">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-xs bg-white px-3 py-2 text-xs font-semibold shadow-sm hover:bg-black hover:text-white [&::-webkit-details-marker]:hidden">
             Comment le porter
             <ChevronDownIcon
               aria-hidden="true"
