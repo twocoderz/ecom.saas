@@ -1,1 +1,1 @@
--- faire le responsive de product detail page, coder la page de panier
+-- coder la page de panier
