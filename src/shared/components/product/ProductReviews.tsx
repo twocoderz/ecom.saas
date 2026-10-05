@@ -25,10 +25,10 @@ export function ProductReviews({
   return (
     <details
       id="avis-produit"
-      className="group border-t border-black-10 py-4"
+      className="group border-t border-black-10 py-3 sm:py-4"
       open
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between text-md font-bold [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between text-[15px] font-bold sm:text-md [&::-webkit-details-marker]:hidden">
         <span>
           Avis {rating.toFixed(1)}{" "}
           <span className="font-normal text-black-60">
@@ -41,7 +41,7 @@ export function ProductReviews({
         />
       </summary>
 
-      <div className="mt-4 space-y-4">
+      <div className="mt-3 space-y-4 sm:mt-4">
         <div className="flex items-center gap-2">
           <RatingStars rating={rating} />
           <span className="text-xs text-black-60">
@@ -54,7 +54,7 @@ export function ProductReviews({
             <button
               type="button"
               onClick={() => setShowForm(true)}
-              className="w-50 cursor-pointer rounded-xs mt-6 border border-black px-4 py-3 text-sm font-semibold transition-colors hover:bg-black hover:text-white"
+              className="w-full cursor-pointer rounded-xs mt-4 border border-black px-4 py-3 min-h-[44px] text-sm font-semibold transition-colors hover:bg-black hover:text-white sm:w-50 sm:mt-6"
             >
               Écrire un avis
             </button>

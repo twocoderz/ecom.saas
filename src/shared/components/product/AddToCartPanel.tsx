@@ -103,11 +103,15 @@ export function AddToCartPanel({
   };
 
   return (
-    <section className="space-y-10" aria-label="Choix de la variante et achat">
+    <section
+      id="add-to-cart"
+      className="space-y-6 scroll-mt-4 pb-20 sm:space-y-8 lg:space-y-10 lg:pb-0"
+      aria-label="Choix de la variante et achat"
+    >
       {/* Couleur: swatch image + nom déjà affiché dans InfoPanel */}
       <div>
         <h4 className="text-md font-medium text-black-80 mb-3">Couleurs</h4>
-        <div className="flex gap-6">
+        <div className="flex flex-wrap gap-3 sm:gap-4 lg:gap-6">
           {colors.map((color) => {
             const isActive = selectedColor === color;
             const thumb = colorThumbnails.get(color);
@@ -121,7 +125,7 @@ export function AddToCartPanel({
                 onClick={() => {
                   onColorChange(color);
                 }}
-                className={`h-14 w-14 overflow-hidden rounded-xs cursor-pointer bg-[#f5f5f5] transition-all ${
+                className={`h-12 w-12 min-h-[44px] min-w-[44px] overflow-hidden rounded-xs cursor-pointer bg-[#f5f5f5] transition-all sm:h-14 sm:w-14 ${
                   isActive
                     ? "ring-1 ring-black-70 ring-offset-1"
                     : "opacity-80 ring-1 ring-black-10 hover:opacity-100 hover:ring-black-40"
@@ -175,7 +179,7 @@ export function AddToCartPanel({
                   onSizeChange(variant.size);
                   setSizeError(false);
                 }}
-                className={`rounded-xs cursor-pointer border px-1 py-2 text-sm font-medium transition-colors ${
+                className={`rounded-xs cursor-pointer border px-1 py-3 min-h-[44px] text-sm font-medium transition-colors sm:py-2 ${
                   isActive
                     ? "border-black bg-black-80 text-white"
                     : out

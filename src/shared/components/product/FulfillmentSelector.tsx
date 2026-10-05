@@ -23,7 +23,7 @@ export function FulfillmentSelector({
         role="radio"
         aria-checked={mode === "livraison"}
         onClick={() => onChange("livraison")}
-        className={`flex w-full items-center gap-3 cursor-pointer rounded-xs border p-4 text-left transition-colors ${
+        className={`flex w-full items-center gap-3 cursor-pointer rounded-xs border p-3 text-left transition-colors sm:p-4 ${
           mode === "livraison"
             ? "border-black-80"
             : "border-black-10 hover:border-black-40"
@@ -33,7 +33,7 @@ export function FulfillmentSelector({
           <TruckIcon className="h-5 w-5" />
         </span>
         <span className="flex-1">
-          <span className="block text-md font-bold">Livraison</span>
+          <span className="block text-[15px] font-bold sm:text-md">Livraison</span>
           <span className="block text-sm text-black-70">
             {hasSelectedSize
               ? "Expédition sous 3 à 5 jours ouvrés"
@@ -57,7 +57,7 @@ export function FulfillmentSelector({
         role="radio"
         aria-checked={mode === "retrait"}
         onClick={() => onChange("retrait")}
-        className={`flex w-full items-center gap-3 rounded-xs cursor-pointer border p-4 text-left transition-colors ${
+        className={`flex w-full items-center gap-3 rounded-xs cursor-pointer border p-3 text-left transition-colors sm:p-4 ${
           mode === "retrait"
             ? "border-black"
             : "border-black-10 hover:border-black-40"
@@ -67,7 +67,7 @@ export function FulfillmentSelector({
           <StoreIcon className="h-5 w-5" />
         </span>
         <span className="flex-1">
-          <span className="block text-md font-bold">Retrait gratuit</span>
+          <span className="block text-[15px] font-bold sm:text-md">Retrait gratuit</span>
           <span className="block text-sm text-black-70">
             À retirer aujourd&apos;hui en magasin
           </span>

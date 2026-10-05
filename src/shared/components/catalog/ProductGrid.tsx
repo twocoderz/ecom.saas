@@ -32,7 +32,7 @@ export function ProductGrid({
         key={product.id}
         data-product-rail-item
         className={`shrink-0 snap-start ${
-          isCompact ? "w-50 sm:w-55" : "w-70 sm:w-75"
+          isCompact ? "w-50 sm:w-55" : "w-44 sm:w-75"
         }`}
       >
         <ProductCard product={product} variant={cardVariant} />

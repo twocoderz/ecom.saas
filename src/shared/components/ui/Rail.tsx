@@ -63,7 +63,7 @@ export function Rail({
       <div
         ref={railRef}
         aria-label={ariaLabel}
-        className={`scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0 ${
+        className={`scrollbar-none -mx-2 flex snap-x snap-mandatory gap-3 overflow-x-auto px-2 pb-2 sm:mx-0 sm:gap-4 sm:px-0 ${
           alignItems === "start" ? "items-start" : "items-stretch"
         }`}
       >

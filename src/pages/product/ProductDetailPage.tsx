@@ -9,6 +9,7 @@ import { AddToCartPanel } from "../../shared/components/product/AddToCartPanel";
 import { ProductGallery } from "../../shared/components/product/ProductGallery";
 import { ProductInfoPanel } from "../../shared/components/product/ProductInfoPanel";
 import { ProductReviews } from "../../shared/components/product/ProductReviews";
+import { ProductStickyBar } from "../../shared/components/product/ProductStickyBar";
 import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { Container } from "../../shared/components/layout/Container";
 import { Section } from "../../shared/components/layout/Section";
@@ -99,53 +100,96 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
     galleryImages[0]?.url ??
     "";
 
+  const stickyVariant = useMemo(
+    () =>
+      detail.variants.find(
+        (variant) =>
+          variant.color === selectedColor && variant.size === selectedSize,
+      ),
+    [detail.variants, selectedColor, selectedSize],
+  );
+  const stickyInStock = (stickyVariant?.stock ?? 0) > 0;
+  const stickyLabel =
+    selectedColor && selectedSize
+      ? `${selectedColor} / ${selectedSize}`
+      : (selectedColor ?? "");
+
   return (
+    <>
     <Container>
-      <div className="space-y-6 py-6 lg:py-8">
-        {/* Fil d'Ariane */}
-        <nav className="text-xs text-black-70" aria-label="Fil d'Ariane">
-          <Link to="/" className="hover:text-black hover:underline">
+      <div className="space-y-5 py-4 sm:space-y-6 sm:py-6 lg:py-8">
+        {/* Fil d'Ariane — mobile tronqué, desktop inchangé */}
+        <nav
+          className="flex min-w-0 items-center gap-1 overflow-hidden text-xs text-black-70"
+          aria-label="Fil d'Ariane"
+        >
+          <Link
+            to="/"
+            className="shrink-0 hover:text-black hover:underline"
+          >
             Accueil
           </Link>
-          <span className="mx-1.5" aria-hidden="true">
+          <span className="shrink-0 px-0.5" aria-hidden="true">
             /
           </span>
           <Link
             to={buildPlpPath(detail.principal_gender.slug)}
-            className="hover:text-black hover:underline"
+            className="hidden shrink-0 hover:text-black hover:underline sm:inline"
           >
             {detail.principal_gender.name}
           </Link>
-          <span className="mx-1.5" aria-hidden="true">
+          <span
+            className="hidden shrink-0 px-0.5 sm:inline"
+            aria-hidden="true"
+          >
             /
           </span>
           <Link
             to={buildPlpPath(detail.category.slug)}
-            className="hover:text-black hover:underline"
+            className="hidden shrink-0 hover:text-black hover:underline min-[400px]:inline"
           >
             {detail.category.name}
           </Link>
-          <span className="mx-1.5" aria-hidden="true">
+          <span
+            className="hidden shrink-0 px-0.5 min-[400px]:inline"
+            aria-hidden="true"
+          >
             /
           </span>
-          <span aria-current="page" className="text-black">
+          <span aria-hidden="true" className="shrink-0 sm:hidden">
+            …
+          </span>
+          <span aria-hidden="true" className="shrink-0 px-0.5 sm:hidden">
+            /
+          </span>
+          <span aria-current="page" className="min-w-0 truncate text-black">
             {detail.product.name}
           </span>
         </nav>
 
-        <div className="grid gap-8 lg:grid-cols-5 lg:gap-16">
+        {/* Titre/prix mobile uniquement — avant galerie. Desktop inchangé. */}
+        <div className="lg:hidden">
+          <ProductInfoPanel
+            detail={detail}
+            selectedColorName={selectedColor}
+          />
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-5 lg:gap-16">
           <div className="lg:col-span-3">
             <ProductGallery
               images={galleryImages}
               productName={`${detail.brand.name} ${detail.product.name}`}
             />
           </div>
-          <div className="flex flex-col gap-8 lg:col-span-2">
+          <div className="flex flex-col gap-6 sm:gap-8 lg:col-span-2">
             <div className="space-y-5">
-              <ProductInfoPanel
-                detail={detail}
-                selectedColorName={selectedColor}
-              />
+              <div className="hidden lg:block">
+                <ProductInfoPanel
+                  detail={detail}
+                  selectedColorName={selectedColor}
+                />
+              </div>
               <AddToCartPanel
                 productId={detail.product.id}
                 productName={`${detail.brand.name} ${detail.product.name}`}
@@ -166,15 +210,15 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
 
             {/* Détails produit */}
             <div className="border-t border-black-10">
-              <details className="group border-b border-black-10 py-4" open>
-                <summary className="flex cursor-pointer list-none items-center justify-between text-md font-bold [&::-webkit-details-marker]:hidden">
+              <details className="group border-b border-black-10 py-3 sm:py-4" open>
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[15px] font-bold sm:text-md [&::-webkit-details-marker]:hidden">
                   Détails produit
                   <ChevronDownIcon
                     aria-hidden="true"
                     className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
                   />
                 </summary>
-                <div className="mt-4 space-y-4 text-sm text-black-80">
+                <div className="mt-3 space-y-4 text-sm text-black-80 sm:mt-4">
                   <div>
                     <h3 className="font-bold">Comment choisir votre taille</h3>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
@@ -210,15 +254,15 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
                 </div>
               </details>
 
-              <details className="group border-b border-black-10 py-4">
-                <summary className="flex cursor-pointer list-none items-center justify-between text-md font-bold [&::-webkit-details-marker]:hidden">
+              <details className="group border-b border-black-10 py-3 sm:py-4">
+                <summary className="flex cursor-pointer list-none items-center justify-between text-[15px] font-bold sm:text-md [&::-webkit-details-marker]:hidden">
                   Livraison &amp; retours
                   <ChevronDownIcon
                     aria-hidden="true"
                     className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
                   />
                 </summary>
-                <p className="mt-4 text-sm text-black-70">
+                <p className="mt-3 text-sm text-black-70 sm:mt-4">
                   Livraison suivie sous 3 à 5 jours ouvrés. Retrait gratuit en
                   magasin le jour même. Retours gratuits sous 30 jours, articles
                   non portés avec étiquettes.
@@ -241,5 +285,17 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
         )}
       </div>
     </Container>
+    <ProductStickyBar
+      productId={detail.product.id}
+      productName={`${detail.brand.name} ${detail.product.name}`}
+      productImage={mainImage}
+      price={detail.product.price}
+      salePrice={detail.product.sale_price}
+      variantId={stickyVariant?.id}
+      variantLabel={stickyLabel}
+      inStock={stickyInStock}
+      hasSelectedSize={selectedSize !== null}
+    />
+    </>
   );
 }
