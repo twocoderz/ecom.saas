@@ -1,1 +1,4 @@
--- coder la page de panier
+-- Analyse tout le projet et tu me donnes son objectif, ou on en est et ce qu'il reste a faire. 
+avant de faire ce qu'il reste a faire pour que le site soit operationnel, tu vas me dire ce que 
+je dois changer(ameliorer ou supprimer) pour que les choses qu'il reste a faire s'ajoute 
+correctement avec une bonne maintenabilite et une bonne coherence.
