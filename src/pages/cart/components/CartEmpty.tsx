@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { ROUTE_PATHS } from "../../../config/paths";
 import { useAuthStore } from "../../../stores/useAuthStore";
-import { ShoppingCartIcon } from "../../../shared/icons";
 
 /**
  * État vide du panier : carte centrée (titre + texte compte + CTA
@@ -14,20 +13,13 @@ export function CartEmpty() {
   return (
     <div
       role="status"
-      className="rounded-xl border border-black-10 bg-white p-6 text-center sm:p-10"
+      className="rounded-xs border border-black-20 bg-white p-6 text-center sm:p-10"
     >
-      <span
-        aria-hidden="true"
-        className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-black-5 text-black-70"
-      >
-        <ShoppingCartIcon className="h-6 w-6" />
-      </span>
-
-      <h2 className="mt-4 text-lg font-bold text-black sm:text-xl">
+      <h2 className="mt-4 text-2xl font-medium text-black sm:text-4xl">
         Votre panier est vide
       </h2>
 
-      <p className="mx-auto mt-2 max-w-md text-sm text-black-60">
+      <p className="mx-auto mt-4 max-w-xs md:max-w-sm text-md md:text-lg text-black-60">
         {user
           ? "Découvrez nos nouveautés et ajoutez vos coups de cœur au panier."
           : "Connectez-vous à votre compte pour retrouver vos articles déjà ajoutés ou mis de côté."}
