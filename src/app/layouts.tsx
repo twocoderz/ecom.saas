@@ -5,7 +5,7 @@ import { AdminShell } from "../shared/components/admin/AdminShell";
 import { RequireAdmin } from "./guards";
 
 /**
- * Layout storefront JD : header + trust + footer partages.
+ * Layout: header + trust + footer partages.
  */
 export function StorefrontLayout() {
   return (
@@ -21,9 +21,19 @@ export function StorefrontLayout() {
 export function AdminLayout({ children }: { children?: ReactNode }) {
   return (
     <RequireAdmin>
-      <AdminShell>
-        {children ?? <Outlet />}
-      </AdminShell>
+      <AdminShell>{children ?? <Outlet />}</AdminShell>
     </RequireAdmin>
+  );
+}
+
+/**
+ * Layout authentification : page autonome sans header ni footer
+ * (style portail de compte : logo centre, contenu etroit).
+ */
+export function AuthLayout() {
+  return (
+    <main className="min-h-screen bg-white">
+      <Outlet />
+    </main>
   );
 }

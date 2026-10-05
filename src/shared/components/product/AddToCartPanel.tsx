@@ -229,7 +229,7 @@ export function AddToCartPanel({
         type="button"
         disabled={!canAdd}
         onClick={handleAdd}
-        className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3.5 text-sm font-bold text-white transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
+        className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3.5 text-sm font-bold text-black transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
       >
         <ShoppingCartIcon
           strokeWidth={2}

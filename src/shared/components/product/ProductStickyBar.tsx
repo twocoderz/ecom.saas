@@ -95,7 +95,7 @@ export function ProductStickyBar({
           type="button"
           onClick={handleAdd}
           disabled={hasSelectedSize && !inStock}
-          className="flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
+          className="flex min-h-[44px] shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-bold text-black transition-all hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-40"
         >
           <ShoppingCartIcon
             strokeWidth={2}

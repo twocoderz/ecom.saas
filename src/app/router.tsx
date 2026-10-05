@@ -36,7 +36,7 @@ import {
   TermsPage,
   WishlistPage,
 } from "../pages";
-import { AdminLayout, StorefrontLayout } from "./layouts";
+import { AdminLayout, AuthLayout, StorefrontLayout } from "./layouts";
 import { routeBlueprint } from "./routeBlueprint";
 
 /**
@@ -63,10 +63,24 @@ export const appRouter = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { index: true, element: <AdminDashboardPage /> },
-      { path: pathById("admin-products").slice("/admin".length + 1), element: <AdminProductsPage /> },
-      { path: pathById("admin-orders").slice("/admin".length + 1), element: <AdminOrdersPage /> },
-      { path: pathById("admin-promos").slice("/admin".length + 1), element: <AdminPromosPage /> },
+      {
+        path: pathById("admin-products").slice("/admin".length + 1),
+        element: <AdminProductsPage />,
+      },
+      {
+        path: pathById("admin-orders").slice("/admin".length + 1),
+        element: <AdminOrdersPage />,
+      },
+      {
+        path: pathById("admin-promos").slice("/admin".length + 1),
+        element: <AdminPromosPage />,
+      },
     ],
+  },
+  {
+    path: pathById("auth"),
+    element: <AuthLayout />,
+    children: [{ index: true, element: <AuthPage /> }],
   },
   {
     path: pathById("home"),
@@ -103,7 +117,6 @@ export const appRouter = createBrowserRouter([
         path: pathById("checkout-confirmation").slice(1),
         element: <CheckoutConfirmationPage />,
       },
-      { path: pathById("auth").slice(1), element: <AuthPage /> },
       {
         path: pathById("forgot-password").slice(1),
         element: <ForgotPasswordPage />,

@@ -28,7 +28,7 @@ export function CartEmpty() {
       {!user && (
         <Link
           to={ROUTE_PATHS.auth}
-          className="mx-auto mt-6 flex min-h-[44px] w-full items-center justify-center rounded-xs bg-primary px-4 py-3.5 text-sm font-bold text-white transition-all hover:brightness-95 sm:max-w-md"
+          className="mx-auto mt-6 flex min-h-[44px] w-full items-center justify-center rounded-xs bg-primary px-4 py-3.5 text-sm font-bold text-black transition-all hover:brightness-95 sm:max-w-md"
         >
           Se connecter
         </Link>
