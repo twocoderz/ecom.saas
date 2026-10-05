@@ -129,10 +129,7 @@ export function AuthPage() {
             <h2 className="text-lg font-bold text-black">
               PAS ENCORE DE COMPTE&nbsp;?
             </h2>
-            <p className="mt-4 text-sm font-bold text-black">
-              Inscrivez-vous et recevez une récompense de bienvenue exclusive.
-            </p>
-            <p className="mt-1 text-sm text-black-60">
+            <p className="mt-2 text-sm max-w-sm mx-auto text-black-60">
               Créez votre compte dès aujourd&apos;hui et commencez à cumuler.
               <br />
               Gagnez 10 points pour chaque 1&nbsp;000&nbsp;F dépensé.
@@ -140,7 +137,7 @@ export function AuthPage() {
             <button
               type="button"
               onClick={focusEmail}
-              className="mt-6 flex min-h-[48px] w-full cursor-pointer items-center justify-center rounded-[2px] border border-black bg-white px-4 py-3 text-sm font-bold text-black transition-colors hover:bg-black hover:text-white"
+              className="mt-8 flex min-h-[48px] w-full cursor-pointer items-center justify-center rounded-[2px] border border-black bg-white px-4 py-3 text-sm font-bold text-black transition-colors hover:bg-black hover:text-white"
             >
               S&apos;INSCRIRE
             </button>
