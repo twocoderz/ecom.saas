@@ -7,7 +7,6 @@ import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { Price } from "../../shared/components/ui/Price";
 import { useCartStore } from "../../stores/useCartStore";
 import { CartEmpty } from "./components/CartEmpty";
-import { CartPageSpecifics } from "./components/CartPageSpecifics";
 
 /**
  * Page panier : lignes reelles depuis le store + resume promo.
@@ -87,7 +86,6 @@ export function CartPage() {
             </Link>
           </p>
         )}
-        <CartPageSpecifics />
       </div>
     </Container>
   );
