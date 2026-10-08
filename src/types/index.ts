@@ -218,7 +218,12 @@ export type ApiPlpResponse = {
 
 export type AttributeMap = Record<string, string[]>;
 
-export type MockOrderStatus = "pending" | "paid" | "shipped" | "delivered" | "cancelled";
+export type MockOrderStatus =
+  | "pending"
+  | "paid"
+  | "shipped"
+  | "delivered"
+  | "cancelled";
 
 export type MockOrderLine = {
   product_id: EntityId;
@@ -235,6 +240,19 @@ export type MockOrder = {
   status: MockOrderStatus;
   created_at: string;
   lines: MockOrderLine[];
+  subtotal?: number;
+  discount?: number;
+  discountCode?: string;
+  shippingFee?: number;
+  shippingMethodId?: string;
+  taxes?: number;
+  customerName?: string;
+  email?: string;
+  phone?: string;
+  addressLine?: string;
+  city?: string;
+  country?: string;
+  paymentMethod?: string;
 };
 
 export type MockAddress = {

@@ -37,7 +37,7 @@ import {
   WishlistPage,
 } from "../pages";
 import { AdminLayout, AuthLayout, StorefrontLayout, SystemLayout } from "./layouts";
-import { RequireAuth } from "./guards";
+import { RequireAuth, RequireCart } from "./guards";
 import { routeBlueprint } from "./routeBlueprint";
 
 /**
@@ -122,15 +122,27 @@ export const appRouter = createBrowserRouter([
       { path: pathById("cart").slice(1), element: <CartPage /> },
       {
         path: pathById("checkout-info").slice(1),
-        element: <CheckoutInformationPage />,
+        element: (
+          <RequireCart>
+            <CheckoutInformationPage />
+          </RequireCart>
+        ),
       },
       {
         path: pathById("checkout-shipping").slice(1),
-        element: <CheckoutShippingPage />,
+        element: (
+          <RequireCart>
+            <CheckoutShippingPage />
+          </RequireCart>
+        ),
       },
       {
         path: pathById("checkout-payment").slice(1),
-        element: <CheckoutPaymentPage />,
+        element: (
+          <RequireCart>
+            <CheckoutPaymentPage />
+          </RequireCart>
+        ),
       },
       {
         path: pathById("checkout-confirmation").slice(1),

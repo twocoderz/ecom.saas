@@ -5,3 +5,4 @@ export type { CartLine } from "./useCartStore";
 export { useWishlistStore } from "./useWishlistStore";
 export { useReviewStore } from "./useReviewStore";
 export type { LocalReview } from "./useReviewStore";
+export { useCheckoutStore } from "./useCheckoutStore";

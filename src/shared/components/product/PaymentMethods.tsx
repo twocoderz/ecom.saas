@@ -26,6 +26,11 @@ const METHODS: Array<{
     label: "Visa",
     badge: { kind: "text", text: "VISA" },
   },
+  {
+    id: "cash",
+    label: "Paiement à la livraison",
+    badge: { kind: "text", text: "Cash" },
+  },
 ];
 
 type PaymentMethodsProps = {

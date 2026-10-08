@@ -3,6 +3,7 @@
 > Date : 2026-10-08 — Stratégie validée : **mono-boutique fonctionnelle à 100 % sur mocks centralisés, sans backend pour l'instant. Backend branché ensuite.**
 > Sprint A : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur (2 warnings pré-existants sur `useProducts`/`useProductDetail`).
 > Sprint B : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur. Décision produit : **pagination conservée** (pas d'infinite scroll — URLs partageables, a11y, pas de backend).
+> Sprint C : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur. Harnais Node : 17/17 assertions (totaux, franco, validations, `CMD-1003` → séquence persistée).
 
 ## 1. Objectif
 
@@ -21,8 +22,8 @@ Stack : React 19 + React Router 7 + Zustand persist + Tailwind v4 + Vite. Devise
 | Search                          | 95 % alignée                        | `SearchResultsPage` = wrapper `PlpListing slug="search-results"`. `?q` sync URL via `useFilters` → `catalogApi` (recherche nom/marque/categorie/collection/activite). Pagination `page/per_page` dans l'URL conservée (décision Sprint B : pas d'infinite) |
 | Brand                           | 90 % alignée                         | `BrandPage` lit `:slug`, résout le nom via `brands` et rend `<PlpListing slug>` (filtre natif `getPlpBySlug` + logos `public/images/brand/`)                                                                                                  |
 | PDP Produit                     | 95 % UI mock                       | `selectedColorName` affiché (`ProductInfoPanel`), `fulfillment` persisté (`localStorage ecom-default-shop-fulfillment`) + mémorisé dans `CartLine`, avis persistés local (`useReviewStore ecom-default-shop-reviews`, note+texte, note/count blendés), textes livraison/retours/conseil tailles + tableaux guide des tailles en `shared/data/pdp.ts`, `PaymentMethods` sélectionnable (`selected/onSelect`, logos `public/images/payments/` déjà présents). Images curées par catégorie+genre (pool laptop/sofa/huile banni, `base.png` rig minage supprimé du fallback). Reste : vrais packshots sneakers à fournir (aucun dans le dépôt) |
-| Panier                          | 75 % local                         | `CartLine {shopId, color, size, fulfillment…}` structurée depuis PDP + sticky bar, `useCartCount/useCartSubtotal` mémoïsés. Port/taxes → **Sprint C**                                          |
-| Checkout                        | 5 % bloque                         | 4 pages = placeholders (`Formulaire informations client…`). `CheckoutStepper` statique. Pas de commande, pas de vidage panier → **Sprint C**                                                                                    |
+| Panier                          | 95 % local simulé                  | `CartSummary` complet : sous-total (quantités) + promo `applyPromo` + livraison simulée (standard 2500/franco 100k, express 5000, retrait gratuit) + TVA 18 % + total, via `computeOrderTotals` (`lib/checkout.ts`). Méthodes et copies en `shared/data/checkout.ts` |
+| Checkout                        | 95 % simulé                        | `CheckoutStepper` actif (`aria-current`, retours cliquables). 4 étapes réelles : Information (validée, e-mail pré-rempli si connecté) → Livraison (3 méthodes) → Paiement (Mixx/Flooz/Visa/Cash simulé, champs conditionnels validés) → Confirmation (n° `CMD-1003…` réel + récap + CTAs). `RequireCart` garde le tunnel panier vide. `createMockOrder()` dans `shopApi` (séquentiel, `pending`, persisté `localStorage`, rejouable après refresh). Formulaires persistés (`ecom-default-shop-checkout`). Seul code promo encore valide : `BUNDLE10` (les autres ont expiré — moteur d'expiry OK) |
 | Auth / Compte                   | 40 %                               | `RequireAuth` actif sur `/account/*`. Wishlist résolue via `getPlpCardsByIds` (sans limite top-50), clé persist `ecom-default-shop-wishlist`. Orders/Addresses/PaymentMethods = stubs → **Sprint D**                           |
 | Support / Légal / Système       | 25 % débloqué partiel              | Système : `404/500/maintenance` nues via `SystemLayout` (sans newsletter/header). 19 pages support/légal encore stubs → **Sprint D**                                                                                           |
 | Admin                           | 35 % démo lecture seule            | 2 commandes mock `CMD-1001/1002`. `STATUS_LABELS` centralisé dans `shared/components/admin/orderStatus.ts`. `findPromoByCode` corrigé (lookup code seul). `DataTable` sans tri/pagination → **Sprint D/E**. `RequireAdmin` contournable client (connu, mock) |
@@ -90,13 +91,16 @@ Références : `docs/JD_STRUCTURE_MAP.md`, `docs/IMPLEMENTATION_SPRINT_PLAN.md`,
 - Done : Category/Collection/Search/Brand partagent `PlpListing`, filtre prix FCFA utile, genres cohérents, PDP complète sur mocks.
 - Reste connu : **vrais packshots sneakers à fournir** (aucun dans `public/images` — les chaussures réutilisent les visuels mode les plus proches, ex `mensjeans.png` qui montre des sneakers).
 
-### Sprint C — Panier + Checkout simulé (bloqueur n°1, sans PSP réel)
+### Sprint C — Panier + Checkout simulé (bloqueur n°1, sans PSP réel) — ✅ TERMINÉ 2026-10-08
 
-- `CartSummary` : sous-total + promo (`applyPromo`) + port/taxes simulés + total.
-- `CheckoutStepper` actif (étape courante, liens). Formulaires Information/Shipping/Payment validés (état local + `localStorage`), navigation inter-étapes, garde panier vide.
-- `createMockOrder()` dans `shopApi` : crée commande mock depuis panier + formulaire, `clear()` panier, Confirmation avec n° réel + récap.
-- Paiement : sélecteur `Mixx/Flooz/Visa/cash` simulé (pas d'appel réseau), logos dans `public/images/payments/`.
-- Done : tunnel complet cliquable de PDP → Confirmation avec commande mock persistée, rejouable après refresh.
+- `CartSummary` : sous-total + promo (`applyPromo`) + port/taxes simulés + total via `computeOrderTotals` (`src/lib/checkout.ts`), constantes en `src/shared/data/checkout.ts`. Mode `cart` (CTA) / `checkout` (récap seul + mention simulé).
+- `CheckoutStepper` actif : étape courante `aria-current`, étapes terminées cliquables, suivantes désactivées.
+- Formulaires Information/Shipping/Payment validés en ligne (`validateInformation`/`validatePayment`), persistés en `localStorage` (`stores/useCheckoutStore.ts`), navigation inter-étapes, `RequireCart` (panier vide → `/cart`) sur les 3 premières étapes.
+- `createMockOrder()` dans `shopApi` : n° séquentiel `CMD-1003…`, statut `pending`, lignes + totaux + client + livraison + paiement, persisté (`ecom-default-shop-orders`), `clear()` panier, Confirmation avec n° réel + récap + CTAs (accueil/suivi/commandes), rejouable après refresh via `lastOrderId`.
+- Paiement : `Mixx/Flooz/Visa/Cash` simulé (zéro appel réseau, mention explicite), `PaymentMethods` sélectionnable (`selected/onSelect`, `cash` ajouté), logos déjà dans `public/images/payments/`.
+- Vérifié : harnais Node 17/17 (totaux 113361 F sur exemple 100k+BUNDLE10, franco 100k, retrait gratuit, 7 erreurs info, règles par moyen, séquence persistée `CMD-1003`→`CMD-1004`).
+- Done : tunnel complet cliquable PDP → Confirmation avec commande mock persistée.
+- Reste connu : les commandes créées remontent déjà dans `getMockOrders()` (câblage Compte/Admin → Sprint D).
 
 ### Sprint D — Compte + Support + Légal + Système (bloqueur n°2)
 
