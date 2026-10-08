@@ -1,6 +1,7 @@
 import { StoreIcon, TruckIcon } from "../../icons";
+import { fulfillmentCopy, type FulfillmentMode } from "../../data/pdp";
 
-type FulfillmentMode = "livraison" | "retrait";
+export type { FulfillmentMode };
 
 type FulfillmentSelectorProps = {
   mode: FulfillmentMode;
@@ -10,12 +11,17 @@ type FulfillmentSelectorProps = {
 
 /**
  * Bloc livraison / retrait version visuelle simple en français.
+ * Textes centralises dans `shared/data/pdp.ts`.
  */
 export function FulfillmentSelector({
   mode,
   onChange,
   hasSelectedSize,
 }: FulfillmentSelectorProps) {
+  const livraisonHint = hasSelectedSize
+    ? fulfillmentCopy.livraison.hintWithSize
+    : fulfillmentCopy.livraison.hintWithoutSize;
+
   return (
     <div className="space-y-2" role="radiogroup" aria-label="Mode de réception">
       <button
@@ -33,12 +39,10 @@ export function FulfillmentSelector({
           <TruckIcon className="h-5 w-5" />
         </span>
         <span className="flex-1">
-          <span className="block text-[15px] font-bold sm:text-md">Livraison</span>
-          <span className="block text-sm text-black-70">
-            {hasSelectedSize
-              ? "Expédition sous 3 à 5 jours ouvrés"
-              : "Sélectionnez une taille pour voir le délai"}
+          <span className="block text-[15px] font-bold sm:text-md">
+            {fulfillmentCopy.livraison.title}
           </span>
+          <span className="block text-sm text-black-70">{livraisonHint}</span>
         </span>
         <span
           aria-hidden="true"
@@ -67,9 +71,11 @@ export function FulfillmentSelector({
           <StoreIcon className="h-5 w-5" />
         </span>
         <span className="flex-1">
-          <span className="block text-[15px] font-bold sm:text-md">Retrait gratuit</span>
+          <span className="block text-[15px] font-bold sm:text-md">
+            {fulfillmentCopy.retrait.title}
+          </span>
           <span className="block text-sm text-black-70">
-            À retirer aujourd&apos;hui en magasin
+            {fulfillmentCopy.retrait.hintWithSize}
           </span>
         </span>
         <span

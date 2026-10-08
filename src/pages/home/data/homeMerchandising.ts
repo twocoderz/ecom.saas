@@ -18,10 +18,10 @@ const BRAND_LOGO_BY_SLUG: Record<string, string> = {
 const COLLECTION_IMAGES: Record<string, string> = {
   "col-athletic-performance": "/images/pumatshirt1.png",
   "col-vintage-heritage": "/images/mensjeans.png",
-  "col-eco-friendly": "/images/dove_body_lotion.png",
+  "col-eco-friendly": "/images/womenblouse.png",
   "col-urban-streetwear": "/images/womentop-1.png",
-  "col-winter-training": "/images/wardrobe1.jpg",
-  "col-casual-streetwear": "/images/shirt.png",
+  "col-winter-training": "/images/shirt.png",
+  "col-casual-streetwear": "/images/portrait-shopping-react.png",
 };
 
 const BRAND_LOGO_FILES = new Set([

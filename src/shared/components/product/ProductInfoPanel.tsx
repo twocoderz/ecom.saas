@@ -10,12 +10,24 @@ type ProductInfoPanelProps = {
  * Bloc haut de colonne droite: marque, titre, note, prix,
  * nom de couleur. Les sélecteurs couleur/taille vivent dans AddToCartPanel.
  */
-export function ProductInfoPanel({ detail }: ProductInfoPanelProps) {
+export function ProductInfoPanel({
+  detail,
+  selectedColorName,
+}: ProductInfoPanelProps) {
   return (
     <section className="mb-3 sm:mb-4" aria-label="Informations produit">
       <h1 className="text-lg font-bold leading-tight text-black-80 sm:text-xl lg:text-3xl">
         {detail.brand.name} {detail.product.name}
       </h1>
+
+      {selectedColorName ? (
+        <p className="mt-1 text-sm text-black-60">
+          Couleur :{" "}
+          <span className="font-semibold capitalize text-black-80">
+            {selectedColorName}
+          </span>
+        </p>
+      ) : null}
 
       <div className="flex flex-col gap-2">
         <div className="mt-3 sm:mt-4">

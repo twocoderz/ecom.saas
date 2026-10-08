@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { mockReviewCount } from "../../../lib/reviews";
 import { productRatings } from "../../../data/mock/relations";
+import { useReviewStore } from "../../../stores/useReviewStore";
 import { ChevronDownIcon } from "../../icons";
 import { RatingStars } from "../ui/RatingStars";
 
@@ -10,17 +11,55 @@ type ProductReviewsProps = {
 };
 
 /**
- * Accordéon avis, en français : note, bouton écrire un avis,
- * message vide si aucun avis détaillé.
+ * Accordeon avis, en francais : note, avis rediges persistee en local,
+ * formulaire (note + texte) dont la soumission survit au refresh.
  */
 export function ProductReviews({
   productId,
   productName,
 }: ProductReviewsProps) {
-  const rating = productRatings[productId] ?? 0;
-  const reviewCount = mockReviewCount(productId);
+  const baseRating = productRatings[productId] ?? 0;
+  const baseCount = mockReviewCount(productId);
+  const localReviews = useReviewStore((s) => s.reviewsFor(productId));
+  const addReview = useReviewStore((s) => s.addReview);
+
   const [showForm, setShowForm] = useState(false);
+  const [author, setAuthor] = useState("");
+  const [rating, setRating] = useState(5);
+  const [text, setText] = useState("");
   const [message, setMessage] = useState("");
+
+  const { displayRating, displayCount } = useMemo(() => {
+    if (localReviews.length === 0) {
+      return { displayRating: baseRating, displayCount: baseCount };
+    }
+    const localSum = localReviews.reduce(
+      (sum, review) => sum + review.rating,
+      0,
+    );
+    return {
+      displayRating:
+        (baseRating * baseCount + localSum) / (baseCount + localReviews.length),
+      displayCount: baseCount + localReviews.length,
+    };
+  }, [baseRating, baseCount, localReviews]);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const trimmedText = text.trim();
+    if (!trimmedText) return;
+    addReview({
+      productId,
+      author: author.trim() || "Client vérifié",
+      rating,
+      text: trimmedText,
+    });
+    setText("");
+    setAuthor("");
+    setRating(5);
+    setShowForm(false);
+    setMessage("Merci ! Votre avis a bien été pris en compte.");
+  };
 
   return (
     <details
@@ -30,9 +69,9 @@ export function ProductReviews({
     >
       <summary className="flex cursor-pointer list-none items-center justify-between text-[15px] font-bold sm:text-md [&::-webkit-details-marker]:hidden">
         <span>
-          Avis {rating.toFixed(1)}{" "}
+          Avis {displayRating.toFixed(1)}{" "}
           <span className="font-normal text-black-60">
-            ({reviewCount} avis)
+            ({displayCount} avis)
           </span>
         </span>
         <ChevronDownIcon
@@ -43,11 +82,25 @@ export function ProductReviews({
 
       <div className="mt-3 space-y-4 sm:mt-4">
         <div className="flex items-center gap-2">
-          <RatingStars rating={rating} />
+          <RatingStars rating={displayRating} />
           <span className="text-xs text-black-60">
-            Basé sur {reviewCount} avis vérifiés
+            Basé sur {displayCount} avis vérifiés
           </span>
         </div>
+
+        {localReviews.length > 0 && (
+          <ul className="space-y-3" aria-label="Avis clients">
+            {localReviews.map((review) => (
+              <li key={review.id} className="rounded-lg bg-black-5 p-3 text-sm">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="font-semibold">{review.author}</span>
+                  <RatingStars rating={review.rating} />
+                </div>
+                <p className="mt-1 text-black-80">{review.text}</p>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {!showForm ? (
           <div className="flex items-center justify-center">
@@ -62,12 +115,40 @@ export function ProductReviews({
         ) : (
           <form
             className="space-y-2 rounded-lg bg-black-5 p-3"
-            onSubmit={(event) => {
-              event.preventDefault();
-              setMessage("Merci ! Votre avis a bien été pris en compte.");
-              setShowForm(false);
-            }}
+            onSubmit={handleSubmit}
           >
+            <label
+              htmlFor={`avis-auteur-${productId}`}
+              className="block text-xs font-semibold"
+            >
+              Votre nom (optionnel)
+            </label>
+            <input
+              id={`avis-auteur-${productId}`}
+              type="text"
+              value={author}
+              onChange={(event) => setAuthor(event.target.value)}
+              className="w-full rounded-md border border-black-20 bg-white p-2 text-sm"
+              placeholder="Ex : Awa D."
+            />
+            <label
+              htmlFor={`avis-note-${productId}`}
+              className="block text-xs font-semibold"
+            >
+              Votre note
+            </label>
+            <select
+              id={`avis-note-${productId}`}
+              value={rating}
+              onChange={(event) => setRating(Number(event.target.value))}
+              className="w-full rounded-md border border-black-20 bg-white p-2 text-sm"
+            >
+              {[5, 4, 3, 2, 1].map((value) => (
+                <option key={value} value={value}>
+                  {value} / 5
+                </option>
+              ))}
+            </select>
             <label
               htmlFor={`avis-${productId}`}
               className="block text-xs font-semibold"
@@ -78,6 +159,8 @@ export function ProductReviews({
               id={`avis-${productId}`}
               required
               rows={3}
+              value={text}
+              onChange={(event) => setText(event.target.value)}
               className="w-full rounded-md border border-black-20 bg-white p-2 text-sm"
               placeholder="Partagez votre expérience (taille, confort, qualité)…"
             />
@@ -95,10 +178,12 @@ export function ProductReviews({
             {message}
           </p>
         )}
-        <p className="text-xs text-black-60">
-          Aucun avis détaillé pour l&apos;instant. Soyez le premier à partager
-          votre expérience.
-        </p>
+        {localReviews.length === 0 && (
+          <p className="text-xs text-black-60">
+            Aucun avis détaillé pour l&apos;instant. Soyez le premier à partager
+            votre expérience.
+          </p>
+        )}
       </div>
     </details>
   );

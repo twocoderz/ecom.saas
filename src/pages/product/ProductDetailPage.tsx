@@ -14,6 +14,10 @@ import { ProductGrid } from "../../shared/components/catalog/ProductGrid";
 import { Container } from "../../shared/components/layout/Container";
 import { Section } from "../../shared/components/layout/Section";
 import { ChevronDownIcon } from "../../shared/icons";
+import {
+  pdpDeliveryReturnsCopy,
+  pdpSizeAdviceCopy,
+} from "../../shared/data/pdp";
 
 const ATTRIBUTE_LABELS: Record<string, string> = {
   color: "Couleur",
@@ -220,17 +224,11 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
                 </summary>
                 <div className="mt-3 space-y-4 text-sm text-black-80 sm:mt-4">
                   <div>
-                    <h3 className="font-bold">Comment choisir votre taille</h3>
+                    <h3 className="font-bold">{pdpSizeAdviceCopy.title}</h3>
                     <ul className="mt-1 list-disc space-y-1 pl-5 text-black-70">
-                      <li>
-                        Nos tailles chaussures sont en pointure EU (ex : 40, 41,
-                        42). Consultez le guide des tailles pour la
-                        correspondance en cm.
-                      </li>
-                      <li>
-                        Pour le textile, les tailles vont de XS à XL. Si vous
-                        hésitez entre deux tailles, prenez la plus grande.
-                      </li>
+                      {pdpSizeAdviceCopy.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
                     </ul>
                   </div>
                   <p>{detail.product.description}</p>
@@ -256,16 +254,14 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
 
               <details className="group border-b border-black-10 py-3 sm:py-4">
                 <summary className="flex cursor-pointer list-none items-center justify-between text-[15px] font-bold sm:text-md [&::-webkit-details-marker]:hidden">
-                  Livraison &amp; retours
+                  {pdpDeliveryReturnsCopy.title}
                   <ChevronDownIcon
                     aria-hidden="true"
                     className="h-5 w-5 shrink-0 transition-transform group-open:rotate-180"
                   />
                 </summary>
                 <p className="mt-3 text-sm text-black-70 sm:mt-4">
-                  Livraison suivie sous 3 à 5 jours ouvrés. Retrait gratuit en
-                  magasin le jour même. Retours gratuits sous 30 jours, articles
-                  non portés avec étiquettes.
+                  {pdpDeliveryReturnsCopy.body}
                 </p>
               </details>
 
@@ -293,6 +289,8 @@ function ProductDetailContent({ detail }: { detail: ApiPdpResponse }) {
       salePrice={detail.product.sale_price}
       variantId={stickyVariant?.id}
       variantLabel={stickyLabel}
+      selectedColor={selectedColor}
+      selectedSize={selectedSize}
       inStock={stickyInStock}
       hasSelectedSize={selectedSize !== null}
     />

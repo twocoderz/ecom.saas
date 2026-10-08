@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { DEFAULT_SHOP_ID } from "../types";
+import type { FulfillmentMode } from "../shared/data/pdp";
 
 /**
  * Ligne panier : produit + variante + quantite.
  * `shopId` fige la boutique (mono-boutique "default-shop" pour l'instant).
- * `color`/`size` structurent la variante au lieu d'un `name` concatene
- * (migration progressive : `name` reste affiche en attendant Sprint C).
+ * `color`/`size` structurent la variante (`name` reste affiche).
+ * `fulfillment` memorise le mode choisi sur la PDP (exploite en Sprint C).
  */
 export type CartLine = {
   shopId?: string;
@@ -14,6 +15,7 @@ export type CartLine = {
   variantId?: string;
   color?: string;
   size?: string;
+  fulfillment?: FulfillmentMode;
   name: string;
   image: string;
   unitPrice: number;
@@ -25,7 +27,11 @@ type CartState = {
   promoCode: string;
   addLine: (line: CartLine) => void;
   removeLine: (productId: string, variantId?: string) => void;
-  setQty: (productId: string, variantId: string | undefined, qty: number) => void;
+  setQty: (
+    productId: string,
+    variantId: string | undefined,
+    qty: number,
+  ) => void;
   clear: () => void;
   setPromoCode: (code: string) => void;
   subtotal: () => number;
@@ -45,7 +51,9 @@ export const useCartStore = create<CartState>()(
         set((state) => {
           const normalized = withShopId(line);
           const idx = state.lines.findIndex(
-            (l) => l.productId === normalized.productId && l.variantId === normalized.variantId,
+            (l) =>
+              l.productId === normalized.productId &&
+              l.variantId === normalized.variantId,
           );
           if (idx >= 0) {
             const next = [...state.lines];
@@ -65,7 +73,8 @@ export const useCartStore = create<CartState>()(
           lines:
             qty <= 0
               ? state.lines.filter(
-                  (l) => !(l.productId === productId && l.variantId === variantId),
+                  (l) =>
+                    !(l.productId === productId && l.variantId === variantId),
                 )
               : state.lines.map((l) =>
                   l.productId === productId && l.variantId === variantId
@@ -85,6 +94,7 @@ export const useCartStore = create<CartState>()(
 );
 
 /** Selecteurs memoises (preferer a subtotal()/count() dans les composants). */
-export const useCartCount = () => useCartStore((s) => s.lines.reduce((sum, l) => sum + l.qty, 0));
+export const useCartCount = () =>
+  useCartStore((s) => s.lines.reduce((sum, l) => sum + l.qty, 0));
 export const useCartSubtotal = () =>
   useCartStore((s) => s.lines.reduce((sum, l) => sum + l.unitPrice * l.qty, 0));

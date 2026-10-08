@@ -8,8 +8,68 @@ import type {
   ProductVariant,
   Promotion,
 } from "../../types";
-import { MOCK_IMAGE_POOL } from "./assets";
+import {
+  APPAREL_IMAGES,
+  BAG_IMAGES,
+  KIDS_APPAREL_IMAGES,
+  LIFESTYLE_IMAGES,
+} from "./assets";
 import { products } from "./products";
+
+const productByIdLocal = new Map(products.map((product) => [product.id, product]));
+
+/**
+ * Liste d'images curee par produit (categorie + genre).
+ * Aucun packshot sneakers dans le depot : les chaussures reutilisent les
+ * visuels mode les plus proches (ex : `mensjeans.png` montre des sneakers).
+ */
+function imageListForProduct(productId: string): readonly string[] {
+  const product = productByIdLocal.get(productId);
+  if (!product) return APPAREL_IMAGES;
+
+  if (product.category_id === "cat-bags") return BAG_IMAGES;
+
+  const isShoe =
+    product.category_id === "cat-running-shoes" ||
+    product.category_id === "cat-lifestyle-shoes";
+
+  if (product.gender_id === "kids") {
+    return isShoe
+      ? ["/images/mensjeans.png", ...KIDS_APPAREL_IMAGES]
+      : KIDS_APPAREL_IMAGES;
+  }
+
+  if (product.gender_id === "women") {
+    return isShoe
+      ? [
+          "/images/mensjeans.png",
+          "/images/womenblouse.png",
+          "/images/womentop-1.png",
+          LIFESTYLE_IMAGES[1],
+        ]
+      : [
+          "/images/womenblouse.png",
+          "/images/womentop-1.png",
+          "/images/womenkurtha.png",
+          "/images/saaree.png",
+        ];
+  }
+
+  const textile = [
+    "/images/pumatshirt1.png",
+    "/images/pumatshirt2.png",
+    "/images/shirt.png",
+    "/images/mensjeans.png",
+  ];
+  return isShoe
+    ? [
+        "/images/mensjeans.png",
+        "/images/pumatshirt1.png",
+        "/images/shirt.png",
+        LIFESTYLE_IMAGES[0],
+      ]
+    : textile;
+}
 
 export const productGenders: ProductGender[] = [
   { product_id: "prod-1001", gender_code: "men" },
@@ -464,17 +524,16 @@ export const productPromotions: ProductPromotion[] = [
 ];
 
 export const productImages: ProductImage[] = (() => {
-  const productOrder = products.map((product) => product.id);
-  const productIndexById = new Map(
-    productOrder.map((productId, index) => [productId, index]),
-  );
-
   const sortCounters = new Map<string, number>();
+  const imageCounters = new Map<string, number>();
 
-  return productVariants.flatMap((variant, variantIndex) => {
-    const productIndex = productIndexById.get(variant.product_id) ?? 0;
-    const startIndex =
-      (productIndex * 3 + variantIndex) % MOCK_IMAGE_POOL.length;
+  return productVariants.flatMap((variant) => {
+    const list = imageListForProduct(variant.product_id);
+    const imageIndex = imageCounters.get(variant.product_id) ?? 0;
+    imageCounters.set(variant.product_id, imageIndex + 2);
+
+    const productName =
+      productByIdLocal.get(variant.product_id)?.name ?? variant.product_id;
 
     const nextSortOrder = (sortCounters.get(variant.product_id) ?? 0) + 1;
     sortCounters.set(variant.product_id, nextSortOrder + 1);
@@ -483,8 +542,8 @@ export const productImages: ProductImage[] = (() => {
       id: `img-${variant.id}-1`,
       product_id: variant.product_id,
       variant_id: variant.id,
-      url: MOCK_IMAGE_POOL[startIndex % MOCK_IMAGE_POOL.length],
-      alt: `Produit ${variant.product_id} couleur ${variant.color} taille ${variant.size}`,
+      url: list[imageIndex % list.length],
+      alt: `${productName} — couleur ${variant.color}, taille ${variant.size}`,
       is_main: nextSortOrder === 1,
       sort_order: nextSortOrder,
     };
@@ -493,8 +552,8 @@ export const productImages: ProductImage[] = (() => {
       id: `img-${variant.id}-2`,
       product_id: variant.product_id,
       variant_id: variant.id,
-      url: MOCK_IMAGE_POOL[(startIndex + 1) % MOCK_IMAGE_POOL.length],
-      alt: `Produit ${variant.product_id} détail couleur ${variant.color} taille ${variant.size}`,
+      url: list[(imageIndex + 1) % list.length],
+      alt: `${productName} — détail couleur ${variant.color}, taille ${variant.size}`,
       is_main: false,
       sort_order: nextSortOrder + 1,
     };

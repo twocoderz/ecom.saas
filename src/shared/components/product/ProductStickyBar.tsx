@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useCartStore } from "../../../stores/useCartStore";
+import { FULFILLMENT_STORAGE_KEY } from "../../data/pdp";
+import type { FulfillmentMode } from "../../data/pdp";
 import { ShoppingCartIcon } from "../../icons";
 import { Price } from "../ui/Price";
 
@@ -11,6 +13,8 @@ type ProductStickyBarProps = {
   salePrice: number | null;
   variantId?: string;
   variantLabel: string;
+  selectedColor?: string;
+  selectedSize?: string | null;
   inStock: boolean;
   hasSelectedSize: boolean;
 };
@@ -27,6 +31,8 @@ export function ProductStickyBar({
   salePrice,
   variantId,
   variantLabel,
+  selectedColor,
+  selectedSize,
   inStock,
   hasSelectedSize,
 }: ProductStickyBarProps) {
@@ -39,6 +45,16 @@ export function ProductStickyBar({
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const readFulfillment = (): FulfillmentMode => {
+    try {
+      return window.localStorage.getItem(FULFILLMENT_STORAGE_KEY) === "retrait"
+        ? "retrait"
+        : "livraison";
+    } catch {
+      return "livraison";
+    }
+  };
+
   const handleAdd = () => {
     if (!hasSelectedSize) {
       scrollToOptions();
@@ -48,6 +64,9 @@ export function ProductStickyBar({
     addLine({
       productId,
       variantId,
+      color: selectedColor,
+      size: selectedSize ?? undefined,
+      fulfillment: readFulfillment(),
       name: variantLabel ? `${productName} — ${variantLabel}` : productName,
       image: productImage,
       unitPrice: salePrice ?? price,
@@ -86,9 +105,7 @@ export function ProductStickyBar({
             )}
           </div>
           <p className="truncate text-[11px] text-black-60">
-            {hasSelectedSize
-              ? variantLabel
-              : "Sélectionnez une taille"}
+            {hasSelectedSize ? variantLabel : "Sélectionnez une taille"}
           </p>
         </div>
         <button

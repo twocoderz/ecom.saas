@@ -4,6 +4,8 @@ import { useCartStore } from "../../../stores/useCartStore";
 import { ShoppingCartIcon } from "../../icons";
 import { QuantityStepper } from "../ui/QuantityStepper";
 import { FulfillmentSelector } from "./FulfillmentSelector";
+import type { FulfillmentMode } from "./FulfillmentSelector";
+import { FULFILLMENT_STORAGE_KEY } from "../../data/pdp";
 import { PaymentMethods } from "./PaymentMethods";
 import { SizeGuideModal } from "./SizeGuideModal";
 
@@ -21,9 +23,14 @@ type AddToCartPanelProps = {
   onSizeChange: (size: string) => void;
 };
 
-/**
- * La taille n'est pas présélectionnée : le client doit la choisir.
- */
+function readStoredFulfillment(): FulfillmentMode {
+  try {
+    const raw = window.localStorage.getItem(FULFILLMENT_STORAGE_KEY);
+    return raw === "retrait" ? "retrait" : "livraison";
+  } catch {
+    return "livraison";
+  }
+}
 export function AddToCartPanel({
   productId,
   productName,
@@ -66,11 +73,21 @@ export function AddToCartPanel({
 
   const [qty, setQty] = useState(1);
   const [showGuide, setShowGuide] = useState(false);
-  const [fulfillment, setFulfillment] = useState<"livraison" | "retrait">(
-    "livraison",
+  // Mode de reception persiste en local (retrouve a la prochaine visite).
+  const [fulfillment, setFulfillmentState] = useState<FulfillmentMode>(() =>
+    readStoredFulfillment(),
   );
   const [justAdded, setJustAdded] = useState(false);
   const [sizeError, setSizeError] = useState(false);
+
+  const handleFulfillmentChange = (mode: FulfillmentMode) => {
+    setFulfillmentState(mode);
+    try {
+      window.localStorage.setItem(FULFILLMENT_STORAGE_KEY, mode);
+    } catch {
+      // Stockage indisponible : le choix reste actif pour la session.
+    }
+  };
 
   const selectedVariant = useMemo(
     () =>
@@ -93,6 +110,9 @@ export function AddToCartPanel({
     addLine({
       productId,
       variantId: selectedVariant?.id,
+      color: selectedColor,
+      size: selectedSize ?? undefined,
+      fulfillment,
       name: `${productName} — ${selectedColor} / ${selectedSize}`,
       image: productImage,
       unitPrice: salePrice ?? price,
@@ -211,7 +231,7 @@ export function AddToCartPanel({
 
       <FulfillmentSelector
         mode={fulfillment}
-        onChange={setFulfillment}
+        onChange={handleFulfillmentChange}
         hasSelectedSize={selectedSize !== null}
       />
 

@@ -2,6 +2,7 @@
 
 > Date : 2026-10-08 — Stratégie validée : **mono-boutique fonctionnelle à 100 % sur mocks centralisés, sans backend pour l'instant. Backend branché ensuite.**
 > Sprint A : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur (2 warnings pré-existants sur `useProducts`/`useProductDetail`).
+> Sprint B : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur. Décision produit : **pagination conservée** (pas d'infinite scroll — URLs partageables, a11y, pas de backend).
 
 ## 1. Objectif
 
@@ -17,15 +18,15 @@ Stack : React 19 + React Router 7 + Zustand persist + Tailwind v4 + Vite. Devise
 | ------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Routing / shell                 | 95 % branché                       | `src/app/router.tsx` : blueprint complet. `RequireAuth` branché sur `/account/*`, `SystemLayout` nu pour 404/500/maintenance + catch-all `*`, `forgot-password` sous `AuthLayout`. `TrustStrip` créé et monté dans `AppShell` |
 | Catalogue Category / Collection | 85 % démo                          | `PlpListing + FilterSidebar/SortBar/Pagination + catalogApi` fonctionnels, filtres/tri dans l'URL. `specifics?: ReactNode` ajouté à `PlpListing` (P0-1 résolu). Filtre prix FCFA `under-30k/30-120k/120-300k/300k-plus` + alias compat anciennes clés (P0-2 résolu) |
-| Search                          | 90 % alignée                        | `SearchResultsPage.tsx` réécrite : thin wrapper `<PlpListing slug="search-results" titleOverride>` + requête `?q` dans le titre. 0 duplication catalogue (P1-5 résolu). Effet `set-state-in-effect` supprimé dans `useSearchQueryNavigation` |
-| Brand                           | 80 % alignée                         | `BrandPage.tsx` lit `:slug`, résout le nom via `brands` et rend `<PlpListing slug>` (filtre natif `getPlpBySlug`, P1-6 résolu)                                                                                                  |
-| PDP Produit                     | 70 % UI / 0 % backend              | `Gallery/AddToCart/StickyBar/SizeGuide` OK. `selectedColorName` ignorée, `PaymentMethods` sans handler, avis non persistés, textes livraison en dur → **Sprint B**                                                                  |
-| Panier                          | 70 % local                         | `CartPage + CartSummary + useCartStore (ecom-default-shop-cart-v2)` OK. `CartLine {shopId, color, size…}` structurée, `useCartCount/useCartSubtotal` mémoïsés. Port/taxes → **Sprint C**                                          |
+| Search                          | 95 % alignée                        | `SearchResultsPage` = wrapper `PlpListing slug="search-results"`. `?q` sync URL via `useFilters` → `catalogApi` (recherche nom/marque/categorie/collection/activite). Pagination `page/per_page` dans l'URL conservée (décision Sprint B : pas d'infinite) |
+| Brand                           | 90 % alignée                         | `BrandPage` lit `:slug`, résout le nom via `brands` et rend `<PlpListing slug>` (filtre natif `getPlpBySlug` + logos `public/images/brand/`)                                                                                                  |
+| PDP Produit                     | 95 % UI mock                       | `selectedColorName` affiché (`ProductInfoPanel`), `fulfillment` persisté (`localStorage ecom-default-shop-fulfillment`) + mémorisé dans `CartLine`, avis persistés local (`useReviewStore ecom-default-shop-reviews`, note+texte, note/count blendés), textes livraison/retours/conseil tailles + tableaux guide des tailles en `shared/data/pdp.ts`, `PaymentMethods` sélectionnable (`selected/onSelect`, logos `public/images/payments/` déjà présents). Images curées par catégorie+genre (pool laptop/sofa/huile banni, `base.png` rig minage supprimé du fallback). Reste : vrais packshots sneakers à fournir (aucun dans le dépôt) |
+| Panier                          | 75 % local                         | `CartLine {shopId, color, size, fulfillment…}` structurée depuis PDP + sticky bar, `useCartCount/useCartSubtotal` mémoïsés. Port/taxes → **Sprint C**                                          |
 | Checkout                        | 5 % bloque                         | 4 pages = placeholders (`Formulaire informations client…`). `CheckoutStepper` statique. Pas de commande, pas de vidage panier → **Sprint C**                                                                                    |
 | Auth / Compte                   | 40 %                               | `RequireAuth` actif sur `/account/*`. Wishlist résolue via `getPlpCardsByIds` (sans limite top-50), clé persist `ecom-default-shop-wishlist`. Orders/Addresses/PaymentMethods = stubs → **Sprint D**                           |
 | Support / Légal / Système       | 25 % débloqué partiel              | Système : `404/500/maintenance` nues via `SystemLayout` (sans newsletter/header). 19 pages support/légal encore stubs → **Sprint D**                                                                                           |
 | Admin                           | 35 % démo lecture seule            | 2 commandes mock `CMD-1001/1002`. `STATUS_LABELS` centralisé dans `shared/components/admin/orderStatus.ts`. `findPromoByCode` corrigé (lookup code seul). `DataTable` sans tri/pagination → **Sprint D/E**. `RequireAdmin` contournable client (connu, mock) |
-| Data / Types / SEO              | Contrat mock sain, données OK      | Genres normalisés `women/kids` (P0-3 résolu). `formatPrice` en `fr-FR` + FCFA (P3-14 résolu). `shopId = "default-shop"` sur `Product/Promotion/MockOrder/CartLine`, `getPlpBySlug/getMockOrders/getMockOrderById(…, shopId?)` prêts. `Price` (primitif) vs `ProductPrice` (composé) conservés comme source unique. `MOCK_IMAGE_POOL` hors-sujet → **Sprint B**. Façades complètes : `data/index` (+shopApi), `components/index` (~50 exports, règle façade OU profond) |
+| Data / Types / SEO              | Contrat mock sain, données OK      | Genres normalisés `women/kids` (P0-3 résolu). `formatPrice` en `fr-FR` + FCFA (P3-14 résolu). `shopId = "default-shop"` sur `Product/Promotion/MockOrder/CartLine/LocalReview`, `getPlpBySlug/getMockOrders/getMockOrderById(…, shopId?)` prêts. `Price` (primitif) vs `ProductPrice` (composé) conservés comme source unique. Images : pool curé `APPAREL/KIDS/LIFESTYLE/BAG` dans `data/mock/assets.ts`, assignation catégorie+genre dans `relations.ts` (Sprint B). Façades complètes : `data/index` (+shopApi), `components/index` (~50 exports, règle façade OU profond), `stores/index` (+reviews) |
 
 Références : `docs/JD_STRUCTURE_MAP.md`, `docs/IMPLEMENTATION_SPRINT_PLAN.md`, `docs/COPILOT_HANDOFF.md`.
 
@@ -80,11 +81,14 @@ Références : `docs/JD_STRUCTURE_MAP.md`, `docs/IMPLEMENTATION_SPRINT_PLAN.md`,
 - Done : `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur, 0 duplication catalogue, 0 donnée en dur hors `data/`, `RequireAuth` branché.
 - Restes connus (hors Sprint A) : `pnpm run lint` racine échoue sur `.kilo/worktrees/prickle-helper` (copie worktree pré-existante, hors `src`) ; `Button/Input/Badge` conservés comme design system (adoption progressive Sprint E) ; `MOCK_IMAGE_POOL` hors-sujet → Sprint B ; `CartLine.name` conservé en affichage (migration Sprint C).
 
-### Sprint B — Catalogue + PDP finis (mock)
+### Sprint B — Catalogue + PDP finis (mock) — ✅ TERMINÉ 2026-10-08
 
-- Search alignée + sync URL + pagination/infinite (décision produit à prendre).
-- Brand filtrée par slug. PDP : afficher `selectedColorName`, persister `fulfillment`, avis persistés local (store ou mock mutable), textes livraison/retours en data, vraies images produits (remplacer pool laptop/sofa).
-- Done : Category/Collection/Search/Brand partagent `PlpListing`, filtre prix FCFA utile, genres cohérents.
+- Search déjà alignée (Sprint A) + vérifiée : `?q` sync URL → `catalogApi`, pagination `page/per_page` dans l'URL. **Décision produit : pagination conservée**, pas d'infinite scroll (URLs partageables, a11y, pas de backend).
+- Brand déjà filtrée par slug (Sprint A).
+- PDP : `selectedColorName` affiché (`ProductInfoPanel`), `fulfillment` persisté en `localStorage` + mémorisé dans `CartLine` (PDP + sticky bar), avis persistés local (`stores/useReviewStore.ts`, clé `ecom-default-shop-reviews`, note 1–5 + texte, note/count moyens blendés avec le socle mock), textes livraison/retours/conseil tailles + tableaux du guide des tailles centralisés dans `shared/data/pdp.ts` (`ProductDetailPage`, `FulfillmentSelector`, `SizeGuideModal` câblés), `PaymentMethods` sélectionnable (`selected/onSelect`, prêt Sprint C).
+- Images : pool historique banni (0 référence laptop/sofa/huile/rig dans `src`), fallback `base.png` remplacé, listes curées `APPAREL/KIDS/LIFESTYLE/BAG` (`data/mock/assets.ts`), assignation déterministe par catégorie+genre + alt enrichis (`relations.ts`), fallbacks collections corrigés (`homeMerchandising.ts`).
+- Done : Category/Collection/Search/Brand partagent `PlpListing`, filtre prix FCFA utile, genres cohérents, PDP complète sur mocks.
+- Reste connu : **vrais packshots sneakers à fournir** (aucun dans `public/images` — les chaussures réutilisent les visuels mode les plus proches, ex `mensjeans.png` qui montre des sneakers).
 
 ### Sprint C — Panier + Checkout simulé (bloqueur n°1, sans PSP réel)
 
