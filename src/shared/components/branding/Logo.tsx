@@ -14,10 +14,8 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
     >
       <span
         aria-hidden="true"
-        className="flex h-7 w-7 items-center justify-center rounded-sm bg-white text-sm font-black text-black"
-      >
-        E
-      </span>
+        className="flex h-7 w-7 items-center justify-center bg-white text-sm font-black text-black"
+      ></span>
       <span className="text-sm font-black uppercase tracking-tight text-white">
         ecom<span className="text-white/60">.saas</span>
       </span>
