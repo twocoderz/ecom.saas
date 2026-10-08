@@ -1,17 +1,9 @@
 import { StatCard } from "../../shared/components/admin/StatCard";
 import { DataTable } from "../../shared/components/admin/DataTable";
+import { MOCK_ORDER_STATUS_LABELS } from "../../shared/components/admin/orderStatus";
 import { getMockOrders } from "../../data/api/shopApi";
 import { formatPrice } from "../../lib/currency";
 import { products, promotions } from "../../data/mock";
-import type { MockOrderStatus } from "../../types";
-
-const STATUS_LABELS: Record<MockOrderStatus, string> = {
-  pending: "en attente",
-  paid: "payée",
-  shipped: "expédiée",
-  delivered: "livrée",
-  cancelled: "annulée",
-};
 
 /**
  * Dashboard marchand démo : stats catalogue + dernières commandes.
@@ -33,7 +25,7 @@ export function AdminDashboardPage() {
         columns={["Commande", "Statut", "Total (FCFA)", "Date"]}
         rows={orders.map((o) => [
           o.id,
-          STATUS_LABELS[o.status] ?? o.status,
+          MOCK_ORDER_STATUS_LABELS[o.status] ?? o.status,
           formatPrice(o.total),
           o.created_at,
         ])}

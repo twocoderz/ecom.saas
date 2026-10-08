@@ -15,11 +15,28 @@ const ALLOWED_SORTS: readonly PlpSortOption[] = [
 
 const ALLOWED_PRICE_RANGES: readonly PriceRange[] = [
   "all",
-  "under-50",
-  "50-200",
-  "200-500",
-  "500-plus",
+  "under-30k",
+  "30-120k",
+  "120-300k",
+  "300k-plus",
 ] as const;
+
+/** Alias compat : anciennes cles $ -> nouvelles cles FCFA (liens partageables). */
+const LEGACY_PRICE_RANGE_ALIASES: Record<string, PriceRange> = {
+  "under-50": "under-30k",
+  "50-200": "30-120k",
+  "200-500": "120-300k",
+  "500-plus": "300k-plus",
+};
+
+function resolvePriceRange(raw: string | null): PriceRange {
+  if (!raw) return DEFAULT_PRICE_RANGE;
+  const normalized = raw.trim().toLowerCase();
+  if ((ALLOWED_PRICE_RANGES as readonly string[]).includes(normalized)) {
+    return normalized as PriceRange;
+  }
+  return LEGACY_PRICE_RANGE_ALIASES[normalized] ?? DEFAULT_PRICE_RANGE;
+}
 
 function uniq(values: string[]): string[] {
   return Array.from(new Set(values.filter(Boolean)));
@@ -62,11 +79,9 @@ export function normalizeFilters(
     ? (input.sort ?? DEFAULT_SORT)
     : DEFAULT_SORT;
 
-  const priceRange = ALLOWED_PRICE_RANGES.includes(
+  const priceRange = resolvePriceRange(
     input.price_range ?? DEFAULT_PRICE_RANGE,
-  )
-    ? (input.price_range ?? DEFAULT_PRICE_RANGE)
-    : DEFAULT_PRICE_RANGE;
+  );
 
   return {
     q: (input.q ?? "").trim(),
@@ -100,9 +115,9 @@ export function parsePlpFiltersFromSearchParams(
     activity: readList(searchParams, "activity"),
     collection: readList(searchParams, "collection"),
     color: readList(searchParams, "color"),
-    price_range: (searchParams.get("price") ??
-      searchParams.get("price_range") ??
-      DEFAULT_PRICE_RANGE) as PriceRange,
+    price_range: resolvePriceRange(
+      searchParams.get("price") ?? searchParams.get("price_range"),
+    ),
     sort: (searchParams.get("sort") ?? DEFAULT_SORT) as PlpSortOption,
     page: readInteger(searchParams, "page", DEFAULT_PAGE),
     per_page: readInteger(searchParams, "per_page", DEFAULT_PER_PAGE),
@@ -167,17 +182,18 @@ export function applyPriceRange(
     return true;
   }
 
-  if (priceRange === "under-50") {
-    return price < 50;
+  // Seuils FCFA alinhes sur le catalogue (18k–126k) : distribution utile.
+  if (priceRange === "under-30k") {
+    return price < 30000;
   }
 
-  if (priceRange === "50-200") {
-    return price >= 50 && price <= 200;
+  if (priceRange === "30-120k") {
+    return price >= 30000 && price <= 120000;
   }
 
-  if (priceRange === "200-500") {
-    return price > 200 && price <= 500;
+  if (priceRange === "120-300k") {
+    return price > 120000 && price <= 300000;
   }
 
-  return price > 500;
+  return price > 300000;
 }

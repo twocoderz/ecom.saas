@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import type { ReactNode } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { CatalogFilterDrawer } from "./CatalogFilterDrawer";
 import { FilterPillsBar } from "./FilterPillsBar";
@@ -17,6 +18,8 @@ type PlpListingProps = {
   /** Tri force quand l'URL ne precise pas ?sort (ex: "newest" pour Nouveautes). */
   defaultSort?: "newest";
   titleOverride?: string;
+  /** Bloc specifique page (ex: precisions categorie) affiche sous le titre. */
+  specifics?: ReactNode;
 };
 
 /**
@@ -26,6 +29,7 @@ export function PlpListing({
   slug,
   defaultSort,
   titleOverride,
+  specifics,
 }: PlpListingProps) {
   const readableTitle = resolvePlpTitle(slug, titleOverride);
   const [searchParams] = useSearchParams();
@@ -103,6 +107,8 @@ export function PlpListing({
             ({totalResults} articles)
           </p>
         </div>
+
+        {specifics ? <div>{specifics}</div> : null}
 
         <SortBar
           resultCount={totalResults}

@@ -1,17 +1,17 @@
-import { promotionById, promotions } from "../mock";
+import { promotions } from "../mock";
 import type { MockOrder, Promotion } from "../../types";
+import { DEFAULT_SHOP_ID } from "../../types";
 
 /**
  * API mock boutique : promos + commandes.
+ * Source unique des mocks (aucun backend) : les pages/composants
+ * ne doivent pas dupliquer ces donnees en dur.
+ * `shopId` est accepte mais ignore (mono-boutique "default-shop").
  */
 export function findPromoByCode(code: string): Promotion | null {
   const normalized = code.trim().toUpperCase();
   if (!normalized) return null;
-  return (
-    promotions.find((p) => p.code.toUpperCase() === normalized) ??
-    promotionById.get(normalized) ??
-    null
-  );
+  return promotions.find((p) => p.code.toUpperCase() === normalized) ?? null;
 }
 
 const MOCK_ORDERS: MockOrder[] = [
@@ -47,10 +47,15 @@ const MOCK_ORDERS: MockOrder[] = [
   },
 ];
 
-export function getMockOrders(): MockOrder[] {
+export function getMockOrders(shopId: string = DEFAULT_SHOP_ID): MockOrder[] {
+  void shopId;
   return MOCK_ORDERS;
 }
 
-export function getMockOrderById(orderId: string): MockOrder | null {
+export function getMockOrderById(
+  orderId: string,
+  shopId: string = DEFAULT_SHOP_ID,
+): MockOrder | null {
+  void shopId;
   return MOCK_ORDERS.find((o) => o.id === orderId) ?? null;
 }

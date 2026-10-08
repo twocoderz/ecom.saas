@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import { DEFAULT_SHOP_ID } from "../types";
 
 /**
- * Wishlist mock persistee (ids produits).
+ * Wishlist mock persistee (ids produits), namespacee par boutique.
  */
 type WishlistState = {
   ids: string[];
@@ -24,6 +25,6 @@ export const useWishlistStore = create<WishlistState>()(
       has: (productId) => get().ids.includes(productId),
       clear: () => set({ ids: [] }),
     }),
-    { name: "ecom-wishlist" },
+    { name: `ecom-${DEFAULT_SHOP_ID}-wishlist` },
   ),
 );

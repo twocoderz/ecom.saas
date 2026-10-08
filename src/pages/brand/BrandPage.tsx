@@ -1,18 +1,16 @@
-import { ProductGrid } from '../../shared/components/catalog/ProductGrid'
-import { Container } from '../../shared/components/layout/Container'
-import { PageHeader } from '../../shared/components/layout/PageHeader'
+import { useParams } from "react-router-dom";
+import { PlpListing } from "../../shared/components/catalog/PlpListing";
+import { brands } from "../../data/mock";
 
 /**
- * Brand landing page template.
- * JD mapping: shop-by-brand pages featuring a selected brand universe.
+ * Page marque : meme template PLP que Category/Collection.
+ * Le slug de marque filtre via `getPlpBySlug` (support natif des slugs marque).
  */
 export function BrandPage() {
-  return (
-    <Container>
-      <div className="space-y-6 py-8">
-        <PageHeader title="Marque" subtitle="Page marque avec sélection et produits." />
-        <ProductGrid />
-      </div>
-    </Container>
-  )
+  const params = useParams();
+  const slug = (params.slug ?? "").trim().toLowerCase() || "nike";
+  const brand = brands.find((candidate) => candidate.slug === slug);
+  const title = brand ? `Marque ${brand.name}` : `Marque ${slug}`;
+
+  return <PlpListing slug={slug} titleOverride={title} />;
 }

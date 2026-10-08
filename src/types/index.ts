@@ -1,5 +1,12 @@
 export type EntityId = string;
 
+/**
+ * Preparation multi-tenant (sans l'implementer) : chaque entite boutique
+ * porte `shopId = "default-shop"`. Les singletons globaux sans shopId
+ * sont interdits (voir DEFAULT_SHOP_ID).
+ */
+export const DEFAULT_SHOP_ID = "default-shop";
+
 export type Gender = {
   code: string;
   name: string;
@@ -45,6 +52,7 @@ export type Attribute = {
 
 export type Product = {
   id: EntityId;
+  shopId?: string;
   brand_id: EntityId;
   category_id: EntityId;
   gender_id: string;
@@ -101,6 +109,7 @@ export type PromotionDiscountType = "percentage" | "fixed";
 
 export type Promotion = {
   id: EntityId;
+  shopId?: string;
   code: string;
   name: string;
   description: string;
@@ -132,7 +141,12 @@ export type PlpSortOption =
   | "price-low-high"
   | "price-high-low";
 
-export type PriceRange = "all" | "under-50" | "50-200" | "200-500" | "500-plus";
+export type PriceRange =
+  | "all"
+  | "under-30k"
+  | "30-120k"
+  | "120-300k"
+  | "300k-plus";
 
 export type PlpFiltersQuery = {
   q?: string;
@@ -215,6 +229,7 @@ export type MockOrderLine = {
 
 export type MockOrder = {
   id: EntityId;
+  shopId?: string;
   total: number;
   currency: "XOF";
   status: MockOrderStatus;

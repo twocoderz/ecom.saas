@@ -7,14 +7,12 @@ import type { PlpProductCard } from "../../../types";
 type ProductGridProps = {
   products?: PlpProductCard[];
   layout?: "grid" | "rail";
-  showNavButtons?: boolean;
   cardVariant?: "default" | "compact";
 };
 
 export function ProductGrid({
   products,
   layout = "grid",
-  showNavButtons = false,
   cardVariant = "default",
 }: ProductGridProps) {
   const visibleProducts = products ?? getDefaultPlpCards(12);
@@ -38,7 +36,6 @@ export function ProductGrid({
         <ProductCard product={product} variant={cardVariant} />
       </div>
     ));
-    void showNavButtons;
     return (
       <Rail
         itemSelector="[data-product-rail-item]"

@@ -140,20 +140,11 @@ export function HomePage() {
 
         {/* Top picks : produits explicites + cartes corrigees */}
         <Section title="Nos coups de cœur" className="mt-p18 mb-p18">
-          <div className="flex flex-col gap-12">
-            <ProductGrid
-              products={topPicks}
-              layout="rail"
-              showNavButtons
-              cardVariant="compact"
-            />
-            <ProductGrid
-              products={topPicks}
-              layout="rail"
-              showNavButtons
-              cardVariant="compact"
-            />
-          </div>
+          <ProductGrid
+            products={topPicks}
+            layout="rail"
+            cardVariant="compact"
+          />
         </Section>
       </div>
     </div>

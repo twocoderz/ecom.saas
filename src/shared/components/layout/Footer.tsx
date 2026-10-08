@@ -43,13 +43,13 @@ const LINK_GROUPS: Array<{
   },
 ];
 
-const SOCIALS: Array<{ label: string; iconSrc: string }> = [
-  { label: "Facebook", iconSrc: "/socials/facebook.svg" },
-  { label: "Instagram", iconSrc: "/socials/instagram.svg" },
-  { label: "LinkedIn", iconSrc: "/socials/linkedin.svg" },
-  { label: "TikTok", iconSrc: "/socials/tiktok.svg" },
-  { label: "WhatsApp", iconSrc: "/socials/whatsapp.svg" },
-  { label: "X", iconSrc: "/socials/x.svg" },
+const SOCIALS: Array<{ label: string; iconSrc: string; href: string }> = [
+  { label: "Facebook", iconSrc: "/socials/facebook.svg", href: "https://www.facebook.com" },
+  { label: "Instagram", iconSrc: "/socials/instagram.svg", href: "https://www.instagram.com" },
+  { label: "LinkedIn", iconSrc: "/socials/linkedin.svg", href: "https://www.linkedin.com" },
+  { label: "TikTok", iconSrc: "/socials/tiktok.svg", href: "https://www.tiktok.com" },
+  { label: "WhatsApp", iconSrc: "/socials/whatsapp.svg", href: "https://www.whatsapp.com" },
+  { label: "X", iconSrc: "/socials/x.svg", href: "https://x.com" },
 ];
 
 export function Footer() {
@@ -136,8 +136,9 @@ export function Footer() {
             {SOCIALS.map((social) => (
               <li key={social.label}>
                 <a
-                  href="#"
-                  onClick={(event) => event.preventDefault()}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={social.label}
                   className="block transition-opacity hover:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
                 >

@@ -36,7 +36,8 @@ import {
   TermsPage,
   WishlistPage,
 } from "../pages";
-import { AdminLayout, AuthLayout, StorefrontLayout } from "./layouts";
+import { AdminLayout, AuthLayout, StorefrontLayout, SystemLayout } from "./layouts";
+import { RequireAuth } from "./guards";
 import { routeBlueprint } from "./routeBlueprint";
 
 /**
@@ -80,7 +81,25 @@ export const appRouter = createBrowserRouter([
   {
     path: pathById("auth"),
     element: <AuthLayout />,
-    children: [{ index: true, element: <AuthPage /> }],
+    children: [
+      { index: true, element: <AuthPage /> },
+      { path: "forgot-password", element: <ForgotPasswordPage /> },
+    ],
+  },
+  {
+    path: pathById("maintenance"),
+    element: <SystemLayout />,
+    children: [{ index: true, element: <MaintenancePage /> }],
+  },
+  {
+    path: pathById("error"),
+    element: <SystemLayout />,
+    children: [{ index: true, element: <ErrorPage /> }],
+  },
+  {
+    path: pathById("not-found"),
+    element: <SystemLayout />,
+    children: [{ index: true, element: <NotFoundPage /> }],
   },
   {
     path: pathById("home"),
@@ -118,29 +137,52 @@ export const appRouter = createBrowserRouter([
         element: <CheckoutConfirmationPage />,
       },
       {
-        path: pathById("forgot-password").slice(1),
-        element: <ForgotPasswordPage />,
+        path: pathById("account-dashboard").slice(1),
+        element: (
+          <RequireAuth>
+            <AccountDashboardPage />
+          </RequireAuth>
+        ),
       },
       {
-        path: pathById("account-dashboard").slice(1),
-        element: <AccountDashboardPage />,
+        path: pathById("account-orders").slice(1),
+        element: (
+          <RequireAuth>
+            <OrdersPage />
+          </RequireAuth>
+        ),
       },
-      { path: pathById("account-orders").slice(1), element: <OrdersPage /> },
       {
         path: pathById("account-order-detail").slice(1),
-        element: <OrderDetailPage />,
+        element: (
+          <RequireAuth>
+            <OrderDetailPage />
+          </RequireAuth>
+        ),
       },
       {
         path: pathById("account-addresses").slice(1),
-        element: <AddressesPage />,
+        element: (
+          <RequireAuth>
+            <AddressesPage />
+          </RequireAuth>
+        ),
       },
       {
         path: pathById("account-payment-methods").slice(1),
-        element: <PaymentMethodsPage />,
+        element: (
+          <RequireAuth>
+            <PaymentMethodsPage />
+          </RequireAuth>
+        ),
       },
       {
         path: pathById("account-wishlist").slice(1),
-        element: <WishlistPage />,
+        element: (
+          <RequireAuth>
+            <WishlistPage />
+          </RequireAuth>
+        ),
       },
       { path: pathById("help").slice(1), element: <HelpPage /> },
       {
@@ -163,10 +205,12 @@ export const appRouter = createBrowserRouter([
         element: <AccessibilityPage />,
       },
       { path: pathById("site-map").slice(1), element: <SiteMapPage /> },
-      { path: pathById("maintenance").slice(1), element: <MaintenancePage /> },
-      { path: pathById("error").slice(1), element: <ErrorPage /> },
-      { path: pathById("not-found").slice(1), element: <NotFoundPage /> },
-      { path: "*", element: <NotFoundPage /> },
     ],
+  },
+  // 404 nue (sans header/footer/newsletter) pour toute URL inconnue.
+  {
+    path: "*",
+    element: <SystemLayout />,
+    children: [{ index: true, element: <NotFoundPage /> }],
   },
 ]);

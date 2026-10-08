@@ -29,18 +29,18 @@ export const plpPageCopy = {
 
 export const priceRangeOptions: Array<{ id: PriceRange; label: string }> = [
   { id: "all", label: "Tous les prix" },
-  { id: "under-50", label: "Moins de 30 000 F" },
-  { id: "50-200", label: "30 000 à 120 000 F" },
-  { id: "200-500", label: "120 000 à 300 000 F" },
-  { id: "500-plus", label: "Plus de 300 000 F" },
+  { id: "under-30k", label: "Moins de 30 000 F" },
+  { id: "30-120k", label: "30 000 à 120 000 F" },
+  { id: "120-300k", label: "120 000 à 300 000 F" },
+  { id: "300k-plus", label: "Plus de 300 000 F" },
 ];
 
 export const priceLabelMap: Record<PriceRange, string> = {
   all: "Tous les prix",
-  "under-50": "Moins de 30 000 F",
-  "50-200": "30 000 à 120 000 F",
-  "200-500": "120 000 à 300 000 F",
-  "500-plus": "Plus de 300 000 F",
+  "under-30k": "Moins de 30 000 F",
+  "30-120k": "30 000 à 120 000 F",
+  "120-300k": "120 000 à 300 000 F",
+  "300k-plus": "Plus de 300 000 F",
 };
 
 export const sortOptions: Array<{ value: SortOption; label: string }> = [

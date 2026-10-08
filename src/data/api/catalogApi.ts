@@ -19,6 +19,7 @@ import type {
   ProductImage,
   ProductVariant,
 } from "../../types";
+import { DEFAULT_SHOP_ID } from "../../types";
 import {
   activities,
   activityById,
@@ -569,11 +570,14 @@ function applyFilters(
 
 /**
  * Simule GET /plp/{slug}?filters=... avec pagination et facettes.
+ * `shopId` est accepte mais ignore (mono-boutique sur mocks centralises).
  */
 export function getPlpBySlug(
   slug: string,
   rawQuery: PlpFiltersQuery = {},
+  shopId: string = DEFAULT_SHOP_ID,
 ): ApiPlpResponse {
+  void shopId;
   const query = normalizeFilters(rawQuery);
   const seedIds = resolveSeedProductIds(slug);
   const seedProducts = getProductsByIds(seedIds);
@@ -716,4 +720,16 @@ export function getPdpBySlug(input: {
 
 export function getDefaultPlpCards(limit = 12): PlpProductCard[] {
   return products.slice(0, limit).map(productToCard);
+}
+
+/**
+ * Resout des cartes catalogue depuis des ids (ex: wishlist),
+ * sans limite arbitraire de top-N.
+ */
+export function getPlpCardsByIds(ids: string[]): PlpProductCard[] {
+  if (ids.length === 0) return [];
+  const wanted = new Set(ids);
+  return products
+    .filter((product) => wanted.has(product.id))
+    .map(productToCard);
 }

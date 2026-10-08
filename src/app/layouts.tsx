@@ -37,3 +37,15 @@ export function AuthLayout() {
     </main>
   );
 }
+
+/**
+ * Layout systeme nu : 404/500/maintenance sans header/footer/newsletter.
+ * Les pages systeme ne doivent pas heriter du shell boutique.
+ */
+export function SystemLayout() {
+  return (
+    <main className="min-h-screen bg-white">
+      <Outlet />
+    </main>
+  );
+}
