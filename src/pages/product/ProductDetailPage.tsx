@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useProductDetail } from "../../hooks/useProductDetail";
-import { applySeoToDocument } from "../../lib/seo";
+import { applySeoToDocument, pdpJsonLd } from "../../lib/seo";
+import { mockReviewCount } from "../../lib/reviews";
 import { buildPlpPath } from "../../lib/slug";
-import { products } from "../../data/mock";
+import { products, productRatings } from "../../data/mock";
 import type { ApiPdpResponse } from "../../types";
 import { AddToCartPanel } from "../../shared/components/product/AddToCartPanel";
 import { ProductGallery } from "../../shared/components/product/ProductGallery";
@@ -58,7 +59,17 @@ export function ProductDetailPage() {
 
   useEffect(() => {
     if (detail) {
-      applySeoToDocument(detail.seo);
+      const mainImage =
+        detail.images.find((image) => image.is_main) ?? detail.images[0];
+      applySeoToDocument(detail.seo, {
+        ogImage: mainImage?.url,
+        // Socle mock (les avis locaux blendent l'affichage, pas le SEO).
+        jsonLd: pdpJsonLd(
+          detail,
+          productRatings[detail.product.id] ?? 4,
+          mockReviewCount(detail.product.id),
+        ),
+      });
     }
   }, [detail]);
 

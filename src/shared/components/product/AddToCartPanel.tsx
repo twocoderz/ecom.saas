@@ -145,7 +145,7 @@ export function AddToCartPanel({
                 onClick={() => {
                   onColorChange(color);
                 }}
-                className={`h-12 w-12 min-h-[44px] min-w-[44px] overflow-hidden rounded-xs cursor-pointer bg-[#f5f5f5] transition-all sm:h-14 sm:w-14 ${
+                className={`h-12 w-12 min-h-[44px] min-w-[44px] overflow-hidden rounded-xs cursor-pointer bg-surface transition-all sm:h-14 sm:w-14 ${
                   isActive
                     ? "ring-1 ring-black-70 ring-offset-1"
                     : "opacity-80 ring-1 ring-black-10 hover:opacity-100 hover:ring-black-40"
@@ -214,7 +214,7 @@ export function AddToCartPanel({
         </div>
         {sizeError && selectedSize === null && (
           <p
-            className="mt-1.5 text-xs font-semibold text-[#d60000]"
+            className="mt-1.5 text-xs font-semibold text-danger"
             role="alert"
           >
             Veuillez sélectionner une taille.

@@ -1,16 +1,9 @@
-import { Container } from '../../shared/components/layout/Container'
+import { termsContent } from "../../shared/data/legal";
+import { LegalPage } from "./components/LegalPage";
 
 /**
- * Terms of use page template.
- * JD mapping: terms and conditions legal page.
+ * CGU / CGV redigees.
  */
 export function TermsPage() {
-  return (
-    <Container>
-      <section className="space-y-2 py-8">
-        <h1 className="text-2xl font-semibold">Conditions d'utilisation</h1>
-        <p className="text-black/70">Règles d'utilisation de la plateforme.</p>
-      </section>
-    </Container>
-  )
+  return <LegalPage content={termsContent} />;
 }

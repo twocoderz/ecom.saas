@@ -33,7 +33,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
 
   if (!selectedImage) {
     return (
-      <div className="rounded-lg bg-[#f5f5f5] p-4">
+      <div className="rounded-lg bg-surface p-4">
         <p className="text-sm text-black-70">
           Aucune image produit disponible.
         </p>
@@ -96,7 +96,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
             {sortedImages.slice(0, 8).map((image, index) => (
               <div
                 key={image.id}
-                className="relative aspect-[4/5] w-full shrink-0 snap-center overflow-hidden bg-[#f5f5f5] sm:aspect-square sm:rounded-xs"
+                className="relative aspect-[4/5] w-full shrink-0 snap-center overflow-hidden bg-surface sm:aspect-square sm:rounded-xs"
                 role="group"
                 aria-roledescription="diapositive"
                 aria-label={`${index + 1} sur ${Math.min(sortedImages.length, 8)}`}
@@ -142,7 +142,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
           </span>
         </div>
       ) : (
-        <div className="relative aspect-[4/5] overflow-hidden bg-[#f5f5f5] sm:aspect-square sm:rounded-xs lg:hidden">
+        <div className="relative aspect-[4/5] overflow-hidden bg-surface sm:aspect-square sm:rounded-xs lg:hidden">
           <img
             src={selectedImage.url}
             alt={selectedImage.alt || productName}
@@ -152,7 +152,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
       )}
 
       {/* Desktop : grande image hover, strictement identique au comportement avant */}
-      <div className="relative hidden aspect-square overflow-hidden rounded-xs bg-[#f5f5f5] lg:block">
+      <div className="relative hidden aspect-square overflow-hidden rounded-xs bg-surface lg:block">
         <img
           key={selectedImage.id}
           src={selectedImage.url}
@@ -209,7 +209,7 @@ export function ProductGallery({ productName, images }: ProductGalleryProps) {
                 onClick={() => selectImage(image.id)}
                 onMouseEnter={() => selectImage(image.id)}
                 onFocus={() => selectImage(image.id)}
-                className={`mt-6 h-20 w-20 shrink-0 overflow-hidden rounded-xs bg-[#f5f5f5] transition-all ${
+                className={`mt-6 h-20 w-20 shrink-0 overflow-hidden rounded-xs bg-surface transition-all ${
                   isActive
                     ? "ring-2 ring-black ring-offset-1"
                     : "opacity-80 hover:opacity-100 hover:ring-1 hover:ring-black-40"

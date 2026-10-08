@@ -87,7 +87,7 @@ export function ProductStickyBar({
             src={productImage}
             alt=""
             aria-hidden="true"
-            className="h-10 w-10 shrink-0 rounded-xs bg-[#f5f5f5] object-contain"
+            className="h-10 w-10 shrink-0 rounded-xs bg-surface object-contain"
           />
         ) : null}
         <div className="min-w-0 flex-1">

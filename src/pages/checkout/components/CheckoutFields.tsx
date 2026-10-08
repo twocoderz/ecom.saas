@@ -22,13 +22,13 @@ export function Field({ id, label, error, input }: FieldProps) {
         aria-invalid={Boolean(error)}
         aria-describedby={error ? `${id}-error` : undefined}
         className={`mt-1 w-full rounded-md border bg-white px-3 py-2.5 text-sm ${
-          error ? "border-[#d60000]" : "border-black-20"
+          error ? "border-danger" : "border-black-20"
         }`}
       />
       {error && (
         <p
           id={`${id}-error`}
-          className="mt-1 text-xs font-semibold text-[#d60000]"
+          className="mt-1 text-xs font-semibold text-danger"
           role="alert"
         >
           {error}

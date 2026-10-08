@@ -4,6 +4,8 @@
 > Sprint A : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur (2 warnings pré-existants sur `useProducts`/`useProductDetail`).
 > Sprint B : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur. Décision produit : **pagination conservée** (pas d'infinite scroll — URLs partageables, a11y, pas de backend).
 > Sprint C : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur. Harnais Node : 17/17 assertions (totaux, franco, validations, `CMD-1003` → séquence persistée).
+> Sprint D : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `eslint src` 0 erreur. Harnais Node : 14/14 assertions (suivi + filtre e-mail, CRUD adresses/paiements, défaut auto). Audit : 0 stub restant dans `src/pages`.
+> Sprint E : **terminé le 2026-10-08** — `pnpm run build` vert, `tsc -b` vert, `pnpm run lint` (src) 0 erreur, `pnpm test` 26/26 (vitest). Contrat backend figé : `docs/API_CONTRACT.md`.
 
 ## 1. Objectif
 
@@ -24,10 +26,10 @@ Stack : React 19 + React Router 7 + Zustand persist + Tailwind v4 + Vite. Devise
 | PDP Produit                     | 95 % UI mock                       | `selectedColorName` affiché (`ProductInfoPanel`), `fulfillment` persisté (`localStorage ecom-default-shop-fulfillment`) + mémorisé dans `CartLine`, avis persistés local (`useReviewStore ecom-default-shop-reviews`, note+texte, note/count blendés), textes livraison/retours/conseil tailles + tableaux guide des tailles en `shared/data/pdp.ts`, `PaymentMethods` sélectionnable (`selected/onSelect`, logos `public/images/payments/` déjà présents). Images curées par catégorie+genre (pool laptop/sofa/huile banni, `base.png` rig minage supprimé du fallback). Reste : vrais packshots sneakers à fournir (aucun dans le dépôt) |
 | Panier                          | 95 % local simulé                  | `CartSummary` complet : sous-total (quantités) + promo `applyPromo` + livraison simulée (standard 2500/franco 100k, express 5000, retrait gratuit) + TVA 18 % + total, via `computeOrderTotals` (`lib/checkout.ts`). Méthodes et copies en `shared/data/checkout.ts` |
 | Checkout                        | 95 % simulé                        | `CheckoutStepper` actif (`aria-current`, retours cliquables). 4 étapes réelles : Information (validée, e-mail pré-rempli si connecté) → Livraison (3 méthodes) → Paiement (Mixx/Flooz/Visa/Cash simulé, champs conditionnels validés) → Confirmation (n° `CMD-1003…` réel + récap + CTAs). `RequireCart` garde le tunnel panier vide. `createMockOrder()` dans `shopApi` (séquentiel, `pending`, persisté `localStorage`, rejouable après refresh). Formulaires persistés (`ecom-default-shop-checkout`). Seul code promo encore valide : `BUNDLE10` (les autres ont expiré — moteur d'expiry OK) |
-| Auth / Compte                   | 40 %                               | `RequireAuth` actif sur `/account/*`. Wishlist résolue via `getPlpCardsByIds` (sans limite top-50), clé persist `ecom-default-shop-wishlist`. Orders/Addresses/PaymentMethods = stubs → **Sprint D**                           |
-| Support / Légal / Système       | 25 % débloqué partiel              | Système : `404/500/maintenance` nues via `SystemLayout` (sans newsletter/header). 19 pages support/légal encore stubs → **Sprint D**                                                                                           |
-| Admin                           | 35 % démo lecture seule            | 2 commandes mock `CMD-1001/1002`. `STATUS_LABELS` centralisé dans `shared/components/admin/orderStatus.ts`. `findPromoByCode` corrigé (lookup code seul). `DataTable` sans tri/pagination → **Sprint D/E**. `RequireAdmin` contournable client (connu, mock) |
-| Data / Types / SEO              | Contrat mock sain, données OK      | Genres normalisés `women/kids` (P0-3 résolu). `formatPrice` en `fr-FR` + FCFA (P3-14 résolu). `shopId = "default-shop"` sur `Product/Promotion/MockOrder/CartLine/LocalReview`, `getPlpBySlug/getMockOrders/getMockOrderById(…, shopId?)` prêts. `Price` (primitif) vs `ProductPrice` (composé) conservés comme source unique. Images : pool curé `APPAREL/KIDS/LIFESTYLE/BAG` dans `data/mock/assets.ts`, assignation catégorie+genre dans `relations.ts` (Sprint B). Façades complètes : `data/index` (+shopApi), `components/index` (~50 exports, règle façade OU profond), `stores/index` (+reviews) |
+| Auth / Compte                   | 90 %                               | `RequireAuth` actif sur `/account/*`. Dashboard hub réel (raccourcis + compteurs + dernière commande + déconnexion, `AccountPageSpecifics` supprimé). `Orders/OrderDetail` câblés à `getMockOrders/getMockOrderById` (seeds + commandes checkout) via `OrderDetailView` partagée (aussi utilisée par la Confirmation). `Addresses` CRUD local (`ecom-default-shop-addresses`, défaut auto), `PaymentMethods` CRUD local masqué (`ecom-default-shop-payments`, jamais de n° complet). Mot de passe oublié fonctionnel (simulé). Wishlist sans limite (Sprint B) |
+| Support / Légal / Système       | 95 % rédigé                        | Support réel piloté par `shared/data/support.ts` : `OrderTracking` (n° + e-mail → `getMockOrderById`, filtre e-mail, timeline de statut), FAQ 6 entrées, Contact (canaux + formulaire validé simulé), Livraison & retours alignés checkout. Légal rédigé et substantiel (`shared/data/legal.ts` + gabarit `LegalPage`) : CGU/CGV (7 sections), confidentialité (5), mentions (4), accessibilité (3), plan du site réel (catégories/marques/collections + statique). Système : `404/500/maintenance` nues (`SystemLayout`) avec CTA retour/réessai |
+| Admin                           | 90 % démo lecture seule            | Commandes mock (`CMD-1001/1002` + créées via `getMockOrders`). `STATUS_LABELS` + `statusLabel` centralisés (`admin/orderStatus.ts`). `findPromoByCode` corrigé. `DataTable` avec tri au clic + pagination + état vide. `RequireAdmin` contournable client (connu, mock — vrai auth au branchement backend) |
+| Data / Types / SEO              | Contrat mock gelé, site prêt       | Cf. `docs/API_CONTRACT.md` (8 fonctions figées, moteurs purs testés). SEO : `title/meta/canonical` + OG dynamiques + JSON-LD `Product` (PDP) via `lib/seo.ts`, `robots.txt` + `sitemap.xml` statiques. Tests : `vitest` (`pnpm test`), 26 tests sur `currency/filters/checkout/catalogApi`. Design system tranché : primitifs morts `Button/Input/Badge` **supprimés** (0 usage), tokens `danger/surface/navy/mist` ajoutés à `index.css` (0 hex en dur restant). a11y : `useFocusTrap` + `SizeGuideModal` piégée/labelisée. Seul hex restant : AUCUN dans `src`. Reste connu : packshots sneakers à fournir |
 
 Références : `docs/JD_STRUCTURE_MAP.md`, `docs/IMPLEMENTATION_SPRINT_PLAN.md`, `docs/COPILOT_HANDOFF.md`.
 
@@ -102,20 +104,26 @@ Références : `docs/JD_STRUCTURE_MAP.md`, `docs/IMPLEMENTATION_SPRINT_PLAN.md`,
 - Done : tunnel complet cliquable PDP → Confirmation avec commande mock persistée.
 - Reste connu : les commandes créées remontent déjà dans `getMockOrders()` (câblage Compte/Admin → Sprint D).
 
-### Sprint D — Compte + Support + Légal + Système (bloqueur n°2)
+### Sprint D — Compte + Support + Légal + Système (bloqueur n°2) — ✅ TERMINÉ 2026-10-08
 
-- Compte : `RequireAuth` actif, `Orders/OrderDetail` câblés aux commandes mock, `Addresses/PaymentMethods` CRUD local, Wishlist sans limite top-50.
-- Support : `OrderTracking` (input n° + email → lookup `getMockOrderById`), `Help/Contact/ShippingReturns` contenus réels.
-- Légal : 5 pages rédigées (CGU/privacy/mentions/a11y/sitemap) — contenu mince interdit avant indexation.
-- Système : `404/500/maintenance` avec CTA retour + sans newsletter/header lourd.
+- Compte : `Orders/OrderDetail` câblés aux commandes mock (seeds + créées) via `OrderDetailView` partagée (`shared/components/account/`, aussi utilisée par la Confirmation — dédupliquée). Dashboard hub réel (compteurs + dernière commande). `Addresses` CRUD + `PaymentMethods` CRUD masqué (stores persistés `ecom-default-shop-addresses/-payments`, défaut auto). Mot de passe oublié simulé. `AccountPageSpecifics` + `CheckoutPageSpecifics` orphelins supprimés.
+- Support : `OrderTracking` (n° + e-mail → `getMockOrderById`, seeds sans e-mail visibles, créées filtrées, timeline 4 étapes, lien détail), FAQ 6 entrées, Contact (4 canaux + formulaire validé), Livraison & retours alignés checkout — contenus en `shared/data/support.ts`.
+- Légal : CGU/CGV, confidentialité, mentions, accessibilité rédigées et substantielles (`shared/data/legal.ts`, gabarit `LegalPage`, dates de MAJ) ; plan du site réel (catalogue dynamique + statique).
+- Système : `404/500/maintenance` nues avec CTA (retour accueil/aide, réessai reload, panier conservé).
+- Vérifié : harnais Node 14/14 + audit 0 stub dans `src/pages`.
 - Done : aucune page stub restante, footer/support/légal cohérents.
+- Reste connu : `DataTable` admin sans tri/pagination → Sprint E.
 
-### Sprint E — Qualité + gel mock (prêt à brancher backend plus tard)
+### Sprint E — Qualité + gel mock (prêt à brancher backend plus tard) — ✅ TERMINÉ 2026-10-08
 
-- Design system : adopter OU supprimer `Button/Input/Badge`, tokens `index.css` utilisés uniformément, a11y (focus-trap `SizeGuideModal`, dialogs, `aria`), SEO (`title/meta/canonical` déjà via `lib/seo.ts` + OG/JSON-LD/sitemap/robots).
-- Tests : ajouter `vitest` sur `currency/filters/cart/promo` (actuellement 0 test, scripts `dev/build/lint/preview` seuls).
-- Contrat backend-ready : `catalogApi/shopApi` exposent déjà `ApiPlpResponse/ApiPdpResponse` ; figer leurs signatures pour que le futur backend n'impose aucun changement aux pages/composants.
+- Design system **tranché** : primitifs morts `Button/Input/Badge` supprimés (0 usage constaté — adoptés nulle part, donc suppression plutôt qu'adoption forcée) + alias `PdpAddToCartPanel` retiré + blueprint `ui` à jour. Tokens `danger/surface/navy/mist` ajoutés à `index.css`, tous les hex en dur remplacés (`#d60000`, `#f5f5f5`, `#1a1f71`, `#ececec`, accent-case), façades complétées (`OrderDetailView`, `orderStatus`, `CheckoutStepId`, `PaymentMethodId`).
+- a11y : `useFocusTrap` (`shared/hooks/`) — focus piégé/circulaire, focus initial, retour focus, `aria-labelledby` sur `SizeGuideModal` (Escape déjà présent).
+- SEO : `applySeoToDocument` étendu (OG dynamiques `title/description/type/image` + JSON-LD `Product` avec note/compteur réels en PDP), `robots.txt` (admin/compte/checkout exclus) + `sitemap.xml` statiques dans `public/`.
+- Admin : `DataTable` avec tri au clic (numérique/texte fr) + pagination + état vide, sans changer les appels existants.
+- Tests : `vitest` installé (`pnpm test`, script ajouté), 4 fichiers / 26 tests verts sur `currency` (format, remises, promos), `filters` (normalisation, alias legacy, seuils FCFA), `checkout` (totaux, franco, validations), `catalogApi` (marques, non-régression genres, prix, pagination, recherche).
+- Contrat backend-ready **figé** : `docs/API_CONTRACT.md` (8 signatures, types, énumérations, checklist de branchement). `pnpm run lint` restreint à `src` (le worktree `.kilo/` polluait le lint racine).
 - Done : site 100 % fonctionnel en local sur mocks, `build+lint+test` verts, docs à jour.
+- Reste connu (hors scope, au branchement) : vrai auth, vrai PSP, packshots sneakers — checklist dans `API_CONTRACT.md`.
 
 ## 5. Ordre d'exécution recommandé
 

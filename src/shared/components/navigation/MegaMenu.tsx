@@ -71,7 +71,7 @@ export function MegaMenu() {
 
       {activeItem && (
         <div
-          className="absolute left-0 right-0 top-12 z-50 border border-black/15 bg-[#ececec] shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
+          className="absolute left-0 right-0 top-12 z-50 border border-black/15 bg-mist shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
           onMouseEnter={clearCloseTimer}
           onMouseLeave={scheduleClose}
         >

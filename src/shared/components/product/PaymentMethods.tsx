@@ -71,7 +71,7 @@ export function PaymentMethods({
                 loading="lazy"
               />
             ) : (
-              <span className="text-xs font-bold italic text-[#1a1f71]">
+              <span className="text-xs font-bold italic text-navy">
                 {method.badge.text}
               </span>
             );

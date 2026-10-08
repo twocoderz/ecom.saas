@@ -33,7 +33,7 @@ export function ProductPrice({
         <div className="flex flex-wrap items-center gap-2 text-base">
           <Price
             amount={salePrice ?? price}
-            className={`font-bold ${hasDiscount ? "text-[#d60000]" : "text-black"}`}
+            className={`font-bold ${hasDiscount ? "text-danger" : "text-black"}`}
           />
           {hasDiscount && (
             <Price
@@ -43,13 +43,13 @@ export function ProductPrice({
             />
           )}
           {hasDiscount && (
-            <span className="rounded-sm bg-[#d60000] px-1.5 py-0.5 text-[11px] font-bold text-white">
+            <span className="rounded-sm bg-danger px-1.5 py-0.5 text-[11px] font-bold text-white">
               -{discountPct}%
             </span>
           )}
         </div>
         {hasDiscount && shouldShowSavings && (
-          <p className="mt-1 text-xs font-semibold text-[#d60000]">
+          <p className="mt-1 text-xs font-semibold text-danger">
             Économisez <Price amount={savings} /> ({discountPct} %)
           </p>
         )}
@@ -61,7 +61,7 @@ export function ProductPrice({
     <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
       <Price
         amount={salePrice ?? price}
-        className={`font-semibold ${hasDiscount ? "text-[#d60000]" : "text-black-80"}`}
+        className={`font-semibold ${hasDiscount ? "text-danger" : "text-black-80"}`}
       />
       {hasDiscount && (
         <Price

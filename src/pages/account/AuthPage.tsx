@@ -85,12 +85,12 @@ export function AuthPage() {
               placeholder="Adresse e-mail"
               aria-invalid={emailError}
               className={`w-full rounded-xs border bg-white px-3 py-3 text-sm text-black placeholder:text-black-60 ${
-                emailError ? "border-[#d60000]" : "border-black-30"
+                emailError ? "border-danger" : "border-black-30"
               }`}
             />
             {emailError && (
               <p
-                className="mt-1.5 text-xs font-semibold text-[#d60000]"
+                className="mt-1.5 text-xs font-semibold text-danger"
                 role="alert"
               >
                 Veuillez saisir une adresse e-mail valide.

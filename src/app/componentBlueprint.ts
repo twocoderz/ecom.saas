@@ -78,9 +78,6 @@ export const componentBlueprint: ComponentGroup[] = [
   {
     group: "ui",
     items: [
-      "Button",
-      "Input",
-      "Badge",
       "Price",
       "ProductPrice",
       "Rail",

@@ -58,7 +58,7 @@ export function ProductCard({
         </Link>
 
         {hasDiscount && (
-          <span className="absolute left-2 top-2 rounded-sm bg-[#d60000] px-2 py-1 text-[11px] font-bold text-white">
+          <span className="absolute left-2 top-2 rounded-sm bg-danger px-2 py-1 text-[11px] font-bold text-white">
             -{discountPct}%
           </span>
         )}

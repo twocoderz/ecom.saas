@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { CloseIcon } from "../../icons";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 import {
   SHOE_SIZE_ROWS,
   TEXTILE_SIZE_ROWS,
@@ -12,9 +13,12 @@ type SizeGuideModalProps = {
 };
 
 /**
- * Guide des tailles FR : tableau EU/cm + textile, en modale accessible.
+ * Guide des tailles FR : tableau EU/cm + textile, en modale accessible
+ * (focus piege, Echap, retour focus a la fermeture).
  */
 export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
+  const panelRef = useFocusTrap<HTMLDivElement>(open);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (event: KeyboardEvent) => {
@@ -31,15 +35,19 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
       role="dialog"
       aria-modal="true"
-      aria-label={sizeGuideCopy.title}
+      aria-labelledby="size-guide-title"
       onClick={onClose}
     >
       <div
+        ref={panelRef}
+        tabIndex={-1}
         className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-xl bg-white p-5"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between">
-          <h2 className="text-base font-bold">{sizeGuideCopy.title}</h2>
+          <h2 id="size-guide-title" className="text-base font-bold">
+            {sizeGuideCopy.title}
+          </h2>
           <button
             type="button"
             onClick={onClose}

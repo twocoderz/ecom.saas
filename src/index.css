@@ -8,6 +8,12 @@
   --color-white: #ffffff;
   --color-black: #121516;
 
+  /* Couleurs fonctionnelles (ex-codes hex en dur) */
+  --color-danger: #d60000;
+  --color-surface: #f5f5f5;
+  --color-navy: #1a1f71;
+  --color-mist: #ececec;
+
   /* Black opacity scale */
   --color-black-90: rgb(18 21 22 / 90%);
   --color-black-80: rgb(18 21 22 / 80%);
@@ -98,7 +104,7 @@
 /* Checkbox and form elements accent color */
 input[type="checkbox"],
 input[type="radio"] {
-  accent-color: #121516;
+  accent-color: var(--color-black);
 }
 
 .scrollbar-none {
