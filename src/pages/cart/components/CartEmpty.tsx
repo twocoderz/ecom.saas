@@ -19,7 +19,7 @@ export function CartEmpty() {
         Votre panier est vide
       </h2>
 
-      <p className="mx-auto mt-4 max-w-xs md:max-w-sm text-md md:text-lg text-black-60">
+      <p className="mx-auto mt-4 max-w-xs md:max-w-sm text-md text-black-60">
         {user
           ? "Découvrez nos nouveautés et ajoutez vos coups de cœur au panier."
           : "Connectez-vous à votre compte pour retrouver vos articles déjà ajoutés ou mis de côté."}
