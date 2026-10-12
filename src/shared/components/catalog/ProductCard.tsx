@@ -68,7 +68,7 @@ export function ProductCard({
           aria-label={isWished ? "Retirer des favoris" : "Ajouter aux favoris"}
           aria-pressed={isWished}
           onClick={() => toggleWishlist(product.id)}
-          className={`absolute bottom-2 left-2 flex h-8 w-8 items-center justify-center rounded-full shadow-sm transition-colors ${
+          className={`absolute bottom-2 left-2 flex h-8 w-8 items-center justify-center rounded-full shadow-sm cursor-pointer transition-colors ${
             isWished
               ? "bg-black text-white"
               : "bg-white text-black-80 hover:bg-black hover:text-white"
