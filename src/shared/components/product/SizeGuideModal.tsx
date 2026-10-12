@@ -52,7 +52,7 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
             type="button"
             onClick={onClose}
             aria-label="Fermer le guide des tailles"
-            className="flex h-8 w-8 items-center justify-center rounded-full cursor-pointer hover:bg-black-5"
+            className="flex h-8 w-8 items-center justify-center rounded-xs cursor-pointer hover:bg-black-5"
           >
             <CloseIcon aria-hidden="true" className="h-4 w-4" />
           </button>
@@ -60,7 +60,7 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
 
         <p className="mt-2 text-sm text-black-70">{sizeGuideCopy.intro}</p>
 
-        <h3 className="mt-4 text-sm font-semibold">
+        <h3 className="mt-6 text-sm font-semibold">
           {sizeGuideCopy.shoesTitle}
         </h3>
         <table className="mt-2 w-full text-left text-xs">
@@ -92,7 +92,7 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
           </tbody>
         </table>
 
-        <h3 className="mt-4 text-sm font-semibold">
+        <h3 className="mt-6 text-sm font-semibold">
           {sizeGuideCopy.textileTitle}
         </h3>
         <table className="mt-2 w-full text-left text-xs">
