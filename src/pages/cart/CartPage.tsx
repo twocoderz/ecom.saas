@@ -26,7 +26,7 @@ export function CartPage() {
               <ProductGrid layout="rail" cardVariant="compact" />
             </Section>
             <Section title="Nos coups de cœur">
-              <ProductGrid layout="rail" />
+              <ProductGrid layout="grid" />
             </Section>
           </div>
         ) : (

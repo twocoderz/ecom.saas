@@ -142,7 +142,7 @@ export function HomePage() {
         <Section title="Nos coups de cœur" className="mt-p18 mb-p18">
           <ProductGrid
             products={topPicks}
-            layout="rail"
+            layout="grid"
             cardVariant="compact"
           />
         </Section>
