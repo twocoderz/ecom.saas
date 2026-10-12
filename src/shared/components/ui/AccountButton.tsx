@@ -121,7 +121,7 @@ export default function AccountButton() {
                   signOut();
                   setOpen(false);
                 }}
-                className="w-full rounded-md border border-black-20 px-4 py-2 text-sm font-semibold hover:border-black"
+                className="px-2 text-sm font-semibold cursor-pointer text-danger"
               >
                 Se déconnecter
               </button>
