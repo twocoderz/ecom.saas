@@ -41,7 +41,7 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
       <div
         ref={panelRef}
         tabIndex={-1}
-        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-xl bg-white p-5"
+        className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-xs bg-white p-6"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-center justify-between">
@@ -52,7 +52,7 @@ export function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
             type="button"
             onClick={onClose}
             aria-label="Fermer le guide des tailles"
-            className="flex h-8 w-8 items-center justify-center rounded-full hover:bg-black-5"
+            className="flex h-8 w-8 items-center justify-center rounded-full cursor-pointer hover:bg-black-5"
           >
             <CloseIcon aria-hidden="true" className="h-4 w-4" />
           </button>
