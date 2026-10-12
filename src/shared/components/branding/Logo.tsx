@@ -17,7 +17,7 @@ export default function Logo({ onClick }: { onClick?: () => void }) {
         className="flex h-7 w-7 items-center justify-center bg-white text-sm font-black text-black"
       ></span>
       <span className="text-sm font-black uppercase tracking-tight text-white">
-        ecom<span className="text-white/60">.saas</span>
+        ecom<span className="text-white/60"></span>
       </span>
     </Link>
   );
