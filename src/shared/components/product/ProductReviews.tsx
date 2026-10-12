@@ -20,8 +20,15 @@ export function ProductReviews({
 }: ProductReviewsProps) {
   const baseRating = productRatings[productId] ?? 0;
   const baseCount = mockReviewCount(productId);
-  const localReviews = useReviewStore((s) => s.reviewsFor(productId));
+  // Référence stable : on sélectionne le tableau brut puis on filtre en mémo.
+  // Ne jamais faire `(s) => s.fn(productId)` qui retourne un nouveau tableau
+  // à chaque appel et boucle avec useSyncExternalStore (Zustand v5).
+  const allReviews = useReviewStore((s) => s.reviews);
   const addReview = useReviewStore((s) => s.addReview);
+  const localReviews = useMemo(
+    () => allReviews.filter((review) => review.productId === productId),
+    [allReviews, productId],
+  );
 
   const [showForm, setShowForm] = useState(false);
   const [author, setAuthor] = useState("");

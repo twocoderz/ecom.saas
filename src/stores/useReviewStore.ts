@@ -25,12 +25,22 @@ type ReviewState = {
     rating: number;
     text: string;
   }) => void;
-  reviewsFor: (productId: string) => LocalReview[];
 };
+
+/**
+ * Sélecteur pur hors-store : filtre sans créer de nouvelle référence
+ * dans le sélecteur Zustand (évite la boucle infinie useSyncExternalStore).
+ */
+export function selectReviewsFor(
+  reviews: LocalReview[],
+  productId: string,
+): LocalReview[] {
+  return reviews.filter((review) => review.productId === productId);
+}
 
 export const useReviewStore = create<ReviewState>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       reviews: [],
       addReview: (input) =>
         set((state) => ({
@@ -44,9 +54,10 @@ export const useReviewStore = create<ReviewState>()(
             },
           ],
         })),
-      reviewsFor: (productId) =>
-        get().reviews.filter((review) => review.productId === productId),
     }),
-    { name: `ecom-${DEFAULT_SHOP_ID}-reviews` },
+    {
+      name: `ecom-${DEFAULT_SHOP_ID}-reviews`,
+      partialize: (state) => ({ reviews: state.reviews }),
+    },
   ),
 );
