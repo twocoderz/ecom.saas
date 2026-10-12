@@ -80,7 +80,7 @@ export function HeroBanner() {
       onFocusCapture={() => setIsPaused(true)}
       onBlurCapture={() => setIsPaused(false)}
     >
-      <div className="relative h-[420px] md:h-[520px]">
+      <div className="relative h-105 md:h-130">
         {SLIDES.map((slide, index) => {
           const isActive = index === activeIndex;
           return (
@@ -96,7 +96,7 @@ export function HeroBanner() {
                 alt={slide.imageAlt}
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
             </div>
           );
         })}
@@ -161,7 +161,9 @@ export function HeroBanner() {
                 aria-selected={isActive}
                 aria-label={`Aller au slide ${index + 1}`}
                 className={`h-2 rounded-full transition-all ${
-                  isActive ? "w-6 bg-white" : "w-2 bg-white/40 hover:bg-white/70"
+                  isActive
+                    ? "w-6 bg-white"
+                    : "w-2 bg-white/40 hover:bg-white/70"
                 }`}
               />
             );
